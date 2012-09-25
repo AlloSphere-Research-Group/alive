@@ -24,8 +24,9 @@ $(document).ready( function() {
 	cmd		= document.getElementById("command");
 	code 	= document.getElementById("code");
 	fileBrowser = document.getElementById("fileBrowser");
-		
-	slaveSocket = io.connect('http://127.0.0.1:8081/'); // has to match port node.js is running on
+	
+	slaveSocket = io.connect("http://" + remoteIP + ":8081/");	
+	//slaveSocket = io.connect('http://127.0.0.1:8081/'); // has to match port node.js is running on
 	//slaveSocket = io.connect('http://192.168.0.3:8081/'); // has to match port node.js is running on
 	slaveSocket.on('handshake', function (response) {
 		console.log("HANDSHAKE : ", response.data);

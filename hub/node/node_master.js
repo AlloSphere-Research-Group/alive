@@ -19,6 +19,21 @@ var receiver 	= new osc.UdpReceiver(OSC_IN);
 
 console.log("hostname " + os.hostname());
 
+var interfaces = os.networkInterfaces();
+var addresses = [];
+for (k in interfaces) {
+    for (k2 in interfaces[k]) {
+        var address = interfaces[k][k2];
+        if (address.family == 'IPv4' && !address.internal) {
+        	console.log(address.address);
+            addresses.push(address.address)
+        }
+    }
+}
+
+var myIP = addresses[0];
+
+
 /*
 NOGOOD (RETURNS 127.0.1.1):
 exec("hostname -i", function(err, stdout, stderr) {
@@ -226,20 +241,6 @@ var server = http.createServer(function(req, res) {
 server.listen(port, '0.0.0.0');
 console.log('Server running on port ' + port + '');
 
-var os = require('os')
-
-var interfaces = os.networkInterfaces();
-var addresses = [];
-for (k in interfaces) {
-    for (k2 in interfaces[k]) {
-        var address = interfaces[k][k2];
-        if (address.family == 'IPv4' && !address.internal) {
-            addresses.push(address.address)
-        }
-    }
-}
-
-var myIP = addresses[0];
 
 
 
