@@ -1,3 +1,6 @@
+# Build fodler
+build/
+
 # Compiled Object files
 *.slo
 *.lo
@@ -10,3 +13,25 @@
 *.lai
 *.la
 *.a
+
+# Others
+.svn
+.DS_Store
+.doxygen_objdb_*
+.xcuserdata
+.xcworkspace
+.tm_build_errors
+.ncb
+.suo
+.vcproj.*
+.wwdb
+.d
+.temp
+.link
+.lib
+.spec
+.framework
+.perspectivev3
+.pbxuser
+.model1v3
+
