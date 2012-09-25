@@ -141,7 +141,7 @@ socket_in.sockets.on('connection', function (socket) {
 	});
 });
 
-var root = __dirname + "/../editor/";
+var root = __dirname + "/../editor";
 console.log("serving from " + root);
 var port = 8080;
 var server = http.createServer(function(req, res) {
@@ -149,8 +149,19 @@ var server = http.createServer(function(req, res) {
 	var pathname = req.uri.pathname;
 	
 	// static file server:
+	console.log(pathname);
+	
 	if (pathname == "/") {
 		pathname = pathname + "index.htm";
+	} else if (pathname == "/config.js") {
+		console.log("sending config");
+		var text = "remoteIP = '" + selfIP + "';";
+		res.writeHead(200, {
+			'Content-Type': 'text/javascript',
+			'Content-Length': text.length
+		})
+		res.end(text);
+		return;
 	}
 	
 	req.uri.pathname = root + pathname;
@@ -196,4 +207,15 @@ var server = http.createServer(function(req, res) {
 	})
 });
 server.listen(port, '0.0.0.0');
-console.log('Server running at http://127.0.0.1:' + port + '/');
+console.log('Server running on port ' + port + '');
+
+
+
+
+
+
+
+
+
+
+
