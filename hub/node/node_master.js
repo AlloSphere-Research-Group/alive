@@ -47,22 +47,20 @@ receiver.on('/error', function(e) {
 var socketURL = 'http://127.0.0.1:8082';
 sock = io.connect(socketURL);
 
-var ls = function(sock) {
-	var files = fs.readdirSync(sock.currentDir);
+var ls = function(_socket) {
+	var files = fs.readdirSync(_socket.currentDir);
 	var response = [];
 	for(var i = 0; i < files.length; i++) {
 		var _path = files[i];
-		var isDirectory = fs.statSync(sock.currentDir + "/" + _path).isDirectory();
+		var isDirectory = fs.statSync(_socket.currentDir + "/" + _path).isDirectory();
 		response.push( {name:_path, "isDirectory":isDirectory} );
 	}
 	return response;
 };
-var cd = function(sock, args) {
-	socket.currentDir = path.resolve(sock.currentDir, args);
+
+var cd = function(_socket, args) {
+	_socket.currentDir = path.resolve(_socket.currentDir, args);
 }
-var read = function(file) {
-	return fs.readFileSync(currentDir + "/" + file, 'utf8');
-};
 
 socket_in.sockets.on('connection', function (socket) {
 	socket.addr = socket.handshake.address.address;
