@@ -1,6 +1,9 @@
 # Build fodler
 build/
 
+# libs folders
+node_modules/
+
 # Compiled Object files
 *.slo
 *.lo
