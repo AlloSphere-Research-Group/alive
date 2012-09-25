@@ -18,7 +18,7 @@ var OSC_IN 		= 8010;
 var client 		= null;
 var receiver 	= new osc.UdpReceiver(OSC_IN);
 
-console.log("hostname " + os.hostname());
+//console.log("hostname " + os.hostname());
 
 var interfaces = os.networkInterfaces();
 var addresses = [];
@@ -34,18 +34,6 @@ for (k in interfaces) {
 
 var myIP = addresses[0];
 
-
-/*
-NOGOOD (RETURNS 127.0.1.1):
-exec("hostname -i", function(err, stdout, stderr) {
-	util.puts(stdout);
-});
-dns.lookup(os.hostname(), function(err, add, fam) {
-	console.log("addr" + add);
-	console.log("fam" + fam);
-});
-*/
-
 receiver.on('/print', function(e) {
 	client.emit("print", e.params[0]);
 	console.log(e.params[0]);
@@ -56,56 +44,22 @@ receiver.on('/error', function(e) {
 	console.error(e.params[0]);
 });
 
-process.stdin.resume();
-
-process.stdin.setEncoding('utf8');
-
-process.stdin.on('data', function (chunk) {
-	chunk = chunk.replace(/(\r\n|\n|\r)/gm,"");
-	var tokens = chunk.split(' ');
-	var cmd = tokens[0];
-	var args = tokens[1]
-	switch(cmd) {
-		case "ls" :
-			ls();
-			break;
-		case "cd" :
-			cd(args);
-			break;
-		case "read" :
-			read(args);
-			break;
-		default:
-			console.log("could not process command");
-		break;
-	}
-	process.stdout.write('data: ' + chunk);
-});
-
 var socketURL = 'http://127.0.0.1:8082';
 sock = io.connect(socketURL);
 
-var ls = function() {
-	//console.log("CURRENT DIR ON LS", currentDir);
-	var files = fs.readdirSync(currentDir);
+var ls = function(sock) {
+	var files = fs.readdirSync(sock.currentDir);
 	var response = [];
 	for(var i = 0; i < files.length; i++) {
 		var _path = files[i];
-		//console.log("PATH", _path);
-		var isDirectory = fs.statSync(currentDir + "/" + _path).isDirectory();
+		var isDirectory = fs.statSync(sock.currentDir + "/" + _path).isDirectory();
 		response.push( {name:_path, "isDirectory":isDirectory} );
 	}
 	return response;
-	//return fs.readdirSync(currentDir);
-		//console.log("RETURNING FILES", files);
-		//return files;
-		/*for(var i = 0; i < files.length; i++) {
-			console.log(files[i]);
-		}*/
-		//});
 };
-
-
+var cd = function(sock, args) {
+	socket.currentDir = path.resolve(sock.currentDir, args);
+}
 var read = function(file) {
 	return fs.readFileSync(currentDir + "/" + file, 'utf8');
 };
@@ -140,33 +94,12 @@ socket_in.sockets.on('connection', function (socket) {
 		
 		switch(_cmd) {
 			case "ls" :
-				var files = fs.readdirSync(socket.currentDir);
-				var response = [];
-				for(var i = 0; i < files.length; i++) {
-					var _path = files[i];
-					//console.log("PATH", path);
-					var isDirectory = fs.statSync(socket.currentDir + "/" + _path).isDirectory();
-					response.push( {name:_path, "isDirectory":isDirectory} );
-				}
-				console.log("FILES", response);
-				socket.emit("ls", { "data" : response} );
+				var files = ls(socket);
+				socket.emit("ls", { "data" : files} );
 				break;
 			case "cd" :
-				//var cd = function(dir) {
-				//	currentDir = path.resolve(currentDir, dir);
-					//console.log(currentDir);
-				//};
-				//cd(args);
-				socket.currentDir = path.resolve(socket.currentDir, args);
-				var files = fs.readdirSync(socket.currentDir);
-				var response = [];
-				for(var i = 0; i < files.length; i++) {
-					var _path = files[i];
-					//console.log("PATH", path);
-					var isDirectory = fs.statSync(socket.currentDir + "/" + _path).isDirectory();
-					response.push( {name:_path, "isDirectory":isDirectory} );
-				}
-				//console.log("FILES", files);
+				cd(socket, args);
+				var response = ls(socket);
 				socket.emit("ls", { "data" : response} );
 				socket.emit("dir", socket.currentDir );				
 				break;
@@ -182,10 +115,6 @@ socket_in.sockets.on('connection', function (socket) {
 		
 	socket.on('disconnect', function () { 
 		console.log("DISCONNECT : " + this.addr);
-		//if(client === this) {
-		//	console.log("DISCONNECTING CLIENT");
-		//	client = null;
-		//}
 	});
 });
 
@@ -256,15 +185,3 @@ var server = http.createServer(function(req, res) {
 });
 server.listen(port, '0.0.0.0');
 console.log('Server running at ' + myIP + ' on port ' + port + '');
-
-
-
-
-
-
-
-
-
-
-
-
