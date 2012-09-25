@@ -197,19 +197,19 @@ var server = http.createServer(function(req, res) {
 	}
 	
 	req.uri.pathname = root + pathname;
-	var path = req.uri.pathname;
-	console.log(path);
+	var filepath = req.uri.pathname;
+	console.log(filepath);
 	
-	fs.stat(path, function (err, stat) {
+	fs.stat(filepath, function (err, stat) {
 		if (err || stat == undefined) {
-			var reason = "not found: " + path;
+			var reason = "not found: " + filepath;
 			res.writeHead(500, {
 				'Content-Length': reason.length,
 				'Content-Type': "text/plain"
 			});
 			res.write(reason);
 		} else if (!stat.isFile()) {
-			var reason = "not a file: " + path;
+			var reason = "not a file: " + filepath;
 			res.writeHead(500, {
 				'Content-Length': reason.length,
 				'Content-Type': "text/plain"
@@ -219,7 +219,7 @@ var server = http.createServer(function(req, res) {
 			
 			fs.readFile(req.uri.pathname, function(err, data) {
 				if (err) {
-					var reason = "not read: " + path;
+					var reason = "not read: " + filepath;
 					res.writeHead(500, {
 						'Content-Length': reason.length,
 						'Content-Type': "text/plain"
@@ -229,7 +229,7 @@ var server = http.createServer(function(req, res) {
 				} else {
 					var text = data.toString();
 					res.writeHead(200, {
-						'Content-Type': mime.lookup(path),
+						'Content-Type': mime.lookup(filepath),
 						'Content-Length': stat.size
 					})
 					res.end(text);
