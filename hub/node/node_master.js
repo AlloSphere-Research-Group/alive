@@ -1,4 +1,7 @@
 var fs 			= require('fs');
+var http 		= require('http');
+var url 		= require('url');
+var mime 		= require('mime');
 var path 		= require('path');
 var io 			= require('socket.io-client');
 var socket_in 	= require('socket.io').listen(8081);
@@ -137,3 +140,60 @@ socket_in.sockets.on('connection', function (socket) {
 		}
 	});
 });
+
+var root = __dirname + "/../editor/";
+console.log("serving from " + root);
+var port = 8080;
+var server = http.createServer(function(req, res) {
+	req.uri = url.parse(req.url);
+	var pathname = req.uri.pathname;
+	
+	// static file server:
+	if (pathname == "/") {
+		pathname = pathname + "index.htm";
+	}
+	
+	req.uri.pathname = root + pathname;
+	var path = req.uri.pathname;
+	console.log(path);
+	
+	fs.stat(path, function (err, stat) {
+		if (err || stat == undefined) {
+			var reason = "not found: " + path;
+			res.writeHead(500, {
+				'Content-Length': reason.length,
+				'Content-Type': "text/plain"
+			});
+			res.write(reason);
+		} else if (!stat.isFile()) {
+			var reason = "not a file: " + path;
+			res.writeHead(500, {
+				'Content-Length': reason.length,
+				'Content-Type': "text/plain"
+			});
+			res.write(reason);
+		} else {
+			
+			fs.readFile(req.uri.pathname, function(err, data) {
+				if (err) {
+					var reason = "not read: " + path;
+					res.writeHead(500, {
+						'Content-Length': reason.length,
+						'Content-Type': "text/plain"
+					});
+					res.write(reason);
+					
+				} else {
+					var text = data.toString();
+					res.writeHead(200, {
+						'Content-Type': mime.lookup(path),
+						'Content-Length': stat.size
+					})
+					res.end(text);
+				}
+			})
+		}
+	})
+});
+server.listen(port, '0.0.0.0');
+console.log('Server running at http://127.0.0.1:' + port + '/');
