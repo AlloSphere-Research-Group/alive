@@ -2,6 +2,10 @@ var fs 			= require('fs');
 var http 		= require('http');
 var url 		= require('url');
 var mime 		= require('mime');
+var dns			= require('dns');
+var os			= require('os');
+var net			= require('net');
+var util		= require('util');
 var path 		= require('path');
 var io 			= require('socket.io-client');
 var socket_in 	= require('socket.io').listen(8081);
@@ -12,6 +16,19 @@ var OSC_IN 		= 8010;
 var currentDir 	= __dirname;
 var client 		= null;
 var receiver 	= new osc.UdpReceiver(OSC_IN);
+
+console.log("hostname " + os.hostname());
+
+/*
+NOGOOD (RETURNS 127.0.1.1):
+exec("hostname -i", function(err, stdout, stderr) {
+	util.puts(stdout);
+});
+dns.lookup(os.hostname(), function(err, add, fam) {
+	console.log("addr" + add);
+	console.log("fam" + fam);
+});
+*/
 
 receiver.on('/print', function(e) {
 	client.emit("print", e.params[0]);
