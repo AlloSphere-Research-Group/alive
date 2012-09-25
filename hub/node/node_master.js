@@ -6,6 +6,7 @@ var dns			= require('dns');
 var os			= require('os');
 var net			= require('net');
 var util		= require('util');
+
 var path 		= require('path');
 var io 			= require('socket.io-client');
 var socket_in 	= require('socket.io').listen(8081);
@@ -13,7 +14,7 @@ var exec 		= require('child_process').exec;
 var osc 		= require('./omgosc.js');
 
 var OSC_IN 		= 8010;
-var currentDir 	= __dirname;
+
 var client 		= null;
 var receiver 	= new osc.UdpReceiver(OSC_IN);
 
@@ -89,10 +90,10 @@ var ls = function() {
 	var files = fs.readdirSync(currentDir);
 	var response = [];
 	for(var i = 0; i < files.length; i++) {
-		var path = files[i];
-		//console.log("PATH", path);
-		var isDirectory = fs.statSync(currentDir + "/" + path).isDirectory();
-		response.push( {name:path, "isDirectory":isDirectory} );
+		var _path = files[i];
+		//console.log("PATH", _path);
+		var isDirectory = fs.statSync(currentDir + "/" + _path).isDirectory();
+		response.push( {name:_path, "isDirectory":isDirectory} );
 	}
 	return response;
 	//return fs.readdirSync(currentDir);
@@ -104,10 +105,6 @@ var ls = function() {
 		//});
 };
 
-var cd = function(dir) {
-	currentDir = path.resolve(currentDir, dir);
-	//console.log(currentDir);
-}
 
 var read = function(file) {
 	return fs.readFileSync(currentDir + "/" + file, 'utf8');
@@ -116,17 +113,17 @@ var read = function(file) {
 socket_in.sockets.on('connection', function (socket) {
 	socket.addr = socket.handshake.address.address;
 	socket.port = socket.handshake.address.port;
-	
-	client = socket;
-	client.emit("handshake", { "data" : "Handshake received from " + socket.addr } );
+	socket.currentDir 	= __dirname;
+	//client = socket;
+	socket.emit("handshake", { "data" : "Handshake received from " + socket.addr } );
 	
 	socket.on('save', function(obj) {
 		var filename = obj.filename;
 		var data = obj.data;
 		
-		fs.writeFileSync(currentDir + "/" + filename, data, 'utf8');
+		fs.writeFileSync(socket.currentDir + "/" + filename, data, 'utf8');
 		exec("git commit -a -m '"+filename+" changes from alloeditor'", 
-			{cwd: currentDir}, 
+			{cwd: socket.currentDir}, 
 			function() { 
 				console.log("MADE A COMMIT!");
 				sock.emit("pull");
@@ -143,20 +140,39 @@ socket_in.sockets.on('connection', function (socket) {
 		
 		switch(_cmd) {
 			case "ls" :
-				var files = ls();
-				console.log("FILES", files);
-				client.emit("ls", { "data" : files} );
+				var files = fs.readdirSync(socket.currentDir);
+				var response = [];
+				for(var i = 0; i < files.length; i++) {
+					var _path = files[i];
+					//console.log("PATH", path);
+					var isDirectory = fs.statSync(socket.currentDir + "/" + _path).isDirectory();
+					response.push( {name:_path, "isDirectory":isDirectory} );
+				}
+				console.log("FILES", response);
+				socket.emit("ls", { "data" : response} );
 				break;
 			case "cd" :
-				cd(args);
-				var files = ls();
+				//var cd = function(dir) {
+				//	currentDir = path.resolve(currentDir, dir);
+					//console.log(currentDir);
+				//};
+				//cd(args);
+				socket.currentDir = path.resolve(socket.currentDir, args);
+				var files = fs.readdirSync(socket.currentDir);
+				var response = [];
+				for(var i = 0; i < files.length; i++) {
+					var _path = files[i];
+					//console.log("PATH", path);
+					var isDirectory = fs.statSync(socket.currentDir + "/" + _path).isDirectory();
+					response.push( {name:_path, "isDirectory":isDirectory} );
+				}
 				//console.log("FILES", files);
-				client.emit("ls", { "data" : files} );
-				client.emit("dir", currentDir );				
+				socket.emit("ls", { "data" : response} );
+				socket.emit("dir", socket.currentDir );				
 				break;
 			case "read" :
-				var data = read(args);
-				client.emit("read", { "data" : data } );
+				var data = fs.readFileSync(socket.currentDir + "/" + args, 'utf8');///read(args);
+				socket.emit("read", { "data" : data } );
 				break;
 			default:
 				console.log("could not process command");
@@ -166,10 +182,10 @@ socket_in.sockets.on('connection', function (socket) {
 		
 	socket.on('disconnect', function () { 
 		console.log("DISCONNECT : " + this.addr);
-		if(client === this) {
-			console.log("DISCONNECTING CLIENT");
-			client = null;
-		}
+		//if(client === this) {
+		//	console.log("DISCONNECTING CLIENT");
+		//	client = null;
+		//}
 	});
 });
 
@@ -239,7 +255,7 @@ var server = http.createServer(function(req, res) {
 	})
 });
 server.listen(port, '0.0.0.0');
-console.log('Server running on port ' + port + '');
+console.log('Server running at ' + myIP + ' on port ' + port + '');
 
 
 
