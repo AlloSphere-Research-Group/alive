@@ -18,13 +18,13 @@ var master 		= null;
 var currentDir 	= __dirname;
 
 var subscriber  = zmq.socket('sub');
-var publisher 	= zmq.socket('pub');
+//var publisher 	= zmq.socket('pub');
 
 subscriber.on("message", function(msg) { console.log("BLAH"); console.log( msg.toString() ) } );
 
 var __addr = "tcp://"+MASTER_ADDRESS+":"+MASTER_PORT; 
 console.log(__addr);
-subscriber.connect("tcp://"+MASTER_ADDRESS+":"+MASTER_PORT);
+subscriber.connect(__addr);
 
 receiver.on('/print', function(e) {
 	sender.send('/print', e.typetag, e.params);
