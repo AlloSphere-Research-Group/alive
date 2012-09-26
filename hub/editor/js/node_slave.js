@@ -18,7 +18,7 @@ var currentDir 	= __dirname;
 var subscriber  = zmq.socket.('sub');
 var publisher 	= zmq.socket('pub');
 
-subscriber.on("message", function(msg) { console.log( msg.toString(); ) } );
+subscriber.on("message", function(msg) { console.log("BLAH"); console.log( msg.toString(); ) } );
 
 subscriber.connect("tcp://"+MASTER_ADDRESS+":"+MASTER_PORT);
 
