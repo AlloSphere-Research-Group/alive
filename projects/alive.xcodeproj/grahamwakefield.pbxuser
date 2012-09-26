@@ -107,6 +107,20 @@
 			36575542161287AB009D11CC /* PBXTextBookmark */ = 36575542161287AB009D11CC /* PBXTextBookmark */;
 			36575543161287AB009D11CC /* PBXTextBookmark */ = 36575543161287AB009D11CC /* PBXTextBookmark */;
 			36575544161287AB009D11CC /* PBXTextBookmark */ = 36575544161287AB009D11CC /* PBXTextBookmark */;
+			36575545161287F1009D11CC /* PBXTextBookmark */ = 36575545161287F1009D11CC /* PBXTextBookmark */;
+			36575546161287F1009D11CC /* PBXTextBookmark */ = 36575546161287F1009D11CC /* PBXTextBookmark */;
+			36575547161287F1009D11CC /* PBXTextBookmark */ = 36575547161287F1009D11CC /* PBXTextBookmark */;
+			365755511612897C009D11CC /* PBXTextBookmark */ = 365755511612897C009D11CC /* PBXTextBookmark */;
+			365755521612897C009D11CC /* PBXTextBookmark */ = 365755521612897C009D11CC /* PBXTextBookmark */;
+			365755531612897C009D11CC /* PBXTextBookmark */ = 365755531612897C009D11CC /* PBXTextBookmark */;
+			3657555416128A39009D11CC /* PBXTextBookmark */ = 3657555416128A39009D11CC /* PBXTextBookmark */;
+			3657555516128A67009D11CC /* PBXTextBookmark */ = 3657555516128A67009D11CC /* PBXTextBookmark */;
+			3657555616128AE7009D11CC /* PBXTextBookmark */ = 3657555616128AE7009D11CC /* PBXTextBookmark */;
+			3657555716128AE7009D11CC /* PBXTextBookmark */ = 3657555716128AE7009D11CC /* PBXTextBookmark */;
+			3657555816128AE7009D11CC /* PBXTextBookmark */ = 3657555816128AE7009D11CC /* PBXTextBookmark */;
+			3657555916128AE7009D11CC /* PBXTextBookmark */ = 3657555916128AE7009D11CC /* PBXTextBookmark */;
+			3657555A16128B1C009D11CC /* PBXTextBookmark */ = 3657555A16128B1C009D11CC /* PBXTextBookmark */;
+			3657555B16128B8E009D11CC /* PBXTextBookmark */ = 3657555B16128B8E009D11CC /* PBXTextBookmark */;
 		};
 		sourceControlManager = 3657520E161277BC009D11CC /* Source Control */;
 		userBuildSettings = {
@@ -153,15 +167,15 @@
 	3657550C1612783B009D11CC /* build.sh */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {584, 1183}}";
-			sepNavSelRange = "{31, 0}";
+			sepNavSelRange = "{39, 109}";
 			sepNavVisRange = "{0, 1241}";
 		};
 	};
 	3657550D16127877009D11CC /* install_dependencies.sh */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {584, 731}}";
-			sepNavSelRange = "{15, 0}";
-			sepNavVisRange = "{0, 15}";
+			sepNavIntBoundsRect = "{{0, 0}, {584, 683}}";
+			sepNavSelRange = "{314, 0}";
+			sepNavVisRange = "{0, 347}";
 		};
 	};
 	3657550E1612787A009D11CC /* PBXTextBookmark */ = {
@@ -209,7 +223,7 @@
 		fRef = 3657550D16127877009D11CC /* install_dependencies.sh */;
 		name = "install_dependencies.sh: 1";
 		rLen = 0;
-		rLoc = 15;
+		rLoc = 347;
 		rType = 0;
 		vrLen = 0;
 		vrLoc = 0;
@@ -219,7 +233,7 @@
 		fRef = 3657550D16127877009D11CC /* install_dependencies.sh */;
 		name = "install_dependencies.sh: 1";
 		rLen = 0;
-		rLoc = 15;
+		rLoc = 347;
 		rType = 0;
 		vrLen = 0;
 		vrLoc = 0;
@@ -229,7 +243,7 @@
 		fRef = 3657550D16127877009D11CC /* install_dependencies.sh */;
 		name = "install_dependencies.sh: 1";
 		rLen = 0;
-		rLoc = 15;
+		rLoc = 347;
 		rType = 0;
 		vrLen = 0;
 		vrLoc = 0;
@@ -279,7 +293,7 @@
 		fRef = 3657550D16127877009D11CC /* install_dependencies.sh */;
 		name = "install_dependencies.sh: 3";
 		rLen = 0;
-		rLoc = 15;
+		rLoc = 347;
 		rType = 0;
 		vrLen = 15;
 		vrLoc = 0;
@@ -344,7 +358,7 @@
 	3657552316127989009D11CC /* vm.cpp */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {584, 683}}";
-			sepNavSelRange = "{261, 0}";
+			sepNavSelRange = "{494, 7}";
 			sepNavVisRange = "{0, 536}";
 		};
 	};
@@ -363,7 +377,7 @@
 		fRef = 3657550D16127877009D11CC /* install_dependencies.sh */;
 		name = "install_dependencies.sh: 3";
 		rLen = 0;
-		rLoc = 15;
+		rLoc = 347;
 		rType = 0;
 		vrLen = 15;
 		vrLoc = 0;
@@ -673,6 +687,146 @@
 		rLoc = 61;
 		rType = 0;
 		vrLen = 61;
+		vrLoc = 0;
+	};
+	36575545161287F1009D11CC /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3657553C16128769009D11CC /* start.lua */;
+		name = "start.lua: 3";
+		rLen = 0;
+		rLoc = 61;
+		rType = 0;
+		vrLen = 61;
+		vrLoc = 0;
+	};
+	36575546161287F1009D11CC /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3657552316127989009D11CC /* vm.cpp */;
+		name = "vm.cpp: 19";
+		rLen = 0;
+		rLoc = 261;
+		rType = 0;
+		vrLen = 536;
+		vrLoc = 0;
+	};
+	36575547161287F1009D11CC /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3657552316127989009D11CC /* vm.cpp */;
+		name = "vm.cpp: 29";
+		rLen = 7;
+		rLoc = 494;
+		rType = 0;
+		vrLen = 536;
+		vrLoc = 0;
+	};
+	365755511612897C009D11CC /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3657552316127989009D11CC /* vm.cpp */;
+		name = "vm.cpp: 29";
+		rLen = 7;
+		rLoc = 494;
+		rType = 0;
+		vrLen = 536;
+		vrLoc = 0;
+	};
+	365755521612897C009D11CC /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3657550D16127877009D11CC /* install_dependencies.sh */;
+		name = "install_dependencies.sh: 3";
+		rLen = 0;
+		rLoc = 347;
+		rType = 0;
+		vrLen = 15;
+		vrLoc = 0;
+	};
+	365755531612897C009D11CC /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3657550D16127877009D11CC /* install_dependencies.sh */;
+		name = "install_dependencies.sh: 12";
+		rLen = 0;
+		rLoc = 347;
+		rType = 0;
+		vrLen = 163;
+		vrLoc = 0;
+	};
+	3657555416128A39009D11CC /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3657550D16127877009D11CC /* install_dependencies.sh */;
+		name = "install_dependencies.sh: 6";
+		rLen = 0;
+		rLoc = 347;
+		rType = 0;
+		vrLen = 111;
+		vrLoc = 0;
+	};
+	3657555516128A67009D11CC /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3657550D16127877009D11CC /* install_dependencies.sh */;
+		name = "install_dependencies.sh: 10";
+		rLen = 0;
+		rLoc = 347;
+		rType = 0;
+		vrLen = 160;
+		vrLoc = 0;
+	};
+	3657555616128AE7009D11CC /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3657550C1612783B009D11CC /* build.sh */;
+		name = "build.sh: 6";
+		rLen = 109;
+		rLoc = 39;
+		rType = 0;
+		vrLen = 1241;
+		vrLoc = 0;
+	};
+	3657555716128AE7009D11CC /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3657553C16128769009D11CC /* start.lua */;
+		name = "start.lua: 3";
+		rLen = 0;
+		rLoc = 61;
+		rType = 0;
+		vrLen = 61;
+		vrLoc = 0;
+	};
+	3657555816128AE7009D11CC /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3657550D16127877009D11CC /* install_dependencies.sh */;
+		name = "install_dependencies.sh: 10";
+		rLen = 0;
+		rLoc = 347;
+		rType = 0;
+		vrLen = 160;
+		vrLoc = 0;
+	};
+	3657555916128AE7009D11CC /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3657550D16127877009D11CC /* install_dependencies.sh */;
+		name = "install_dependencies.sh: 10";
+		rLen = 0;
+		rLoc = 199;
+		rType = 0;
+		vrLen = 346;
+		vrLoc = 0;
+	};
+	3657555A16128B1C009D11CC /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3657550D16127877009D11CC /* install_dependencies.sh */;
+		name = "install_dependencies.sh: 11";
+		rLen = 0;
+		rLoc = 199;
+		rType = 0;
+		vrLen = 353;
+		vrLoc = 0;
+	};
+	3657555B16128B8E009D11CC /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3657550D16127877009D11CC /* install_dependencies.sh */;
+		name = "install_dependencies.sh: 17";
+		rLen = 0;
+		rLoc = 314;
+		rType = 0;
+		vrLen = 347;
 		vrLoc = 0;
 	};
 }
