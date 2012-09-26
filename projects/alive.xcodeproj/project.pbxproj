@@ -630,6 +630,7 @@
 		3657550D16127877009D11CC /* install_dependencies.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = install_dependencies.sh; sourceTree = "<group>"; };
 		3657552216127989009D11CC /* vm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vm.h; sourceTree = "<group>"; };
 		3657552316127989009D11CC /* vm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = vm.cpp; sourceTree = "<group>"; };
+		3657553C16128769009D11CC /* start.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = start.lua; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -2349,6 +2350,7 @@
 				3657550C1612783B009D11CC /* build.sh */,
 				3657552216127989009D11CC /* vm.h */,
 				3657552316127989009D11CC /* vm.cpp */,
+				3657553C16128769009D11CC /* start.lua */,
 			);
 			name = vm;
 			path = ../vm;

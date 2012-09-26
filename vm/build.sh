@@ -1,7 +1,7 @@
 #!/bin/bash   
 
 # debugging: 
-set -x
+#set -x
 
 PRODUCT_NAME="alive"
 ROOT=`pwd`

@@ -95,6 +95,18 @@
 			3657553516127D95009D11CC /* PBXTextBookmark */ = 3657553516127D95009D11CC /* PBXTextBookmark */;
 			3657553616127DD5009D11CC /* PBXTextBookmark */ = 3657553616127DD5009D11CC /* PBXTextBookmark */;
 			3657553716128571009D11CC /* PBXTextBookmark */ = 3657553716128571009D11CC /* PBXTextBookmark */;
+			365755381612872B009D11CC /* PBXTextBookmark */ = 365755381612872B009D11CC /* PBXTextBookmark */;
+			365755391612872B009D11CC /* PBXTextBookmark */ = 365755391612872B009D11CC /* PBXTextBookmark */;
+			3657553A1612872B009D11CC /* PBXTextBookmark */ = 3657553A1612872B009D11CC /* PBXTextBookmark */;
+			3657553B16128756009D11CC /* PBXTextBookmark */ = 3657553B16128756009D11CC /* PBXTextBookmark */;
+			3657553D16128783009D11CC /* PBXTextBookmark */ = 3657553D16128783009D11CC /* PBXTextBookmark */;
+			3657553E16128783009D11CC /* PBXTextBookmark */ = 3657553E16128783009D11CC /* PBXTextBookmark */;
+			3657553F16128783009D11CC /* PBXTextBookmark */ = 3657553F16128783009D11CC /* PBXTextBookmark */;
+			3657554016128783009D11CC /* PBXTextBookmark */ = 3657554016128783009D11CC /* PBXTextBookmark */;
+			36575541161287AB009D11CC /* PBXTextBookmark */ = 36575541161287AB009D11CC /* PBXTextBookmark */;
+			36575542161287AB009D11CC /* PBXTextBookmark */ = 36575542161287AB009D11CC /* PBXTextBookmark */;
+			36575543161287AB009D11CC /* PBXTextBookmark */ = 36575543161287AB009D11CC /* PBXTextBookmark */;
+			36575544161287AB009D11CC /* PBXTextBookmark */ = 36575544161287AB009D11CC /* PBXTextBookmark */;
 		};
 		sourceControlManager = 3657520E161277BC009D11CC /* Source Control */;
 		userBuildSettings = {
@@ -140,9 +152,9 @@
 	};
 	3657550C1612783B009D11CC /* build.sh */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {584, 1131}}";
-			sepNavSelRange = "{30, 0}";
-			sepNavVisRange = "{0, 1243}";
+			sepNavIntBoundsRect = "{{0, 0}, {584, 1183}}";
+			sepNavSelRange = "{31, 0}";
+			sepNavVisRange = "{0, 1241}";
 		};
 	};
 	3657550D16127877009D11CC /* install_dependencies.sh */ = {
@@ -187,7 +199,7 @@
 		fRef = 3657550C1612783B009D11CC /* build.sh */;
 		name = "build.sh: 13";
 		rLen = 0;
-		rLoc = 2563;
+		rLoc = 2564;
 		rType = 0;
 		vrLen = 152;
 		vrLoc = 0;
@@ -277,7 +289,7 @@
 		fRef = 3657550C1612783B009D11CC /* build.sh */;
 		name = "build.sh: 13";
 		rLen = 0;
-		rLoc = 2563;
+		rLoc = 2564;
 		rType = 0;
 		vrLen = 152;
 		vrLoc = 0;
@@ -287,7 +299,7 @@
 		fRef = 3657550C1612783B009D11CC /* build.sh */;
 		name = "build.sh: 13";
 		rLen = 0;
-		rLoc = 2563;
+		rLoc = 2564;
 		rType = 0;
 		vrLen = 152;
 		vrLoc = 0;
@@ -297,7 +309,7 @@
 		fRef = 3657550C1612783B009D11CC /* build.sh */;
 		name = "build.sh: 13";
 		rLen = 0;
-		rLoc = 2563;
+		rLoc = 2564;
 		rType = 0;
 		vrLen = 152;
 		vrLoc = 0;
@@ -307,7 +319,7 @@
 		fRef = 3657550C1612783B009D11CC /* build.sh */;
 		name = "build.sh: 35";
 		rLen = 0;
-		rLoc = 1003;
+		rLoc = 1004;
 		rType = 0;
 		vrLen = 1934;
 		vrLoc = 59;
@@ -317,7 +329,7 @@
 		fRef = 3657550C1612783B009D11CC /* build.sh */;
 		name = "build.sh: 4";
 		rLen = 0;
-		rLoc = 30;
+		rLoc = 31;
 		rType = 0;
 		vrLen = 1658;
 		vrLoc = 0;
@@ -331,9 +343,9 @@
 	};
 	3657552316127989009D11CC /* vm.cpp */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {584, 731}}";
-			sepNavSelRange = "{192, 0}";
-			sepNavVisRange = "{0, 194}";
+			sepNavIntBoundsRect = "{{0, 0}, {584, 683}}";
+			sepNavSelRange = "{261, 0}";
+			sepNavVisRange = "{0, 536}";
 		};
 	};
 	36575524161279BA009D11CC /* PBXTextBookmark */ = {
@@ -361,7 +373,7 @@
 		fRef = 3657550C1612783B009D11CC /* build.sh */;
 		name = "build.sh: 4";
 		rLen = 0;
-		rLoc = 30;
+		rLoc = 31;
 		rType = 0;
 		vrLen = 2212;
 		vrLoc = 346;
@@ -371,7 +383,7 @@
 		fRef = 3657550C1612783B009D11CC /* build.sh */;
 		name = "build.sh: 49";
 		rLen = 0;
-		rLoc = 1133;
+		rLoc = 1134;
 		rType = 0;
 		vrLen = 2191;
 		vrLoc = 405;
@@ -381,7 +393,7 @@
 		fRef = 3657550C1612783B009D11CC /* build.sh */;
 		name = "build.sh: 35";
 		rLen = 0;
-		rLoc = 1003;
+		rLoc = 1004;
 		rType = 0;
 		vrLen = 2224;
 		vrLoc = 346;
@@ -391,7 +403,7 @@
 		fRef = 3657550C1612783B009D11CC /* build.sh */;
 		name = "build.sh: 35";
 		rLen = 0;
-		rLoc = 1005;
+		rLoc = 1006;
 		rType = 0;
 		vrLen = 2212;
 		vrLoc = 346;
@@ -401,7 +413,7 @@
 		fRef = 3657550C1612783B009D11CC /* build.sh */;
 		name = "build.sh: 64";
 		rLen = 0;
-		rLoc = 2553;
+		rLoc = 2554;
 		rType = 0;
 		vrLen = 2227;
 		vrLoc = 360;
@@ -421,7 +433,7 @@
 		fRef = 3657552316127989009D11CC /* vm.cpp */;
 		name = "vm.cpp: 16";
 		rLen = 0;
-		rLoc = 192;
+		rLoc = 293;
 		rType = 0;
 		vrLen = 194;
 		vrLoc = 0;
@@ -431,7 +443,7 @@
 		fRef = 3657550C1612783B009D11CC /* build.sh */;
 		name = "build.sh: 47";
 		rLen = 0;
-		rLoc = 1133;
+		rLoc = 1134;
 		rType = 0;
 		vrLen = 2227;
 		vrLoc = 360;
@@ -441,7 +453,7 @@
 		fRef = 3657550C1612783B009D11CC /* build.sh */;
 		name = "build.sh: 54";
 		rLen = 0;
-		rLoc = 2392;
+		rLoc = 2393;
 		rType = 0;
 		vrLen = 2196;
 		vrLoc = 360;
@@ -451,7 +463,7 @@
 		fRef = 3657550C1612783B009D11CC /* build.sh */;
 		name = "build.sh: 47";
 		rLen = 0;
-		rLoc = 1133;
+		rLoc = 1134;
 		rType = 0;
 		vrLen = 2178;
 		vrLoc = 437;
@@ -461,7 +473,7 @@
 		fRef = 3657550C1612783B009D11CC /* build.sh */;
 		name = "build.sh: 51";
 		rLen = 0;
-		rLoc = 1133;
+		rLoc = 1134;
 		rType = 0;
 		vrLen = 2197;
 		vrLoc = 437;
@@ -471,7 +483,7 @@
 		fRef = 3657550C1612783B009D11CC /* build.sh */;
 		name = "build.sh: 59";
 		rLen = 57;
-		rLoc = 2337;
+		rLoc = 2338;
 		rType = 0;
 		vrLen = 1933;
 		vrLoc = 511;
@@ -481,7 +493,7 @@
 		fRef = 3657550C1612783B009D11CC /* build.sh */;
 		name = "build.sh: 55";
 		rLen = 0;
-		rLoc = 1945;
+		rLoc = 1946;
 		rType = 0;
 		vrLen = 1947;
 		vrLoc = 511;
@@ -491,7 +503,7 @@
 		fRef = 3657550C1612783B009D11CC /* build.sh */;
 		name = "build.sh: 61";
 		rLen = 0;
-		rLoc = 2415;
+		rLoc = 2416;
 		rType = 0;
 		vrLen = 1946;
 		vrLoc = 511;
@@ -501,7 +513,7 @@
 		fRef = 3657550C1612783B009D11CC /* build.sh */;
 		name = "build.sh: 45";
 		rLen = 0;
-		rLoc = 1082;
+		rLoc = 1083;
 		rType = 0;
 		vrLen = 1944;
 		vrLoc = 511;
@@ -511,7 +523,7 @@
 		fRef = 3657550C1612783B009D11CC /* build.sh */;
 		name = "build.sh: 52";
 		rLen = 0;
-		rLoc = 1732;
+		rLoc = 1733;
 		rType = 0;
 		vrLen = 1948;
 		vrLoc = 511;
@@ -521,7 +533,7 @@
 		fRef = 3657550C1612783B009D11CC /* build.sh */;
 		name = "build.sh: 64";
 		rLen = 0;
-		rLoc = 2379;
+		rLoc = 2380;
 		rType = 0;
 		vrLen = 2000;
 		vrLoc = 511;
@@ -531,9 +543,136 @@
 		fRef = 3657550C1612783B009D11CC /* build.sh */;
 		name = "build.sh: 4";
 		rLen = 0;
-		rLoc = 30;
+		rLoc = 31;
 		rType = 0;
 		vrLen = 1243;
+		vrLoc = 0;
+	};
+	365755381612872B009D11CC /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3657550C1612783B009D11CC /* build.sh */;
+		name = "build.sh: 4";
+		rLen = 0;
+		rLoc = 31;
+		rType = 0;
+		vrLen = 1557;
+		vrLoc = 1006;
+	};
+	365755391612872B009D11CC /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3657552316127989009D11CC /* vm.cpp */;
+		name = "vm.cpp: 16";
+		rLen = 0;
+		rLoc = 293;
+		rType = 0;
+		vrLen = 194;
+		vrLoc = 0;
+	};
+	3657553A1612872B009D11CC /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3657552316127989009D11CC /* vm.cpp */;
+		name = "vm.cpp: 26";
+		rLen = 0;
+		rLoc = 442;
+		rType = 0;
+		vrLen = 495;
+		vrLoc = 0;
+	};
+	3657553B16128756009D11CC /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3657552316127989009D11CC /* vm.cpp */;
+		name = "vm.cpp: 14";
+		rLen = 0;
+		rLoc = 226;
+		rType = 0;
+		vrLen = 535;
+		vrLoc = 0;
+	};
+	3657553C16128769009D11CC /* start.lua */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {584, 683}}";
+			sepNavSelRange = "{61, 0}";
+			sepNavVisRange = "{0, 61}";
+		};
+	};
+	3657553D16128783009D11CC /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3657552316127989009D11CC /* vm.cpp */;
+		name = "vm.cpp: 14";
+		rLen = 0;
+		rLoc = 226;
+		rType = 0;
+		vrLen = 535;
+		vrLoc = 0;
+	};
+	3657553E16128783009D11CC /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3657553C16128769009D11CC /* start.lua */;
+		name = "start.lua: 1";
+		rLen = 0;
+		rLoc = 61;
+		rType = 0;
+		vrLen = 34;
+		vrLoc = 0;
+	};
+	3657553F16128783009D11CC /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3657550C1612783B009D11CC /* build.sh */;
+		name = "build.sh: 4";
+		rLen = 0;
+		rLoc = 31;
+		rType = 0;
+		vrLen = 1537;
+		vrLoc = 1004;
+	};
+	3657554016128783009D11CC /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3657550C1612783B009D11CC /* build.sh */;
+		name = "build.sh: 4";
+		rLen = 0;
+		rLoc = 31;
+		rType = 0;
+		vrLen = 1241;
+		vrLoc = 0;
+	};
+	36575541161287AB009D11CC /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3657550C1612783B009D11CC /* build.sh */;
+		name = "build.sh: 4";
+		rLen = 0;
+		rLoc = 31;
+		rType = 0;
+		vrLen = 1241;
+		vrLoc = 0;
+	};
+	36575542161287AB009D11CC /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3657552316127989009D11CC /* vm.cpp */;
+		name = "vm.cpp: 19";
+		rLen = 0;
+		rLoc = 261;
+		rType = 0;
+		vrLen = 536;
+		vrLoc = 0;
+	};
+	36575543161287AB009D11CC /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3657553C16128769009D11CC /* start.lua */;
+		name = "start.lua: 3";
+		rLen = 0;
+		rLoc = 61;
+		rType = 0;
+		vrLen = 36;
+		vrLoc = 0;
+	};
+	36575544161287AB009D11CC /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3657553C16128769009D11CC /* start.lua */;
+		name = "start.lua: 3";
+		rLen = 0;
+		rLoc = 61;
+		rType = 0;
+		vrLen = 61;
 		vrLoc = 0;
 	};
 }
