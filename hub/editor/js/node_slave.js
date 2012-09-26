@@ -20,6 +20,8 @@ var publisher 	= zmq.socket('pub');
 
 subscriber.on("message", function(msg) { console.log("BLAH"); console.log( msg.toString(); ) } );
 
+var __addr = "tcp://"+MASTER_ADDRESS+":"+MASTER_PORT; 
+console.log(__addr);
 subscriber.connect("tcp://"+MASTER_ADDRESS+":"+MASTER_PORT);
 
 receiver.on('/print', function(e) {
