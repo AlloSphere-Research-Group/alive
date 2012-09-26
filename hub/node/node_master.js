@@ -1,45 +1,19 @@
 var fs 			= require('fs');
 var http 		= require('http');
-var tcp 		= require('tcp');
 var url 		= require('url');
 var mime 		= require('mime');
 var dns			= require('dns');
 var os			= require('os');
 var net			= require('net');
 var util		= require('util');
-
-var path 		= require('path');
-var io 			= require('socket.io-client');
-var socket_in 	= require('socket.io').listen(8081);
 var exec 		= require('child_process').exec;
+var path 		= require('path');
 
-//console.log("hostname " + os.hostname());
+var editor_in 	 = require('socket.io').listen(8081);
+var renderers_in = require('socket.io').listen(8082);
 
-var interfaces = os.networkInterfaces();
-var addresses = [];
-for (k in interfaces) {
-    for (k2 in interfaces[k]) {
-        var address = interfaces[k][k2];
-        if (address.family == 'IPv4' && !address.internal) {
-        	console.log(address.address);
-            addresses.push(address.address)
-        }
-    }
-}
-var myIP = addresses[0];
-
-/*receiver.on('/print', function(e) {
-	client.emit("print", e.params[0]);
-	console.log(e.params[0]);
-});
-
-receiver.on('/error', function(e) {
-	client.emit("error", e.params[0]);
-	console.error(e.params[0]);
-});*/
-
-var socketURL = 'http://127.0.0.1:8082';
-sock = io.connect(socketURL);
+var editors = {};
+var renderers = {};
 
 var ls = function(_socket) {
 	var files = fs.readdirSync(_socket.currentDir);
@@ -55,15 +29,13 @@ var ls = function(_socket) {
 var cd = function(_socket, args) {
 	_socket.currentDir = path.resolve(_socket.currentDir, args);
 }
-var clients = [];
-socket_in.sockets.on('connection', function (socket) {
+
+editor_in.sockets.on('connection', function (socket) {
 	socket.addr = socket.handshake.address.address;
 	socket.port = socket.handshake.address.port;
 	socket.currentDir 	= __dirname;
-	//client = socket;
 	
-	//subscriber.connect("tcp://" + socket.addr + ":" + socket.port);
-	//subscriber.subscribe('');
+	editors[socket.addr] = socket;
 	
 	socket.emit("handshake", { "data" : "Handshake received from " + socket.addr } );
 	
@@ -76,8 +48,11 @@ socket_in.sockets.on('connection', function (socket) {
 			{cwd: socket.currentDir}, 
 			function() { 
 				console.log("MADE A COMMIT!");
-				//sock.emit("pull");
-				publisher.send('pull');
+				console.log(renderers);
+				for(var key in renderers) {
+					console.log("TELLING RENDERER " + key + " TO PULL");
+					renderers[key].emit('pull');
+				}
 			} 
 		);
 	});
@@ -115,15 +90,29 @@ socket_in.sockets.on('connection', function (socket) {
 	});
 });
 
+renderers_in.sockets.on('connection', function (socket) {
+	socket.addr = socket.handshake.address.address;
+	socket.port = socket.handshake.address.port;
+	socket.currentDir 	= __dirname;
+	
+	console.log("ADDING A RENDERER!!!");
+	renderers[socket.addr] = socket;
+
+	socket.on('error', function(msg) {
+		console.log("RENDERER ERROR :: " + msg);
+	});
+});
+
 var root = __dirname + "/../editor";
 console.log("serving from " + root);
+
 var port = 8080;
 var server = http.createServer(function(req, res) {
 	req.uri = url.parse(req.url);
 	var pathname = req.uri.pathname;
 	
 	// static file server:
-	console.log(pathname);
+	//console.log(pathname);
 	
 	if (pathname == "/") {
 		pathname = pathname + "index.htm";
@@ -140,7 +129,7 @@ var server = http.createServer(function(req, res) {
 	
 	req.uri.pathname = root + pathname;
 	var filepath = req.uri.pathname;
-	console.log(filepath);
+	//console.log(filepath);
 	
 	fs.stat(filepath, function (err, stat) {
 		if (err || stat == undefined) {
@@ -158,7 +147,6 @@ var server = http.createServer(function(req, res) {
 			});
 			res.write(reason);
 		} else {
-			
 			fs.readFile(req.uri.pathname, function(err, data) {
 				if (err) {
 					var reason = "not read: " + filepath;
@@ -182,3 +170,18 @@ var server = http.createServer(function(req, res) {
 });
 server.listen(port, '0.0.0.0');
 console.log('Server running at ' + myIP + ' on port ' + port + '');
+
+var myIP = (function() {
+	var interfaces = os.networkInterfaces();
+	var addresses = [];
+	for (k in interfaces) {
+	    for (k2 in interfaces[k]) {
+	        var address = interfaces[k][k2];
+	        if (address.family == 'IPv4' && !address.internal) {
+	        	console.log(address.address);
+	            addresses.push(address.address)
+	        }
+	    }
+	}
+	return addresses[0];
+})();
