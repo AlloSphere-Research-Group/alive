@@ -180,9 +180,9 @@
 	};
 	3657550C1612783B009D11CC /* build.sh */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {577, 1300}}";
-			sepNavSelRange = "{2602, 0}";
-			sepNavVisRange = "{987, 1625}";
+			sepNavIntBoundsRect = "{{0, 0}, {577, 1196}}";
+			sepNavSelRange = "{32, 0}";
+			sepNavVisRange = "{0, 1643}";
 		};
 	};
 	3657550D16127877009D11CC /* install_dependencies.sh */ = {
@@ -211,9 +211,9 @@
 	};
 	3657552316127989009D11CC /* vm.cpp */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {577, 1625}}";
-			sepNavSelRange = "{2180, 0}";
-			sepNavVisRange = "{1327, 1313}";
+			sepNavIntBoundsRect = "{{0, 0}, {577, 1742}}";
+			sepNavSelRange = "{448, 0}";
+			sepNavVisRange = "{0, 1154}";
 		};
 	};
 	3657553C16128769009D11CC /* start.lua */ = {
@@ -417,7 +417,7 @@
 		fRef = 3657550C1612783B009D11CC /* build.sh */;
 		name = "build.sh: 76";
 		rLen = 0;
-		rLoc = 2602;
+		rLoc = 2616;
 		rType = 0;
 		vrLen = 1625;
 		vrLoc = 987;
@@ -437,7 +437,7 @@
 		fRef = 3657552316127989009D11CC /* vm.cpp */;
 		name = "vm.cpp: 42";
 		rLen = 0;
-		rLoc = 833;
+		rLoc = 1394;
 		rType = 0;
 		vrLen = 1083;
 		vrLoc = 320;
@@ -447,7 +447,7 @@
 		fRef = 3657552316127989009D11CC /* vm.cpp */;
 		name = "vm.cpp: 97";
 		rLen = 0;
-		rLoc = 2180;
+		rLoc = 2782;
 		rType = 0;
 		vrLen = 1313;
 		vrLoc = 1327;

@@ -31,6 +31,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		361764621613A24000C2748F /* zmq.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = zmq.h; path = /usr/local/include/zmq.h; sourceTree = "<absolute>"; };
 		36575226161277FD009D11CC /* corner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = corner.png; sourceTree = "<group>"; };
 		36575227161277FD009D11CC /* folder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = folder.png; sourceTree = "<group>"; };
 		36575228161277FD009D11CC /* index.htm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.htm; sourceTree = "<group>"; };
@@ -2863,6 +2864,7 @@
 		36575208161277BC009D11CC = {
 			isa = PBXGroup;
 			children = (
+				361764621613A24000C2748F /* zmq.h */,
 				36575504161277FE009D11CC /* README.md */,
 				36575223161277FD009D11CC /* hub */,
 				365754F1161277FE009D11CC /* projects */,

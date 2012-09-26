@@ -12,12 +12,27 @@
 #include "apr_network_io.h"
 #include "apr_time.h"
 
+#include "zmq.h"
+
 using namespace al;
 
 al_sec OSC_TIMEOUT = 0.1;
 // until we know better:
 std::string serverIP = "127.0.01";
 Lua L;
+
+void * zcontext;
+
+//  Convert C string to 0MQ string and send to socket
+static int
+s_send (void *socket, const char *string) {
+    zmq_msg_t message;
+    zmq_msg_init_size (&message, strlen(string));
+    memcpy (zmq_msg_data (&message), string, strlen (string));
+    int size = zmq_send (socket, &message, 0);
+    zmq_msg_close (&message);
+    return (size);
+}
 
 class BackgroundThread : public ThreadFunction, public osc::PacketHandler {
 public:
@@ -29,12 +44,32 @@ public:
 		thread(*this) 
 	{
 		receiver.handler(*this);
+		
+		int rc;
+		
+		pub = zmq_socket(zcontext, ZMQ_PUB);
+		//zmq_setsockopt(sub, ZMQ_LINGER, 0, 0);
+		rc = zmq_connect (sub, "epgm://en0;239.255.1.1:5555");
+		
+//		rc = zmq_bind(pub, "tcp://*:5556");
+		if (rc) printf("error binding publisher: %s\n", zmq_strerror(rc));
+//		
+//		s_send(pub, "hello pubs");
+		
+		//sub = zmq_socket(zcontext, ZMQ_SUB);
+		//zmq_setsockopt(sub, ZMQ_LINGER, 0, 0);
+		//rc = zmq_connect (sub, "pgm://en0;239.255.1.1:5555");
+		//if (rc) printf("error connecting subscriber: %s\n", zmq_strerror(rc));
+		
+		//zmq_setsockopt(sub, ZMQ_SUBSCRIBE, "git");
+		
 	}
 	
 	virtual ~BackgroundThread() {
 		active = false;
 		thread.join();
 		if (sender) delete sender;
+		zmq_close(pub);
 	}
 	
 	virtual void onMessage(osc::Message& m) {
@@ -67,9 +102,14 @@ public:
 	osc::Send * sender;
 	bool active;
 	Thread thread;
+	
+	void * pub;
+	void * sub;
 };
 
 int main(int argc, char * argv[]) {
+
+	zcontext = zmq_init(1);
 
 	/*
 		This is a vm runtime launcher providing services
@@ -117,6 +157,8 @@ int main(int argc, char * argv[]) {
 	}
 	
 	bt.active = 0;
+	
+	zmq_term(zcontext);
 	
 	printf("bye\n");
 	return 0;
