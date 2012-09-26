@@ -157,6 +157,13 @@
 			sepNavVisRange = "{0, 218}";
 		};
 	};
+	36575260161277FD009D11CC /* node_master.js */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {584, 2444}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 1333}";
+		};
+	};
 	365754A1161277FE009D11CC /* .travis.yml */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {584, 183}}";
@@ -174,7 +181,7 @@
 	3657550D16127877009D11CC /* install_dependencies.sh */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {584, 683}}";
-			sepNavSelRange = "{314, 0}";
+			sepNavSelRange = "{195, 3}";
 			sepNavVisRange = "{0, 347}";
 		};
 	};
