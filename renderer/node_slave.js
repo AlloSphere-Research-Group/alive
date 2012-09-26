@@ -20,7 +20,10 @@ var currentDir 	= __dirname;
 var subscriber  = zmq.socket('sub');
 //var publisher 	= zmq.socket('pub');
 
-subscriber.on("message", function(msg) { console.log("BLAH"); console.log( msg.toString() ) } );
+subscriber.on("pull", function(msg) { 
+	console.log("BLAH"); 
+	console.log( msg.toString() );
+});
 
 var __addr = "tcp://"+MASTER_ADDRESS+":"+MASTER_PORT; 
 console.log(__addr);
