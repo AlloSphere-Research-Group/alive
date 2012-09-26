@@ -14,12 +14,12 @@ var exec 		= require('child_process').exec;
 var osc 		= require('./omgosc.js');
 var zmq 		= require('zmq');
 
-var subscriber  = zmq.socket('sub');
+//var subscriber  = zmq.socket('sub');
 var publisher 	= zmq.socket('pub');
 
-subscriber.on("message", function(msg) { console.log( msg.toString() ) } );
+//subscriber.on("message", function(msg) { console.log( msg.toString() ) } );
 
-publisher.bind('tcp://*:8688', function(err) {
+publisher.bind('tcp://127.0.0.1:8688', function(err) {
   if(err)
     console.log(err)
   else
@@ -81,8 +81,8 @@ socket_in.sockets.on('connection', function (socket) {
 	socket.currentDir 	= __dirname;
 	//client = socket;
 	
-	subscriber.connect("tcp://" + socket.addr + ":" + socket.port);
-	subscriber.subscribe('');
+	//subscriber.connect("tcp://" + socket.addr + ":" + socket.port);
+	//subscriber.subscribe('');
 	
 	socket.emit("handshake", { "data" : "Handshake received from " + socket.addr } );
 	
