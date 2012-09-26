@@ -5,8 +5,8 @@ var exec 	= require('child_process').exec;
 var osc 	= require('./omgosc.js');
 var zmq 	= require('zmq');
 
-
-var MASTER_ADDRESS 	= "127.0.0.1";
+//var MASTER_ADDRESS 	= "127.0.0.1";
+var MASTER_ADDRESS = "en0;239.192.1.1";
 var MASTER_OSC_PORT = 8010;
 var MASTER_PORT		= 8688;
 var OSC_IN 			= 8019;
@@ -21,13 +21,13 @@ var subscriber  = zmq.socket('sub');
 
 subscriber.on("message", function(msg) { 
 	if(msg.toString() === "pull") {
-		console.log("PULLING");
 		exec("git pull origin master", {cwd: currentDir}, function() { console.log("MADE A PULL!"); } );
 	}
 });
-
-var __addr = "tcp://"+MASTER_ADDRESS+":"+MASTER_PORT; 
-console.log(__addr);
+//epgm://239.192.1.1:8688
+//var __addr = "tcp://"+MASTER_ADDRESS+":"+MASTER_PORT; 
+var __addr = "epgm://"+MASTER_ADDRESS+":"+MASTER_PORT; 
+//console.log(__addr);
 subscriber.connect(__addr);
 subscriber.subscribe("");
 

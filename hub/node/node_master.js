@@ -1,5 +1,6 @@
 var fs 			= require('fs');
 var http 		= require('http');
+var tcp 		= require('tcp');
 var url 		= require('url');
 var mime 		= require('mime');
 var dns			= require('dns');
@@ -11,25 +12,6 @@ var path 		= require('path');
 var io 			= require('socket.io-client');
 var socket_in 	= require('socket.io').listen(8081);
 var exec 		= require('child_process').exec;
-var osc 		= require('./omgosc.js');
-var zmq 		= require('zmq');
-
-//var subscriber  = zmq.socket('sub');
-var publisher 	= zmq.socket('pub');
-
-//subscriber.on("message", function(msg) { console.log( msg.toString() ) } );
-
-publisher.bind('tcp://127.0.0.1:8688', function(err) {
-  if(err)
-    console.log(err)
-  else
-    console.log("Listening on 8688...")
-});
-
-var OSC_IN 		= 8010;
-
-var client 		= null;
-var receiver 	= new osc.UdpReceiver(OSC_IN);
 
 //console.log("hostname " + os.hostname());
 
@@ -44,10 +26,9 @@ for (k in interfaces) {
         }
     }
 }
-
 var myIP = addresses[0];
 
-receiver.on('/print', function(e) {
+/*receiver.on('/print', function(e) {
 	client.emit("print", e.params[0]);
 	console.log(e.params[0]);
 });
@@ -55,7 +36,7 @@ receiver.on('/print', function(e) {
 receiver.on('/error', function(e) {
 	client.emit("error", e.params[0]);
 	console.error(e.params[0]);
-});
+});*/
 
 var socketURL = 'http://127.0.0.1:8082';
 sock = io.connect(socketURL);
@@ -74,7 +55,7 @@ var ls = function(_socket) {
 var cd = function(_socket, args) {
 	_socket.currentDir = path.resolve(_socket.currentDir, args);
 }
-
+var clients = [];
 socket_in.sockets.on('connection', function (socket) {
 	socket.addr = socket.handshake.address.address;
 	socket.port = socket.handshake.address.port;
@@ -91,7 +72,7 @@ socket_in.sockets.on('connection', function (socket) {
 		var data = obj.data;
 		
 		fs.writeFileSync(socket.currentDir + "/" + filename, data, 'utf8');
-		exec("git commit -a -m '"+filename+" changes from alloeditor'", 
+		exec("git commit " + socket.currentDir + "/" + filename + " -m '"+filename+" changes from alloeditor'", 
 			{cwd: socket.currentDir}, 
 			function() { 
 				console.log("MADE A COMMIT!");
