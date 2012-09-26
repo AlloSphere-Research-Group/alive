@@ -25,7 +25,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 36575AAC16128C94009D11CC /* clang.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 36886CAF14C7675C00AB4605 /* clang.so */;
+			remoteGlobalIDString = 36886CAF14C7675C00AB4605;
 			remoteInfo = clang;
 		};
 /* End PBXContainerItemProxy section */
