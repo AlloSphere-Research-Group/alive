@@ -18,11 +18,12 @@ var master 		= null;
 var currentDir 	= __dirname;
 
 var subscriber  = zmq.socket('sub');
-//var publisher 	= zmq.socket('pub');
 
 subscriber.on("message", function(msg) { 
-	console.log("BLAH"); 
-	console.log( msg.toString() );
+	if(msg.toString() === "pull") {
+		console.log("PULLING");
+		exec("git pull origin master", {cwd: currentDir}, function() { console.log("MADE A PULL!"); } );
+	}
 });
 
 var __addr = "tcp://"+MASTER_ADDRESS+":"+MASTER_PORT; 
