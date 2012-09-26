@@ -1,3 +1,6 @@
 [submodule "vm/modules/luaclang"]
 	path = vm/modules/luaclang
 	url = https://github.com/grrrwaaa/luaclang.git
+[submodule "vm/modules/luaosc"]
+	path = vm/modules/luaosc
+	url = git@github.com:grrrwaaa/luaosc.git
