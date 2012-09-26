@@ -9,28 +9,30 @@ var util		= require('util');
 var exec 		= require('child_process').exec;
 var path 		= require('path');
 
-var editor_in 	 = require('socket.io').listen(8081);
+var editors_in 	 = require('socket.io').listen(8081);
 var renderers_in = require('socket.io').listen(8082);
 
 var editors = {};
 var renderers = {};
 
-var ls = function(_socket) {
-	var files = fs.readdirSync(_socket.currentDir);
-	var response = [];
-	for(var i = 0; i < files.length; i++) {
-		var _path = files[i];
-		var isDirectory = fs.statSync(_socket.currentDir + "/" + _path).isDirectory();
-		response.push( {name:_path, "isDirectory":isDirectory} );
-	}
-	return response;
+var cmds = {
+	ls : function(_socket) {
+		var files = fs.readdirSync(_socket.currentDir);
+		var response = [];
+		for(var i = 0; i < files.length; i++) {
+			var _path = files[i];
+			var isDirectory = fs.statSync(_socket.currentDir + "/" + _path).isDirectory();
+			response.push( {name:_path, "isDirectory":isDirectory} );
+		}
+		return response;
+	},
+
+	cd : function(_socket, args) {
+		_socket.currentDir = path.resolve(_socket.currentDir, args);
+	},
 };
 
-var cd = function(_socket, args) {
-	_socket.currentDir = path.resolve(_socket.currentDir, args);
-}
-
-editor_in.sockets.on('connection', function (socket) {
+editors_in.sockets.on('connection', function (socket) {
 	socket.addr = socket.handshake.address.address;
 	socket.port = socket.handshake.address.port;
 	socket.currentDir 	= __dirname;
@@ -66,12 +68,12 @@ editor_in.sockets.on('connection', function (socket) {
 		
 		switch(_cmd) {
 			case "ls" :
-				var files = ls(socket);
+				var files = cmds.ls(socket);
 				socket.emit("ls", { "data" : files} );
 				break;
 			case "cd" :
-				cd(socket, args);
-				var response = ls(socket);
+				cmds.cd(socket, args);
+				var response = cmds.ls(socket);
 				socket.emit("ls", { "data" : response} );
 				socket.emit("dir", socket.currentDir );				
 				break;
@@ -86,7 +88,7 @@ editor_in.sockets.on('connection', function (socket) {
 	});
 		
 	socket.on('disconnect', function () { 
-		console.log("DISCONNECT : " + this.addr);
+		console.log("DISCONNECT : " + socket.addr);
 	});
 });
 
@@ -95,12 +97,24 @@ renderers_in.sockets.on('connection', function (socket) {
 	socket.port = socket.handshake.address.port;
 	socket.currentDir 	= __dirname;
 	
-	console.log("ADDING A RENDERER!!!");
 	renderers[socket.addr] = socket;
-
-	socket.on('error', function(msg) {
-		console.log("RENDERER ERROR :: " + msg);
+	
+	for(var key in editors) {
+		editors[key].emit("renderer connect", { ip: socket.addr } );
+	}
+	
+	socket.on('error', function(msg) { 
+		for(var key in editors) {
+			editors[key].emit("renderer error", { ip: socket.addr, "msg" : msg } );
+		}
 	});
+	
+	socket.on('disconnect', function () { 
+		for(var key in editors) {
+			editors[key].emit("renderer disconnect", { ip: socket.addr } );
+		}
+	});
+	
 });
 
 var root = __dirname + "/../editor";
@@ -169,7 +183,6 @@ var server = http.createServer(function(req, res) {
 	})
 });
 server.listen(port, '0.0.0.0');
-console.log('Server running at ' + myIP + ' on port ' + port + '');
 
 var myIP = (function() {
 	var interfaces = os.networkInterfaces();
@@ -185,3 +198,5 @@ var myIP = (function() {
 	}
 	return addresses[0];
 })();
+
+console.log('Server running at ' + myIP + ' on port ' + port + '');
