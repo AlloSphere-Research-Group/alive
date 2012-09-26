@@ -1,7 +1,7 @@
 #!/bin/bash   
 
 # debugging: 
-#set -x
+set -x
 
 PRODUCT_NAME="alive"
 ROOT=`pwd`
@@ -70,9 +70,10 @@ function build {
 	fi
 }
 
+
 clean
-allocore
-generate_ffi_header
+#allocore
+#generate_ffi_header
 build
 
 
