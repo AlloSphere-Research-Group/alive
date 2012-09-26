@@ -26,7 +26,7 @@ int main(int argc, char * argv[]) {
 	lua_setglobal(L, "hostname");
 
 	// run a startup script:
-	if (L.dofile(argc > 1 ? argv[1] : "./start.lua")) exit(0);
+	if (L.dofile(argc > 1 ? argv[1] : "./start.lua")) return -1;
 	
 	printf("bye\n");
 	return 0;
