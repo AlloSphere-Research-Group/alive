@@ -47,7 +47,7 @@ public:
 			m >> serverIP;
 			printf("Server IP is: %s\n", serverIP.c_str());
 			
-			sender = new osc::Send(8010, serverIP);
+			sender = new osc::Send(8010, serverIP.c_str(), serverIP.size());
 		} else {
 			m.print();
 		}
