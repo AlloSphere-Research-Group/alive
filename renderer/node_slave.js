@@ -20,7 +20,7 @@ var currentDir 	= __dirname;
 var subscriber  = zmq.socket('sub');
 //var publisher 	= zmq.socket('pub');
 
-subscriber.on("pull", function(msg) { 
+subscriber.on("message", function(msg) { 
 	console.log("BLAH"); 
 	console.log( msg.toString() );
 });
@@ -28,6 +28,7 @@ subscriber.on("pull", function(msg) {
 var __addr = "tcp://"+MASTER_ADDRESS+":"+MASTER_PORT; 
 console.log(__addr);
 subscriber.connect(__addr);
+subscriber.subscribe("");
 
 receiver.on('/print', function(e) {
 	sender.send('/print', e.typetag, e.params);
