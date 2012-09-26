@@ -63,7 +63,6 @@
 		36575249161277FD009D11CC /* jstree.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jstree.js; sourceTree = "<group>"; };
 		3657524A161277FD009D11CC /* jstree.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jstree.min.js; sourceTree = "<group>"; };
 		3657524B161277FD009D11CC /* main.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = main.js; sourceTree = "<group>"; };
-		3657524C161277FD009D11CC /* node_master.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = node_master.js; sourceTree = "<group>"; };
 		3657524D161277FD009D11CC /* node_slave.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = node_slave.js; sourceTree = "<group>"; };
 		3657524E161277FD009D11CC /* npm-debug.log */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "npm-debug.log"; sourceTree = "<group>"; };
 		3657524F161277FD009D11CC /* omgosc.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = omgosc.js; sourceTree = "<group>"; };
@@ -2865,16 +2864,11 @@
 		36575E8116128C94009D11CC /* stub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stub.h; sourceTree = "<group>"; };
 		36575E8316128C94009D11CC /* bitcode_example.bc */ = {isa = PBXFileReference; lastKnownFileType = file; path = bitcode_example.bc; sourceTree = "<group>"; };
 		36575E8416128C94009D11CC /* test_clang.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = test_clang.lua; sourceTree = "<group>"; };
-		36575E8616128C94009D11CC /* .git */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .git; sourceTree = "<group>"; };
 		36575E8716128C94009D11CC /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		36575E8816128C94009D11CC /* _t_.spec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = _t_.spec; sourceTree = "<group>"; };
 		36575E8916128C94009D11CC /* lake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = lake; sourceTree = "<group>"; };
 		36575E8A16128C94009D11CC /* lakefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = lakefile; sourceTree = "<group>"; };
 		36575E8B16128C94009D11CC /* lua_glue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lua_glue.h; sourceTree = "<group>"; };
 		36575E8C16128C94009D11CC /* luaopen_osc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = luaopen_osc.cpp; sourceTree = "<group>"; };
-		36575E8D16128C94009D11CC /* luaopen_osc.d */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.dtrace; path = luaopen_osc.d; sourceTree = "<group>"; };
-		36575E8E16128C94009D11CC /* luaopen_osc.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = luaopen_osc.o; sourceTree = "<group>"; };
-		36575E8F16128C94009D11CC /* osc.so */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = osc.so; sourceTree = "<group>"; };
 		36575E9016128C94009D11CC /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		36575E9116128C94009D11CC /* test.osc.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = test.osc.lua; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -2883,9 +2877,9 @@
 		36575208161277BC009D11CC = {
 			isa = PBXGroup;
 			children = (
+				36575504161277FE009D11CC /* README.md */,
 				36575223161277FD009D11CC /* hub */,
 				365754F1161277FE009D11CC /* projects */,
-				36575504161277FE009D11CC /* README.md */,
 				36575505161277FE009D11CC /* renderer */,
 				3657550A161277FE009D11CC /* vm */,
 			);
@@ -2930,7 +2924,6 @@
 				36575249161277FD009D11CC /* jstree.js */,
 				3657524A161277FD009D11CC /* jstree.min.js */,
 				3657524B161277FD009D11CC /* main.js */,
-				3657524C161277FD009D11CC /* node_master.js */,
 				3657524D161277FD009D11CC /* node_slave.js */,
 				3657524E161277FD009D11CC /* npm-debug.log */,
 				3657524F161277FD009D11CC /* omgosc.js */,
@@ -7790,16 +7783,11 @@
 		36575E8516128C94009D11CC /* luaosc */ = {
 			isa = PBXGroup;
 			children = (
-				36575E8616128C94009D11CC /* .git */,
 				36575E8716128C94009D11CC /* .gitignore */,
-				36575E8816128C94009D11CC /* _t_.spec */,
 				36575E8916128C94009D11CC /* lake */,
 				36575E8A16128C94009D11CC /* lakefile */,
 				36575E8B16128C94009D11CC /* lua_glue.h */,
 				36575E8C16128C94009D11CC /* luaopen_osc.cpp */,
-				36575E8D16128C94009D11CC /* luaopen_osc.d */,
-				36575E8E16128C94009D11CC /* luaopen_osc.o */,
-				36575E8F16128C94009D11CC /* osc.so */,
 				36575E9016128C94009D11CC /* README.md */,
 				36575E9116128C94009D11CC /* test.osc.lua */,
 			);

@@ -14,9 +14,11 @@ var exec 		= require('child_process').exec;
 var osc 		= require('./omgosc.js');
 
 var OSC_IN 		= 8010;
+var OSC_OUT		= 8019;
 
 var client 		= null;
 var receiver 	= new osc.UdpReceiver(OSC_IN);
+var sender		= new osc.UdpSender("127.0.0.1", OSC_OUT);
 
 //console.log("hostname " + os.hostname());
 
@@ -25,11 +27,14 @@ var addresses = [];
 for (k in interfaces) {
     for (k2 in interfaces[k]) {
         var address = interfaces[k][k2];
-        if (address.family == 'IPv4' && !address.internal) {
-        	console.log(address.address);
-            addresses.push(address.address)
+		if (address.family == 'IPv4' && !address.internal) {
+			addresses.push(address.address)
         }
     }
+}
+// fallback case using localhost if no external IP was found:
+if (addresses.length == 0) {
+	addresses.push("127.0.0.1");
 }
 
 var myIP = addresses[0];
@@ -63,8 +68,15 @@ var cd = function(_socket, args) {
 }
 
 socket_in.sockets.on('connection', function (socket) {
+	console.log("socket connected");
+
 	socket.addr = socket.handshake.address.address;
 	socket.port = socket.handshake.address.port;
+	
+	console.log("Handshake received from " + socket.addr + " on port " + socket.port);
+	sender.send("/handshake", "s", [socket.addr]);
+	sender.send("/git", "s", ["pull"]);
+	
 	socket.currentDir 	= __dirname;
 	//client = socket;
 	socket.emit("handshake", { "data" : "Handshake received from " + socket.addr } );
@@ -79,6 +91,7 @@ socket_in.sockets.on('connection', function (socket) {
 			function() { 
 				console.log("MADE A COMMIT!");
 				sock.emit("pull");
+				sender.send("/git", "s", "pull");
 			} 
 		);
 	});

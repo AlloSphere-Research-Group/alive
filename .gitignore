@@ -1,40 +1,29 @@
-# Build fodler
-build/
-
-# libs folders
-node_modules/
-
-# Compiled Object files
+.svn
+.DS_Store
+build
+node_modules
 *.slo
 *.lo
 *.o
-
-# Compiled Dynamic libraries
 *.so
-
-# Compiled Static libraries
+*.d
 *.lai
 *.la
 *.a
+*.spec
+*.doxygen_objdb_*
+*.xcuserdata
+*.xcworkspace
+*.tm_build_errors
+*.ncb
+*.suo
+*.vcproj.*
+*.wwdb
+*.link
+*.lib
+*.framework
+*.perspectivev3
+*.pbxuser
+*.model1v3
 
-# Others
-.svn
-.DS_Store
-.doxygen_objdb_*
-.xcuserdata
-.xcworkspace
-.tm_build_errors
-.ncb
-.suo
-.vcproj.*
-.wwdb
-.d
-.temp
-.link
-.lib
-.spec
-.framework
-.perspectivev3
-.pbxuser
-.model1v3
 
