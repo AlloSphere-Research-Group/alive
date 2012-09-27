@@ -110,13 +110,13 @@ renderers_in.sockets.on('connection', function (socket) {
 		editors[key].emit("renderer connect", { ip: socket.addr } );
 	}
 	
-	socket.on('error', function(msg) { 
+	renderers[socket.addr].on('error', function(msg) { 
 		for(var key in editors) {
 			editors[key].emit("renderer error", { ip: socket.addr, "msg" : msg } );
 		}
 	});
 	
-	socket.on('disconnect', function () {
+	renderers[socket.addr].on('disconnect', function () {
 		delete renderers[socket.addr];
 		for(var key in editors) {
 			editors[key].emit("renderer disconnect", { ip: socket.addr } );
