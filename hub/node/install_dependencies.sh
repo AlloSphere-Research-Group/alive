@@ -22,6 +22,7 @@ elif [[ $PLATFORM == 'Linux' ]]; then
 	
 	# nodejs package is too old in ubuntu 12.04:
 	sudo apt-get install nodejs
+	sudo apt-get install libavahi-compat-libndssd-dev
 	# get it this way instead:
 	#sudo apt-get install python-software-properties
 	#sudo add-apt-repository ppa:chris-lea/node.js
@@ -36,3 +37,4 @@ fi
 npm install socket.io
 npm install socket.io-client
 npm install mime
+npm install mdns

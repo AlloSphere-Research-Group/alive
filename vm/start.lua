@@ -1,32 +1,46 @@
 print("running on", hostname)
 
 local ffi = require "ffi"
+local bit = require "bit"
 local clang = require "clang"
 local osc = require "osc"
+local tube = require "tube"
 
 ffi.cdef [[
-void al_sleep(double t);
+size_t audiotube_writespace();
+size_t audiotube_write(const char * src, size_t sz);
+
+typedef struct tubeheader {
+	size_t size;
+	double t;
+} tubeheader;
+
+tube_t * atube_get() { return &atube; }
 ]]
 local C = ffi.C
 
-local function exec(cmd) print(os.execute(cmd)) end	
+local atube = C.atube_get()
 
-local r = osc.Recv(8019)
-local s = osc.Send("localhost", 8010)
---s:send("/print", "hello")
 
-while true do
-	for m in r:recv() do
-		if m.addr == "/handshake" then
-			print("got handshake", unpack(m))
-		elseif m.addr == "/git" then
-			print("got git cmd", unpack(m))
-			exec("git " .. table.concat(m, " "))
-			print("done")
-		else
-			print("unrecognized command", m.addr, unpack(m))
-		end
-	end
+-- messages should actually contain:
+	-- timestamp (double)
+	-- size		(uint32)
+	-- type		(uint32)
+	-- data...	(char[?])
+
+
+function onFrame()
+	--print("onFrame")
 	
-	C.al_sleep(0.1)
+	-- want something like
+	--audio.send("foo")
+	--audio.send("foo", ugenptr)
+	--audio.send(ugenptr, paramidx, 0.5)
+	-- i.e. strings, ints, doubles, pointers
+	-- etc.
+	
+	local s = string.format("%f", os.time())
+	--assert(tube.write(atube, s, #s), "failed to send")
+	
+	--tube.send(atube, os.time(), math.random())
 end

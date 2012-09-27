@@ -198,7 +198,13 @@ var myIP = (function() {
 	        }
 	    }
 	}
+	
+	// fallback for case of no network connection:
+	if (addresses.length == 0) {
+		addresses.push("127.0.0.1");
+	}
+	
 	return addresses[0];
 })();
 
-console.log('Server running at ' + myIP + ' on port ' + port + '');
+console.log('Server running at ' + myIP + ':' + port + '');

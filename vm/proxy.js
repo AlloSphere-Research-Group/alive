@@ -16,12 +16,19 @@ function launch() {
 	vm.on('exit', function (code) {
 		console.log('child process exited with code ' + code);
 		
-		// relaunch:
-		//vm = launch();
+		// relaunch?:
+		vm = launch();
+		//vm = undefined;
 	});
 }
 
 launch();
+
+process.on('exit', function() {
+	if (vm != undefined) {
+		vm.kill();
+	}
+});
 
 var fs 		= require('fs');
 var path 	= require('path');
