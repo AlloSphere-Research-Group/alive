@@ -5621,6 +5621,26 @@
 		vrLen = 1130;
 		vrLoc = 3981;
 	};
+	36207C551614DD2C001D4BEE /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3657553C16128769009D11CC /* start.lua */;
+		name = "start.lua: 44";
+		rLen = 0;
+		rLoc = 827;
+		rType = 0;
+		vrLen = 1141;
+		vrLoc = 0;
+	};
+	36207C561614DD2C001D4BEE /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 362076811613F042001D4BEE /* al_SingleRWRingBuffer.hpp */;
+		name = "al_SingleRWRingBuffer.hpp: 171";
+		rLen = 470;
+		rLoc = 4180;
+		rType = 0;
+		vrLen = 1130;
+		vrLoc = 3981;
+	};
 	3657520A161277BC009D11CC /* Project object */ = {
 		activeBuildConfigurationName = Debug;
 		activeTarget = 36575220161277E7009D11CC /* build_vm */;
@@ -6246,6 +6266,8 @@
 			36207C521614DCFB001D4BEE /* PBXTextBookmark */ = 36207C521614DCFB001D4BEE /* PBXTextBookmark */;
 			36207C531614DD0F001D4BEE /* PBXTextBookmark */ = 36207C531614DD0F001D4BEE /* PBXTextBookmark */;
 			36207C541614DD0F001D4BEE /* PBXTextBookmark */ = 36207C541614DD0F001D4BEE /* PBXTextBookmark */;
+			36207C551614DD2C001D4BEE /* PBXTextBookmark */ = 36207C551614DD2C001D4BEE /* PBXTextBookmark */;
+			36207C561614DD2C001D4BEE /* PBXTextBookmark */ = 36207C561614DD2C001D4BEE /* PBXTextBookmark */;
 			3657550E1612787A009D11CC = 3657550E1612787A009D11CC /* PBXTextBookmark */;
 			36575E9D16129D31009D11CC = 36575E9D16129D31009D11CC /* PBXTextBookmark */;
 			36575EF61612A34D009D11CC = 36575EF61612A34D009D11CC /* PBXTextBookmark */;
@@ -6401,7 +6423,7 @@
 	3657553C16128769009D11CC /* start.lua */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {609, 740}}";
-			sepNavSelRange = "{781, 0}";
+			sepNavSelRange = "{827, 0}";
 			sepNavVisRange = "{0, 1141}";
 		};
 	};
