@@ -38,20 +38,20 @@ class BackgroundThread : public ThreadFunction, public osc::PacketHandler {
 public:
 
 	BackgroundThread() 
-	:	receiver(8019),
-		sender(0),
+	:	//receiver(8019),
+		//sender(0),
 		active(true),
 		thread(*this) 
 	{
-		receiver.handler(*this);
+		//receiver.handler(*this);
 		
 		int rc;
 		
 		pub = zmq_socket(zcontext, ZMQ_PUB);
 		//zmq_setsockopt(sub, ZMQ_LINGER, 0, 0);
-		rc = zmq_connect (sub, "epgm://en0;239.255.1.1:5555");
+		rc = zmq_connect (sub, "epgm://eth0;239.255.1.1:5555");
 		
-//		rc = zmq_bind(pub, "tcp://*:5556");
+		//rc = zmq_bind(pub, "tcp://*:5556");
 		if (rc) printf("error binding publisher: %s\n", zmq_strerror(rc));
 //		
 //		s_send(pub, "hello pubs");
@@ -68,11 +68,12 @@ public:
 	virtual ~BackgroundThread() {
 		active = false;
 		thread.join();
-		if (sender) delete sender;
+		//if (sender) delete sender;
 		zmq_close(pub);
 	}
 	
 	virtual void onMessage(osc::Message& m) {
+		/*
 		if (m.addressPattern() == "/git") {
 			std::string cmd;
 			m >> cmd;
@@ -86,20 +87,19 @@ public:
 		} else {
 			m.print();
 		}
+		*/
 	}
 
 	virtual void operator()() {
 		while (active) {
 			// poll recv and handle commands
-			while(receiver.recv()){
-				al_sleep(OSC_TIMEOUT);
-			}
+			//while(receiver.recv()){ al_sleep(OSC_TIMEOUT); }
 			al_sleep(OSC_TIMEOUT);
 		}
 	}
 	
-	osc::Recv receiver;
-	osc::Send * sender;
+	//osc::Recv receiver;
+	//osc::Send * sender;
 	bool active;
 	Thread thread;
 	
