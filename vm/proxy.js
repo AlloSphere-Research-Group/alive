@@ -50,18 +50,17 @@ var browser = mdns.createBrowser(mdns.tcp('master'));
 
 var pullNumber = 0;
 browser.on('serviceUp', function(service) {
-	console.log("I AM CONNECTING ********************************************");
-  console.log("service up: ", service);
   //console.log("ADDRESS ", service.addresses[0]);
   // use host instead of ip address... addresses also returns MAC address of port
   if(master === null) {
+	  console.log("service up: ", service);
 	  master = io.connect(service.host+":8082");
 
 	  master.on('connect', function(){ console.log("Connected to Master"); });
 
 	  master.on('message', function(msg){ console.log("Recieved a message: " + msg); });
 
-	  master.on('disconnect', function(){ console.log("Disconnected from Master"); });
+	  master.on('disconnect', function(){ console.log("Disconnected from Master"); master = null; });
 
 	  master.on('pull', function(obj) {
 		if(pullNumber <= obj.number) {
@@ -77,7 +76,6 @@ browser.on('serviceUp', function(service) {
 
 browser.on('serviceDown', function(service) {
   console.log("service down: ", service);
-  master = null;
 });
 browser.start();
 
