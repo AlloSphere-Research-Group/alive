@@ -3,7 +3,6 @@ var spawn = require('child_process').spawn;
 var vm = undefined;
 
 function launch() {
-
 	if (vm != undefined) {
 		vm.kill();
 		//vm.disconnect();

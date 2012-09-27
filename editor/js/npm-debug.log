@@ -1,0 +1,59 @@
+info it worked if it ends with ok
+verbose cli [ 'node',
+verbose cli   '/usr/local/bin/npm',
+verbose cli   'install',
+verbose cli   'socket.io-client',
+verbose cli   './' ]
+info using npm@1.1.0-3
+info using node@v0.6.10
+verbose config file /Users/charlie/.npmrc
+verbose config file /usr/local/etc/npmrc
+verbose config file /usr/local/lib/node_modules/npm/npmrc
+verbose caching /Users/charlie/node_modules/help/package.json
+verbose loadDefaults help@0.0.1
+verbose caching /Users/charlie/node_modules/paramon/package.json
+verbose loadDefaults paramon@0.1.1
+WARN script-builder@0.3.3 package.json: bugs['web'] should probably be bugs['url']
+verbose caching /Users/charlie/node_modules/script-builder/package.json
+verbose loadDefaults script-builder@0.3.3
+verbose caching /Users/charlie/node_modules/socket.io/package.json
+verbose loadDefaults socket.io@0.8.7
+verbose caching /Users/charlie/node_modules/socket.osc/package.json
+verbose loadDefaults socket.osc@0.0.3
+verbose caching /Users/charlie/node_modules/uglify-js/package.json
+verbose loadDefaults uglify-js@1.2.5
+verbose has wscript [ undefined,
+verbose has wscript   { file: '/Users/charlie/node_modules/nodegit/package.json',
+verbose has wscript     contributors: false,
+verbose has wscript     serverjs: false,
+verbose has wscript     wscript: true } ]
+verbose caching /Users/charlie/node_modules/nodegit/package.json
+verbose loadDefaults nodegit@0.0.6
+verbose cache add [ 'socket.io-client', null ]
+silly cache add: name, spec, args [ undefined, 'socket.io-client', [ 'socket.io-client', null ] ]
+verbose parsed url { pathname: 'socket.io-client',
+verbose parsed url   path: 'socket.io-client',
+verbose parsed url   href: 'socket.io-client' }
+verbose cache add [ './', null ]
+silly cache add: name, spec, args [ undefined, './', [ './', null ] ]
+verbose parsed url { pathname: './', path: './', href: './' }
+verbose addNamed [ 'socket.io-client', '' ]
+verbose addNamed [ null, '' ]
+silly name, range, hasData [ 'socket.io-client', '', false ]
+ERR! Could not install: ./
+ERR! Error: ENOENT, no such file or directory 'package.json'
+ERR! You may report this log at:
+ERR!     <http://github.com/isaacs/npm/issues>
+ERR! or email it to:
+ERR!     <npm-@googlegroups.com>
+ERR! 
+ERR! System Darwin 10.8.0
+ERR! command "node" "/usr/local/bin/npm" "install" "socket.io-client" "./"
+ERR! cwd /Users/charlie/Documents/code/alloeditor/js
+ERR! node -v v0.6.10
+ERR! npm -v 1.1.0-3
+ERR! path package.json
+ERR! code ENOENT
+ERR! message ENOENT, no such file or directory 'package.json'
+ERR! errno {}
+verbose exit [ 1, true ]
