@@ -4,6 +4,7 @@
 #include "alloutil/al_Lua.hpp"
 #include "allocore/protocol/al_OSC.hpp"
 #include "allocore/system/al_Time.hpp"
+#include "allocore/io/al_Window.hpp"
 
 /* Apache Portable Runtime */
 #include "apr_general.h"
@@ -12,7 +13,6 @@
 #include "apr_network_io.h"
 #include "apr_time.h"
 
-#include "zmq.h"
 
 using namespace al;
 
@@ -21,6 +21,7 @@ al_sec OSC_TIMEOUT = 0.1;
 std::string serverIP = "127.0.01";
 Lua L;
 
+<<<<<<< HEAD
 void * zcontext;
 
 //  Convert C string to 0MQ string and send to socket
@@ -38,20 +39,20 @@ class BackgroundThread : public ThreadFunction, public osc::PacketHandler {
 public:
 
 	BackgroundThread() 
-	:	receiver(8019),
-		sender(0),
+	:	//receiver(8019),
+		//sender(0),
 		active(true),
 		thread(*this) 
 	{
-		receiver.handler(*this);
+		//receiver.handler(*this);
 		
 		int rc;
 		
 		pub = zmq_socket(zcontext, ZMQ_PUB);
 		//zmq_setsockopt(sub, ZMQ_LINGER, 0, 0);
-		rc = zmq_connect (sub, "epgm://en0;239.255.1.1:5555");
+		rc = zmq_connect (sub, "epgm://eth0;239.255.1.1:5555");
 		
-//		rc = zmq_bind(pub, "tcp://*:5556");
+		//rc = zmq_bind(pub, "tcp://*:5556");
 		if (rc) printf("error binding publisher: %s\n", zmq_strerror(rc));
 //		
 //		s_send(pub, "hello pubs");
@@ -68,11 +69,12 @@ public:
 	virtual ~BackgroundThread() {
 		active = false;
 		thread.join();
-		if (sender) delete sender;
+		//if (sender) delete sender;
 		zmq_close(pub);
 	}
 	
 	virtual void onMessage(osc::Message& m) {
+		/*
 		if (m.addressPattern() == "/git") {
 			std::string cmd;
 			m >> cmd;
@@ -86,20 +88,19 @@ public:
 		} else {
 			m.print();
 		}
+		*/
 	}
 
 	virtual void operator()() {
 		while (active) {
 			// poll recv and handle commands
-			while(receiver.recv()){
-				al_sleep(OSC_TIMEOUT);
-			}
+			//while(receiver.recv()){ al_sleep(OSC_TIMEOUT); }
 			al_sleep(OSC_TIMEOUT);
 		}
 	}
 	
-	osc::Recv receiver;
-	osc::Send * sender;
+	//osc::Recv receiver;
+	//osc::Send * sender;
 	bool active;
 	Thread thread;
 	
@@ -107,9 +108,9 @@ public:
 	void * sub;
 };
 
-int main(int argc, char * argv[]) {
+Window win;
 
-	zcontext = zmq_init(1);
+int main(int argc, char * argv[]) {
 
 	/*
 		This is a vm runtime launcher providing services
@@ -150,15 +151,14 @@ int main(int argc, char * argv[]) {
 	printf("starting\n");
 	
 	// implemented in C++?
-	BackgroundThread bt;
+	//BackgroundThread bt;
 	
-	while(1) {
-		al_sleep(1);
-	}
+	win.create();
+	win.startLoop();
 	
-	bt.active = 0;
+	//bt.active = 0;
 	
-	zmq_term(zcontext);
+	
 	
 	printf("bye\n");
 	return 0;

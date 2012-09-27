@@ -17,6 +17,8 @@ elif [[ $PLATFORM == 'Linux' ]]; then
 	sudo apt-get install pkg-config
 	sudo ldconfig
 	
+	mkdir -p externs
+	
 	# nodejs package is too old in ubuntu 12.04:
 	#sudo apt-get install nodejs
 	# get it this way instead:
