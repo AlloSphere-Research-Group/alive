@@ -39,9 +39,8 @@ math.randomseed(os.time())
 local c = math.random()
 
 function onFrame()
-	local c = sin(os.time() * math.pi * 0.01)
 	--print("onFrame")
-	C.glClearColor(c, c, 1-c, 1);
+	C.glClearColor(sin(os.time() * math.pi * 0.01), c, 1-c, 1);
 	
 	-- want something like
 	--audio.send("foo")
