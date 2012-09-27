@@ -25,7 +25,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 362078D41613F043001D4BEE /* allo.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 360BCBB815BB6D4A008921E9 /* fluid */;
+			remoteGlobalIDString = 360BCBB815BB6D4A008921E9;
 			remoteInfo = fluid;
 		};
 		36575E9816128C94009D11CC /* PBXContainerItemProxy */ = {
@@ -932,12 +932,10 @@
 		36575244161277FD009D11CC /* searchcursor.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = searchcursor.js; sourceTree = "<group>"; };
 		36575245161277FD009D11CC /* simple-hint.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "simple-hint.css"; sourceTree = "<group>"; };
 		36575246161277FD009D11CC /* simple-hint.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "simple-hint.js"; sourceTree = "<group>"; };
-		36575247161277FD009D11CC /* index.htm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.htm; sourceTree = "<group>"; };
 		36575248161277FD009D11CC /* jquery.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jquery.js; sourceTree = "<group>"; };
 		36575249161277FD009D11CC /* jstree.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jstree.js; sourceTree = "<group>"; };
 		3657524A161277FD009D11CC /* jstree.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jstree.min.js; sourceTree = "<group>"; };
 		3657524B161277FD009D11CC /* main.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = main.js; sourceTree = "<group>"; };
-		3657524D161277FD009D11CC /* node_slave.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = node_slave.js; sourceTree = "<group>"; };
 		3657524F161277FD009D11CC /* omgosc.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = omgosc.js; sourceTree = "<group>"; };
 		36575250161277FD009D11CC /* socket.io.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = socket.io.js; sourceTree = "<group>"; };
 		36575251161277FD009D11CC /* socket.osc.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = socket.osc.js; sourceTree = "<group>"; };
@@ -5617,12 +5615,10 @@
 			children = (
 				3657522A161277FD009D11CC /* client_socket.osc.js */,
 				3657522B161277FD009D11CC /* codemirror */,
-				36575247161277FD009D11CC /* index.htm */,
 				36575248161277FD009D11CC /* jquery.js */,
 				36575249161277FD009D11CC /* jstree.js */,
 				3657524A161277FD009D11CC /* jstree.min.js */,
 				3657524B161277FD009D11CC /* main.js */,
-				3657524D161277FD009D11CC /* node_slave.js */,
 				3657524F161277FD009D11CC /* omgosc.js */,
 				36575250161277FD009D11CC /* socket.io.js */,
 				36575251161277FD009D11CC /* socket.osc.js */,

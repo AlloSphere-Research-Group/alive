@@ -22,8 +22,8 @@ function launch() {
 		console.log('child process exited with code ' + code);
 		
 		// relaunch?:
-		//vm = launch();
-		//vm = undefined;
+		//launch();
+		vm = undefined;
 	});
 }
 
@@ -51,35 +51,42 @@ var browser = mdns.createBrowser(mdns.tcp('master'));
 var pullNumber = 0;
 
 var connectMaster = function(service) {
-   if(master === null) {
-  	  console.log("service up: ", service);
-  	  master = io.connect(service.host+":8082");
+	if(master === null) {
+		console.log("service up: ", service);
+		master = io.connect(service.host+":8082");
 
-  	  master.on('connect', function(){ console.log("Connected to Master");  browser.on('serviceUp', function() {}); } );
+		master.on('connect', function(){ console.log("Connected to Master");  browser.on('serviceUp', function() {}); } );
 
-  	  master.on('message', function(msg){ console.log("Recieved a message: " + msg); });
+		master.on('message', function(msg){ console.log("Recieved a message: " + msg); });
 
-  	  master.on('disconnect', function(){ console.log("Disconnected from Master"); browser.on('serviceUp', connectMaster); master.disconnect(); master = null; });
+		master.on('disconnect', function(){ 
+			console.log("Disconnected from Master"); 
+			browser.on('serviceUp', connectMaster); 
+			if(master !== null) {
+				master.disconnect();
+				master = null;
+			}
+		});
 
-  	  master.on('pull', function(obj) {
-  		if(pullNumber <= obj.number) {
-  	  	  exec("git pull origin master", {cwd: currentDir}, function() { console.log("MADE A PULL!"); } );
-  		  if (vm != undefined) vm.kill();
-  		  launch();
-  		  pullNumber++;
-  	    }
-  	  });
-    }
+		master.on('pull', function(obj) {
+			if(pullNumber <= obj.number) {
+				exec("git pull origin master", {cwd: currentDir}, function() { console.log("MADE A PULL!"); } );
+				if (vm != undefined) vm.kill();
+				launch();
+				pullNumber++;
+			}
+		});
+	}
 }
 
 browser.on('serviceUp', connectMaster);
 
 browser.on('serviceDown', function(service) {
-  console.log("service down: ", service);
-  if(master !== null) {
-	  master.disconnect();
-	  master = null;
-  }
+	console.log("service down: ", service);
+	if(master !== null) {
+		master.disconnect();
+		master = null;
+	}
 });
 browser.start();
 

@@ -85,28 +85,53 @@ $(document).ready( function() {
 		//window.editor.refresh();
 	});
 		
-	CodeMirror.modeURL = "js/codemirror/mode/%N/%N.js";
 	window.editor = CodeMirror.fromTextArea(document.getElementById("codeEditor"), {
-	  	lineNumbers: false,
 	  	autofocus: true,
-	  	indentUnit : 2,
+	  	indentUnit : 4,
+		indentWithTabs: true,
+		lineNumbers: true,
+		lineWrapping: true,
 	  	smartIndent: true,
+		undoDepth: 400,
+		
+		theme: "vibrant-ink",	
 	});
+	
 
 	window.CodeMirror = CodeMirror;	
-	window.editor.setOption("mode", "javascript");
+	
+	CodeMirror.modeURL = "js/codemirror/mode/%N/%N.js";
+	// this should depend on the type of file being displayed
+	//window.editor.setOption("mode", "javascript");
+	//window.editor.setOption("mode", "clike");
+	window.editor.setOption("mode", "lua");
+	
+	var hlLine = window.editor.setLineClass(0, "activeline");
+	window.editor.setOption("onCursorActivity", function() {
+		window.editor.setLineClass(hlLine, null, null);
+		hlLine = window.editor.setLineClass(window.editor.getCursor().line, null, "activeline");
+		
+		// highlight matching words:
+		// not working for some reason
+		window.editor.matchHighlight("CodeMirror-matchhighlight");
+		
+		// super annoying:
+		// window.setTimeout(function() { autocomplete(editor); }, 1000);
+	});
 			
-	CodeMirror.keyMap.gibber = {
+	var editor_save = function(cm) {
+		console.log("SAVING SAVING");
+		slaveSocket.emit('save', {filename:currentFile, data:editor.getValue()} );
+		flashMsg("SAVED");
+	};
+	
+	CodeMirror.keyMap.alive = {
 		fallthrough : "default",
-		"Cmd-S":function(cm) {
-			console.log("SAVING SAVING");
-			slaveSocket.emit('save', {filename:currentFile, data:editor.getValue()} );
-			flashMsg("SAVED");
-		},
+		"Cmd-S": editor_save,
 	};
 		
-	window.editor.setOption("keyMap", "gibber");
-			
+	window.editor.setOption("keyMap", "alive");
+	
 	slaveSocket.emit('cmd', 'ls');
 			
 	$(window).resize(function() {

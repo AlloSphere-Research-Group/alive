@@ -197,48 +197,7 @@
 	<key>Notifications</key>
 	<array/>
 	<key>OpenEditors</key>
-	<array>
-		<dict>
-			<key>Content</key>
-			<dict>
-				<key>PBXProjectModuleGUID</key>
-				<string>36207AF816149DCD001D4BEE</string>
-				<key>PBXProjectModuleLabel</key>
-				<string>al_SingleRWRingBuffer.hpp</string>
-				<key>PBXSplitModuleInNavigatorKey</key>
-				<dict>
-					<key>Split0</key>
-					<dict>
-						<key>PBXProjectModuleGUID</key>
-						<string>36207AF916149DCD001D4BEE</string>
-						<key>PBXProjectModuleLabel</key>
-						<string>al_SingleRWRingBuffer.hpp</string>
-						<key>_historyCapacity</key>
-						<integer>0</integer>
-						<key>bookmark</key>
-						<string>36207C661614E038001D4BEE</string>
-						<key>history</key>
-						<array>
-							<string>36207AED16149BC1001D4BEE</string>
-						</array>
-					</dict>
-					<key>SplitCount</key>
-					<string>1</string>
-				</dict>
-				<key>StatusBarVisibility</key>
-				<true/>
-			</dict>
-			<key>Geometry</key>
-			<dict>
-				<key>Frame</key>
-				<string>{{0, 20}, {725, 781}}</string>
-				<key>PBXModuleWindowStatusBarHidden2</key>
-				<false/>
-				<key>RubberWindowFrame</key>
-				<string>15 56 725 822 0 0 1440 878 </string>
-			</dict>
-		</dict>
-	</array>
+	<array/>
 	<key>PerspectiveWidths</key>
 	<array>
 		<integer>-1</integer>
@@ -310,15 +269,6 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateExpansionKey</key>
 							<array>
 								<string>36575208161277BC009D11CC</string>
-								<string>362074241613F03D001D4BEE</string>
-								<string>3620761E1613F042001D4BEE</string>
-								<string>3620761F1613F042001D4BEE</string>
-								<string>362076351613F042001D4BEE</string>
-								<string>362076791613F042001D4BEE</string>
-								<string>362076DE1613F043001D4BEE</string>
-								<string>3620770F1613F043001D4BEE</string>
-								<string>362077391613F043001D4BEE</string>
-								<string>362077A51613F043001D4BEE</string>
 								<string>36575223161277FD009D11CC</string>
 								<string>3657525E161277FD009D11CC</string>
 								<string>36575505161277FE009D11CC</string>
@@ -328,13 +278,13 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>101</integer>
-									<integer>91</integer>
+									<integer>19</integer>
+									<integer>18</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 1033}, {220, 769}}</string>
+							<string>{{0, 0}, {220, 769}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -369,7 +319,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>36575212161277BE009D11CC</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>proxy.js</string>
+								<string>notes.txt</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -377,11 +327,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>36575213161277BE009D11CC</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>proxy.js</string>
+										<string>notes.txt</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>36207C651614E038001D4BEE</string>
+										<string>36207C821614F1E9001D4BEE</string>
 										<key>history</key>
 										<array>
 											<string>3657550E1612787A009D11CC</string>
@@ -404,7 +354,6 @@
 											<string>36207A081613F250001D4BEE</string>
 											<string>36207A151613F39B001D4BEE</string>
 											<string>36207A2C1613F4BF001D4BEE</string>
-											<string>36207A381613F622001D4BEE</string>
 											<string>36207AE316140D83001D4BEE</string>
 											<string>36207AE716140DFC001D4BEE</string>
 											<string>36207AF016149DCD001D4BEE</string>
@@ -412,7 +361,6 @@
 											<string>36207B211614A0BD001D4BEE</string>
 											<string>36207BC61614CD8D001D4BEE</string>
 											<string>36207BC91614CD8D001D4BEE</string>
-											<string>36207C2B1614D88C001D4BEE</string>
 											<string>36207C2C1614D88C001D4BEE</string>
 											<string>36207C2D1614D88C001D4BEE</string>
 											<string>36207C2E1614D88C001D4BEE</string>
@@ -420,7 +368,9 @@
 											<string>36207C371614D91E001D4BEE</string>
 											<string>36207C4C1614DC01001D4BEE</string>
 											<string>36207C631614E038001D4BEE</string>
-											<string>36207C641614E038001D4BEE</string>
+											<string>36207C671614F0F3001D4BEE</string>
+											<string>36207C801614F1E9001D4BEE</string>
+											<string>36207C811614F1E9001D4BEE</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -543,11 +493,11 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>362073F01613D0AF001D4BEE</string>
+				<string>36207C831614F1E9001D4BEE</string>
 				<string>1CA23ED40692098700951B8B</string>
-				<string>362073F11613D0AF001D4BEE</string>
+				<string>36207C841614F1E9001D4BEE</string>
 				<string>36575212161277BE009D11CC</string>
-				<string>362073F21613D0AF001D4BEE</string>
+				<string>36207C851614F1E9001D4BEE</string>
 				<string>1CA23EDF0692099D00951B8B</string>
 				<string>1CA23EE00692099D00951B8B</string>
 				<string>1CA23EE10692099D00951B8B</string>
@@ -717,7 +667,6 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>36207AF816149DCD001D4BEE</string>
 		<string>/Users/grahamwakefield/code/alive/projects/alive.xcodeproj</string>
 	</array>
 	<key>WindowString</key>

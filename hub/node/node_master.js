@@ -40,7 +40,7 @@ var cmds = {
 editors_in.sockets.on('connection', function (socket) {
 	socket.addr = socket.handshake.address.address;
 	socket.port = socket.handshake.address.port;
-	socket.currentDir 	= __dirname;
+	socket.currentDir 	= __dirname + "/../../vm/";
 	
 	if(editors[socket.addr]) editors[socket.addr].disconnect();
 	editors[socket.addr] = socket;
@@ -95,7 +95,7 @@ editors_in.sockets.on('connection', function (socket) {
 		
 	editors[socket.addr].on('disconnect', function () {
 		delete editors[socket.addr];
-		console.log("DISCONNECT : " + editors[socket.addr].addr);
+		console.log("DISCONNECT : " + socket.addr);
 	});
 });
 
