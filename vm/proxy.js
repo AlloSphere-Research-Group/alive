@@ -4,11 +4,6 @@ var vm = undefined;
 
 function launch() {
 
-	if (vm != undefined) {
-		vm.kill();
-		vm.disconnect();
-	}
-
 	vm = spawn('./alive');
 
 	vm.stdout.on('data', function (data) {
@@ -22,7 +17,7 @@ function launch() {
 		console.log('child process exited with code ' + code);
 		
 		// relaunch?:
-		//vm = launch();
+		vm = launch();
 		//vm = undefined;
 	});
 }
@@ -48,6 +43,7 @@ var master = null;
 
 var browser = mdns.createBrowser(mdns.tcp('master'));
 
+var pullNumber = 0;
 browser.on('serviceUp', function(service) {
   console.log("service up: ", service);
   //console.log("ADDRESS ", service.addresses[0]);
@@ -61,9 +57,12 @@ browser.on('serviceUp', function(service) {
   master.on('disconnect', function(){ console.log("Disconnected from Master"); });
 
   master.on('pull', function(obj) {
-  	exec("git pull origin master", {cwd: currentDir}, function() { console.log("MADE A PULL!"); } );
-	
-	launch();
+	if(pullNumber <= obj.number)
+  	  exec("git pull origin master", {cwd: currentDir}, function() { console.log("MADE A PULL!"); } );
+	  if (vm != undefined) vm.kill();
+	  launch();
+	  pullNumber++;
+    }
   });
   
 });
