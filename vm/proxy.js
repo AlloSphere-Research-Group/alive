@@ -6,7 +6,7 @@ function launch() {
 
 	if (vm != undefined) {
 		vm.kill();
-		vm.disconnect();
+		//vm.disconnect();
 	}
 
 	vm = spawn('./alive');
