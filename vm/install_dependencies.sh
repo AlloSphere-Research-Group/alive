@@ -18,10 +18,12 @@ cd $ROOT/modules/luaosc
 ./lake
 sudo ./lake install
 
+cd $ROOT
 npm install socket.io
 npm install socket.io-client
 npm install mdns
 
+cd $ROOT
 mkdir -p externs
 cd externs
 git clone git://github.com/joyent/libuv.git
