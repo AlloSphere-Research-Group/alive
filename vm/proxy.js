@@ -60,7 +60,7 @@ browser.on('serviceUp', function(service) {
 
 	  master.on('message', function(msg){ console.log("Recieved a message: " + msg); });
 
-	  master.on('disconnect', function(){ console.log("Disconnected from Master"); master = null; });
+	  master.on('disconnect', function(){ console.log("Disconnected from Master"); master.disconnect(); master = null; });
 
 	  master.on('pull', function(obj) {
 		if(pullNumber <= obj.number) {
@@ -76,8 +76,10 @@ browser.on('serviceUp', function(service) {
 
 browser.on('serviceDown', function(service) {
   console.log("service down: ", service);
-  if(master !== null)
+  if(master !== null) {
 	  master.disconnect();
+	  master = null;
+  }
 });
 browser.start();
 
