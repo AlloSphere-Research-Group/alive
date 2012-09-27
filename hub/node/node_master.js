@@ -8,12 +8,16 @@ var net			= require('net');
 var util		= require('util');
 var exec 		= require('child_process').exec;
 var path 		= require('path');
+var mdns 		= require('mdns');
 
 var editors_in 	 = require('socket.io').listen(8081);
 var renderers_in = require('socket.io').listen(8082);
 
 var editors = {};
 var renderers = {};
+
+var ad = mdns.createAdvertisement(mdns.tcp('master'), 8082);
+ad.start();
 
 var cmds = {
 	ls : function(_socket) {
