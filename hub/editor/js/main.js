@@ -25,9 +25,9 @@ $(document).ready( function() {
 	code 	= document.getElementById("code");
 	fileBrowser = document.getElementById("fileBrowser");
 	
+	// remoteIP is provided by the web server when the page is served
 	slaveSocket = io.connect("http://" + remoteIP + ":8081/");	
-	//slaveSocket = io.connect('http://127.0.0.1:8081/'); // has to match port node.js is running on
-	//slaveSocket = io.connect('http://192.168.0.3:8081/'); // has to match port node.js is running on
+
 	slaveSocket.on('handshake', function (response) {
 		console.log("HANDSHAKE : ", response.data);
 	});
