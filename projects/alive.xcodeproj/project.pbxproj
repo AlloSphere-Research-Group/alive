@@ -32,6 +32,8 @@
 
 /* Begin PBXFileReference section */
 		361764621613A24000C2748F /* zmq.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = zmq.h; path = /usr/local/include/zmq.h; sourceTree = "<absolute>"; };
+		361764631613B55600C2748F /* test.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = test.js; sourceTree = "<group>"; };
+		361764641613B7FB00C2748F /* test.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = test.lua; sourceTree = "<group>"; };
 		36575226161277FD009D11CC /* corner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = corner.png; sourceTree = "<group>"; };
 		36575227161277FD009D11CC /* folder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = folder.png; sourceTree = "<group>"; };
 		36575228161277FD009D11CC /* index.htm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.htm; sourceTree = "<group>"; };
@@ -4577,6 +4579,8 @@
 				3657552216127989009D11CC /* vm.h */,
 				3657552316127989009D11CC /* vm.cpp */,
 				3657553C16128769009D11CC /* start.lua */,
+				361764641613B7FB00C2748F /* test.lua */,
+				361764631613B55600C2748F /* test.js */,
 			);
 			name = vm;
 			path = ../vm;

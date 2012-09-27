@@ -4,6 +4,7 @@
 #include "alloutil/al_Lua.hpp"
 #include "allocore/protocol/al_OSC.hpp"
 #include "allocore/system/al_Time.hpp"
+#include "allocore/io/al_Window.hpp"
 
 /* Apache Portable Runtime */
 #include "apr_general.h"
@@ -12,7 +13,6 @@
 #include "apr_network_io.h"
 #include "apr_time.h"
 
-#include "zmq.h"
 
 using namespace al;
 
@@ -21,6 +21,7 @@ al_sec OSC_TIMEOUT = 0.1;
 std::string serverIP = "127.0.01";
 Lua L;
 
+<<<<<<< HEAD
 void * zcontext;
 
 //  Convert C string to 0MQ string and send to socket
@@ -107,9 +108,9 @@ public:
 	void * sub;
 };
 
-int main(int argc, char * argv[]) {
+Window win;
 
-	zcontext = zmq_init(1);
+int main(int argc, char * argv[]) {
 
 	/*
 		This is a vm runtime launcher providing services
@@ -150,15 +151,14 @@ int main(int argc, char * argv[]) {
 	printf("starting\n");
 	
 	// implemented in C++?
-	BackgroundThread bt;
+	//BackgroundThread bt;
 	
-	while(1) {
-		al_sleep(1);
-	}
+	win.create();
+	win.startLoop();
 	
-	bt.active = 0;
+	//bt.active = 0;
 	
-	zmq_term(zcontext);
+	
 	
 	printf("bye\n");
 	return 0;
