@@ -87,7 +87,8 @@ editors_in.sockets.on('connection', function (socket) {
 		}
 	});
 		
-	socket.on('disconnect', function () { 
+	socket.on('disconnect', function () {
+		delete editors[socket.addr];
 		console.log("DISCONNECT : " + socket.addr);
 	});
 });
@@ -109,7 +110,8 @@ renderers_in.sockets.on('connection', function (socket) {
 		}
 	});
 	
-	socket.on('disconnect', function () { 
+	socket.on('disconnect', function () {
+		delete renderers[socket.addr];
 		for(var key in editors) {
 			editors[key].emit("renderer disconnect", { ip: socket.addr } );
 		}
