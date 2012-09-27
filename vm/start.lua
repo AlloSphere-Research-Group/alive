@@ -2,8 +2,8 @@ print("running on", hostname)
 
 local ffi = require "ffi"
 local bit = require "bit"
-local clang = require "clang"
-local osc = require "osc"
+--local clang = require "clang"
+--local osc = require "osc"
 local tube = require "tube"
 
 ffi.cdef [[
