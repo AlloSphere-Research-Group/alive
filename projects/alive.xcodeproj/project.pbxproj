@@ -904,7 +904,6 @@
 		362079F41613F043001D4BEE /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		36207AEE16149C23001D4BEE /* tube.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = tube.lua; sourceTree = "<group>"; };
 		36207BD01614CD9A001D4BEE /* notes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = notes.txt; sourceTree = "<group>"; };
-		36207C2A1614D51C001D4BEE /* install_dependencies.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = install_dependencies.sh; sourceTree = "<group>"; };
 		36207C951614FEC8001D4BEE /* audio.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = audio.lua; sourceTree = "<group>"; };
 		36207C971614FF1D001D4BEE /* main.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = main.lua; sourceTree = "<group>"; };
 		36575226161277FD009D11CC /* corner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = corner.png; sourceTree = "<group>"; };
@@ -1503,10 +1502,6 @@
 		36575502161277FE009D11CC /* strings */ = {isa = PBXFileReference; lastKnownFileType = file; path = strings; sourceTree = "<group>"; };
 		36575503161277FE009D11CC /* subclasses.pbxbtree */ = {isa = PBXFileReference; lastKnownFileType = file; path = subclasses.pbxbtree; sourceTree = "<group>"; };
 		36575504161277FE009D11CC /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README.md; path = ../README.md; sourceTree = SOURCE_ROOT; };
-		36575506161277FE009D11CC /* node_slave.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = node_slave.js; sourceTree = "<group>"; };
-		36575507161277FE009D11CC /* omgosc.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = omgosc.js; sourceTree = "<group>"; };
-		36575508161277FE009D11CC /* socket.io.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = socket.io.js; sourceTree = "<group>"; };
-		36575509161277FE009D11CC /* socket.osc.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = socket.osc.js; sourceTree = "<group>"; };
 		3657550C1612783B009D11CC /* build.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = build.sh; sourceTree = "<group>"; };
 		3657550D16127877009D11CC /* install_dependencies.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = install_dependencies.sh; sourceTree = "<group>"; };
 		3657552216127989009D11CC /* vm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vm.h; sourceTree = "<group>"; };
@@ -5595,7 +5590,6 @@
 				36575504161277FE009D11CC /* README.md */,
 				36575223161277FD009D11CC /* hub */,
 				365754F1161277FE009D11CC /* projects */,
-				36575505161277FE009D11CC /* renderer */,
 				3657550A161277FE009D11CC /* vm */,
 				36207C961614FF07001D4BEE /* demo */,
 			);
@@ -7281,19 +7275,6 @@
 			);
 			path = strings.pbxstrings;
 			sourceTree = "<group>";
-		};
-		36575505161277FE009D11CC /* renderer */ = {
-			isa = PBXGroup;
-			children = (
-				36207C2A1614D51C001D4BEE /* install_dependencies.sh */,
-				36575506161277FE009D11CC /* node_slave.js */,
-				36575507161277FE009D11CC /* omgosc.js */,
-				36575508161277FE009D11CC /* socket.io.js */,
-				36575509161277FE009D11CC /* socket.osc.js */,
-			);
-			name = renderer;
-			path = ../renderer;
-			sourceTree = SOURCE_ROOT;
 		};
 		3657550A161277FE009D11CC /* vm */ = {
 			isa = PBXGroup;

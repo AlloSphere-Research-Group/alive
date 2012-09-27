@@ -281,6 +281,12 @@
 		};
 	};
 	36207C2A1614D51C001D4BEE /* install_dependencies.sh */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = text.script.sh;
+		name = install_dependencies.sh;
+		path = /Users/grahamwakefield/code/alive/renderer/install_dependencies.sh;
+		sourceTree = "<absolute>";
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {609, 740}}";
 			sepNavSelRange = "{419, 0}";
@@ -962,6 +968,12 @@
 		};
 	};
 	36575506161277FE009D11CC /* node_slave.js */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.javascript;
+		name = node_slave.js;
+		path = /Users/grahamwakefield/code/alive/renderer/node_slave.js;
+		sourceTree = "<absolute>";
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {609, 740}}";
 			sepNavSelRange = "{0, 1137}";
