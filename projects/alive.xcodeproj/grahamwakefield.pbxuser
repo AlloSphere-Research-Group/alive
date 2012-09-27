@@ -15,9 +15,9 @@
 	};
 	361764631613B55600C2748F /* proxy.js */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {609, 1014}}";
-			sepNavSelRange = "{444, 0}";
-			sepNavVisRange = "{0, 1281}";
+			sepNavIntBoundsRect = "{{0, 0}, {609, 1027}}";
+			sepNavSelRange = "{128, 0}";
+			sepNavVisRange = "{0, 1283}";
 		};
 	};
 	361764641613B7FB00C2748F /* test.lua */ = {
@@ -102,7 +102,7 @@
 		fRef = 361764631613B55600C2748F /* proxy.js */;
 		name = "test.js: 32";
 		rLen = 0;
-		rLoc = 573;
+		rLoc = 575;
 		rType = 0;
 		vrLen = 708;
 		vrLoc = 408;
@@ -112,7 +112,7 @@
 		fRef = 361764631613B55600C2748F /* proxy.js */;
 		name = "test.js: 3";
 		rLen = 1;
-		rLoc = 485;
+		rLoc = 487;
 		rType = 0;
 		vrLen = 1116;
 		vrLoc = 0;
@@ -122,7 +122,7 @@
 		fRef = 361764631613B55600C2748F /* proxy.js */;
 		name = "test.js: 15";
 		rLen = 0;
-		rLoc = 573;
+		rLoc = 575;
 		rType = 0;
 		vrLen = 1116;
 		vrLoc = 0;
@@ -132,7 +132,7 @@
 		fRef = 361764631613B55600C2748F /* proxy.js */;
 		name = "test.js: 11";
 		rLen = 0;
-		rLoc = 485;
+		rLoc = 487;
 		rType = 0;
 		vrLen = 1116;
 		vrLoc = 0;
@@ -152,7 +152,7 @@
 		fRef = 361764631613B55600C2748F /* proxy.js */;
 		name = "test.js: 17";
 		rLen = 0;
-		rLoc = 485;
+		rLoc = 487;
 		rType = 0;
 		vrLen = 1116;
 		vrLoc = 0;
@@ -162,7 +162,7 @@
 		fRef = 361764631613B55600C2748F /* proxy.js */;
 		name = "test.js: 14";
 		rLen = 0;
-		rLoc = 485;
+		rLoc = 487;
 		rType = 0;
 		vrLen = 1116;
 		vrLoc = 0;
@@ -172,7 +172,7 @@
 		fRef = 361764631613B55600C2748F /* proxy.js */;
 		name = "test.js: 1";
 		rLen = 0;
-		rLoc = 147;
+		rLoc = 149;
 		rType = 0;
 		vrLen = 1116;
 		vrLoc = 0;
@@ -182,7 +182,7 @@
 		fRef = 361764631613B55600C2748F /* proxy.js */;
 		name = "test.js: 1";
 		rLen = 0;
-		rLoc = 147;
+		rLoc = 149;
 		rType = 0;
 		vrLen = 1116;
 		vrLoc = 0;
@@ -192,7 +192,7 @@
 		fRef = 361764631613B55600C2748F /* proxy.js */;
 		name = "test.js: 1";
 		rLen = 0;
-		rLoc = 147;
+		rLoc = 149;
 		rType = 0;
 		vrLen = 1116;
 		vrLoc = 0;
@@ -202,7 +202,7 @@
 		fRef = 361764631613B55600C2748F /* proxy.js */;
 		name = "test.js: 1";
 		rLen = 0;
-		rLoc = 147;
+		rLoc = 149;
 		rType = 0;
 		vrLen = 1116;
 		vrLoc = 0;
@@ -212,7 +212,7 @@
 		fRef = 361764631613B55600C2748F /* proxy.js */;
 		name = "test.js: 1";
 		rLen = 0;
-		rLoc = 147;
+		rLoc = 149;
 		rType = 0;
 		vrLen = 1116;
 		vrLoc = 0;
@@ -222,7 +222,7 @@
 		fRef = 361764631613B55600C2748F /* proxy.js */;
 		name = "test.js: 1";
 		rLen = 0;
-		rLoc = 147;
+		rLoc = 149;
 		rType = 0;
 		vrLen = 1116;
 		vrLoc = 0;
@@ -232,7 +232,7 @@
 		fRef = 361764631613B55600C2748F /* proxy.js */;
 		name = "test.js: 2";
 		rLen = 0;
-		rLoc = 147;
+		rLoc = 149;
 		rType = 0;
 		vrLen = 1116;
 		vrLoc = 0;
@@ -242,7 +242,7 @@
 		fRef = 361764631613B55600C2748F /* proxy.js */;
 		name = "test.js: 2";
 		rLen = 0;
-		rLoc = 147;
+		rLoc = 149;
 		rType = 0;
 		vrLen = 1116;
 		vrLoc = 0;
@@ -252,7 +252,7 @@
 		fRef = 361764631613B55600C2748F /* proxy.js */;
 		name = "test.js: 3";
 		rLen = 0;
-		rLoc = 147;
+		rLoc = 149;
 		rType = 0;
 		vrLen = 1116;
 		vrLoc = 0;
@@ -262,7 +262,7 @@
 		fRef = 361764631613B55600C2748F /* proxy.js */;
 		name = "test.js: 1";
 		rLen = 0;
-		rLoc = 147;
+		rLoc = 149;
 		rType = 0;
 		vrLen = 1116;
 		vrLoc = 0;
@@ -272,7 +272,7 @@
 		fRef = 361764631613B55600C2748F /* proxy.js */;
 		name = "test.js: 1";
 		rLen = 0;
-		rLoc = 147;
+		rLoc = 149;
 		rType = 0;
 		vrLen = 1116;
 		vrLoc = 0;
@@ -282,7 +282,7 @@
 		fRef = 361764631613B55600C2748F /* proxy.js */;
 		name = "test.js: 1";
 		rLen = 0;
-		rLoc = 147;
+		rLoc = 149;
 		rType = 0;
 		vrLen = 1116;
 		vrLoc = 0;
@@ -292,7 +292,7 @@
 		fRef = 361764631613B55600C2748F /* proxy.js */;
 		name = "test.js: 1";
 		rLen = 0;
-		rLoc = 147;
+		rLoc = 149;
 		rType = 0;
 		vrLen = 1116;
 		vrLoc = 0;
@@ -302,7 +302,7 @@
 		fRef = 361764631613B55600C2748F /* proxy.js */;
 		name = "test.js: 1";
 		rLen = 0;
-		rLoc = 147;
+		rLoc = 149;
 		rType = 0;
 		vrLen = 1116;
 		vrLoc = 0;
@@ -312,7 +312,7 @@
 		fRef = 361764631613B55600C2748F /* proxy.js */;
 		name = "test.js: 1";
 		rLen = 0;
-		rLoc = 147;
+		rLoc = 149;
 		rType = 0;
 		vrLen = 1116;
 		vrLoc = 0;
@@ -322,7 +322,7 @@
 		fRef = 361764631613B55600C2748F /* proxy.js */;
 		name = "test.js: 2";
 		rLen = 0;
-		rLoc = 147;
+		rLoc = 149;
 		rType = 0;
 		vrLen = 1116;
 		vrLoc = 0;
@@ -332,7 +332,7 @@
 		fRef = 361764631613B55600C2748F /* proxy.js */;
 		name = "test.js: 2";
 		rLen = 0;
-		rLoc = 147;
+		rLoc = 149;
 		rType = 0;
 		vrLen = 1116;
 		vrLoc = 0;
@@ -342,7 +342,7 @@
 		fRef = 361764631613B55600C2748F /* proxy.js */;
 		name = "test.js: 1";
 		rLen = 0;
-		rLoc = 147;
+		rLoc = 149;
 		rType = 0;
 		vrLen = 1116;
 		vrLoc = 0;
@@ -352,7 +352,7 @@
 		fRef = 361764631613B55600C2748F /* proxy.js */;
 		name = "test.js: 5";
 		rLen = 0;
-		rLoc = 147;
+		rLoc = 149;
 		rType = 0;
 		vrLen = 1116;
 		vrLoc = 0;
@@ -372,7 +372,7 @@
 		fRef = 361764631613B55600C2748F /* proxy.js */;
 		name = "test.js: 5";
 		rLen = 0;
-		rLoc = 147;
+		rLoc = 149;
 		rType = 0;
 		vrLen = 1116;
 		vrLoc = 0;
@@ -382,7 +382,7 @@
 		fRef = 361764631613B55600C2748F /* proxy.js */;
 		name = "test.js: 11";
 		rLen = 0;
-		rLoc = 147;
+		rLoc = 149;
 		rType = 0;
 		vrLen = 263;
 		vrLoc = 0;
@@ -392,7 +392,7 @@
 		fRef = 361764631613B55600C2748F /* proxy.js */;
 		name = "test.js: 15";
 		rLen = 0;
-		rLoc = 147;
+		rLoc = 149;
 		rType = 0;
 		vrLen = 303;
 		vrLoc = 0;
@@ -402,7 +402,7 @@
 		fRef = 361764631613B55600C2748F /* proxy.js */;
 		name = "test.js: 21";
 		rLen = 0;
-		rLoc = 573;
+		rLoc = 575;
 		rType = 0;
 		vrLen = 334;
 		vrLoc = 0;
@@ -466,7 +466,7 @@
 		fRef = 361764631613B55600C2748F /* proxy.js */;
 		name = "proxy.js: 21";
 		rLen = 0;
-		rLoc = 463;
+		rLoc = 465;
 		rType = 0;
 		vrLen = 1212;
 		vrLoc = 0;
@@ -476,7 +476,7 @@
 		fRef = 361764631613B55600C2748F /* proxy.js */;
 		name = "proxy.js: 21";
 		rLen = 0;
-		rLoc = 463;
+		rLoc = 465;
 		rType = 0;
 		vrLen = 1212;
 		vrLoc = 0;
@@ -2936,7 +2936,7 @@
 		fRef = 361764631613B55600C2748F /* proxy.js */;
 		name = "proxy.js: 21";
 		rLen = 0;
-		rLoc = 463;
+		rLoc = 465;
 		rType = 0;
 		vrLen = 1212;
 		vrLoc = 0;
@@ -5026,7 +5026,7 @@
 		fRef = 361764631613B55600C2748F /* proxy.js */;
 		name = "proxy.js: 21";
 		rLen = 0;
-		rLoc = 463;
+		rLoc = 465;
 		rType = 0;
 		vrLen = 1212;
 		vrLoc = 0;
@@ -5336,7 +5336,7 @@
 		fRef = 361764631613B55600C2748F /* proxy.js */;
 		name = "proxy.js: 21";
 		rLen = 0;
-		rLoc = 463;
+		rLoc = 465;
 		rType = 0;
 		vrLen = 1212;
 		vrLoc = 0;
@@ -5346,7 +5346,7 @@
 		fRef = 361764631613B55600C2748F /* proxy.js */;
 		name = "proxy.js: 69";
 		rLen = 0;
-		rLoc = 1725;
+		rLoc = 1727;
 		rType = 0;
 		vrLen = 1385;
 		vrLoc = 265;
@@ -5366,7 +5366,7 @@
 		fRef = 361764631613B55600C2748F /* proxy.js */;
 		name = "proxy.js: 61";
 		rLen = 0;
-		rLoc = 1591;
+		rLoc = 1593;
 		rType = 0;
 		vrLen = 1412;
 		vrLoc = 265;
@@ -5386,7 +5386,7 @@
 		fRef = 361764631613B55600C2748F /* proxy.js */;
 		name = "proxy.js: 60";
 		rLen = 0;
-		rLoc = 1589;
+		rLoc = 1591;
 		rType = 0;
 		vrLen = 1428;
 		vrLoc = 271;
@@ -5406,7 +5406,7 @@
 		fRef = 361764631613B55600C2748F /* proxy.js */;
 		name = "proxy.js: 61";
 		rLen = 0;
-		rLoc = 1591;
+		rLoc = 1593;
 		rType = 0;
 		vrLen = 1423;
 		vrLoc = 271;
@@ -5426,7 +5426,7 @@
 		fRef = 361764631613B55600C2748F /* proxy.js */;
 		name = "proxy.js: 57";
 		rLen = 0;
-		rLoc = 1451;
+		rLoc = 1453;
 		rType = 0;
 		vrLen = 1423;
 		vrLoc = 271;
@@ -5486,7 +5486,7 @@
 		fRef = 361764631613B55600C2748F /* proxy.js */;
 		name = "proxy.js: 57";
 		rLen = 0;
-		rLoc = 1451;
+		rLoc = 1453;
 		rType = 0;
 		vrLen = 1423;
 		vrLoc = 271;
@@ -5676,7 +5676,7 @@
 		fRef = 361764631613B55600C2748F /* proxy.js */;
 		name = "proxy.js: 57";
 		rLen = 0;
-		rLoc = 1451;
+		rLoc = 1453;
 		rType = 0;
 		vrLen = 1424;
 		vrLoc = 270;
@@ -5686,7 +5686,7 @@
 		fRef = 361764631613B55600C2748F /* proxy.js */;
 		name = "proxy.js: 25";
 		rLen = 0;
-		rLoc = 444;
+		rLoc = 446;
 		rType = 0;
 		vrLen = 1281;
 		vrLoc = 0;
@@ -5706,7 +5706,7 @@
 		fRef = 361764631613B55600C2748F /* proxy.js */;
 		name = "proxy.js: 25";
 		rLen = 0;
-		rLoc = 444;
+		rLoc = 446;
 		rType = 0;
 		vrLen = 1281;
 		vrLoc = 0;
@@ -5752,6 +5752,46 @@
 		vrLoc = 0;
 	};
 	36207C621614DE85001D4BEE /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 362076811613F042001D4BEE /* al_SingleRWRingBuffer.hpp */;
+		name = "al_SingleRWRingBuffer.hpp: 171";
+		rLen = 470;
+		rLoc = 4180;
+		rType = 0;
+		vrLen = 1130;
+		vrLoc = 3981;
+	};
+	36207C631614E038001D4BEE /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3657553C16128769009D11CC /* start.lua */;
+		name = "start.lua: 46";
+		rLen = 0;
+		rLoc = 841;
+		rType = 0;
+		vrLen = 1124;
+		vrLoc = 0;
+	};
+	36207C641614E038001D4BEE /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 361764631613B55600C2748F /* proxy.js */;
+		name = "proxy.js: 25";
+		rLen = 0;
+		rLoc = 446;
+		rType = 0;
+		vrLen = 1281;
+		vrLoc = 0;
+	};
+	36207C651614E038001D4BEE /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 361764631613B55600C2748F /* proxy.js */;
+		name = "proxy.js: 9";
+		rLen = 0;
+		rLoc = 128;
+		rType = 0;
+		vrLen = 1283;
+		vrLoc = 0;
+	};
+	36207C661614E038001D4BEE /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 362076811613F042001D4BEE /* al_SingleRWRingBuffer.hpp */;
 		name = "al_SingleRWRingBuffer.hpp: 171";
@@ -6400,6 +6440,10 @@
 			36207C601614DE67001D4BEE /* PBXTextBookmark */ = 36207C601614DE67001D4BEE /* PBXTextBookmark */;
 			36207C611614DE85001D4BEE /* PBXTextBookmark */ = 36207C611614DE85001D4BEE /* PBXTextBookmark */;
 			36207C621614DE85001D4BEE /* PBXTextBookmark */ = 36207C621614DE85001D4BEE /* PBXTextBookmark */;
+			36207C631614E038001D4BEE /* PBXTextBookmark */ = 36207C631614E038001D4BEE /* PBXTextBookmark */;
+			36207C641614E038001D4BEE /* PBXTextBookmark */ = 36207C641614E038001D4BEE /* PBXTextBookmark */;
+			36207C651614E038001D4BEE /* PBXTextBookmark */ = 36207C651614E038001D4BEE /* PBXTextBookmark */;
+			36207C661614E038001D4BEE /* PBXTextBookmark */ = 36207C661614E038001D4BEE /* PBXTextBookmark */;
 			3657550E1612787A009D11CC = 3657550E1612787A009D11CC /* PBXTextBookmark */;
 			36575E9D16129D31009D11CC = 36575E9D16129D31009D11CC /* PBXTextBookmark */;
 			36575EF61612A34D009D11CC = 36575EF61612A34D009D11CC /* PBXTextBookmark */;
