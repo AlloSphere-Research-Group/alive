@@ -9,7 +9,7 @@ echo Installing dependencies for $PLATFORM $ARCH from $ROOT
 if [[ $PLATFORM == 'Darwin' ]]; then
 
 	echo install node.js
-	# sudo PKG_CONFIG_PATH="/usr/local/lib/pkgconfig" npm install zmq -g
+	#sudo PKG_CONFIG_PATH="/usr/local/lib/pkgconfig" npm install zmq -g
 	
 
 elif [[ $PLATFORM == 'Linux' ]]; then
@@ -19,15 +19,17 @@ elif [[ $PLATFORM == 'Linux' ]]; then
 	
 	mkdir -p externs
 	
+	
 	# nodejs package is too old in ubuntu 12.04:
-	#sudo apt-get install nodejs
+	sudo apt-get install nodejs
 	# get it this way instead:
-	sudo apt-get install python-software-properties
-	sudo add-apt-repository ppa:chris-lea/node.js
-	sudo apt-get update
-	sudo apt-get install nodejs npm
-	sudo apt-get install libzmq-dev
-	npm install zmq
+	#sudo apt-get install python-software-properties
+	#sudo add-apt-repository ppa:chris-lea/node.js
+	#sudo apt-get update
+	#sudo apt-get install nodejs npm
+	
+	#sudo apt-get install libzmq-dev
+	#npm install zmq
 	
 fi
 
