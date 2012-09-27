@@ -55,7 +55,7 @@ var connectMaster = function(service) {
   	  console.log("service up: ", service);
   	  master = io.connect(service.host+":8082");
 
-  	  master.on('connect', function(){ console.log("Connected to Master");  browser.on('serviceUp', null); } );
+  	  master.on('connect', function(){ console.log("Connected to Master");  browser.on('serviceUp', function() {}); } );
 
   	  master.on('message', function(msg){ console.log("Recieved a message: " + msg); });
 
