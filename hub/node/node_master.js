@@ -19,6 +19,7 @@ var renderers = {};
 var ad = mdns.createAdvertisement(mdns.tcp('master'), 8082);
 ad.start();
 
+var pullNumber = 0;
 var cmds = {
 	ls : function(_socket) {
 		var files = fs.readdirSync(_socket.currentDir);
@@ -58,7 +59,7 @@ editors_in.sockets.on('connection', function (socket) {
 				console.log(renderers);
 				for(var key in renderers) {
 					console.log("TELLING RENDERER " + key + ":" + renderers[key].port + " TO PULL");
-					renderers[key].emit('pull');
+					renderers[key].emit('pull', { number: pullNumber++} );
 				}
 			} 
 		);
