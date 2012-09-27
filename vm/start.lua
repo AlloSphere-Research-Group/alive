@@ -23,6 +23,8 @@ void glClearColor(	GLclampf  	red,
  	GLclampf  	blue,
  	GLclampf  	alpha);
 
+double al_time();
+
 ]]
 local C = ffi.C
 
@@ -41,7 +43,7 @@ local c = math.random()
 function onFrame()
 	--print("onFrame")
 	
-	C.glClearColor(math.sin(os.time() * math.pi * 0.01), c, 1-c, 1);
+	C.glClearColor(math.abs(math.sin(C.al_time() * math.pi * 0.01)), c, 1-c, 1);
 	
 	-- want something like
 	--audio.send("foo")
