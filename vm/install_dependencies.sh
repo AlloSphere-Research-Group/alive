@@ -17,3 +17,7 @@ sudo ./lake install
 cd $ROOT/modules/luaosc
 ./lake
 sudo ./lake install
+
+npm install socket.io
+npm install socket.io-client
+npm install mdns

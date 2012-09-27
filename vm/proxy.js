@@ -1,14 +1,20 @@
-var spawn = require('child_process').spawn;
+
+var fs 		= require('fs');
+var path 	= require('path');
+var exec 	= require('child_process').exec;
+var spawn	= require('child_process').spawn;
+var io_in 	= require('socket.io').listen(8083);
+var io	 	= require('socket.io-client');
+var mdns 	= require('mdns');
 
 var vm = undefined;
 
-function launch() {
+function launch(name) {
 	if (vm != undefined) {
 		vm.kill();
-		//vm.disconnect();
 	}
 	
-	vm = spawn('./alive');
+	vm = spawn(name);
 
 	vm.stdout.on('data', function (data) {
 		console.log('stdout: ' + data);
@@ -21,25 +27,18 @@ function launch() {
 		console.log('child process exited with code ' + code);
 		
 		// relaunch?:
-		//launch();
+		//launch(name);
 		vm = undefined;
 	});
 }
 
-launch();
+launch('./alive');
 
 process.on('exit', function() {
 	if (vm != undefined) {
 		vm.kill();
 	}
 });
-
-var fs 		= require('fs');
-var path 	= require('path');
-var io_in 	= require('socket.io').listen(8083);
-var exec 	= require('child_process').exec;
-var io	 	= require('socket.io-client');
-var mdns 	= require('mdns');
 
 var currentDir 	= __dirname;
 var MASTER_ADDRESS 	= null; //"127.0.0.1:8082";

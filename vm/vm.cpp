@@ -135,56 +135,36 @@ int main(int argc, char * argv[]) {
 	atube.write = 0;
 	atube.data = new char[atube.size * 8];
 	printf("atube %p\n", &atube);
-
-
-	/*
-		This is a vm runtime launcher providing services
-			it hosts (loads & runs) user code from a git repo
-				- needs to know what the start file is
-				
-			Background thread connects to a server 
-				to receive notifications to pull the latest git code
-				and send feedback (prints & errors) back to server
-					- dup pipe, but in a thread-safe way (al_msgqueue?)
-			
-			it watches file dates & reloads with notifications to hosted code
-				- needs to know dependency hierarchy for reloading?
-			
-			it provides OS services to the hosted code (GL window, audio cb etc.)		
-				- via C API usable in C++ as well as LuaJIT
-		
-		Write this vm in C++ or LuaJIT?
-		
-		Should we use zmq instead of OSC? 
-			+ easy multicast
-			+ auto-reconnection
-	*/
 	
-	// execute in the contenxt of wherever this is run from:
+	// execute in the context of wherever this is run from:
 	chdir("./");
 	
 	// add some useful globals:
 	L.push(al::Socket::hostName().c_str());
 	lua_setglobal(L, "hostname");
 	
-	// TODO: duplicate stdout/stderr to OSC/zmq sender
-	// (in a thread safe way...)
+	lua_newtable(L);
+	for (int i=0; i<argc; i++) {
+		lua_pushstring(L, argv[i]);
+		lua_rawseti(L, -2, i+1);
+	}
+	lua_setglobal(L, "argv");
 
-	// run a startup script:
-	if (L.dofile(argc > 1 ? argv[1] : "./start.lua")) return -1;
+	// run the main script:
+	if (L.dofile("./alive.lua")) return -1;
 	
-	if (A.dofile(argc > 1 ? argv[1] : "./sounds.lua")) return -1;
+	//if (A.dofile(argc > 1 ? argv[1] : "./sounds.lua")) return -1;
 	
-	printf("starting\n");
+	printf("started\n");
 	
 	// implemented in C++?
 	//BackgroundThread bt;
 	
-	win.create();
-	AudioDevice::printAll();
-	audio.print();
-	audio.start();
+//	win.create();
 	
+//	AudioDevice::printAll();
+//	audio.print();
+//	audio.start();
 	
 	win.startLoop();
 	delete[] atube.data;

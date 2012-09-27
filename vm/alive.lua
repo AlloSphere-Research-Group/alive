@@ -1,4 +1,5 @@
 print("running on", hostname)
+print("argv", unpack(argv))
 
 local ffi = require "ffi"
 local bit = require "bit"
