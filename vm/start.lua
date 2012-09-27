@@ -16,6 +16,13 @@ typedef struct tubeheader {
 } tubeheader;
 
 tube_t * atube_get() { return &atube; }
+
+typedef float GLclampf;
+void glClearColor(	GLclampf  	red,
+ 	GLclampf  	green,
+ 	GLclampf  	blue,
+ 	GLclampf  	alpha);
+
 ]]
 local C = ffi.C
 
@@ -28,9 +35,11 @@ local atube = C.atube_get()
 	-- type		(uint32)
 	-- data...	(char[?])
 
+local c = math.random()
 
 function onFrame()
 	--print("onFrame")
+	C.glClearColor(c, c, 1-c, 1);
 	
 	-- want something like
 	--audio.send("foo")
