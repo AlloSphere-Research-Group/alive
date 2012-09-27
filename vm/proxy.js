@@ -22,7 +22,7 @@ function launch() {
 		console.log('child process exited with code ' + code);
 		
 		// relaunch?:
-		vm = launch();
+		//vm = launch();
 		//vm = undefined;
 	});
 }
