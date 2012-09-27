@@ -40,6 +40,7 @@ local c = math.random()
 
 function onFrame()
 	--print("onFrame")
+	
 	C.glClearColor(math.sin(os.time() * math.pi * 0.01), c, 1-c, 1);
 	
 	-- want something like
