@@ -49,16 +49,6 @@ var master = null;
 var browser = mdns.createBrowser(mdns.tcp('master'));
 
 var pullNumber = 0;
-browser.on('serviceUp', connectMaster);
-
-browser.on('serviceDown', function(service) {
-  console.log("service down: ", service);
-  if(master !== null) {
-	  master.disconnect();
-	  master = null;
-  }
-});
-browser.start();
 
 var connectMaster = function(service) {
    if(master === null) {
@@ -80,6 +70,16 @@ var connectMaster = function(service) {
   	    }
   	  });
     }
-	
 }
+
+browser.on('serviceUp', connectMaster);
+
+browser.on('serviceDown', function(service) {
+  console.log("service down: ", service);
+  if(master !== null) {
+	  master.disconnect();
+	  master = null;
+  }
+});
+browser.start();
 
