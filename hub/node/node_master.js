@@ -41,17 +41,18 @@ editors_in.sockets.on('connection', function (socket) {
 	socket.port = socket.handshake.address.port;
 	socket.currentDir 	= __dirname;
 	
+	if(editors[socket.addr]) editors[socket.addr].disconnect();
 	editors[socket.addr] = socket;
 	
-	socket.emit("handshake", { "data" : "Handshake received from " + socket.addr } );
+	editors[socket.addr].emit("handshake", { "data" : "Handshake received from " + editors[socket.addr].addr } );
 	
-	socket.on('save', function(obj) {
+	editors[socket.addr].on('save', function(obj) {
 		var filename = obj.filename;
 		var data = obj.data;
 		
-		fs.writeFileSync(socket.currentDir + "/" + filename, data, 'utf8');
-		exec("git commit " + socket.currentDir + "/" + filename + " -m '"+filename+" changes from alloeditor'", 
-			{cwd: socket.currentDir}, 
+		fs.writeFileSync(editors[socket.addr].currentDir + "/" + filename, data, 'utf8');
+		exec("git commit " + editors[socket.addr].currentDir + "/" + filename + " -m '"+filename+" changes from alloeditor'", 
+			{cwd: editors[socket.addr].currentDir}, 
 			function() { 
 				console.log("MADE A COMMIT!");
 				console.log(renderers);
@@ -63,7 +64,7 @@ editors_in.sockets.on('connection', function (socket) {
 		);
 	});
 	
-	socket.on('cmd', function(cmd) {
+	editors[socket.addr].on('cmd', function(cmd) {
 		cmd = cmd.replace(/(\r\n|\n|\r)/gm,"");
 		var tokens = cmd.split(' ');
 		var _cmd = tokens[0];
@@ -72,18 +73,18 @@ editors_in.sockets.on('connection', function (socket) {
 		
 		switch(_cmd) {
 			case "ls" :
-				var files = cmds.ls(socket);
-				socket.emit("ls", { "data" : files} );
+				var files = cmds.ls(editors[socket.addr]);
+				editors[socket.addr].emit("ls", { "data" : files} );
 				break;
 			case "cd" :
-				cmds.cd(socket, args);
-				var response = cmds.ls(socket);
-				socket.emit("ls", { "data" : response} );
-				socket.emit("dir", socket.currentDir );				
+				cmds.cd(editors[socket.addr], args);
+				var response = cmds.ls(editors[socket.addr]);
+				editors[socket.addr].emit("ls", { "data" : response} );
+				editors[socket.addr].emit("dir", editors[socket.addr].currentDir );				
 				break;
 			case "read" :
-				var data = fs.readFileSync(socket.currentDir + "/" + args, 'utf8');///read(args);
-				socket.emit("read", { "data" : data } );
+				var data = fs.readFileSync(editors[socket.addr].currentDir + "/" + args, 'utf8');///read(args);
+				editors[socket.addr].emit("read", { "data" : data } );
 				break;
 			default:
 				console.log("could not process command");
@@ -91,9 +92,9 @@ editors_in.sockets.on('connection', function (socket) {
 		}
 	});
 		
-	socket.on('disconnect', function () {
+	editors[socket.addr].on('disconnect', function () {
 		delete editors[socket.addr];
-		console.log("DISCONNECT : " + socket.addr);
+		console.log("DISCONNECT : " + editors[socket.addr].addr);
 	});
 });
 
@@ -202,13 +203,7 @@ var myIP = (function() {
 	        }
 	    }
 	}
-	
-	// fallback for case of no network connection:
-	if (addresses.length == 0) {
-		addresses.push("127.0.0.1");
-	}
-	
 	return addresses[0];
 })();
 
-console.log('Server running at ' + myIP + ':' + port + '');
+console.log('Server running at ' + myIP + ' on port ' + port + '');
