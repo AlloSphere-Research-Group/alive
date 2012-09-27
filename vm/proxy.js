@@ -54,27 +54,30 @@ browser.on('serviceUp', function(service) {
   console.log("service up: ", service);
   //console.log("ADDRESS ", service.addresses[0]);
   // use host instead of ip address... addresses also returns MAC address of port
-  master = io.connect(service.host+":8082");
+  if(master === null) {
+	  master = io.connect(service.host+":8082");
 
-  master.on('connect', function(){ console.log("Connected to Master"); });
+	  master.on('connect', function(){ console.log("Connected to Master"); });
 
-  master.on('message', function(msg){ console.log("Recieved a message: " + msg); });
+	  master.on('message', function(msg){ console.log("Recieved a message: " + msg); });
 
-  master.on('disconnect', function(){ console.log("Disconnected from Master"); });
+	  master.on('disconnect', function(){ console.log("Disconnected from Master"); });
 
-  master.on('pull', function(obj) {
-	if(pullNumber <= obj.number) {
-  	  exec("git pull origin master", {cwd: currentDir}, function() { console.log("MADE A PULL!"); } );
-	  if (vm != undefined) vm.kill();
-	  launch();
-	  pullNumber++;
-    }
-  });
+	  master.on('pull', function(obj) {
+		if(pullNumber <= obj.number) {
+	  	  exec("git pull origin master", {cwd: currentDir}, function() { console.log("MADE A PULL!"); } );
+		  if (vm != undefined) vm.kill();
+		  launch();
+		  pullNumber++;
+	    }
+	  });
+  }
   
 });
 
 browser.on('serviceDown', function(service) {
   console.log("service down: ", service);
+  master = null;
 });
 browser.start();
 
