@@ -50,6 +50,7 @@ var browser = mdns.createBrowser(mdns.tcp('master'));
 
 var pullNumber = 0;
 browser.on('serviceUp', function(service) {
+	console.log("I AM CONNECTING ********************************************");
   console.log("service up: ", service);
   //console.log("ADDRESS ", service.addresses[0]);
   // use host instead of ip address... addresses also returns MAC address of port
