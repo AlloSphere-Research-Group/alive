@@ -58,7 +58,7 @@ browser.on('serviceUp', function(service) {
   master.on('pull', function(obj) {
   	exec("git pull origin master", {cwd: currentDir}, function() { console.log("MADE A PULL!"); } );
 	if (vm != undefined) vm.kill();
-	vm = launch();
+	launch();
   });
   
 });
