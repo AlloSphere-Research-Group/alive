@@ -99,6 +99,7 @@ $(document).ready( function() {
 	CodeMirror.keyMap.gibber = {
 		fallthrough : "default",
 		"Cmd-S":function(cm) {
+			console.log("SAVING SAVING");
 			slaveSocket.emit('save', {filename:currentFile, data:editor.getValue()} );
 			flashMsg("SAVED");
 		},
