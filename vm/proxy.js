@@ -4,6 +4,11 @@ var vm = undefined;
 
 function launch() {
 
+	if (vm != undefined) {
+		vm.kill();
+		//vm.disconnect();
+	}
+	
 	vm = spawn('./alive');
 
 	vm.stdout.on('data', function (data) {
