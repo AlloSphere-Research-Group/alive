@@ -35,6 +35,7 @@ local atube = C.atube_get()
 	-- type		(uint32)
 	-- data...	(char[?])
 
+math.randomseed(os.time())
 local c = math.random()
 
 function onFrame()
