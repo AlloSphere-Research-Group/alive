@@ -21,3 +21,9 @@ sudo ./lake install
 npm install socket.io
 npm install socket.io-client
 npm install mdns
+
+mkdir -p externs
+cd externs
+git clone git://github.com/joyent/libuv.git
+cd libuv
+make

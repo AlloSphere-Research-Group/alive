@@ -1035,7 +1035,7 @@
 		365752C6161277FD009D11CC /* multi_bench.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = multi_bench.js; sourceTree = "<group>"; };
 		365752C9161277FD009D11CC /* .lock-wscript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ".lock-wscript"; sourceTree = "<group>"; };
 		365752CA161277FD009D11CC /* bench.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = bench.js; sourceTree = "<group>"; };
-		365752CC161277FD009D11CC /* .wafpickle-7 */ = {isa = PBXFileReference; lastKnownFileType = file; path = ".wafpickle-7"; sourceTree = "<group>"; };
+		365752CC161277FD009D11CC /* .wafpickle-7 */ = {isa = PBXFileReference; lastKnownFileType = text; path = ".wafpickle-7"; sourceTree = "<group>"; };
 		365752CE161277FD009D11CC /* build.config.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = build.config.py; sourceTree = "<group>"; };
 		365752CF161277FD009D11CC /* Release.cache.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = Release.cache.py; sourceTree = "<group>"; };
 		365752D0161277FD009D11CC /* config.log */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = config.log; sourceTree = "<group>"; };
@@ -1498,8 +1498,8 @@
 		365754FD161277FE009D11CC /* pbxindex.header */ = {isa = PBXFileReference; lastKnownFileType = file; path = pbxindex.header; sourceTree = "<group>"; };
 		365754FE161277FE009D11CC /* protocols.pbxbtree */ = {isa = PBXFileReference; lastKnownFileType = file; path = protocols.pbxbtree; sourceTree = "<group>"; };
 		365754FF161277FE009D11CC /* refs.pbxbtree */ = {isa = PBXFileReference; lastKnownFileType = file; path = refs.pbxbtree; sourceTree = "<group>"; };
-		36575501161277FE009D11CC /* control */ = {isa = PBXFileReference; lastKnownFileType = file; path = control; sourceTree = "<group>"; };
-		36575502161277FE009D11CC /* strings */ = {isa = PBXFileReference; lastKnownFileType = file; path = strings; sourceTree = "<group>"; };
+		36575501161277FE009D11CC /* control */ = {isa = PBXFileReference; lastKnownFileType = text; path = control; sourceTree = "<group>"; };
+		36575502161277FE009D11CC /* strings */ = {isa = PBXFileReference; lastKnownFileType = text; path = strings; sourceTree = "<group>"; };
 		36575503161277FE009D11CC /* subclasses.pbxbtree */ = {isa = PBXFileReference; lastKnownFileType = file; path = subclasses.pbxbtree; sourceTree = "<group>"; };
 		36575504161277FE009D11CC /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README.md; path = ../README.md; sourceTree = SOURCE_ROOT; };
 		3657550C1612783B009D11CC /* build.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = build.sh; sourceTree = "<group>"; };
@@ -5588,22 +5588,13 @@
 			children = (
 				362074241613F03D001D4BEE /* AlloSystem */,
 				36575504161277FE009D11CC /* README.md */,
-				36575223161277FD009D11CC /* hub */,
+				36575224161277FD009D11CC /* editor */,
+				3657525E161277FD009D11CC /* master */,
 				365754F1161277FE009D11CC /* projects */,
 				3657550A161277FE009D11CC /* vm */,
 				36207C961614FF07001D4BEE /* demo */,
 			);
 			sourceTree = "<group>";
-		};
-		36575223161277FD009D11CC /* hub */ = {
-			isa = PBXGroup;
-			children = (
-				36575224161277FD009D11CC /* editor */,
-				3657525E161277FD009D11CC /* node */,
-			);
-			name = hub;
-			path = ../hub;
-			sourceTree = SOURCE_ROOT;
 		};
 		36575224161277FD009D11CC /* editor */ = {
 			isa = PBXGroup;
@@ -5612,7 +5603,8 @@
 				36575228161277FD009D11CC /* index.htm */,
 				36575229161277FD009D11CC /* js */,
 			);
-			path = editor;
+			name = editor;
+			path = ../editor;
 			sourceTree = "<group>";
 		};
 		36575225161277FD009D11CC /* images */ = {
@@ -5735,7 +5727,7 @@
 			path = "default-rtl";
 			sourceTree = "<group>";
 		};
-		3657525E161277FD009D11CC /* node */ = {
+		3657525E161277FD009D11CC /* master */ = {
 			isa = PBXGroup;
 			children = (
 				3657525F161277FD009D11CC /* install_dependencies.sh */,
@@ -5744,7 +5736,8 @@
 				365754EE161277FE009D11CC /* omgosc.js */,
 				365754EF161277FE009D11CC /* socket.io.js */,
 			);
-			path = node;
+			name = master;
+			path = ../master;
 			sourceTree = "<group>";
 		};
 		36575261161277FD009D11CC /* node_modules */ = {
