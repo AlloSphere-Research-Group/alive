@@ -216,7 +216,7 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>36207C4B1614DBD2001D4BEE</string>
+						<string>36207C4E1614DC01001D4BEE</string>
 						<key>history</key>
 						<array>
 							<string>36207AED16149BC1001D4BEE</string>
@@ -274,8 +274,6 @@
 			<key>Layout</key>
 			<array>
 				<dict>
-					<key>BecomeActive</key>
-					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -330,7 +328,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>102</integer>
+									<integer>99</integer>
 									<integer>91</integer>
 									<integer>0</integer>
 								</array>
@@ -364,12 +362,14 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>36575212161277BE009D11CC</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>sounds.lua</string>
+								<string>start.lua</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -377,11 +377,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>36575213161277BE009D11CC</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>sounds.lua</string>
+										<string>start.lua</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>36207C4A1614DBD2001D4BEE</string>
+										<string>36207C4D1614DC01001D4BEE</string>
 										<key>history</key>
 										<array>
 											<string>3657550E1612787A009D11CC</string>
@@ -419,8 +419,8 @@
 											<string>36207C2F1614D88C001D4BEE</string>
 											<string>36207C371614D91E001D4BEE</string>
 											<string>36207C471614DBD2001D4BEE</string>
+											<string>36207C4C1614DC01001D4BEE</string>
 											<string>36207C481614DBD2001D4BEE</string>
-											<string>36207C491614DBD2001D4BEE</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
