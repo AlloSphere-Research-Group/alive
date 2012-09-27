@@ -62,7 +62,7 @@ browser.on('serviceUp', function(service) {
   master.on('disconnect', function(){ console.log("Disconnected from Master"); });
 
   master.on('pull', function(obj) {
-	if(pullNumber <= obj.number)
+	if(pullNumber <= obj.number) {
   	  exec("git pull origin master", {cwd: currentDir}, function() { console.log("MADE A PULL!"); } );
 	  if (vm != undefined) vm.kill();
 	  launch();
