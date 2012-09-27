@@ -76,6 +76,8 @@ browser.on('serviceUp', function(service) {
 
 browser.on('serviceDown', function(service) {
   console.log("service down: ", service);
+  if(master !== null)
+	  master.disconnect();
 });
 browser.start();
 
