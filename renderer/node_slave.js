@@ -26,9 +26,11 @@ browser.on('serviceUp', function(service) {
   master.on('pull', function(obj) {
   	exec("git pull origin master", {cwd: currentDir}, function() { console.log("MADE A PULL!"); } );
   });
+  
 });
 
 browser.on('serviceDown', function(service) {
   console.log("service down: ", service);
 });
 browser.start();
+
