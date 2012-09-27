@@ -52,7 +52,7 @@ editors_in.sockets.on('connection', function (socket) {
 				console.log("MADE A COMMIT!");
 				console.log(renderers);
 				for(var key in renderers) {
-					console.log("TELLING RENDERER " + key + " TO PULL");
+					console.log("TELLING RENDERER " + key + ":" + renderers[key].port + " TO PULL");
 					renderers[key].emit('pull');
 				}
 			} 
