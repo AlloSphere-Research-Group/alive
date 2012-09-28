@@ -169,7 +169,24 @@ var server = http.createServer(function(req, res) {
 				'Content-Type': "text/plain"
 			});
 			res.write(reason);
+		
 		} else {
+			var rs;
+			// We specify the content-type and the content-length headers
+			// important!
+			res.writeHead(200, {
+				'Content-Type' : mime.lookup(filepath),
+				'Content-Length' : stat.size
+			});
+			rs = fs.createReadStream(file_path);
+			// pump the file to the response
+			util.pump(rs, res, function(err) {
+				if(err) {
+					throw err;
+				}
+			});
+			
+			/*
 			fs.readFile(req.uri.pathname, function(err, data) {
 				if (err) {
 					var reason = "not read: " + filepath;
@@ -188,6 +205,7 @@ var server = http.createServer(function(req, res) {
 					res.end(text);
 				}
 			})
+			*/
 		}
 	})
 });
