@@ -23,7 +23,9 @@ body { margin: 0; overflow:hidden; }
 	overflow: auto;
 	/*overflow:scroll;*/
 }
-	
+a {
+	color:#ccc;
+}
 #fileBrowser {
 	font-family:monospace;
 	list-style:none;
