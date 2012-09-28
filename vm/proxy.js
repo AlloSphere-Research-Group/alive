@@ -46,7 +46,7 @@ function initfiles(dirpath) {
 		var p = path.join(dirpath, filenames[i]);
 		var stats = fs.statSync(p);
 		if (stats.isDirectory()) {
-			console.log("watching subdirectory " + p);
+			//console.log("watching subdirectory " + p);
 			// this was causing problems (maybe too deeply nested folders?)
 			//files[p] = watchdir(p);
 		} else {
