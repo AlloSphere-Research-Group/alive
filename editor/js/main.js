@@ -20,6 +20,11 @@ window.flashMsg = function(_msg) {
 };
 window.currentFile = "";
 
+window.connect = function(name, span) {
+	$(span).css("color", "#0f0");
+	console.log("NAME = " + name);
+};
+
 $(document).ready( function() {
 	$('#tabs').tabs();
 	cmd		= document.getElementById("command");
@@ -52,8 +57,8 @@ $(document).ready( function() {
 					$(a).text(name);
 				})();
               	$(a).prepend(img);
-              $(img).css({ position:"relative", top: "5px", marginRight:"5px", width: "20px", height:"20px" });
-				$(a).css({color: "blue", cursor:"pointer"});
+              	$(img).css({ position:"relative", top: "5px", marginRight:"5px", width: "20px", height:"20px" });
+				$(a).css({ cursor:"pointer" });
 			}else{
 				(function() {
 					var name = response.data[i].name;
@@ -167,5 +172,30 @@ $(document).ready( function() {
 			//Gibber.codeWidth = $(".CodeMirror").width();
 		});
 	});
+	
+	$("#fileBar").mousedown( function(e) {
+		$("body").css("-webkit-user-select", "none");
+		
+		$(window).mousemove(function(e) {
+			if(e.pageX > 0) {
+				$("#right").width($("body").width() - e.pageX);
+				$("#left").width( $("body").width() - $("#right").width());
+				$("#right").offset({left:e.pageX});
+				
+				window.editor.refresh();
+				//$("#consoleContainer").height($("#console").outerHeight() - $("#tabs:first-child").height());
+			}
+			//$("#consoleContainer").height($("#console").height());
+			
+		});
+		
+		$(window).mouseup( function(e) {
+			$(window).unbind("mousemove");
+			$(window).unbind("mouseup");
+			$("body").css("-webkit-user-select", "text");
+			//Gibber.codeWidth = $(".CodeMirror").width();
+		});
+	});
+	
 
 });
