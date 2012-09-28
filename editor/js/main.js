@@ -120,7 +120,6 @@ $(document).ready( function() {
 	});
 			
 	var editor_save = function(cm) {
-		console.log("SAVING SAVING");
 		slaveSocket.emit('save', {filename:currentFile, data:editor.getValue()} );
 		flashMsg("SAVED");
 	};
@@ -128,6 +127,7 @@ $(document).ready( function() {
 	CodeMirror.keyMap.alive = {
 		fallthrough : "default",
 		"Cmd-S": editor_save,
+		"Ctrl-S": editor_save,
 	};
 		
 	window.editor.setOption("keyMap", "alive");
@@ -135,10 +135,30 @@ $(document).ready( function() {
 	slaveSocket.emit('cmd', 'ls');
 			
 	$(window).resize(function() {
-		$(".CodeMirror-scroll").height( $(window).height() - 20 );
+		$(".CodeMirror-scroll").height( $(window).height() - $("#filename").outerHeight() - $("#console").outerHeight() );
 		window.editor.refresh();
 	});
 			
-	$(".CodeMirror-scroll").height( $(window).height() - 20 );
+	$(".CodeMirror-scroll").height( $(window).height() - $("#filename").outerHeight() - $("#console").outerHeight() );
 	window.editor.refresh();
+	
+	$("#consoleBar").mousedown( function(e) {
+		$("body").css("-webkit-user-select", "none");
+		
+		$(window).mousemove(function(e) {
+			if(e.pageY < $("body").height() - $("#filename").outerHeight()) {
+				$(".CodeMirror-scroll").height(e.pageY - $("#filename").outerHeight());
+				$("#console").height($("body").height() - $(".CodeMirror").outerHeight() - $("#filename").outerHeight());
+				window.editor.refresh();
+			}
+		});
+		
+		$(window).mouseup( function(e) {
+			$(window).unbind("mousemove");
+			$(window).unbind("mouseup");
+			$("body").css("-webkit-user-select", "text");
+			//Gibber.codeWidth = $(".CodeMirror").width();
+		});
+	});
+	
 });

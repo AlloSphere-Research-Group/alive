@@ -30,17 +30,42 @@ body { margin: 0; overflow:hidden; }
 
 }
 #right {
-	width:80%;
+	width:100%;
+	height:100%;
 	left:20%;
 	top:0px;
 	position:absolute;
 	display:block;
 	margin:0;
 	padding:0;
+	background-color:#000;
 }
 #filename {
 	padding-left:.5em;
 	background-color:#633;
 	color:#ccc;
 	height:20px;
+}
+#console {
+	border: 0px solid #f00;
+	border-top:5px;
+	position:absolute;
+	bottom:0px;
+	background-color:#333;
+	color:#ccc;
+	width:80%;
+	height:10em;
+}
+#consoleBar {
+	display:block;
+	position:relative;
+	top:0;
+	height:4px;
+	background-color:#ccc;
+	width:100%;
+}
+
+#console p {
+	padding: 1em;
+	margin:0;
 }
