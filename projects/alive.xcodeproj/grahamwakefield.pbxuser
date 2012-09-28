@@ -793,6 +793,12 @@
 			36E500E016162EE800A85578 /* PBXTextBookmark */ = 36E500E016162EE800A85578 /* PBXTextBookmark */;
 			36E500E116162EFE00A85578 /* PBXTextBookmark */ = 36E500E116162EFE00A85578 /* PBXTextBookmark */;
 			36E500E2161639DA00A85578 /* PBXTextBookmark */ = 36E500E2161639DA00A85578 /* PBXTextBookmark */;
+			36E500E316163A2E00A85578 /* PBXTextBookmark */ = 36E500E316163A2E00A85578 /* PBXTextBookmark */;
+			36E500E416163A2E00A85578 /* PBXTextBookmark */ = 36E500E416163A2E00A85578 /* PBXTextBookmark */;
+			36E500E516163A2E00A85578 /* PBXTextBookmark */ = 36E500E516163A2E00A85578 /* PBXTextBookmark */;
+			36E500E616163A3800A85578 /* PBXTextBookmark */ = 36E500E616163A3800A85578 /* PBXTextBookmark */;
+			36E500E716163A3B00A85578 /* PBXTextBookmark */ = 36E500E716163A3B00A85578 /* PBXTextBookmark */;
+			36E500E816163A5700A85578 /* PBXTextBookmark */ = 36E500E816163A5700A85578 /* PBXTextBookmark */;
 			36E5FEE916150D1200A85578 /* PBXTextBookmark */ = 36E5FEE916150D1200A85578 /* PBXTextBookmark */;
 			36E5FEEA16150D1200A85578 /* PBXTextBookmark */ = 36E5FEEA16150D1200A85578 /* PBXTextBookmark */;
 			36E5FEEB16150D1200A85578 /* PBXTextBookmark */ = 36E5FEEB16150D1200A85578 /* PBXTextBookmark */;
@@ -1100,9 +1106,9 @@
 	};
 	36575260161277FD009D11CC /* node_master.js */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {609, 3146}}";
-			sepNavSelRange = "{6310, 0}";
-			sepNavVisRange = "{4316, 1422}";
+			sepNavIntBoundsRect = "{{0, 0}, {609, 2860}}";
+			sepNavSelRange = "{5156, 0}";
+			sepNavVisRange = "{4316, 1363}";
 		};
 	};
 	365754A1161277FE009D11CC /* .travis.yml */ = {
@@ -3558,6 +3564,66 @@
 		vrLen = 1432;
 		vrLoc = 9558;
 	};
+	36E500E316163A2E00A85578 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 36E500211616217600A85578 /* uvtest.lua */;
+		name = "uvtest.lua: 332";
+		rLen = 0;
+		rLoc = 10763;
+		rType = 0;
+		vrLen = 1432;
+		vrLoc = 9558;
+	};
+	36E500E416163A2E00A85578 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 36575260161277FD009D11CC /* node_master.js */;
+		name = "node_master.js: 206";
+		rLen = 0;
+		rLoc = 5778;
+		rType = 0;
+		vrLen = 1315;
+		vrLoc = 4316;
+	};
+	36E500E516163A2E00A85578 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 36575260161277FD009D11CC /* node_master.js */;
+		name = "node_master.js: 180";
+		rLen = 0;
+		rLoc = 5136;
+		rType = 0;
+		vrLen = 1313;
+		vrLoc = 4316;
+	};
+	36E500E616163A3800A85578 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 36575260161277FD009D11CC /* node_master.js */;
+		name = "node_master.js: 180";
+		rLen = 0;
+		rLoc = 5139;
+		rType = 0;
+		vrLen = 1316;
+		vrLoc = 4316;
+	};
+	36E500E716163A3B00A85578 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 36575260161277FD009D11CC /* node_master.js */;
+		name = "node_master.js: 180";
+		rLen = 0;
+		rLoc = 5139;
+		rType = 0;
+		vrLen = 1316;
+		vrLoc = 4316;
+	};
+	36E500E816163A5700A85578 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 36575260161277FD009D11CC /* node_master.js */;
+		name = "node_master.js: 182";
+		rLen = 0;
+		rLoc = 5156;
+		rType = 0;
+		vrLen = 1363;
+		vrLoc = 4316;
+	};
 	36E5FEE916150D1200A85578 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 3657552316127989009D11CC /* vm.cpp */;
@@ -5103,7 +5169,7 @@
 		fRef = 36575260161277FD009D11CC /* node_master.js */;
 		name = "node_master.js: 175";
 		rLen = 0;
-		rLoc = 5281;
+		rLoc = 5360;
 		rType = 0;
 		vrLen = 1374;
 		vrLoc = 4023;
@@ -5113,7 +5179,7 @@
 		fRef = 36575260161277FD009D11CC /* node_master.js */;
 		name = "node_master.js: 185";
 		rLen = 0;
-		rLoc = 5264;
+		rLoc = 5343;
 		rType = 0;
 		vrLen = 1305;
 		vrLoc = 4440;
@@ -5123,7 +5189,7 @@
 		fRef = 36575260161277FD009D11CC /* node_master.js */;
 		name = "node_master.js: 233";
 		rLen = 0;
-		rLoc = 6310;
+		rLoc = 6389;
 		rType = 0;
 		vrLen = 1422;
 		vrLoc = 4316;
@@ -5133,7 +5199,7 @@
 		fRef = 36575260161277FD009D11CC /* node_master.js */;
 		name = "node_master.js: 233";
 		rLen = 0;
-		rLoc = 6310;
+		rLoc = 6389;
 		rType = 0;
 		vrLen = 1422;
 		vrLoc = 4316;
@@ -5143,7 +5209,7 @@
 		fRef = 36575260161277FD009D11CC /* node_master.js */;
 		name = "node_master.js: 233";
 		rLen = 0;
-		rLoc = 6310;
+		rLoc = 6389;
 		rType = 0;
 		vrLen = 1422;
 		vrLoc = 4316;
