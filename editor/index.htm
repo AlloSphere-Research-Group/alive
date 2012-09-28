@@ -21,23 +21,29 @@
 	<script type="text/javascript" src="js/codemirror/util/simple-hint.js"></script>
 	<script type="text/javascript" src="js/codemirror/util/javascript-hint.js"></script>
 	
-    <script src="config.js"></script>
 	<script src="js/main.js"></script>
+    <script src="config.js"></script>
+
 	
 </head>
 <body>
 	<div id="left">
 		<div style="white-space:nowrap; display:block; height:1.5em; line-break:">
-		<a onclick="slaveSocket.emit('cmd', 'cd ..');" style="cursor:pointer; margin-left:1em">&#x25B2;</a>
-		<a onclick="newFile();" style="cursor:pointer;">+</a>
-		<h3 id="dir" style="font-size:1em; display:inline; font-family:monospace">dir</h3>
-		<div>
-		<ul id="fileBrowser"></ul>
+			<a onclick="slaveSocket.emit('cmd', 'cd ..');" style="cursor:pointer; margin-left:1em">&#x25B2;</a>
+			<a onclick="newFile();" style="cursor:pointer;">+</a>
+			<h3 id="dir" style="font-size:1em; display:inline; font-family:monospace">dir</h3>
+			<div>
+			<ul id="fileBrowser"></ul>
+			</div>
+		</div>
 	</div>
 	<div id="right">
 		<div id="filename">testing.htm</div>
 		<textarea id="codeEditor" name="codeEditor"></textarea>
-		<div id="console">CONSOLE</div>
+		<div id="console">
+			<div id="consoleBar"></div>
+			<p>CONSOLE</p>
+		</div>
 	</div>
 </body>
 </html>
