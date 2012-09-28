@@ -172,44 +172,17 @@ var server = http.createServer(function(req, res) {
 		
 		} else {
 			var rs;
-			// We specify the content-type and the content-length headers
-			// important!
 			res.writeHead(200, {
 				'Content-Type' : mime.lookup(filepath),
 				'Content-Length' : stat.size
 			});
-			rs = fs.createReadStream(file_path);
-			// pump the file to the response
+			rs = fs.createReadStream(filepath);
 			util.pump(rs, res, function(err) {
 				if(err) {
+					console.log("the error is reported");
 					throw err;
 				}
 			});
-			
-			/*
-			fs.readFile(req.uri.pathname, function(err, data) {
-				if (err) {
-					var reason = "not read: " + filepath;
-					res.writeHead(500, {
-						'Content-Length': reason.length,
-						'Content-Type': "text/plain"
-					});
-					res.write(reason);
-					
-				} else {
-					if(filepath.indexOf('.png') === -1) {
-						var text = data.toString();
-						res.writeHead(200, {
-							'Content-Type': mime.lookup(filepath),
-							'Content-Length': stat.size
-						});
-						res.end(text);
-					}else{
-						
-					}
-				}
-			})
-			*/
 		}
 	})
 });

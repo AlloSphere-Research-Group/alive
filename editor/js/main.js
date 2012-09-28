@@ -52,8 +52,8 @@ $(document).ready( function() {
 					$(a).text(name);
 				})();
               	$(a).prepend(img);
-              $(img).css({ position:"relative", top: "5px", marginRight:"5px", width: "20px", height:"20px" });
-				$(a).css({color: "blue", cursor:"pointer"});
+              	$(img).css({ position:"relative", top: "5px", marginRight:"5px", width: "20px", height:"20px" });
+				$(a).css({ cursor:"pointer" });
 			}else{
 				(function() {
 					var name = response.data[i].name;
