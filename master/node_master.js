@@ -197,12 +197,16 @@ var server = http.createServer(function(req, res) {
 					res.write(reason);
 					
 				} else {
-					var text = data.toString();
-					res.writeHead(200, {
-						'Content-Type': mime.lookup(filepath),
-						'Content-Length': stat.size
-					})
-					res.end(text);
+					if(filepath.indexOf('.png') === -1) {
+						var text = data.toString();
+						res.writeHead(200, {
+							'Content-Type': mime.lookup(filepath),
+							'Content-Length': stat.size
+						});
+						res.end(text);
+					}else{
+						
+					}
 				}
 			})
 			*/

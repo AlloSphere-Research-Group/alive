@@ -18,6 +18,8 @@ body { margin: 0; overflow:hidden; }
 	width:20%;
 	border-right: 1px solid #ccc;
 	height: 100%;
+	background-color:#000;
+	color:#ccc;
 	overflow: auto;
 	/*overflow:scroll;*/
 }
@@ -64,7 +66,14 @@ body { margin: 0; overflow:hidden; }
 	background-color:#ccc;
 	width:100%;
 }
-
+.consoleStyle {
+	font-family:Monospace;
+	font-size:1.25em;
+	height:100%;
+}
+#consoleContainer {
+	overflow: scroll;
+}
 #console p {
 	padding: 1em;
 	margin:0;
