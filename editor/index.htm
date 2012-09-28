@@ -4,7 +4,8 @@
 	<link rel="stylesheet" type="text/css" href="js/codemirror/codemirror.css"/>
 	<link rel="stylesheet" type="text/css" href="js/codemirror/vibrant-ink.css"/>
 	<link rel="stylesheet" type="text/css" href="js/codemirror/util/simple-hint.css"/>
-	
+	<link rel="stylesheet" type="text/css" href="css/ui-darkness/jquery-ui-1.8.23.custom.css"/>
+
 	<link rel="stylesheet" type="text/css" href="css/main.css"/>
 
 	<script src="js/socket.io.js"></script>
@@ -20,9 +21,10 @@
 	<script type="text/javascript" src="js/codemirror/util/match-highlighter.js"></script>
 	<script type="text/javascript" src="js/codemirror/util/simple-hint.js"></script>
 	<script type="text/javascript" src="js/codemirror/util/javascript-hint.js"></script>
+	<script type="text/javascript" src="js/jquery-ui-1.8.23.custom.min.js"></script>
+    <script src="config.js"></script>
 	
 	<script src="js/main.js"></script>
-    <script src="config.js"></script>
 
 	
 </head>
@@ -42,7 +44,25 @@
 		<textarea id="codeEditor" name="codeEditor"></textarea>
 		<div id="console">
 			<div id="consoleBar"></div>
-			<p>CONSOLE</p>
+			<div id="tabs">
+				<ul>
+					<li><a href="#console-all">All</a></li>
+					<li><a href="#console-renderer1">Renderer 1</a></li>
+					<li><a href="#console-renderer2">Renderer 2</a></li>
+					<li><a href="#console-renderer3">Renderer 3</a></li>
+					<li><a href="#console-renderer4">Renderer 4</a></li>
+					<li><a href="#console-renderer5">Renderer5</a></li>
+				</ul>
+				<div id="consoleContainer">
+				<div class="consoleStyle" id="console-all">a bunch of stuff</div>
+				<div class="consoleStyle" id="console-renderer1">Renderer 1</div>
+				<div class="consoleStyle" id="console-renderer2">Renderer 2</div>
+				<div class="consoleStyle" id="console-renderer3">Renderer 3</div>
+				<div class="consoleStyle" id="console-renderer4">Renderer 4</div>
+				<div class="consoleStyle" id="console-renderer5">Renderer 5</div>
+				</div>				
+			</div>
+			
 		</div>
 	</div>
 </body>

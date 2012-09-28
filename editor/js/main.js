@@ -21,6 +21,7 @@ window.flashMsg = function(_msg) {
 window.currentFile = "";
 
 $(document).ready( function() {
+	$('#tabs').tabs();
 	cmd		= document.getElementById("command");
 	code 	= document.getElementById("code");
 	fileBrowser = document.getElementById("fileBrowser");
@@ -40,7 +41,8 @@ $(document).ready( function() {
 			var a = $("<a>");
 
 			if(response.data[i].isDirectory === true) {
-              	var img = $("<img src='images/folder.png'>");
+              	var img = $("<img>");
+				img.attr('src','../images/folder.png');
                       	
 				(function() {
 					var name = response.data[i].name;
@@ -142,15 +144,20 @@ $(document).ready( function() {
 	$(".CodeMirror-scroll").height( $(window).height() - $("#filename").outerHeight() - $("#console").outerHeight() );
 	window.editor.refresh();
 	
+	$("#consoleContainer").height($("#console").height() - $("#tabs:first-child").outerHeight());
+	
 	$("#consoleBar").mousedown( function(e) {
 		$("body").css("-webkit-user-select", "none");
 		
 		$(window).mousemove(function(e) {
-			if(e.pageY < $("body").height() - $("#filename").outerHeight()) {
-				$(".CodeMirror-scroll").height(e.pageY - $("#filename").outerHeight());
-				$("#console").height($("body").height() - $(".CodeMirror").outerHeight() - $("#filename").outerHeight());
+			if(e.pageY < $(window).height() - $("#filename").outerHeight()) {
+				$(".CodeMirror-scroll").height(e.pageY - $("#filename").height());
+				$("#console").height($("body").height() - $(".CodeMirror-scroll").height() - $("#filename").outerHeight());
 				window.editor.refresh();
+				//$("#consoleContainer").height($("#console").outerHeight() - $("#tabs:first-child").height());
 			}
+			$("#consoleContainer").height($("#console").height());
+			
 		});
 		
 		$(window).mouseup( function(e) {
@@ -160,5 +167,5 @@ $(document).ready( function() {
 			//Gibber.codeWidth = $(".CodeMirror").width();
 		});
 	});
-	
+
 });
