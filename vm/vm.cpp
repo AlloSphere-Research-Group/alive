@@ -61,8 +61,7 @@ public:
 	
 	virtual void onAudioCB(AudioIOData& io) {
 	
-		
-		
+
 		// call into A:
 		A.getglobal("onAudioCB");
 		if (lua_isfunction(A, -1)) {
@@ -160,7 +159,7 @@ int main(int argc, char * argv[]) {
 	// implemented in C++?
 	//BackgroundThread bt;
 	
-//	win.create();
+	win.create(Window::Dim(300, 200), "alive");
 	
 //	AudioDevice::printAll();
 //	audio.print();

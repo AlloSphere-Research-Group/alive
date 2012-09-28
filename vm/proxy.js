@@ -7,10 +7,76 @@ var io_in 	= require('socket.io').listen(8083);
 var io	 	= require('socket.io-client');
 var mdns 	= require('mdns');
 
-var vm = undefined;
+var vm = null;
+
+function checkdir(files, p, cb) {
+	fs.stat(p, function(err, stats) {
+		if (err !== null) {
+			console.log(err);
+		} else if (stats.isDirectory()) {
+			fs.readdir(p, function(err, filenames) {
+				for (var i = 0; i < filenames.length; i++) {
+					var p1 = path.join(p, filenames[i]);
+					checkfile(files, p1, cb);
+				}
+			});
+		} else if (stats.mtime > files[p]) {
+			console.log("expected directory, got file: " + p);
+		}
+	});
+}
+
+function checkfile(files, p, cb) {
+	fs.stat(p, function(err, stats) {
+		if (err !== null) {
+			console.log(err);
+		} else if (stats.isDirectory()) {
+			// this case should be handled by a separate watcher
+		} else if (stats.mtime > files[p]) {
+			files[p] = stats.mtime;
+			cb(p);
+		}
+	});
+}
+
+function initfiles(dirpath) {
+	var files = {};
+	var filenames = fs.readdirSync(dirpath);
+	for (var i = 0; i < filenames.length; i++) {
+		var p = path.join(dirpath, filenames[i]);
+		var stats = fs.statSync(p);
+		if (stats.isDirectory()) {
+			console.log("watching subdirectory " + p);
+			// this was causing problems (maybe too deeply nested folders?)
+			//files[p] = watchdir(p);
+		} else {
+			files[p] = stats.mtime;
+		}
+	}
+	return files;
+}
+
+function watchdir(dirpath, cb) {
+	// initialize files:
+	var files = initfiles(dirpath);
+	// start watching:
+	fs.watch(dirpath, function(event, filename) {
+		checkdir(files, dirpath, cb); 
+	});
+	return files;
+}
+
+
+watchdir(".", function(p) {
+	console.log("modified file: " + p);
+	if (vm !== null) {
+		console.log("sent to vm");
+		vm.stdin.write(p + "\n");
+	}
+});
 
 function launch(name) {
-	if (vm != undefined) {
+	if (vm !== null) {
 		vm.kill();
 	}
 	
@@ -28,14 +94,16 @@ function launch(name) {
 		
 		// relaunch?:
 		//launch(name);
-		vm = undefined;
+		vm = null;
 	});
 }
 
 launch('./alive');
 
+
+
 process.on('exit', function() {
-	if (vm != undefined) {
+	if (vm !== null) {
 		vm.kill();
 	}
 });
