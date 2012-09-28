@@ -12,3 +12,13 @@ It needs to have a main file to run and a directory to watch.
 For that, it needs filewatching capabilities.
 
 --]]
+
+local ffi = require "ffi"
+local C = ffi.C
+
+function onFrame()
+	
+	print(".")
+	print(io.stdin:read(1))
+end
+

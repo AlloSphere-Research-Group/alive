@@ -279,7 +279,9 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>28</integer>
+									<integer>6</integer>
+									<integer>4</integer>
+									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
@@ -316,7 +318,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>36575212161277BE009D11CC</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>build.sh</string>
+								<string>node_master.js</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -324,11 +326,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>36575213161277BE009D11CC</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>build.sh</string>
+										<string>node_master.js</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>36E5FEF116150D1200A85578</string>
+										<string>36E5FF8B1615364B00A85578</string>
 										<key>history</key>
 										<array>
 											<string>36575F2B1612A950009D11CC</string>
@@ -345,21 +347,22 @@
 											<string>36207AF016149DCD001D4BEE</string>
 											<string>36207AF116149DCD001D4BEE</string>
 											<string>36207B211614A0BD001D4BEE</string>
-											<string>36207BC61614CD8D001D4BEE</string>
 											<string>36207BC91614CD8D001D4BEE</string>
 											<string>36207C4C1614DC01001D4BEE</string>
 											<string>36207C801614F1E9001D4BEE</string>
 											<string>36207C8E1614FE77001D4BEE</string>
-											<string>36207C991614FF6F001D4BEE</string>
 											<string>36207CA016150058001D4BEE</string>
-											<string>36E5FEE916150D1200A85578</string>
-											<string>36E5FEEA16150D1200A85578</string>
-											<string>36E5FEEB16150D1200A85578</string>
-											<string>36E5FEEC16150D1200A85578</string>
-											<string>36E5FEED16150D1200A85578</string>
 											<string>36E5FEEE16150D1200A85578</string>
 											<string>36E5FEEF16150D1200A85578</string>
-											<string>36E5FEF016150D1200A85578</string>
+											<string>36E5FF0116150E1900A85578</string>
+											<string>36E5FF5216152AB300A85578</string>
+											<string>36E5FF5316152AB300A85578</string>
+											<string>36E5FF6916152E6B00A85578</string>
+											<string>36E5FF6F16152ED600A85578</string>
+											<string>36E5FF7816152FA600A85578</string>
+											<string>36E5FF841615308300A85578</string>
+											<string>36E5FF881615363500A85578</string>
+											<string>36E5FF891615363500A85578</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
