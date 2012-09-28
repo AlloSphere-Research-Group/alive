@@ -1,60 +1,14 @@
 print("running on", hostname)
 print("argv", unpack(argv))
 
-local ffi = require "ffi"
-local bit = require "bit"
---local clang = require "clang"
---local osc = require "osc"
-local tube = require "tube"
+--[[
 
-ffi.cdef [[
-size_t audiotube_writespace();
-size_t audiotube_write(const char * src, size_t sz);
+This app is launched by the proxy.js node, to which stdio is connected.
+If it crashes, the proxy.js node can restart it.
+Otherwise, it runs continuously, updating itself in response to file changes.
 
-typedef struct tubeheader {
-	size_t size;
-	double t;
-} tubeheader;
+It needs to have a main file to run and a directory to watch.
 
-tube_t * atube_get() { return &atube; }
+For that, it needs filewatching capabilities.
 
-typedef float GLclampf;
-void glClearColor(	GLclampf  	red,
- 	GLclampf  	green,
- 	GLclampf  	blue,
- 	GLclampf  	alpha);
-
-double al_time();
-
-]]
-local C = ffi.C
-
-local atube = C.atube_get()
-
-
--- messages should actually contain:
-	-- timestamp (double)
-	-- size		(uint32)
-	-- type		(uint32)
-	-- data...	(char[?])
-
-math.randomseed(os.time())
-local c = math.random()
-
-function onFrame()
-	--print("onFrame")
-	
-	C.glClearColor(math.abs(math.sin(C.al_time() * math.pi * 0.1)), c, 1-c, 1);
-	
-	-- want something like
-	--audio.send("foo")
-	--audio.send("foo", ugenptr)
-	--audio.send(ugenptr, paramidx, 0.5)
-	-- i.e. strings, ints, doubles, pointers
-	-- etc.
-	
-	local s = string.format("%f", os.time())
-	--assert(tube.write(atube, s, #s), "failed to send")
-	
-	--tube.send(atube, os.time(), math.random())
-end
+--]]
