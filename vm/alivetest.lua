@@ -14,7 +14,7 @@ ffi.cdef [[
 ]]
 
 C.openfd(0, function(buffer, size)
-	--print("received:", size)
+	print("received:", size)
 	print(ffi.string(buffer, size))
 end)
 

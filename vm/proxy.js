@@ -1,4 +1,3 @@
-
 var fs 		= require('fs');
 var path 	= require('path');
 var exec 	= require('child_process').exec;
@@ -7,7 +6,12 @@ var io_in 	= require('socket.io').listen(8083);
 var io	 	= require('socket.io-client');
 var mdns 	= require('mdns');
 
+var currentDir 	= __dirname;
 var vm = null;
+var master = null;
+var browser = mdns.createBrowser(mdns.tcp('master'));
+var MASTER_ADDRESS 	= null; //"127.0.0.1:8082";
+var pullNumber = 0;
 
 function checkdir(files, p, cb) {
 	fs.stat(p, function(err, stats) {
@@ -87,13 +91,13 @@ function launch(name) {
 	vm = spawn(name);
 
 	vm.stdout.on('data', function (text) {
-		console.log('out:' + text);
+		process.stdout.write(text);
 		if (master !== null) {
 			master.send("out:" + text);
 		}
 	});
 	vm.stderr.on('data', function (text) {
-		console.log('err:' + text);
+		process.stdout.write('err:' + text);
 		if (master !== null) {
 			master.send("err:" + text);
 		}
@@ -107,24 +111,6 @@ function launch(name) {
 		vm = null;
 	});
 }
-
-launch('./alive');
-
-
-
-process.on('exit', function() {
-	if (vm !== null) {
-		vm.kill();
-	}
-});
-
-var currentDir 	= __dirname;
-var MASTER_ADDRESS 	= null; //"127.0.0.1:8082";
-var master = null;
-
-var browser = mdns.createBrowser(mdns.tcp('master'));
-
-var pullNumber = 0;
 
 var connectMaster = function(service) {
 	if(master === null) {
@@ -173,4 +159,16 @@ browser.on('serviceDown', function(service) {
 	}
 });
 browser.start();
+
+
+
+process.on('exit', function() {
+	if (vm !== null) {
+		vm.kill();
+	}
+});
+
+
+
+launch('./alive');
 
