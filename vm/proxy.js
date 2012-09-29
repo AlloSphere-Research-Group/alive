@@ -1,4 +1,3 @@
-
 var fs 		= require('fs');
 var path 	= require('path');
 var exec 	= require('child_process').exec;
@@ -7,7 +6,13 @@ var io_in 	= require('socket.io').listen(8083);
 var io	 	= require('socket.io-client');
 var mdns 	= require('mdns');
 
+var currentDir 	= __dirname;
 var vm = null;
+var master = null;
+var browser = mdns.createBrowser(mdns.tcp('master'));
+var MASTER_ADDRESS 	= null; //"127.0.0.1:8082";
+var pullNumber = 0;
+var auto_relaunch = false;
 
 function checkdir(files, p, cb) {
 	fs.stat(p, function(err, stats) {
@@ -46,7 +51,7 @@ function initfiles(dirpath) {
 		var p = path.join(dirpath, filenames[i]);
 		var stats = fs.statSync(p);
 		if (stats.isDirectory()) {
-			console.log("watching subdirectory " + p);
+			//console.log("watching subdirectory " + p);
 			// this was causing problems (maybe too deeply nested folders?)
 			//files[p] = watchdir(p);
 		} else {
@@ -66,9 +71,9 @@ function watchdir(dirpath, cb) {
 	return files;
 }
 
-
 watchdir(".", function(p) {
 	console.log("modified file: " + p);
+	
 	if (vm !== null) {
 		console.log("sent to vm");
 		vm.stdin.write(p + "\n");
@@ -82,55 +87,52 @@ function launch(name) {
 	
 	vm = spawn(name);
 
-	vm.stdout.on('data', function (data) {
-		console.log('stdout: ' + data);
+	vm.stdout.on('data', function (text) {
+		process.stdout.write(text);
+		if (master !== null) {
+			master.send("out:" + text);
+		}
 	});
-	vm.stderr.on('data', function (data) {
-		console.log('stderr: ' + data);
+	vm.stderr.on('data', function (text) {
+		process.stdout.write('err:' + text);
+		if (master !== null) {
+			master.send("err:" + text);
+		}
 	});
 
 	vm.on('exit', function (code) {
 		console.log('child process exited with code ' + code);
 		
-		// relaunch?:
-		//launch(name);
-		vm = null;
+		if (auto_relaunch) {
+			launch(name);
+		} else {
+			vm.kill();
+			vm = null;
+		}
 	});
 }
-
-launch('./alive');
-
-
-
-process.on('exit', function() {
-	if (vm !== null) {
-		vm.kill();
-	}
-});
-
-var currentDir 	= __dirname;
-var MASTER_ADDRESS 	= null; //"127.0.0.1:8082";
-var master = null;
-
-var browser = mdns.createBrowser(mdns.tcp('master'));
-
-var pullNumber = 0;
 
 var connectMaster = function(service) {
 	if(master === null) {
 		console.log("service up: ", service);
 		master = io.connect(service.host+":8082");
 
-		master.on('connect', function(){ console.log("Connected to Master");  browser.on('serviceUp', function() {}); } );
+		master.on('connect', function() { 
+			console.log("Connected to Master");  
+			browser.on('serviceUp', function() {
+				
+			}); 
+		});
 
-		master.on('message', function(msg){ console.log("Recieved a message: " + msg); });
+		master.on('message', function(msg){ 
+			console.log("Recieved a message: " + msg); 
+		});
 
 		master.on('disconnect', function(){ 
 			console.log("Disconnected from Master"); 
 			browser.on('serviceUp', connectMaster); 
 			if(master !== null) {
 				master.disconnect();
-				master = null;
 			}
 		});
 
@@ -142,6 +144,8 @@ var connectMaster = function(service) {
 				pullNumber++;
 			}
 		});
+		
+		master.emit('stdout', "vm connected to master");
 	}
 }
 
@@ -155,4 +159,16 @@ browser.on('serviceDown', function(service) {
 	}
 });
 browser.start();
+
+
+
+process.on('exit', function() {
+	if (vm !== null) {
+		vm.kill();
+	}
+});
+
+
+
+launch('./alive');
 

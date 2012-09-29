@@ -218,6 +218,9 @@ var server = http.createServer(function(req, res) {
 				'Content-Length' : stat.size
 			});
 			rs = fs.createReadStream(filepath);
+			
+			//docs say that util.pump is deprecated,
+			// use rs.pipe(res) instead
 			util.pump(rs, res, function(err) {
 				if(err) {
 					console.log("the error is reported");
