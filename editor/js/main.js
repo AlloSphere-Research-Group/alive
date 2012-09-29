@@ -85,7 +85,17 @@ $(document).ready( function() {
 	slaveSocket.on('dir', function(dir) {
 		$("#dir").text(dir);
 	});
-			
+	
+	slaveSocket.on('out', function(msg) {
+		$("#console-all").append(msg);
+		$("#consoleContainer").scrollTop($("#consoleContainer")[0].scrollHeight);
+	});
+
+	slaveSocket.on('err', function(msg) {
+		$("#console-all").append($("<span style='color:#f00'>"+msg+"</span>"));
+		$("#consoleContainer").scrollTop($("#consoleContainer")[0].scrollHeight);
+	});
+	
 	slaveSocket.on('read', function (response) {
 		$("#filename").text(currentFile);
 		window.editor.setValue(response.data);

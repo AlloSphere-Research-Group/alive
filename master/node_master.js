@@ -110,10 +110,50 @@ renderers_in.sockets.on('connection', function (socket) {
 		editors[key].emit("renderer connect", { ip: socket.addr } );
 	}
 	
-	renderers[socket.addr].on('error', function(msg) { 
+	renderers[socket.addr].on('stderr', function(msg) { 
 		for(var key in editors) {
-			editors[key].emit("renderer error", { ip: socket.addr, "msg" : msg } );
+			editors[key].emit("stderr", { ip: socket.addr, "msg" : msg } );
 		}
+	});
+	
+	renderers[socket.addr].on('stdout', function(msg) {
+		console.log("STDOUT", msg);
+		/*for(var key in editors) {
+			console.log("SENDING STDOUT TO ", socket.addr);
+			editors[key].emit("stdout", msg +"<br>" );
+			// editors[key].emit("stdout", { ip: socket.addr, "msg" : msg } );
+		}*/
+	});
+	
+	renderers[socket.addr].on('message', function(msg) {
+		var name = msg.slice(0,3);
+		var _msg = msg.slice(4);
+		
+		//console.log("MESSAGE: " + name + " : " + _msg);
+		for(var key in editors) {
+			editors[key].emit(name, _msg +"<br>" );
+		}
+		
+		/*
+		switch(name){
+			case "out" :
+				console.log("STDOUT " + _msg);
+				for(var key in editors) {
+					editors[key].emit("stdout", msg +"<br>" );
+				}
+				break;
+			case "err" :
+				console.log("ERROR " + _msg);
+				for(var key in editors) {
+					editors[key].emit("error", msg +"<br>" );
+				}
+				
+				break;
+			default:
+				console.log("I don't understand thiss shit");
+				break;
+		}
+		*/
 	});
 	
 	renderers[socket.addr].on('disconnect', function () {
