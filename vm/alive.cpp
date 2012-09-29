@@ -4,6 +4,8 @@
 #include "stdio.h"
 #include "stdlib.h"
 #include "syslimits.h"
+#include "unistd.h"
+#include "fcntl.h"
 
 #include "allocore/io/al_AudioIO.hpp"
 #include "allocore/math/al_Random.hpp"
@@ -187,8 +189,18 @@ uv_loop_t *audioloop;
 al::Lua L;
 al::AudioIO audio;
 
+int audiopipe[2];
+FILE *outstream;
+FILE *instream;
+	
 
 void audioCB(al::AudioIOData& io) {
+
+	//putchar(fgetc(instream));
+	char buf[10];
+	while (read(audiopipe[0], buf, 10) > 0) {
+		printf("%s\n", buf);
+	}
 	
 	uv_run_once(audioloop);
 
@@ -210,6 +222,22 @@ int main(int argc, char * argv[]) {
 	// do not abort if SIGPIPE is received:
 	// i.e. KILL THE ZOMBIES
 	signal(SIGPIPE, SIG_IGN);
+	
+	// setup fifo
+	if (pipe (audiopipe)) {
+		fprintf (stderr, "Pipe failed.\n");
+		return EXIT_FAILURE;
+	}
+	
+	// output:
+	outstream = fdopen (audiopipe[1], "w");
+	printf("outstream %p\n", outstream);
+	//fprintf(outstream, "hello, world!\n");
+	
+	// input:
+	printf("nonblock %d\n", fcntl(audiopipe[0], F_SETFL, O_NONBLOCK));
+	instream = fdopen (audiopipe[0], "r");
+	printf("instream %p\n", instream);
 
 	// initialize libuv:
 	loop = uv_default_loop();
@@ -228,6 +256,8 @@ int main(int argc, char * argv[]) {
 	// run startup script:
 	if (L.dofile("./alivetest.lua")) return -1;
 	
+	
+	
 	audio.callback = audioCB;
 	audio.start();
 	
@@ -238,8 +268,17 @@ int main(int argc, char * argv[]) {
 		fflush(stdin);
 		fflush(stdout);
 		fflush(stderr);
-		printf("some txt %f\n", al_time());
-		fprintf(stderr, "bad txt %f\n", rng.uniform());
+		//printf("some txt %f\n", al_time());
+		//fprintf(stderr, "bad txt %f\n", rng.uniform());
+		
+		
+		fprintf(outstream, "tick");
+		fflush(outstream);
 	}
+	
+	
+	fclose (outstream);
+	fclose (instream);
+	
 	return 0;
 }

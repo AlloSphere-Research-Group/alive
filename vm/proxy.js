@@ -12,6 +12,7 @@ var master = null;
 var browser = mdns.createBrowser(mdns.tcp('master'));
 var MASTER_ADDRESS 	= null; //"127.0.0.1:8082";
 var pullNumber = 0;
+var auto_relaunch = false;
 
 function checkdir(files, p, cb) {
 	fs.stat(p, function(err, stats) {
@@ -73,14 +74,10 @@ function watchdir(dirpath, cb) {
 watchdir(".", function(p) {
 	console.log("modified file: " + p);
 	
-	launch("./alive");
-	
-	/*
 	if (vm !== null) {
 		console.log("sent to vm");
 		vm.stdin.write(p + "\n");
 	}
-	*/
 });
 
 function launch(name) {
@@ -106,9 +103,12 @@ function launch(name) {
 	vm.on('exit', function (code) {
 		console.log('child process exited with code ' + code);
 		
-		// relaunch?:
-		//launch(name);
-		vm = null;
+		if (auto_relaunch) {
+			launch(name);
+		} else {
+			vm.kill();
+			vm = null;
+		}
 	});
 }
 

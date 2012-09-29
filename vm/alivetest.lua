@@ -1,3 +1,6 @@
+
+print(string.rep("=", 80))
+
 local ffi = require "ffi"
 local C = ffi.C
 
@@ -25,10 +28,10 @@ end)
 
 C.idle(function(status)
 	-- return true to kill the idle function
-	if math.random() < 0.00001 then
-		--print("ticky")
+	if math.random() < 0.001 then
+		print("ticky")
 	end
 	return false
 end)
 
-print("LAUNCHED with print")
+print("ok")
