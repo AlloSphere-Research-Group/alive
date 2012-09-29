@@ -21,16 +21,12 @@ C.openfd(0, function(buffer, size)
 	print(ffi.string(buffer, size))
 end)
 
-C.openfile("test.lua", function(buffer, size) 
+C.openfile("vm.h", function(buffer, size) 
 	--print("read:", size)
 	print(ffi.string(buffer, size))
 end)
 
 C.idle(function(status)
-	-- return true to kill the idle function
-	if math.random() < 0.001 then
-		print("ticky")
-	end
 	return false
 end)
 

@@ -8,13 +8,15 @@
 #include "fcntl.h"
 
 #include "allocore/io/al_AudioIO.hpp"
+#include "allocore/io/al_Window.hpp"
+#include "allocore/graphics/al_Graphics.hpp"
 #include "allocore/math/al_Random.hpp"
+#include "allocore/system/al_Time.hpp"
 #include "alloutil/al_Lua.hpp"
 
+using namespace al;
+
 ////////////////////////////////////////////////////////////////////////////////
-
-
-int flag = 0;
 
 struct FileOpen {	
 	uv_fs_t open_req;
@@ -48,8 +50,6 @@ struct FileOpen {
 		// need to know file size to allocate a buffer for it...
 		uv_fs_stat(req.loop, &stat_req, path, static_stat);
 		uv_fs_req_cleanup(&req);
-		
-		flag = 1;
 	}
 	
 	void stat(uv_fs_t& req) {
@@ -67,7 +67,6 @@ struct FileOpen {
 			uv_fs_read(req.loop, &read_req, open_req.result, buffer, size, -1, static_read);
 		}
 		uv_fs_req_cleanup(&req);
-		flag = 1;
 	}
 	
 	void read(uv_fs_t& req) {
@@ -81,7 +80,6 @@ struct FileOpen {
 		uv_fs_req_cleanup(&req);
 		
 		// recycle:
-		flag = 1;
 		if (buffer) { free(buffer); }
 	}
 	
@@ -89,7 +87,6 @@ struct FileOpen {
 		//printf("on close %p %p %d\n", &req, this, (int)req.result);
 		uv_fs_req_cleanup(&req);
 		delete this;
-		flag = 1;
 	}
 	
 	static void static_read(uv_fs_t *req) { ((FileOpen *)(req->data))->read(*req); }
@@ -111,7 +108,6 @@ struct FdOpen {
 		uv_pipe_init(loop, &pipe, 0);
 		uv_pipe_open(&pipe, fd); 
 		uv_read_start((uv_stream_t*)&pipe, alloc_buffer, static_read);
-		flag = 1;
 	}
 	
 	~FdOpen() {
@@ -130,7 +126,6 @@ struct FdOpen {
 		}
 		// recycle:
 		if (buf.base) { free(buf.base); }
-		flag = 1;
 	}
 	
 	static void static_read(uv_stream_t *stream, ssize_t nread, uv_buf_t buf) {
@@ -177,74 +172,186 @@ void openfd(int fd, buffer_callback cb) {
 	new FdOpen(uv_default_loop(), fd, cb);
 }
 
+//////////////////////////////////////////////////////////////////////////////////
+
+/*
+	Since the audio thread clears the queue so much faster, 
+	the main bottleneck is how many pending messages per frame,
+	and how much the audiolag adds to this.
+	
+	To deal with clock drift, use the audio clock for the main thread time
+	(audio time plus audiolag)
+	but a backup is needed if the audio thread is inactive
+		
+	Another problem is how to cache messages if overflow occurs.
+	A brief sleep is tried first, but then fall back to a heap queue?
+		Check if audio is still active?
+*/
+template<typename T>
+struct Q {
+	T * q;
+	int size, wrap;
+	volatile int read, write;
+	
+	Q(int count = 16384) {
+		size = count;
+		wrap = size - 1;
+		q = (T *)malloc(sizeof(T) * size);
+		memset(q, 0, sizeof(q));
+		read = write = 0;
+	}
+	
+	~Q() {
+		free(q);
+	}
+	
+	// sender thread:
+	T * head() const {
+		if (read == ((write + 1) & wrap)) {
+			// try sleeping a little bit first:
+			al_sleep(0.01);
+			if (read == ((write + 1) & wrap)) {
+				printf("queue overflow, cannot send\n");
+				return 0;
+			}
+		}
+		return &q[write];
+	}
+	void send() { write = (write + 1) & wrap; }
+
+	// receiver thread:
+	T * peek() const {
+		return read == write ? 0 : &q[read];
+	}
+	T * next() {
+		read = (read + 1) & wrap;
+		return peek();
+	}
+	
+	double used() const {
+		printf("%d %d\n", read, write);
+		return ((size + write - read) & wrap)/double(size);
+	}
+};
+
+
 ////////////////////////////////////////////////////////////////////////////////
 
-
-al::rnd::Random<> rng;
-
-
+rnd::Random<> rng;
 uv_loop_t *loop;
+Lua L, LA;
+AudioIO audio;
+Q<audiomsg> audioq;
+double audiotime = 0;
+double maintime = 0;
+double audiolag = 2000; // in samples
 uv_loop_t *audioloop;
+audio_callback audiocb = 0;
+Window win;
 
-al::Lua L;
-al::AudioIO audio;
-
-// communication between threads
-// pipe is one option
-int audiopipe[2];
-FILE *outstream;
-FILE *instream;
-
-struct audiomsg {
-	double t;
-	char cmd[4];
-	void * obj;
-	void * ctx;
-	double values[4];
-};
+void tick() {
+	uv_run_once(loop);
 	
-// another option is a shared buffer
-// shared buffer for srsw fifo case is lock free
-// very fast, so long as the buffer never gets full
-// audio triggers more frequently, so this is reasonable
-// tricky part of ring buffer is the wrap boundary
-// one option is to copy-on-read, ensuring maximal use of memory and fastest recycle
-// another is to skip boundary, avoiding memcpy 
-// but wasting memory for large packets and possibly slower recycle
-// for over-full buffer spill into heap memory until buffer clears?
-/*
-	In our case most messages are short:
-		timestamp	cmd	ptr
-						ptr		ptr
-						ptr		paramidx	paramval	offset	count
-						size	stringbuffer...
-		8			8	8		8			8			8		8
-longest is 54 = 300 param messages in a 16384 queue
-main thread at 30fps = 9000 updates per frame if audio is fast enough
-270000 updates per second seems reasonable!
-boundary skip eliminates only 1 of these, inconsequential.
-Even an array of pre-defined structs could be viable.
-*/ 
+	fflush(stdin);
+	fflush(stdout);
+	fflush(stderr);
+	
+	// process scheduled events up to t:
+	double t = audiotime + audiolag;
+	
+	// e.g. send a message:
+	//for (int i=0; i<100; i++) {
+	if (rng.uniform() < 0.1) {
+		audiomsg * m = audioq.head();
+		if (m) {
+			m->t = t;
+			audioq.send();
+		}
+	}
+	
+	maintime = t;
+	
+//	printf("used %04.1f%%\n", 100.*audioq.used() );
+}
+
+class App : public WindowEventHandler, public InputEventHandler {
+public:
+
+	App() {
+		win.append(*(WindowEventHandler *)this);
+		win.append(*(InputEventHandler *)this);
+	}
+
+	virtual ~App() {
+		
+	}
+	
+	virtual bool onKeyDown(const Keyboard& k){return true;}	///< Called when a keyboard key is pressed
+	virtual bool onKeyUp(const Keyboard& k){return true;}	///< Called when a keyboard key is released
+
+	virtual bool onMouseDown(const Mouse& m){return true;}	///< Called when a mouse button is pressed
+	virtual bool onMouseDrag(const Mouse& m){return true;}	///< Called when the mouse moves while a button is down
+	virtual bool onMouseMove(const Mouse& m){return true;}	///< Called when the mouse moves
+	virtual bool onMouseUp(const Mouse& m){return true;}	///< Called when a mouse button is released
+	virtual bool onCreate(){ return true; }					///< Called after window is created with valid OpenGL context
+	virtual bool onDestroy(){ return true; }				///< Called before the window and its OpenGL context are destroyed
+	
+	
+	virtual bool onResize(int dw, int dh){ return true; }	///< Called whenever window dimensions change
+	virtual bool onVisibility(bool v){ return true; }		///< Called when window changes from hidden to shown and vice versa
+	
+	virtual bool onFrame(){ 
+		Graphics gl;
+		gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+		
+		tick();
+
+		//printf(".");
+		return true; 
+	}
+	
+};
+
+float * audio_outbuffer(int chan) { return audio.outBuffer(chan); }
+const float * audio_inbuffer(int chan) { return audio.inBuffer(chan); }
+float * audio_busbuffer(int chan) { return audio.busBuffer(chan); }
+float audio_samplerate() { return audio.fps(); }
+int audio_buffersize() { return audio.framesPerBuffer(); }
+int audio_channelsin() { return audio.channelsIn(); }
+int audio_channelsout() { return audio.channelsOut(); }
+int audio_channelsbus() { return ((al::AudioIOData &)audio).channelsBus(); }
+double audio_time() { return audiotime; }
+void audio_zeroout() { audio.zeroOut(); }
+double audio_cpu() { return audio.cpu(); }
+
+void audio_set_callback(audio_callback cb) {
+	audiocb = cb;
+}
+
+audiomsg * audioq_peek(void) {
+	return audioq.peek();
+}
+audiomsg * audioq_next(void) {
+	return audioq.next();
+}
 
 
 void audioCB(al::AudioIOData& io) {
 
-	//putchar(fgetc(instream));
-	char buf[10];
-	while (read(audiopipe[0], buf, 10) > 0) {
-		printf("%s\n", buf);
+	if (audiotime == 0) {
+		printf("audio started %d %f\n", io.framesPerBuffer(), io.framesPerSecond());
 	}
+
+	double nexttime = audiotime + io.framesPerBuffer();
 	
-	uv_run_once(audioloop);
+	// libuv in audio thread?
+	//uv_run_once(audioloop);
+	
+	if (audiocb) audiocb(audiotime);
+	
+	audiotime = nexttime;
 
 	//if (io.time() < 0.1) printf("audio thread %lu\n", uv_thread_self());
-	if (flag) {
-		float * out = io.outBuffer(0);
-		for (int i=0; i<io.framesPerBuffer(); i++) {
-			out[i] = rng.uniformS() * 0.03;
-		}
-	}
-	flag = 0;
 }
 
 int main(int argc, char * argv[]) {
@@ -255,31 +362,15 @@ int main(int argc, char * argv[]) {
 	// do not abort if SIGPIPE is received:
 	// i.e. KILL THE ZOMBIES
 	signal(SIGPIPE, SIG_IGN);
-	
-	// setup fifo
-	if (pipe (audiopipe)) {
-		fprintf (stderr, "Pipe failed.\n");
-		return EXIT_FAILURE;
-	}
-	
-	printf("sizeof(audiomsg) %d\n", sizeof(audiomsg));
-	
-	// output:
-	outstream = fdopen (audiopipe[1], "w");
-	printf("outstream %p\n", outstream);
-	//fprintf(outstream, "hello, world!\n");
-	
-	// input:
-	printf("nonblock %d\n", fcntl(audiopipe[0], F_SETFL, O_NONBLOCK));
-	instream = fdopen (audiopipe[0], "r");
-	printf("instream %p\n", instream);
 
 	// initialize libuv:
 	loop = uv_default_loop();
-	audioloop = uv_loop_new();
+	//audioloop = uv_loop_new();
 	
-	printf("main thread %lu\n", uv_thread_self());
-	
+	// configure audio:
+	audio.framesPerBuffer(256);
+	audio.callback = audioCB;
+
 	// set up the Lua state:
 	lua_newtable(L);
 	for (int i=0; i<argc; i++) {
@@ -291,29 +382,15 @@ int main(int argc, char * argv[]) {
 	// run startup script:
 	if (L.dofile("./alivetest.lua")) return -1;
 	
+	// run startup script:
+	if (LA.dofile("./alivetestaudio.lua")) return -1;
 	
-	
-	audio.callback = audioCB;
+	// start threads:
 	audio.start();
 	
-	// simulated rendering loop:
-	while (1) {
-		uv_run_once(loop);
-		al_sleep(0.5);
-		fflush(stdin);
-		fflush(stdout);
-		fflush(stderr);
-		//printf("some txt %f\n", al_time());
-		//fprintf(stderr, "bad txt %f\n", rng.uniform());
-		
-		
-		fprintf(outstream, "tick");
-		fflush(outstream);
-	}
-	
-	
-	fclose (outstream);
-	fclose (instream);
+	App app;
+	win.create(al::Window::Dim(300, 200), "alive");
+	win.startLoop();
 	
 	return 0;
 }
