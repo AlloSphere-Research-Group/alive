@@ -66,13 +66,17 @@ function watchdir(dirpath, cb) {
 	return files;
 }
 
-
 watchdir(".", function(p) {
 	console.log("modified file: " + p);
+	
+	launch("./alive");
+	
+	/*
 	if (vm !== null) {
 		console.log("sent to vm");
 		vm.stdin.write(p + "\n");
 	}
+	*/
 });
 
 function launch(name) {
@@ -82,11 +86,17 @@ function launch(name) {
 	
 	vm = spawn(name);
 
-	vm.stdout.on('data', function (data) {
-		console.log('stdout: ' + data);
+	vm.stdout.on('data', function (text) {
+		console.log('out:' + text);
+		if (master !== null) {
+			master.send("out:" + text);
+		}
 	});
-	vm.stderr.on('data', function (data) {
-		console.log('stderr: ' + data);
+	vm.stderr.on('data', function (text) {
+		console.log('err:' + text);
+		if (master !== null) {
+			master.send("err:" + text);
+		}
 	});
 
 	vm.on('exit', function (code) {
@@ -121,16 +131,22 @@ var connectMaster = function(service) {
 		console.log("service up: ", service);
 		master = io.connect(service.host+":8082");
 
-		master.on('connect', function(){ console.log("Connected to Master");  browser.on('serviceUp', function() {}); } );
+		master.on('connect', function() { 
+			console.log("Connected to Master");  
+			browser.on('serviceUp', function() {
+				
+			}); 
+		});
 
-		master.on('message', function(msg){ console.log("Recieved a message: " + msg); });
+		master.on('message', function(msg){ 
+			console.log("Recieved a message: " + msg); 
+		});
 
 		master.on('disconnect', function(){ 
 			console.log("Disconnected from Master"); 
 			browser.on('serviceUp', connectMaster); 
 			if(master !== null) {
 				master.disconnect();
-				master = null;
 			}
 		});
 
@@ -142,6 +158,8 @@ var connectMaster = function(service) {
 				pullNumber++;
 			}
 		});
+		
+		master.emit('stdout', "vm connected to master");
 	}
 }
 

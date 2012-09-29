@@ -3,113 +3,243 @@
 
 #include "stdio.h"
 #include "stdlib.h"
+#include "syslimits.h"
 
-extern "C" {
-	void al_sleep(double);
+#include "allocore/io/al_AudioIO.hpp"
+#include "allocore/math/al_Random.hpp"
+#include "alloutil/al_Lua.hpp"
+
+////////////////////////////////////////////////////////////////////////////////
+
+
+int flag = 0;
+
+struct FileOpen {	
+	uv_fs_t open_req;
+	uv_fs_t stat_req;
+	uv_fs_t read_req;
+	uv_fs_t close_req;
+	buffer_callback cb;
+	char path[1024];
+	char * buffer;
+	int32_t size;
+	
+	FileOpen(uv_loop_t * loop, const char * path, buffer_callback cb) {
+		open_req.data = this;
+		read_req.data = this;
+		stat_req.data = this;
+		close_req.data = this;
+		this->cb = cb;
+		strcpy(this->path, path);
+		buffer = 0;
+		size = 0;
+		
+		uv_fs_open(loop, &open_req, path, O_RDONLY, 0, static_open);
+	}
+
+	~FileOpen() {
+		//printf("released memory\n");
+	}
+	
+	void open(uv_fs_t& req) {
+		//printf("on_open %p %p %d\n", &req, this, (int)req.result);
+		// need to know file size to allocate a buffer for it...
+		uv_fs_stat(req.loop, &stat_req, path, static_stat);
+		uv_fs_req_cleanup(&req);
+		
+		flag = 1;
+	}
+	
+	void stat(uv_fs_t& req) {
+		//printf("on_stat %p %p %d\n", &req, req.ptr, (int)req.result);
+		if (req.result < 0) {
+			fprintf(stderr, "error opening file: %d\n", req.errorno);
+			uv_fs_close(req.loop, &close_req, open_req.result, static_close);
+		} else {
+			struct stat *s = (struct stat *)req.ptr;
+			size = s->st_size;
+			buffer = (char *)malloc(size + 1); // extra char for null terminator
+			buffer[size] = '\0';
+			
+			// now trigger read:
+			uv_fs_read(req.loop, &read_req, open_req.result, buffer, size, -1, static_read);
+		}
+		uv_fs_req_cleanup(&req);
+		flag = 1;
+	}
+	
+	void read(uv_fs_t& req) {
+		//printf("on_read %p %p %d\n", &req, req.data, (int)req.result);
+		if (req.result < 0) {
+			fprintf(stderr, "Read error: %s\n", uv_strerror(uv_last_error(req.loop)));
+		} else if (req.result != 0) {
+			cb(buffer, size);
+		}
+		uv_fs_close(req.loop, &close_req, open_req.result, static_close);
+		uv_fs_req_cleanup(&req);
+		
+		// recycle:
+		flag = 1;
+		if (buffer) { free(buffer); }
+	}
+	
+	void close(uv_fs_t& req) {
+		//printf("on close %p %p %d\n", &req, this, (int)req.result);
+		uv_fs_req_cleanup(&req);
+		delete this;
+		flag = 1;
+	}
+	
+	static void static_read(uv_fs_t *req) { ((FileOpen *)(req->data))->read(*req); }
+	static void static_open(uv_fs_t *req) { ((FileOpen *)(req->data))->open(*req); }
+	static void static_stat(uv_fs_t *req) { ((FileOpen *)(req->data))->stat(*req); }
+	static void static_close(uv_fs_t *req) { ((FileOpen *)(req->data))->close(*req); }
+};
+
+struct FdOpen {
+	int fd;
+	buffer_callback cb;
+	uv_pipe_t pipe;
+
+	FdOpen(uv_loop_t * loop, int fd, buffer_callback cb) {
+		this->fd = fd;
+		this->cb = cb;
+		pipe.data = this;
+		
+		uv_pipe_init(loop, &pipe, 0);
+		uv_pipe_open(&pipe, fd); 
+		uv_read_start((uv_stream_t*)&pipe, alloc_buffer, static_read);
+		flag = 1;
+	}
+	
+	~FdOpen() {
+	
+	}
+	
+	void read(uv_stream_t& stream, ssize_t nread, uv_buf_t& buf) {
+		if (nread == -1) {
+			if (uv_last_error(stream.loop).code == UV_EOF) {
+				uv_close((uv_handle_t*)&pipe, NULL);
+			}
+		} else {
+			if (nread > 0) {
+				cb(buf.base, nread - 1);
+			}
+		}
+		// recycle:
+		if (buf.base) { free(buf.base); }
+		flag = 1;
+	}
+	
+	static void static_read(uv_stream_t *stream, ssize_t nread, uv_buf_t buf) {
+		((FdOpen *)(stream->data))->read(*stream, nread, buf); 
+	}
+	
+	static uv_buf_t alloc_buffer(uv_handle_t *handle, size_t suggested_size) {
+		return uv_buf_init((char*) malloc(suggested_size), suggested_size);
+	}
+};
+
+struct Idler {
+	uv_idle_t handle;
+	idle_callback cb;
+	
+	Idler(uv_loop_t * loop, idle_callback cb) {
+		handle.data = this;
+		this->cb = cb;
+		
+		uv_idle_init(loop, &handle);
+		uv_idle_start(&handle, static_idle);
+	}
+	
+	void idle(uv_idle_t& handle, int status) {
+		if (cb(status) != 0) {
+			uv_idle_stop(&handle);
+		}
+	}
+	
+	static void static_idle(uv_idle_t* handle, int status) {
+		((Idler *)(handle->data))->idle(*handle, status); 
+	}
+};
+
+void idle(idle_callback cb) {
+	new Idler(uv_default_loop(), cb);
 }
+
+void openfile(const char * path, buffer_callback cb) {
+	new FileOpen(uv_default_loop(), path, cb);
+}
+
+void openfd(int fd, buffer_callback cb) {
+	new FdOpen(uv_default_loop(), fd, cb);
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+
+al::rnd::Random<> rng;
+
 
 uv_loop_t *loop;
-uv_fs_t open_req, read_req;
-char buffer[16384];
+uv_loop_t *audioloop;
 
-int64_t counter = 0;
-void wait_for_a_while(uv_idle_t* handle, int status) {
-    counter++;
-
-    if (counter >= 1000) {
-		printf("counter %d\n", (int)counter);
-        uv_idle_stop(handle);
-	}
-}
-
-uv_buf_t alloc_buffer(uv_handle_t *handle, size_t suggested_size) {
-    return uv_buf_init((char*) malloc(suggested_size), suggested_size);
-}
+al::Lua L;
+al::AudioIO audio;
 
 
-void on_read(uv_fs_t *req) {
-    printf("on_read %p %d\n", req, (int)req->result);
-	if (req->result < 0) {
-        fprintf(stderr, "Read error: %s\n", uv_strerror(uv_last_error(loop)));
-    } else if (req->result == 0) {
-        uv_fs_t close_req;
-        // synchronous
-        uv_fs_close(loop, &close_req, open_req.result, NULL);
-    } else {
-		printf("read %d bytes\n", (int)req->result);
-		printf("%s\n", buffer);
-	}
-
-	uv_fs_req_cleanup(req);
-	delete req;
-}
-
-void on_open(uv_fs_t *req) {
-	printf("on_open %p %d\n", req, (int)req->result);
-	// need to know file size to allocate a buffer for it...
+void audioCB(al::AudioIOData& io) {
 	
-	if (req->result != -1) {
-        uv_fs_read(loop, new uv_fs_t, req->result, buffer, sizeof(buffer), -1, on_read);
-    } else {
-        fprintf(stderr, "error opening file: %d\n", req->errorno);
-    }
-	
-    uv_fs_req_cleanup(req);
-	delete req;
-}
+	uv_run_once(audioloop);
 
-uv_pipe_t stdin_pipe;
-void read_stdin(uv_stream_t *stream, ssize_t nread, uv_buf_t buf) {
-    if (nread == -1) {
-        if (uv_last_error(loop).code == UV_EOF) {
-            uv_close((uv_handle_t*)&stdin_pipe, NULL);
-            //uv_close((uv_handle_t*)&stdout_pipe, NULL);
-            //uv_close((uv_handle_t*)&file_pipe, NULL);
-        }
-    } else {
-        if (nread > 0) {
-			printf("read %d %s\n", (int)nread, (char *)buf.base);
-            //write_data((uv_stream_t*)&stdout_pipe, nread, buf, on_stdout_write);
-            //write_data((uv_stream_t*)&file_pipe, nread, buf, on_file_write);
-			
-			// open this file:
-			printf("open request %p\n", &open_req);
-			uv_fs_open(loop, new uv_fs_t, (char *)buf.base, O_RDONLY, 0, on_open);
-        }
-    }
-    if (buf.base) {
-        free(buf.base);
+	//if (io.time() < 0.1) printf("audio thread %lu\n", uv_thread_self());
+	if (flag) {
+		float * out = io.outBuffer(0);
+		for (int i=0; i<io.framesPerBuffer(); i++) {
+			out[i] = rng.uniformS() * 0.03;
+		}
 	}
+	flag = 0;
 }
 
 int main(int argc, char * argv[]) {
 	
+	// execute in the context of wherever this is run from:
+	chdir("./");
+	
 	// do not abort if SIGPIPE is received:
+	// i.e. KILL THE ZOMBIES
 	signal(SIGPIPE, SIG_IGN);
 
-	// initialize
+	// initialize libuv:
 	loop = uv_default_loop();
+	audioloop = uv_loop_new();
 	
-	uv_idle_t idler;
-    uv_idle_init(loop, &idler);
-    uv_idle_start(&idler, wait_for_a_while);
+	printf("main thread %lu\n", uv_thread_self());
 	
-	// callback for stdin input:
-	uv_pipe_init(loop, &stdin_pipe, 0);
-    uv_pipe_open(&stdin_pipe, 0); // fd 0
-	uv_read_start((uv_stream_t*)&stdin_pipe, alloc_buffer, read_stdin);
+	// set up the Lua state:
+	lua_newtable(L);
+	for (int i=0; i<argc; i++) {
+		lua_pushstring(L, argv[i]);
+		lua_rawseti(L, -2, i+1);
+	}
+	lua_setglobal(L, "argv");
 	
-	uv_fs_open(loop, new uv_fs_t, "test.lua", O_RDONLY, 0, on_open);
+	// run startup script:
+	if (L.dofile("./alivetest.lua")) return -1;
+	
+	audio.callback = audioCB;
+	audio.start();
 	
 	// simulated rendering loop:
 	while (1) {
-		printf("run %d\n", uv_run_once(loop)); 
-		printf("run %d\n", uv_run_once(loop)); 
-		printf("run %d\n", uv_run_once(loop)); 
-		al_sleep(1);
+		uv_run_once(loop);
+		al_sleep(0.5);
 		fflush(stdin);
 		fflush(stdout);
 		fflush(stderr);
+		printf("some txt %f\n", al_time());
+		fprintf(stderr, "bad txt %f\n", rng.uniform());
 	}
 	return 0;
 }

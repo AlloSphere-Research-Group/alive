@@ -3715,6 +3715,8 @@
 		36E50015161620F400A85578 /* uvtest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = uvtest.cpp; sourceTree = "<group>"; };
 		36E500211616217600A85578 /* uvtest.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = uvtest.lua; sourceTree = "<group>"; };
 		36E50029161621DE00A85578 /* uv_ffi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uv_ffi.h; sourceTree = "<group>"; };
+		36E5014A161659AA00A85578 /* alivetest.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = alivetest.lua; sourceTree = "<group>"; };
+		36E5023B1616812300A85578 /* alivetestaudio.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = alivetestaudio.lua; sourceTree = "<group>"; };
 		36E5FF971615538A00A85578 /* alive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = alive.h; sourceTree = "<group>"; };
 		36E5FF981615538A00A85578 /* alive.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = alive.cpp; sourceTree = "<group>"; };
 		36E5FFA41615541C00A85578 /* eio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eio.h; sourceTree = "<group>"; };
@@ -7290,8 +7292,10 @@
 				3657555C16128C93009D11CC /* modules */,
 				36E5FF971615538A00A85578 /* alive.h */,
 				36E5FF981615538A00A85578 /* alive.cpp */,
+				36E5014A161659AA00A85578 /* alivetest.lua */,
 				36E50015161620F400A85578 /* uvtest.cpp */,
 				36E500211616217600A85578 /* uvtest.lua */,
+				36E5023B1616812300A85578 /* alivetestaudio.lua */,
 			);
 			name = vm;
 			path = ../vm;
