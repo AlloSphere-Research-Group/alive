@@ -160,9 +160,9 @@
 	};
 	36207AEE16149C23001D4BEE /* tube.lua */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {609, 3458}}";
-			sepNavSelRange = "{4925, 0}";
-			sepNavVisRange = "{4534, 1132}";
+			sepNavIntBoundsRect = "{{0, 0}, {614, 3380}}";
+			sepNavSelRange = "{5353, 0}";
+			sepNavVisRange = "{4698, 1029}";
 		};
 	};
 	36207AF016149DCD001D4BEE /* PBXTextBookmark */ = {
@@ -231,9 +231,9 @@
 	};
 	36207BD01614CD9A001D4BEE /* notes.txt */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {609, 1378}}";
+			sepNavIntBoundsRect = "{{0, 0}, {614, 1378}}";
 			sepNavSelRange = "{1577, 18}";
-			sepNavVisRange = "{894, 1116}";
+			sepNavVisRange = "{0, 1021}";
 		};
 	};
 	36207C2A1614D51C001D4BEE /* install_dependencies.sh */ = {
@@ -1238,6 +1238,24 @@
 			36E502A116168AEA00A85578 /* PBXTextBookmark */ = 36E502A116168AEA00A85578 /* PBXTextBookmark */;
 			36E502A216168B0100A85578 /* PBXTextBookmark */ = 36E502A216168B0100A85578 /* PBXTextBookmark */;
 			36E502A316168B0600A85578 /* PBXTextBookmark */ = 36E502A316168B0600A85578 /* PBXTextBookmark */;
+			36E502A416168C1600A85578 /* PBXTextBookmark */ = 36E502A416168C1600A85578 /* PBXTextBookmark */;
+			36E502A516168C2300A85578 /* PBXTextBookmark */ = 36E502A516168C2300A85578 /* PBXTextBookmark */;
+			36E502A616168C3400A85578 /* PBXTextBookmark */ = 36E502A616168C3400A85578 /* PBXTextBookmark */;
+			36E502A71616C56300A85578 /* PBXTextBookmark */ = 36E502A71616C56300A85578 /* PBXTextBookmark */;
+			36E502A81616C56300A85578 /* PBXTextBookmark */ = 36E502A81616C56300A85578 /* PBXTextBookmark */;
+			36E502A91616C56300A85578 /* PBXTextBookmark */ = 36E502A91616C56300A85578 /* PBXTextBookmark */;
+			36E502AA1616CBF100A85578 /* PBXTextBookmark */ = 36E502AA1616CBF100A85578 /* PBXTextBookmark */;
+			36E502AB1616CBF100A85578 /* PBXTextBookmark */ = 36E502AB1616CBF100A85578 /* PBXTextBookmark */;
+			36E502AC1616CBF100A85578 /* PBXTextBookmark */ = 36E502AC1616CBF100A85578 /* PBXTextBookmark */;
+			36E502AD1616CBF100A85578 /* PBXTextBookmark */ = 36E502AD1616CBF100A85578 /* PBXTextBookmark */;
+			36E502AE1616CBF100A85578 /* PBXTextBookmark */ = 36E502AE1616CBF100A85578 /* PBXTextBookmark */;
+			36E502AF1616CBF100A85578 /* PBXTextBookmark */ = 36E502AF1616CBF100A85578 /* PBXTextBookmark */;
+			36E502B01616CBF100A85578 /* PBXTextBookmark */ = 36E502B01616CBF100A85578 /* PBXTextBookmark */;
+			36E502B11616CBF100A85578 /* PBXTextBookmark */ = 36E502B11616CBF100A85578 /* PBXTextBookmark */;
+			36E502B21616CBF100A85578 /* PBXTextBookmark */ = 36E502B21616CBF100A85578 /* PBXTextBookmark */;
+			36E502B31616CC0D00A85578 /* PBXTextBookmark */ = 36E502B31616CC0D00A85578 /* PBXTextBookmark */;
+			36E502B41616CCC800A85578 /* PBXTextBookmark */ = 36E502B41616CCC800A85578 /* PBXTextBookmark */;
+			36E502B51616CD4500A85578 /* PBXTextBookmark */ = 36E502B51616CD4500A85578 /* PBXTextBookmark */;
 			36E5FEE916150D1200A85578 /* PBXTextBookmark */ = 36E5FEE916150D1200A85578 /* PBXTextBookmark */;
 			36E5FEEA16150D1200A85578 /* PBXTextBookmark */ = 36E5FEEA16150D1200A85578 /* PBXTextBookmark */;
 			36E5FEEB16150D1200A85578 /* PBXTextBookmark */ = 36E5FEEB16150D1200A85578 /* PBXTextBookmark */;
@@ -1621,13 +1639,13 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {614, 2418}}";
 			sepNavSelRange = "{4264, 0}";
-			sepNavVisRange = "{3235, 1398}";
+			sepNavVisRange = "{3365, 1270}";
 		};
 	};
 	3657553C16128769009D11CC /* alive.lua */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {609, 482}}";
-			sepNavSelRange = "{485, 0}";
+			sepNavIntBoundsRect = "{{0, 0}, {614, 717}}";
+			sepNavSelRange = "{444, 0}";
 			sepNavVisRange = "{0, 487}";
 		};
 	};
@@ -1835,7 +1853,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 108";
 		rLen = 0;
-		rLoc = 5958;
+		rLoc = 7128;
 		rType = 0;
 		vrLen = 1560;
 		vrLoc = 1357;
@@ -1845,7 +1863,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 108";
 		rLen = 0;
-		rLoc = 5958;
+		rLoc = 7128;
 		rType = 0;
 		vrLen = 1560;
 		vrLoc = 1357;
@@ -1855,7 +1873,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 95";
 		rLen = 0;
-		rLoc = 5609;
+		rLoc = 6779;
 		rType = 0;
 		vrLen = 1562;
 		vrLoc = 1357;
@@ -1905,7 +1923,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 107";
 		rLen = 0;
-		rLoc = 5894;
+		rLoc = 7064;
 		rType = 0;
 		vrLen = 1572;
 		vrLoc = 1413;
@@ -2296,7 +2314,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 93";
 		rLen = 0;
-		rLoc = 5609;
+		rLoc = 6779;
 		rType = 0;
 		vrLen = 1534;
 		vrLoc = 1395;
@@ -2800,7 +2818,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 102";
 		rLen = 0;
-		rLoc = 5894;
+		rLoc = 7064;
 		rType = 0;
 		vrLen = 1557;
 		vrLoc = 1372;
@@ -3492,7 +3510,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 102";
 		rLen = 0;
-		rLoc = 5894;
+		rLoc = 7064;
 		rType = 0;
 		vrLen = 1558;
 		vrLoc = 1370;
@@ -4158,7 +4176,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 88";
 		rLen = 0;
-		rLoc = 5056;
+		rLoc = 6172;
 		rType = 0;
 		vrLen = 1083;
 		vrLoc = 1371;
@@ -4168,7 +4186,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 88";
 		rLen = 0;
-		rLoc = 5056;
+		rLoc = 6172;
 		rType = 0;
 		vrLen = 1083;
 		vrLoc = 1371;
@@ -4178,7 +4196,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 88";
 		rLen = 0;
-		rLoc = 5056;
+		rLoc = 6172;
 		rType = 0;
 		vrLen = 1582;
 		vrLoc = 1371;
@@ -4188,7 +4206,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 92";
 		rLen = 0;
-		rLoc = 5525;
+		rLoc = 6695;
 		rType = 0;
 		vrLen = 1582;
 		vrLoc = 1372;
@@ -4198,7 +4216,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 86";
 		rLen = 0;
-		rLoc = 4989;
+		rLoc = 6105;
 		rType = 0;
 		vrLen = 1582;
 		vrLoc = 1372;
@@ -4528,7 +4546,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 134";
 		rLen = 0;
-		rLoc = 5973;
+		rLoc = 7143;
 		rType = 0;
 		vrLen = 1440;
 		vrLoc = 1917;
@@ -5000,7 +5018,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 160";
 		rLen = 0;
-		rLoc = 5637;
+		rLoc = 6807;
 		rType = 0;
 		vrLen = 1422;
 		vrLoc = 2872;
@@ -5030,7 +5048,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 161";
 		rLen = 0;
-		rLoc = 5637;
+		rLoc = 6807;
 		rType = 0;
 		vrLen = 1421;
 		vrLoc = 2905;
@@ -5038,7 +5056,7 @@
 	36E5014A161659AA00A85578 /* alivetest.lua */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {614, 717}}";
-			sepNavSelRange = "{647, 0}";
+			sepNavSelRange = "{555, 0}";
 			sepNavVisRange = "{0, 707}";
 		};
 	};
@@ -5107,7 +5125,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 166";
 		rLen = 0;
-		rLoc = 5637;
+		rLoc = 6807;
 		rType = 0;
 		vrLen = 1241;
 		vrLoc = 3391;
@@ -5127,7 +5145,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 166";
 		rLen = 0;
-		rLoc = 5637;
+		rLoc = 6807;
 		rType = 0;
 		vrLen = 1297;
 		vrLoc = 3334;
@@ -5137,7 +5155,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 145";
 		rLen = 0;
-		rLoc = 4877;
+		rLoc = 5993;
 		rType = 0;
 		vrLen = 1237;
 		vrLoc = 3391;
@@ -5157,7 +5175,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 145";
 		rLen = 0;
-		rLoc = 4877;
+		rLoc = 5993;
 		rType = 0;
 		vrLen = 1237;
 		vrLoc = 3391;
@@ -5167,7 +5185,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 148";
 		rLen = 0;
-		rLoc = 4877;
+		rLoc = 5993;
 		rType = 0;
 		vrLen = 1091;
 		vrLoc = 3585;
@@ -5197,7 +5215,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 148";
 		rLen = 0;
-		rLoc = 4877;
+		rLoc = 5993;
 		rType = 0;
 		vrLen = 1091;
 		vrLoc = 3585;
@@ -5387,7 +5405,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 204";
 		rLen = 0;
-		rLoc = 5609;
+		rLoc = 6779;
 		rType = 0;
 		vrLen = 1064;
 		vrLoc = 4305;
@@ -5397,7 +5415,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 202";
 		rLen = 0;
-		rLoc = 5609;
+		rLoc = 6779;
 		rType = 0;
 		vrLen = 1063;
 		vrLoc = 4250;
@@ -5457,7 +5475,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 202";
 		rLen = 0;
-		rLoc = 5609;
+		rLoc = 6779;
 		rType = 0;
 		vrLen = 1066;
 		vrLoc = 4246;
@@ -5467,7 +5485,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 196";
 		rLen = 0;
-		rLoc = 5609;
+		rLoc = 6779;
 		rType = 0;
 		vrLen = 1361;
 		vrLoc = 3585;
@@ -5477,7 +5495,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 196";
 		rLen = 0;
-		rLoc = 5609;
+		rLoc = 6779;
 		rType = 0;
 		vrLen = 1327;
 		vrLoc = 3515;
@@ -5597,7 +5615,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 167";
 		rLen = 0;
-		rLoc = 5609;
+		rLoc = 6779;
 		rType = 0;
 		vrLen = 1064;
 		vrLoc = 3490;
@@ -5607,7 +5625,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 167";
 		rLen = 0;
-		rLoc = 5609;
+		rLoc = 6779;
 		rType = 0;
 		vrLen = 1064;
 		vrLoc = 3490;
@@ -5957,7 +5975,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 184";
 		rLen = 0;
-		rLoc = 5607;
+		rLoc = 6777;
 		rType = 0;
 		vrLen = 1164;
 		vrLoc = 3665;
@@ -5967,7 +5985,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 184";
 		rLen = 0;
-		rLoc = 5586;
+		rLoc = 6756;
 		rType = 0;
 		vrLen = 1164;
 		vrLoc = 3665;
@@ -5977,7 +5995,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 184";
 		rLen = 0;
-		rLoc = 5585;
+		rLoc = 6755;
 		rType = 0;
 		vrLen = 1163;
 		vrLoc = 3665;
@@ -6007,7 +6025,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 175";
 		rLen = 0;
-		rLoc = 4708;
+		rLoc = 5824;
 		rType = 0;
 		vrLen = 1081;
 		vrLoc = 3816;
@@ -6017,7 +6035,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 174";
 		rLen = 0;
-		rLoc = 4681;
+		rLoc = 5797;
 		rType = 0;
 		vrLen = 1087;
 		vrLoc = 3946;
@@ -6027,7 +6045,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 176";
 		rLen = 0;
-		rLoc = 4682;
+		rLoc = 5798;
 		rType = 0;
 		vrLen = 1109;
 		vrLoc = 3946;
@@ -6037,7 +6055,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 176";
 		rLen = 0;
-		rLoc = 4682;
+		rLoc = 5798;
 		rType = 0;
 		vrLen = 1109;
 		vrLoc = 3946;
@@ -6047,7 +6065,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 175";
 		rLen = 68;
-		rLoc = 4661;
+		rLoc = 5777;
 		rType = 0;
 		vrLen = 1109;
 		vrLoc = 3946;
@@ -6057,7 +6075,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 172";
 		rLen = 0;
-		rLoc = 4478;
+		rLoc = 4625;
 		rType = 0;
 		vrLen = 1109;
 		vrLoc = 3946;
@@ -6067,7 +6085,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 213";
 		rLen = 0;
-		rLoc = 5957;
+		rLoc = 7127;
 		rType = 0;
 		vrLen = 1010;
 		vrLoc = 4075;
@@ -6077,7 +6095,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 213";
 		rLen = 0;
-		rLoc = 5957;
+		rLoc = 7127;
 		rType = 0;
 		vrLen = 1010;
 		vrLoc = 4075;
@@ -6087,7 +6105,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 179";
 		rLen = 0;
-		rLoc = 4661;
+		rLoc = 5777;
 		rType = 0;
 		vrLen = 1011;
 		vrLoc = 4075;
@@ -6097,7 +6115,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 179";
 		rLen = 0;
-		rLoc = 4661;
+		rLoc = 5777;
 		rType = 0;
 		vrLen = 1011;
 		vrLoc = 4075;
@@ -6407,7 +6425,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 179";
 		rLen = 0;
-		rLoc = 4661;
+		rLoc = 5777;
 		rType = 0;
 		vrLen = 1051;
 		vrLoc = 4035;
@@ -6417,7 +6435,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 186";
 		rLen = 0;
-		rLoc = 4856;
+		rLoc = 5972;
 		rType = 0;
 		vrLen = 1075;
 		vrLoc = 4029;
@@ -6427,7 +6445,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 185";
 		rLen = 0;
-		rLoc = 4812;
+		rLoc = 5928;
 		rType = 0;
 		vrLen = 1098;
 		vrLoc = 4031;
@@ -6457,7 +6475,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 195";
 		rLen = 4;
-		rLoc = 4852;
+		rLoc = 5968;
 		rType = 0;
 		vrLen = 1068;
 		vrLoc = 4316;
@@ -6497,7 +6515,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 195";
 		rLen = 0;
-		rLoc = 4856;
+		rLoc = 5972;
 		rType = 0;
 		vrLen = 1068;
 		vrLoc = 4316;
@@ -6507,7 +6525,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 195";
 		rLen = 0;
-		rLoc = 4856;
+		rLoc = 5972;
 		rType = 0;
 		vrLen = 1069;
 		vrLoc = 4315;
@@ -6517,7 +6535,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 195";
 		rLen = 0;
-		rLoc = 4856;
+		rLoc = 5972;
 		rType = 0;
 		vrLen = 1069;
 		vrLoc = 4315;
@@ -6527,7 +6545,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 231";
 		rLen = 0;
-		rLoc = 5958;
+		rLoc = 7128;
 		rType = 0;
 		vrLen = 1058;
 		vrLoc = 4316;
@@ -6537,7 +6555,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 236";
 		rLen = 0;
-		rLoc = 6052;
+		rLoc = 7222;
 		rType = 0;
 		vrLen = 1060;
 		vrLoc = 4316;
@@ -6547,7 +6565,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 236";
 		rLen = 0;
-		rLoc = 6052;
+		rLoc = 7222;
 		rType = 0;
 		vrLen = 1060;
 		vrLoc = 4316;
@@ -6617,7 +6635,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 236";
 		rLen = 0;
-		rLoc = 6052;
+		rLoc = 7222;
 		rType = 0;
 		vrLen = 1060;
 		vrLoc = 4315;
@@ -6627,7 +6645,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 236";
 		rLen = 0;
-		rLoc = 6049;
+		rLoc = 7219;
 		rType = 0;
 		vrLen = 1083;
 		vrLoc = 4316;
@@ -6637,7 +6655,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 210";
 		rLen = 0;
-		rLoc = 5504;
+		rLoc = 6674;
 		rType = 0;
 		vrLen = 1083;
 		vrLoc = 4316;
@@ -6817,7 +6835,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 210";
 		rLen = 0;
-		rLoc = 5504;
+		rLoc = 6674;
 		rType = 0;
 		vrLen = 1083;
 		vrLoc = 4315;
@@ -6827,7 +6845,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 232";
 		rLen = 0;
-		rLoc = 5973;
+		rLoc = 7143;
 		rType = 0;
 		vrLen = 1083;
 		vrLoc = 4316;
@@ -6837,7 +6855,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 232";
 		rLen = 0;
-		rLoc = 5973;
+		rLoc = 7143;
 		rType = 0;
 		vrLen = 1083;
 		vrLoc = 4316;
@@ -6847,7 +6865,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 232";
 		rLen = 0;
-		rLoc = 5973;
+		rLoc = 7143;
 		rType = 0;
 		vrLen = 1083;
 		vrLoc = 4316;
@@ -6977,7 +6995,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 232";
 		rLen = 0;
-		rLoc = 5973;
+		rLoc = 7143;
 		rType = 0;
 		vrLen = 1083;
 		vrLoc = 4315;
@@ -6987,7 +7005,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 195";
 		rLen = 0;
-		rLoc = 4856;
+		rLoc = 5972;
 		rType = 0;
 		vrLen = 1083;
 		vrLoc = 4315;
@@ -6997,7 +7015,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 195";
 		rLen = 0;
-		rLoc = 4856;
+		rLoc = 5972;
 		rType = 0;
 		vrLen = 1083;
 		vrLoc = 4315;
@@ -7047,7 +7065,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 195";
 		rLen = 0;
-		rLoc = 4856;
+		rLoc = 5972;
 		rType = 0;
 		vrLen = 1083;
 		vrLoc = 4315;
@@ -7057,7 +7075,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 237";
 		rLen = 0;
-		rLoc = 6093;
+		rLoc = 7263;
 		rType = 0;
 		vrLen = 1122;
 		vrLoc = 4315;
@@ -7067,7 +7085,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 237";
 		rLen = 0;
-		rLoc = 6093;
+		rLoc = 7263;
 		rType = 0;
 		vrLen = 1122;
 		vrLoc = 4315;
@@ -7117,7 +7135,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 237";
 		rLen = 0;
-		rLoc = 6093;
+		rLoc = 7263;
 		rType = 0;
 		vrLen = 1122;
 		vrLoc = 4315;
@@ -7127,7 +7145,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 195";
 		rLen = 0;
-		rLoc = 4856;
+		rLoc = 5972;
 		rType = 0;
 		vrLen = 1122;
 		vrLoc = 4315;
@@ -7137,7 +7155,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 195";
 		rLen = 0;
-		rLoc = 4856;
+		rLoc = 5972;
 		rType = 0;
 		vrLen = 1116;
 		vrLoc = 4333;
@@ -7147,7 +7165,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 195";
 		rLen = 0;
-		rLoc = 4856;
+		rLoc = 5972;
 		rType = 0;
 		vrLen = 1117;
 		vrLoc = 4333;
@@ -7157,7 +7175,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 195";
 		rLen = 0;
-		rLoc = 4856;
+		rLoc = 5972;
 		rType = 0;
 		vrLen = 1117;
 		vrLoc = 4333;
@@ -7197,7 +7215,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 216";
 		rLen = 0;
-		rLoc = 5559;
+		rLoc = 6729;
 		rType = 0;
 		vrLen = 1141;
 		vrLoc = 4386;
@@ -7207,7 +7225,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 226";
 		rLen = 0;
-		rLoc = 5760;
+		rLoc = 6930;
 		rType = 0;
 		vrLen = 1141;
 		vrLoc = 4386;
@@ -7217,7 +7235,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 226";
 		rLen = 0;
-		rLoc = 5760;
+		rLoc = 6930;
 		rType = 0;
 		vrLen = 1060;
 		vrLoc = 4291;
@@ -7227,7 +7245,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 226";
 		rLen = 0;
-		rLoc = 5760;
+		rLoc = 6930;
 		rType = 0;
 		vrLen = 1060;
 		vrLoc = 4291;
@@ -7317,7 +7335,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 241";
 		rLen = 7;
-		rLoc = 6057;
+		rLoc = 7227;
 		rType = 0;
 		vrLen = 1137;
 		vrLoc = 4386;
@@ -7327,7 +7345,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 241";
 		rLen = 0;
-		rLoc = 6064;
+		rLoc = 7234;
 		rType = 0;
 		vrLen = 1137;
 		vrLoc = 4386;
@@ -7337,7 +7355,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 241";
 		rLen = 7;
-		rLoc = 6057;
+		rLoc = 7227;
 		rType = 0;
 		vrLen = 1262;
 		vrLoc = 0;
@@ -7774,7 +7792,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 226";
 		rLen = 0;
-		rLoc = 5772;
+		rLoc = 6942;
 		rType = 0;
 		vrLen = 1137;
 		vrLoc = 4386;
@@ -7884,7 +7902,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 226";
 		rLen = 0;
-		rLoc = 5772;
+		rLoc = 6942;
 		rType = 0;
 		vrLen = 1137;
 		vrLoc = 4386;
@@ -7894,7 +7912,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 223";
 		rLen = 0;
-		rLoc = 5715;
+		rLoc = 6885;
 		rType = 0;
 		vrLen = 1137;
 		vrLoc = 4386;
@@ -7904,7 +7922,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 242";
 		rLen = 0;
-		rLoc = 6073;
+		rLoc = 7243;
 		rType = 0;
 		vrLen = 1141;
 		vrLoc = 4386;
@@ -7914,7 +7932,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 242";
 		rLen = 0;
-		rLoc = 6073;
+		rLoc = 7243;
 		rType = 0;
 		vrLen = 1141;
 		vrLoc = 4386;
@@ -7924,7 +7942,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 242";
 		rLen = 0;
-		rLoc = 6073;
+		rLoc = 7243;
 		rType = 0;
 		vrLen = 1141;
 		vrLoc = 4386;
@@ -7934,7 +7952,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 234";
 		rLen = 0;
-		rLoc = 5896;
+		rLoc = 7066;
 		rType = 0;
 		vrLen = 1141;
 		vrLoc = 4386;
@@ -7944,7 +7962,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 234";
 		rLen = 0;
-		rLoc = 5896;
+		rLoc = 7066;
 		rType = 0;
 		vrLen = 1141;
 		vrLoc = 4387;
@@ -7954,7 +7972,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 234";
 		rLen = 0;
-		rLoc = 5896;
+		rLoc = 7066;
 		rType = 0;
 		vrLen = 1179;
 		vrLoc = 3154;
@@ -7964,7 +7982,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 234";
 		rLen = 0;
-		rLoc = 5896;
+		rLoc = 7066;
 		rType = 0;
 		vrLen = 1179;
 		vrLoc = 3154;
@@ -8044,7 +8062,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 234";
 		rLen = 0;
-		rLoc = 5896;
+		rLoc = 7066;
 		rType = 0;
 		vrLen = 1179;
 		vrLoc = 3154;
@@ -8084,7 +8102,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 191";
 		rLen = 0;
-		rLoc = 4478;
+		rLoc = 4625;
 		rType = 0;
 		vrLen = 1067;
 		vrLoc = 4142;
@@ -8094,7 +8112,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 191";
 		rLen = 0;
-		rLoc = 4478;
+		rLoc = 4625;
 		rType = 0;
 		vrLen = 1067;
 		vrLoc = 4142;
@@ -8144,7 +8162,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 191";
 		rLen = 0;
-		rLoc = 4478;
+		rLoc = 4625;
 		rType = 0;
 		vrLen = 1067;
 		vrLoc = 4142;
@@ -8154,7 +8172,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 216";
 		rLen = 0;
-		rLoc = 5100;
+		rLoc = 6216;
 		rType = 0;
 		vrLen = 1091;
 		vrLoc = 4425;
@@ -8164,7 +8182,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 216";
 		rLen = 0;
-		rLoc = 5100;
+		rLoc = 6216;
 		rType = 0;
 		vrLen = 1091;
 		vrLoc = 4425;
@@ -8174,7 +8192,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 222";
 		rLen = 0;
-		rLoc = 5324;
+		rLoc = 6494;
 		rType = 0;
 		vrLen = 1093;
 		vrLoc = 4749;
@@ -8184,7 +8202,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 228";
 		rLen = 0;
-		rLoc = 5407;
+		rLoc = 6577;
 		rType = 0;
 		vrLen = 1127;
 		vrLoc = 4608;
@@ -8194,7 +8212,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 252";
 		rLen = 0;
-		rLoc = 5847;
+		rLoc = 7017;
 		rType = 0;
 		vrLen = 1047;
 		vrLoc = 4968;
@@ -8204,7 +8222,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 226";
 		rLen = 0;
-		rLoc = 5324;
+		rLoc = 6494;
 		rType = 0;
 		vrLen = 1166;
 		vrLoc = 4782;
@@ -8214,7 +8232,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 233";
 		rLen = 0;
-		rLoc = 5481;
+		rLoc = 6651;
 		rType = 0;
 		vrLen = 1166;
 		vrLoc = 4782;
@@ -8224,7 +8242,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 233";
 		rLen = 0;
-		rLoc = 5481;
+		rLoc = 6651;
 		rType = 0;
 		vrLen = 1166;
 		vrLoc = 4782;
@@ -8234,7 +8252,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 237";
 		rLen = 0;
-		rLoc = 5499;
+		rLoc = 6669;
 		rType = 0;
 		vrLen = 1186;
 		vrLoc = 4782;
@@ -8244,7 +8262,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 227";
 		rLen = 0;
-		rLoc = 5286;
+		rLoc = 6456;
 		rType = 0;
 		vrLen = 1144;
 		vrLoc = 4610;
@@ -8254,7 +8272,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 232";
 		rLen = 0;
-		rLoc = 5457;
+		rLoc = 6627;
 		rType = 0;
 		vrLen = 1143;
 		vrLoc = 4610;
@@ -8264,7 +8282,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 235";
 		rLen = 0;
-		rLoc = 5482;
+		rLoc = 6652;
 		rType = 0;
 		vrLen = 1143;
 		vrLoc = 4610;
@@ -8274,7 +8292,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 234";
 		rLen = 0;
-		rLoc = 5481;
+		rLoc = 6651;
 		rType = 0;
 		vrLen = 1114;
 		vrLoc = 4886;
@@ -8284,7 +8302,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 270";
 		rLen = 0;
-		rLoc = 6177;
+		rLoc = 7347;
 		rType = 0;
 		vrLen = 1133;
 		vrLoc = 4886;
@@ -8294,7 +8312,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 198";
 		rLen = 0;
-		rLoc = 4533;
+		rLoc = 5649;
 		rType = 0;
 		vrLen = 1107;
 		vrLoc = 4336;
@@ -8314,7 +8332,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 234";
 		rLen = 0;
-		rLoc = 5405;
+		rLoc = 6575;
 		rType = 0;
 		vrLen = 1097;
 		vrLoc = 4790;
@@ -8324,7 +8342,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 234";
 		rLen = 0;
-		rLoc = 5383;
+		rLoc = 6553;
 		rType = 0;
 		vrLen = 1117;
 		vrLoc = 4790;
@@ -8334,7 +8352,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 234";
 		rLen = 0;
-		rLoc = 5392;
+		rLoc = 6562;
 		rType = 0;
 		vrLen = 1126;
 		vrLoc = 4790;
@@ -8344,7 +8362,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 234";
 		rLen = 0;
-		rLoc = 5404;
+		rLoc = 6574;
 		rType = 0;
 		vrLen = 1153;
 		vrLoc = 4790;
@@ -8370,7 +8388,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 199";
 		rLen = 5;
-		rLoc = 4528;
+		rLoc = 5644;
 		rType = 0;
 		vrLen = 1210;
 		vrLoc = 4477;
@@ -8380,7 +8398,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 228";
 		rLen = 1;
-		rLoc = 5203;
+		rLoc = 6373;
 		rType = 0;
 		vrLen = 1210;
 		vrLoc = 4477;
@@ -8390,7 +8408,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 263";
 		rLen = 0;
-		rLoc = 5975;
+		rLoc = 7145;
 		rType = 0;
 		vrLen = 1078;
 		vrLoc = 5078;
@@ -8400,7 +8418,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 263";
 		rLen = 0;
-		rLoc = 5975;
+		rLoc = 7145;
 		rType = 0;
 		vrLen = 1192;
 		vrLoc = 4902;
@@ -8410,7 +8428,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 247";
 		rLen = 0;
-		rLoc = 5715;
+		rLoc = 6885;
 		rType = 0;
 		vrLen = 1193;
 		vrLoc = 4904;
@@ -8420,7 +8438,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 201";
 		rLen = 12;
-		rLoc = 4574;
+		rLoc = 5690;
 		rType = 0;
 		vrLen = 1035;
 		vrLoc = 4204;
@@ -8430,7 +8448,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 202";
 		rLen = 0;
-		rLoc = 4624;
+		rLoc = 5740;
 		rType = 0;
 		vrLen = 1125;
 		vrLoc = 4355;
@@ -8440,7 +8458,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 202";
 		rLen = 0;
-		rLoc = 4621;
+		rLoc = 5737;
 		rType = 0;
 		vrLen = 1126;
 		vrLoc = 4355;
@@ -8450,7 +8468,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 200";
 		rLen = 0;
-		rLoc = 4558;
+		rLoc = 5674;
 		rType = 0;
 		vrLen = 1128;
 		vrLoc = 4355;
@@ -8460,7 +8478,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 275";
 		rLen = 0;
-		rLoc = 6153;
+		rLoc = 7323;
 		rType = 0;
 		vrLen = 1076;
 		vrLoc = 5164;
@@ -8470,7 +8488,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 259";
 		rLen = 0;
-		rLoc = 5847;
+		rLoc = 7017;
 		rType = 0;
 		vrLen = 994;
 		vrLoc = 3552;
@@ -8480,10 +8498,190 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 259";
 		rLen = 0;
-		rLoc = 5847;
+		rLoc = 7017;
 		rType = 0;
 		vrLen = 1216;
 		vrLoc = 0;
+	};
+	36E502A416168C1600A85578 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
+		name = "alive.cpp: 259";
+		rLen = 0;
+		rLoc = 7017;
+		rType = 0;
+		vrLen = 1216;
+		vrLoc = 0;
+	};
+	36E502A516168C2300A85578 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
+		name = "alive.cpp: 259";
+		rLen = 0;
+		rLoc = 7017;
+		rType = 0;
+		vrLen = 1216;
+		vrLoc = 0;
+	};
+	36E502A616168C3400A85578 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
+		name = "alive.cpp: 259";
+		rLen = 0;
+		rLoc = 7017;
+		rType = 0;
+		vrLen = 1076;
+		vrLoc = 5164;
+	};
+	36E502A71616C56300A85578 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 36E5014A161659AA00A85578 /* alivetest.lua */;
+		name = "alivetest.lua: 37";
+		rLen = 0;
+		rLoc = 707;
+		rType = 0;
+		vrLen = 707;
+		vrLoc = 0;
+	};
+	36E502A81616C56300A85578 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
+		name = "alive.cpp: 70";
+		rLen = 0;
+		rLoc = 1697;
+		rType = 0;
+		vrLen = 1004;
+		vrLoc = 3653;
+	};
+	36E502A91616C56300A85578 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
+		name = "alive.cpp: 186";
+		rLen = 0;
+		rLoc = 4371;
+		rType = 0;
+		vrLen = 1076;
+		vrLoc = 5164;
+	};
+	36E502AA1616CBF100A85578 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 36207AEE16149C23001D4BEE /* tube.lua */;
+		name = "tube.lua: 233";
+		rLen = 0;
+		rLoc = 5353;
+		rType = 0;
+		vrLen = 1029;
+		vrLoc = 4698;
+	};
+	36E502AB1616CBF100A85578 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 36E5014A161659AA00A85578 /* alivetest.lua */;
+		name = "alivetest.lua: 27";
+		rLen = 0;
+		rLoc = 555;
+		rType = 0;
+		vrLen = 707;
+		vrLoc = 0;
+	};
+	36E502AC1616CBF100A85578 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3657553C16128769009D11CC /* alive.lua */;
+		name = "alive.lua: 20";
+		rLen = 0;
+		rLoc = 444;
+		rType = 0;
+		vrLen = 487;
+		vrLoc = 0;
+	};
+	36E502AD1616CBF100A85578 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 36E5FF971615538A00A85578 /* alive.h */;
+		name = "alive.h: 16";
+		rLen = 0;
+		rLoc = 296;
+		rType = 0;
+		vrLen = 296;
+		vrLoc = 0;
+	};
+	36E502AE1616CBF100A85578 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3657552216127989009D11CC /* vm.h */;
+		name = "vm.h: 10";
+		rLen = 0;
+		rLoc = 123;
+		rType = 0;
+		vrLen = 123;
+		vrLoc = 0;
+	};
+	36E502AF1616CBF100A85578 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3657552316127989009D11CC /* vm.cpp */;
+		name = "vm.cpp: 152";
+		rLen = 0;
+		rLoc = 4264;
+		rType = 0;
+		vrLen = 1270;
+		vrLoc = 3365;
+	};
+	36E502B01616CBF100A85578 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 36207BD01614CD9A001D4BEE /* notes.txt */;
+		name = "notes.txt: 90";
+		rLen = 18;
+		rLoc = 1577;
+		rType = 0;
+		vrLen = 1021;
+		vrLoc = 0;
+	};
+	36E502B11616CBF100A85578 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
+		name = "alive.cpp: 212";
+		rLen = 0;
+		rLoc = 5594;
+		rType = 0;
+		vrLen = 1386;
+		vrLoc = 4247;
+	};
+	36E502B21616CBF100A85578 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
+		name = "alive.cpp: 215";
+		rLen = 0;
+		rLoc = 5386;
+		rType = 0;
+		vrLen = 1447;
+		vrLoc = 4247;
+	};
+	36E502B31616CC0D00A85578 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
+		name = "alive.cpp: 216";
+		rLen = 0;
+		rLoc = 5433;
+		rType = 0;
+		vrLen = 1483;
+		vrLoc = 4247;
+	};
+	36E502B41616CCC800A85578 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
+		name = "alive.cpp: 217";
+		rLen = 0;
+		rLoc = 5589;
+		rType = 0;
+		vrLen = 1581;
+		vrLoc = 4247;
+	};
+	36E502B51616CD4500A85578 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
+		name = "alive.cpp: 265";
+		rLen = 0;
+		rLoc = 6357;
+		rType = 0;
+		vrLen = 1165;
+		vrLoc = 5981;
 	};
 	36E5FEE916150D1200A85578 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -10104,9 +10302,9 @@
 	};
 	36E5FF981615538A00A85578 /* alive.cpp */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {614, 3705}}";
-			sepNavSelRange = "{5847, 0}";
-			sepNavVisRange = "{0, 1216}";
+			sepNavIntBoundsRect = "{{0, 0}, {614, 4173}}";
+			sepNavSelRange = "{6357, 0}";
+			sepNavVisRange = "{5981, 1165}";
 		};
 	};
 	36E5FF99161553C700A85578 /* PBXTextBookmark */ = {
@@ -10154,7 +10352,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 6";
 		rLen = 0;
-		rLoc = 6238;
+		rLoc = 7408;
 		rType = 0;
 		vrLen = 99;
 		vrLoc = 0;
@@ -10164,7 +10362,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 6";
 		rLen = 0;
-		rLoc = 6238;
+		rLoc = 7408;
 		rType = 0;
 		vrLen = 99;
 		vrLoc = 0;
@@ -10231,7 +10429,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 6";
 		rLen = 0;
-		rLoc = 6238;
+		rLoc = 7408;
 		rType = 0;
 		vrLen = 99;
 		vrLoc = 0;
@@ -10241,7 +10439,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 6";
 		rLen = 0;
-		rLoc = 6238;
+		rLoc = 7408;
 		rType = 0;
 		vrLen = 110;
 		vrLoc = 0;
@@ -10251,7 +10449,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 8";
 		rLen = 0;
-		rLoc = 6238;
+		rLoc = 7408;
 		rType = 0;
 		vrLen = 137;
 		vrLoc = 0;
@@ -10271,7 +10469,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 10";
 		rLen = 0;
-		rLoc = 6227;
+		rLoc = 7397;
 		rType = 0;
 		vrLen = 177;
 		vrLoc = 0;
@@ -10281,7 +10479,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 14";
 		rLen = 0;
-		rLoc = 6177;
+		rLoc = 7347;
 		rType = 0;
 		vrLen = 232;
 		vrLoc = 0;
@@ -10291,7 +10489,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 13";
 		rLen = 0;
-		rLoc = 5506;
+		rLoc = 6676;
 		rType = 0;
 		vrLen = 260;
 		vrLoc = 0;
@@ -10301,7 +10499,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 13";
 		rLen = 0;
-		rLoc = 5894;
+		rLoc = 7064;
 		rType = 0;
 		vrLen = 264;
 		vrLoc = 0;
@@ -10311,7 +10509,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 13";
 		rLen = 0;
-		rLoc = 5894;
+		rLoc = 7064;
 		rType = 0;
 		vrLen = 264;
 		vrLoc = 0;
@@ -10371,7 +10569,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 29";
 		rLen = 0;
-		rLoc = 5609;
+		rLoc = 6779;
 		rType = 0;
 		vrLen = 622;
 		vrLoc = 0;
@@ -10381,7 +10579,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 31";
 		rLen = 0;
-		rLoc = 5894;
+		rLoc = 7064;
 		rType = 0;
 		vrLen = 653;
 		vrLoc = 0;
@@ -10391,7 +10589,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 32";
 		rLen = 0;
-		rLoc = 5894;
+		rLoc = 7064;
 		rType = 0;
 		vrLen = 722;
 		vrLoc = 0;
@@ -10463,7 +10661,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 46";
 		rLen = 0;
-		rLoc = 4878;
+		rLoc = 5994;
 		rType = 0;
 		vrLen = 1346;
 		vrLoc = 0;
@@ -10543,7 +10741,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 63";
 		rLen = 0;
-		rLoc = 6177;
+		rLoc = 7347;
 		rType = 0;
 		vrLen = 1413;
 		vrLoc = 113;
@@ -10553,7 +10751,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 62";
 		rLen = 0;
-		rLoc = 5992;
+		rLoc = 7162;
 		rType = 0;
 		vrLen = 1437;
 		vrLoc = 113;
@@ -10563,7 +10761,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 46";
 		rLen = 0;
-		rLoc = 4878;
+		rLoc = 5994;
 		rType = 0;
 		vrLen = 1439;
 		vrLoc = 113;
@@ -10573,7 +10771,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 63";
 		rLen = 0;
-		rLoc = 6013;
+		rLoc = 7183;
 		rType = 0;
 		vrLen = 1443;
 		vrLoc = 113;
@@ -10583,7 +10781,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 61";
 		rLen = 0;
-		rLoc = 5978;
+		rLoc = 7148;
 		rType = 0;
 		vrLen = 1441;
 		vrLoc = 113;
@@ -10603,7 +10801,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 61";
 		rLen = 0;
-		rLoc = 5978;
+		rLoc = 7148;
 		rType = 0;
 		vrLen = 1441;
 		vrLoc = 113;
@@ -10633,7 +10831,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 49";
 		rLen = 0;
-		rLoc = 5609;
+		rLoc = 6779;
 		rType = 0;
 		vrLen = 1472;
 		vrLoc = 115;
@@ -10643,7 +10841,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 49";
 		rLen = 0;
-		rLoc = 5609;
+		rLoc = 6779;
 		rType = 0;
 		vrLen = 1471;
 		vrLoc = 115;
@@ -10653,7 +10851,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 49";
 		rLen = 0;
-		rLoc = 5609;
+		rLoc = 6779;
 		rType = 0;
 		vrLen = 1471;
 		vrLoc = 115;
@@ -10663,7 +10861,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 49";
 		rLen = 0;
-		rLoc = 5609;
+		rLoc = 6779;
 		rType = 0;
 		vrLen = 1471;
 		vrLoc = 115;
@@ -10673,7 +10871,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 59";
 		rLen = 0;
-		rLoc = 5609;
+		rLoc = 6779;
 		rType = 0;
 		vrLen = 1477;
 		vrLoc = 225;
@@ -10683,7 +10881,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 64";
 		rLen = 0;
-		rLoc = 5924;
+		rLoc = 7094;
 		rType = 0;
 		vrLen = 1506;
 		vrLoc = 226;
@@ -10693,7 +10891,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 64";
 		rLen = 0;
-		rLoc = 5924;
+		rLoc = 7094;
 		rType = 0;
 		vrLen = 1506;
 		vrLoc = 226;
@@ -10863,7 +11061,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 98";
 		rLen = 0;
-		rLoc = 5894;
+		rLoc = 7064;
 		rType = 0;
 		vrLen = 1598;
 		vrLoc = 1114;
@@ -10893,7 +11091,7 @@
 		fRef = 36E5FF981615538A00A85578 /* alive.cpp */;
 		name = "alive.cpp: 100";
 		rLen = 0;
-		rLoc = 5894;
+		rLoc = 7064;
 		rType = 0;
 		vrLen = 1544;
 		vrLoc = 1187;

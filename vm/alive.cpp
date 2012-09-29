@@ -189,10 +189,43 @@ uv_loop_t *audioloop;
 al::Lua L;
 al::AudioIO audio;
 
+// communication between threads
+// pipe is one option
 int audiopipe[2];
 FILE *outstream;
 FILE *instream;
+
+struct audiomsg {
+	double t;
+	char cmd[4];
+	void * obj;
+	void * ctx;
+	double values[4];
+};
 	
+// another option is a shared buffer
+// shared buffer for srsw fifo case is lock free
+// very fast, so long as the buffer never gets full
+// audio triggers more frequently, so this is reasonable
+// tricky part of ring buffer is the wrap boundary
+// one option is to copy-on-read, ensuring maximal use of memory and fastest recycle
+// another is to skip boundary, avoiding memcpy 
+// but wasting memory for large packets and possibly slower recycle
+// for over-full buffer spill into heap memory until buffer clears?
+/*
+	In our case most messages are short:
+		timestamp	cmd	ptr
+						ptr		ptr
+						ptr		paramidx	paramval	offset	count
+						size	stringbuffer...
+		8			8	8		8			8			8		8
+longest is 54 = 300 param messages in a 16384 queue
+main thread at 30fps = 9000 updates per frame if audio is fast enough
+270000 updates per second seems reasonable!
+boundary skip eliminates only 1 of these, inconsequential.
+Even an array of pre-defined structs could be viable.
+*/ 
+
 
 void audioCB(al::AudioIOData& io) {
 
@@ -228,6 +261,8 @@ int main(int argc, char * argv[]) {
 		fprintf (stderr, "Pipe failed.\n");
 		return EXIT_FAILURE;
 	}
+	
+	printf("sizeof(audiomsg) %d\n", sizeof(audiomsg));
 	
 	// output:
 	outstream = fdopen (audiopipe[1], "w");
