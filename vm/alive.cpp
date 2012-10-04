@@ -360,6 +360,7 @@ void audioCB(al::AudioIOData& io) {
 }
 
 int modifedmainlua(const char * filename) {
+	printf("modifedmainlua\n");
 	L.dofile(filename);
 	return 1;
 }
