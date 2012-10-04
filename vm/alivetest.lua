@@ -1,33 +1,49 @@
+-- force reload:
+package.loaded.alive = nil
 
-print(string.rep("=", 80))
+local alive = require "ffi.alive"
+local gl = require "ffi.gl"
 
-local ffi = require "ffi"
-local C = ffi.C
+local start = os.time()
 
-ffi.cdef [[
-	typedef int (*idle_callback)(int status);
-	typedef void (*buffer_callback)(char * buffer, int size);
+function alive:onKey(e, k)
+	if e == "down" then
+		if k == 27 then
+			self:fullscreen(not self:fullscreen())
+		end
+	end
+end
+
+function draw()
+	gl.ClearColor(0, 0, math.random(), 1)
+	gl.Clear()
 	
-	void idle(idle_callback cb);
+	gl.Color(1, 0, 0)
+	gl.PushMatrix()
+	gl.Scale(0.5)
+	gl.Rotate(os.time() - start, 0, 0, -1)
+	gl.Begin(gl.QUADS)
+		gl.Vertex(0.1, 1, 0)
+		gl.Vertex(-0.1, 1, 0)
+		gl.Vertex(-1, -1, 0)
+		gl.Vertex(1, -1, 0)
+		
+	gl.End()
+	gl.PopMatrix()
+
+end
+
+function alive:onFrame(w, h)
+	local h2 = h/2
+	gl.Enable(gl.SCISSOR_TEST)
 	
-	void openfile(const char * path, buffer_callback cb);
-	void openfd(int fd, buffer_callback cb);
+	gl.Viewport(0, 0, w, h2)
+	gl.Scissor(0, 0, w, h2)
+	draw()
 	
-	void al_sleep(double);
-]]
-
-C.openfd(0, function(buffer, size)
-	print("received:", size)
-	print(ffi.string(buffer, size))
-end)
-
-C.openfile("vm.h", function(buffer, size) 
-	--print("read:", size)
-	print(ffi.string(buffer, size))
-end)
-
-C.idle(function(status)
-	return false
-end)
+	gl.Viewport(0, h2, w, h2)
+	gl.Scissor(0, h2, w, h2)
+	draw()
+end
 
 print("ok")

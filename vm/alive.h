@@ -1,16 +1,31 @@
+#ifndef ALIVE_H
+#define ALIVE_H
 
+#ifdef __cplusplus
+
+#include "al_ffi.h"
 
 extern "C" {
+#else
+typedef struct al_Window al_Window;
+#endif
+
 	typedef int (*idle_callback)(int status);
-	typedef void (*buffer_callback)(char * buffer, int size);
+	typedef int (*buffer_callback)(char * buffer, int size);
+	typedef int (*filewatcher_callback)(const char * filename);
 	
 	void idle(idle_callback cb);
 	
 	void openfile(const char * path, buffer_callback cb);
 	void openfd(int fd, buffer_callback cb);
+	void watchfile(const char * filename, filewatcher_callback cb);
+	
+	al_Window * alive_window();
+	void alive_tick();
 	
 	void al_sleep(double);
 	
+		
 	typedef void (*audio_callback)(double sampletime);
 	
 	float * audio_outbuffer(int chan);
@@ -33,5 +48,11 @@ extern "C" {
 	
 	audiomsg * audioq_peek(void);
 	audiomsg * audioq_next(void);
-}
+	
+	al_Window * al_window_get();
 
+#ifdef __cplusplus
+}
+#endif
+
+#endif

@@ -1,4 +1,5 @@
 #include "alive.h"
+#include "al_ffi.h"
 #include "uv.h"
 
 #include "stdio.h"
@@ -8,7 +9,6 @@
 #include "fcntl.h"
 
 #include "allocore/io/al_AudioIO.hpp"
-#include "allocore/io/al_Window.hpp"
 #include "allocore/graphics/al_Graphics.hpp"
 #include "allocore/math/al_Random.hpp"
 #include "allocore/system/al_Time.hpp"
@@ -111,21 +111,28 @@ struct FdOpen {
 	}
 	
 	~FdOpen() {
-	
+		uv_close((uv_handle_t*)&pipe, NULL);
 	}
 	
 	void read(uv_stream_t& stream, ssize_t nread, uv_buf_t& buf) {
 		if (nread == -1) {
 			if (uv_last_error(stream.loop).code == UV_EOF) {
-				uv_close((uv_handle_t*)&pipe, NULL);
+				delete this;
 			}
 		} else {
 			if (nread > 0) {
-				cb(buf.base, nread - 1);
+				if (cb(buf.base, nread - 1) == 0) {
+					// kill it.
+					free(buf.base);
+					uv_read_stop((uv_stream_t*)&pipe);
+					delete this;
+				}
 			}
 		}
 		// recycle:
 		if (buf.base) { free(buf.base); }
+		
+		//void uv_close(uv_handle_t* handle, uv_close_cb close_cb)
 	}
 	
 	static void static_read(uv_stream_t *stream, ssize_t nread, uv_buf_t buf) {
@@ -150,13 +157,40 @@ struct Idler {
 	}
 	
 	void idle(uv_idle_t& handle, int status) {
-		if (cb(status) != 0) {
+		if (cb(status) == 0) {
 			uv_idle_stop(&handle);
+			delete this;
 		}
 	}
 	
 	static void static_idle(uv_idle_t* handle, int status) {
 		((Idler *)(handle->data))->idle(*handle, status); 
+	}
+};
+
+struct FileWatcher {
+	uv_fs_event_t handle;
+	filewatcher_callback cb;
+	std::string filename;
+	
+	FileWatcher(uv_loop_t * loop, const char* filename, filewatcher_callback cb) {
+		handle.data = this;
+		this->cb = cb;
+		this->filename = filename;
+		uv_fs_event_init(loop, &handle, filename, static_notify, UV_FS_EVENT_RECURSIVE);
+	}
+	
+	void notify(int events, int status) {
+		if (cb(filename.c_str()) != 0) {
+			uv_fs_event_init(handle.loop, &handle, filename.c_str(), static_notify, UV_FS_EVENT_RECURSIVE);
+		} else {
+			// cleanup handle?
+			delete this;
+		}
+	}
+	
+	static void static_notify(uv_fs_event_t *handle, const char *filename, int events, int status) {
+		((FileWatcher *)(handle->data))->notify(events, status);
 	}
 };
 
@@ -170,6 +204,10 @@ void openfile(const char * path, buffer_callback cb) {
 
 void openfd(int fd, buffer_callback cb) {
 	new FdOpen(uv_default_loop(), fd, cb);
+}
+
+void watchfile(const char * filename, filewatcher_callback cb) {
+	new FileWatcher(uv_default_loop(), filename, cb);
 }
 
 //////////////////////////////////////////////////////////////////////////////////
@@ -237,7 +275,7 @@ struct Q {
 
 ////////////////////////////////////////////////////////////////////////////////
 
-rnd::Random<> rng;
+rnd::Random<> rng1;
 uv_loop_t *loop;
 Lua L, LA;
 AudioIO audio;
@@ -247,9 +285,13 @@ double maintime = 0;
 double audiolag = 2000; // in samples
 uv_loop_t *audioloop;
 audio_callback audiocb = 0;
-Window win;
+al_Window win;
 
-void tick() {
+al_Window * alive_window() {
+	return &win;
+}
+
+void alive_tick() {
 	uv_run_once(loop);
 	
 	fflush(stdin);
@@ -261,7 +303,7 @@ void tick() {
 	
 	// e.g. send a message:
 	//for (int i=0; i<100; i++) {
-	if (rng.uniform() < 0.1) {
+	if (rng1.uniform() < 0.1) {
 		audiomsg * m = audioq.head();
 		if (m) {
 			m->t = t;
@@ -274,43 +316,7 @@ void tick() {
 //	printf("used %04.1f%%\n", 100.*audioq.used() );
 }
 
-class App : public WindowEventHandler, public InputEventHandler {
-public:
-
-	App() {
-		win.append(*(WindowEventHandler *)this);
-		win.append(*(InputEventHandler *)this);
-	}
-
-	virtual ~App() {
-		
-	}
-	
-	virtual bool onKeyDown(const Keyboard& k){return true;}	///< Called when a keyboard key is pressed
-	virtual bool onKeyUp(const Keyboard& k){return true;}	///< Called when a keyboard key is released
-
-	virtual bool onMouseDown(const Mouse& m){return true;}	///< Called when a mouse button is pressed
-	virtual bool onMouseDrag(const Mouse& m){return true;}	///< Called when the mouse moves while a button is down
-	virtual bool onMouseMove(const Mouse& m){return true;}	///< Called when the mouse moves
-	virtual bool onMouseUp(const Mouse& m){return true;}	///< Called when a mouse button is released
-	virtual bool onCreate(){ return true; }					///< Called after window is created with valid OpenGL context
-	virtual bool onDestroy(){ return true; }				///< Called before the window and its OpenGL context are destroyed
-	
-	
-	virtual bool onResize(int dw, int dh){ return true; }	///< Called whenever window dimensions change
-	virtual bool onVisibility(bool v){ return true; }		///< Called when window changes from hidden to shown and vice versa
-	
-	virtual bool onFrame(){ 
-		Graphics gl;
-		gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-		
-		tick();
-
-		//printf(".");
-		return true; 
-	}
-	
-};
+////////////////////////////////////////////////////////////////////////////////
 
 float * audio_outbuffer(int chan) { return audio.outBuffer(chan); }
 const float * audio_inbuffer(int chan) { return audio.inBuffer(chan); }
@@ -335,7 +341,6 @@ audiomsg * audioq_next(void) {
 	return audioq.next();
 }
 
-
 void audioCB(al::AudioIOData& io) {
 
 	if (audiotime == 0) {
@@ -352,6 +357,16 @@ void audioCB(al::AudioIOData& io) {
 	audiotime = nexttime;
 
 	//if (io.time() < 0.1) printf("audio thread %lu\n", uv_thread_self());
+}
+
+int modifedmainlua(const char * filename) {
+	L.dofile(filename);
+	return 1;
+}
+
+void runmainlua(const char * filename) {
+	modifedmainlua(filename);
+	new FileWatcher(uv_default_loop(), filename, modifedmainlua);
 }
 
 int main(int argc, char * argv[]) {
@@ -380,7 +395,9 @@ int main(int argc, char * argv[]) {
 	lua_setglobal(L, "argv");
 	
 	// run startup script:
-	if (L.dofile("./alivetest.lua")) return -1;
+	//if (L.dofile("./alivetest.lua")) return -1;
+	
+	runmainlua("./alivetest.lua");
 	
 	// run startup script:
 	if (LA.dofile("./alivetestaudio.lua")) return -1;
@@ -388,7 +405,6 @@ int main(int argc, char * argv[]) {
 	// start threads:
 	audio.start();
 	
-	App app;
 	win.create(al::Window::Dim(300, 200), "alive");
 	win.startLoop();
 	

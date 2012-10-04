@@ -32,14 +32,15 @@ function generate_ffi_header {
 	echo Making FFI header
 	#gcc -E vm.h > vm_ffi.h
 	
-	gcc -E externs/libuv/include/uv.h > uv_ffi.h
+	# gcc -E externs/libuv/include/uv.h > uv_ffi.h
+	# gcc -E al_ffi.cpp > al_ffi.h
 }
 
 LLVMLIBS="-lLLVMRuntimeDyld -lLLVMObject -lLLVMLinker -lLLVMipo -lLLVMJIT -lLLVMExecutionEngine -lLLVMDebugInfo -lLLVMBitWriter -lLLVMX86Disassembler -lLLVMX86AsmParser -lLLVMX86CodeGen -lLLVMX86Desc -lLLVMX86AsmPrinter -lLLVMX86Utils -lLLVMX86Info -lLLVMArchive -lLLVMBitReader -lLLVMSelectionDAG -lLLVMAsmPrinter -lLLVMMCParser -lLLVMCodeGen -lLLVMScalarOpts -lLLVMInstCombine -lLLVMTransformUtils -lLLVMipa -lLLVMAnalysis -lLLVMTarget -lLLVMCore -lLLVMMC -lLLVMSupport"
 
 function build {
 	
-	SOURCES="alive.cpp"
+	SOURCES="*.cpp"
 	
 	echo Building
 	if [[ $PLATFORM == 'Darwin' ]]; then
