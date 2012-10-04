@@ -48,9 +48,12 @@ a {
 }
 #filename {
 	padding-left:.5em;
-	background-color:#633;
+	padding-top:.5em;
+	background-color:#222;
 	color:#ccc;
 	height:20px;
+	border-bottom: 1px solid #666;
+	font-family: Monospace;
 }
 #console {
 	border: 0px solid #f00;
@@ -63,7 +66,7 @@ a {
 	height:10em;
 }
 #consoleBar, #fileBar {
-	background-color:#ccc;
+	background-color:#666;
 	display:block;
 	position:relative;
 }

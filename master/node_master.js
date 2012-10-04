@@ -129,6 +129,7 @@ renderers_in.sockets.on('connection', function (socket) {
 		var name = msg.slice(0,3);
 		var _msg = msg.slice(4);
 		
+		_msg.replace('\n', '<br>');
 		//console.log("MESSAGE: " + name + " : " + _msg);
 		for(var key in editors) {
 			editors[key].emit(name, _msg +"<br>" );
