@@ -25,7 +25,7 @@ function draw()
 	gl.Begin(gl.QUADS)
 		gl.Vertex(0.9, .1, 0)
 		gl.Vertex(-1, -1, 0)
-		gl.Vertex(-.5, -1, 0)
+		gl.Vertex(-.1, -1, 0)
 		gl.Vertex(1, -1, 0)
 		
 	gl.End()
