@@ -233,6 +233,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -277,7 +279,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>23</integer>
+									<integer>15</integer>
 									<integer>11</integer>
 									<integer>0</integer>
 								</array>
@@ -300,7 +302,7 @@
 							<real>192</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>503 50 889 828 0 0 1440 878 </string>
+						<string>500 50 889 828 0 0 1440 878 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -311,14 +313,12 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>36575212161277BE009D11CC</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>alive.cpp</string>
+								<string>proxy.js</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -326,11 +326,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>36575213161277BE009D11CC</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>alive.cpp</string>
+										<string>proxy.js</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>3684D505161D0FE8001E34EA</string>
+										<string>3684D521161D13BF001E34EA</string>
 										<key>history</key>
 										<array>
 											<string>36575F2B1612A950009D11CC</string>
@@ -361,8 +361,6 @@
 											<string>36E503631616ED7900A85578</string>
 											<string>36E503891616F0E100A85578</string>
 											<string>36E5047916177D6800A85578</string>
-											<string>367BB534161A43AB008F8DE4</string>
-											<string>3684D41F161CF2D5001E34EA</string>
 											<string>3684D43D161CF50E001E34EA</string>
 											<string>3684D460161CF931001E34EA</string>
 											<string>3684D46C161CF95C001E34EA</string>
@@ -375,9 +373,11 @@
 											<string>3684D4E2161D0ACF001E34EA</string>
 											<string>3684D4F0161D0BCE001E34EA</string>
 											<string>3684D4F6161D0C56001E34EA</string>
-											<string>3684D500161D0F44001E34EA</string>
-											<string>3684D501161D0F44001E34EA</string>
-											<string>3684D502161D0F44001E34EA</string>
+											<string>3684D50B161D114D001E34EA</string>
+											<string>3684D51B161D13A7001E34EA</string>
+											<string>3684D51C161D13A7001E34EA</string>
+											<string>3684D51F161D13BF001E34EA</string>
+											<string>3684D520161D13BF001E34EA</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -393,7 +393,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {675, 782}}</string>
 								<key>RubberWindowFrame</key>
-								<string>503 50 889 828 0 0 1440 878 </string>
+								<string>500 50 889 828 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -418,7 +418,7 @@
 										<key>Frame</key>
 										<string>{{10, 27}, {675, -27}}</string>
 										<key>RubberWindowFrame</key>
-										<string>503 50 889 828 0 0 1440 878 </string>
+										<string>500 50 889 828 0 0 1440 878 </string>
 									</dict>
 									<key>Module</key>
 									<string>XCDetailModule</string>
@@ -697,7 +697,7 @@
 		<string>/Users/grahamwakefield/code/alive/projects/alive.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>503 50 889 828 0 0 1440 878 </string>
+	<string>500 50 889 828 0 0 1440 878 </string>
 	<key>WindowToolsV3</key>
 	<array>
 		<dict>

@@ -71,6 +71,7 @@ function watchdir(dirpath, cb) {
 	return files;
 }
 
+/*
 watchdir(".", function(p) {
 	console.log("modified file: " + p);
 	
@@ -79,6 +80,7 @@ watchdir(".", function(p) {
 		vm.stdin.write(p + "\n");
 	}
 });
+*/
 
 function launch(name) {
 	if (vm !== null) {
@@ -137,10 +139,12 @@ var connectMaster = function(service) {
 		});
 
 		master.on('pull', function(obj) {
+			console.log("got pull message");
 			if(pullNumber <= obj.number) {
-				exec("git pull origin master", {cwd: currentDir}, function() { console.log("MADE A PULL!"); } );
-				if (vm != undefined) vm.kill();
-				launch();
+				console.log("executing pull");
+				exec("git pull origin master", {cwd: currentDir}, function() { 
+					console.log("MADE A PULL!"); 
+				} );
 				pullNumber++;
 			}
 		});
