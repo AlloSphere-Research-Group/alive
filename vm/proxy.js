@@ -142,8 +142,9 @@ var connectMaster = function(service) {
 			console.log("got pull message");
 			if(pullNumber <= obj.number) {
 				console.log("executing pull");
-				exec("git pull origin master", {cwd: currentDir}, function() { 
+				exec("git pull origin master", {cwd: currentDir}, function(err, stdout , stderr) { 
 					console.log("MADE A PULL!"); 
+					console.log(err, stdout, stderr);
 				} );
 				pullNumber++;
 			}
