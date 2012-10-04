@@ -24,7 +24,7 @@ function draw()
 	gl.Rotate(os.time() - start, 0, 0, -1)
 	gl.Begin(gl.QUADS)
 		gl.Vertex(0.9, .1, 0)
-		gl.Vertex(-0.1, 1, 0)
+		gl.Vertex(-1, 1, 0)
 		gl.Vertex(-.5, -1, 0)
 		gl.Vertex(1, -1, 0)
 		
