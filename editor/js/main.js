@@ -25,6 +25,27 @@ window.connect = function(name, span) {
 	console.log("NAME = " + name);
 };
 
+/*var doc = null, editor = null;
+
+function setDoc(docName) {
+  document.title = docName;
+
+  sharejs.open(docName, function(error, newDoc) {
+      if (doc !== null) {
+          doc.close();
+          doc.detach_ace();
+      }
+
+      doc = newDoc;
+
+      if (error) {
+          console.error(error);
+          return;
+      }
+      doc.attach_cm(editor);
+  });
+};*/
+
 $(document).ready( function() {
 	$('#tabs').tabs();
 	cmd		= document.getElementById("command");
@@ -68,7 +89,7 @@ $(document).ready( function() {
 					});
 					$(a).text(name);
                   $(a).css({ display: "block", cursor:"pointer", marginTop:"5px",});
-				})();						
+				})();
 			}
 			// if(response.data[i].isDirectory) {
 			// 	r = "<a href='#' onclick='slaveSocket.emit(\'cmd\', \'cd " + response.data[i].name + "\')'>&#x25BA;" + response.data[i].name + "</a><br>";
@@ -87,12 +108,12 @@ $(document).ready( function() {
 	});
 	
 	slaveSocket.on('out', function(msg) {
-		$("#console-all").append(msg);
+		$("#console-all").append(msg+"<br>");
 		$("#consoleContainer").scrollTop($("#consoleContainer")[0].scrollHeight);
 	});
 
 	slaveSocket.on('err', function(msg) {
-		$("#console-all").append($("<span style='color:#f00'>"+msg+"</span>"));
+		$("#console-all").append($("<span style='color:#f00'>"+msg+"</span><br>"));
 		$("#consoleContainer").scrollTop($("#consoleContainer")[0].scrollHeight);
 	});
 	
@@ -114,6 +135,21 @@ $(document).ready( function() {
 		theme: "vibrant-ink",	
 	});
 	
+    //editor = CodeMirror(document.body, { mode: "coffeescript", tabSize: 2 });
+
+    //setDoc('cm');  // Hooking ShareJS and CodeMirror for the first time.
+
+    /*var namefield = document.getElementById('namefield');
+    function fn() {
+        var docName = namefield.value;
+        if (docName) setDoc(docName);
+    }
+
+    if (namefield.addEventListener) {
+        namefield.addEventListener('input', fn, false);
+    } else {
+        namefield.attachEvent('oninput', fn);
+    }*/
 
 	window.CodeMirror = CodeMirror;	
 	

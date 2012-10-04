@@ -9,6 +9,7 @@ var util		= require('util');
 var exec 		= require('child_process').exec;
 var path 		= require('path');
 var mdns 		= require('mdns');
+var sharejs 	= require('share').server;
 
 var editors_in 	 = require('socket.io').listen(8081);
 var renderers_in = require('socket.io').listen(8082);
@@ -56,11 +57,17 @@ editors_in.sockets.on('connection', function (socket) {
 			{cwd: editors[socket.addr].currentDir}, 
 			function() { 
 				console.log("MADE A COMMIT!");
-				console.log(renderers);
-				for(var key in renderers) {
-					console.log("TELLING RENDERER " + key + ":" + renderers[key].port + " TO PULL");
-					renderers[key].emit('pull', { number: pullNumber++} );
-				}
+				exec("git push origin master", {cwd: editors[socket.addr].currentDir}, function(err, stdout, stderr) {
+					
+					console.log("MADE A PUSH");
+					console.log(err, stdout, stderr);
+					
+					console.log(renderers);
+					for(var key in renderers) {
+						console.log("TELLING RENDERER " + key + ":" + renderers[key].port + " TO PULL");
+						renderers[key].emit('pull', { number: pullNumber++} );
+					}
+				});
 			} 
 		);
 	});
@@ -175,7 +182,7 @@ var server = http.createServer(function(req, res) {
 	var pathname = req.uri.pathname;
 	
 	// static file server:
-	//console.log(pathname);
+	//console.log("PATH" + pathname);
 	
 	if (pathname == "/") {
 		pathname = pathname + "index.htm";
@@ -230,8 +237,14 @@ var server = http.createServer(function(req, res) {
 		}
 	})
 });
-server.listen(port, '0.0.0.0');
 
+var options = {db: {type: 'none'}}; // See docs for options. {type: 'redis'} to enable persistance.
+server.listen(8080);
+// Attach the sharejs REST and Socket.io interfaces to the server
+sharejs.attach(server, options);
+
+//
+//console.log('Server running at http://127.0.0.1:8000/');
 var myIP = (function() {
 	var interfaces = os.networkInterfaces();
 	var addresses = [];
