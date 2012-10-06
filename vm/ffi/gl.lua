@@ -2078,15 +2078,21 @@ function gl.MultMatrix(t)
 end
 
 function gl.Normal(x, y, z)
-	if type(x) == "table" then x, y, z = unpack(x) end
-	lib.glVertex3d(x, y, z)
+	if type(x) == "number" then
+		lib.glNormal3d(x, y or 0, z or 0)
+	else
+		lib.glNormal3d(x.x, x.y, x.z)
+	end
 end
 
 function gl.PixelStore(p, v) lib.glPixelStoref(p, v) end
 
 function gl.Rotate(a, x, y, z)
-	if type(a) == "table" then a, x, y, z = unpack(a) end
-	lib.glRotated(a, x, y, z)
+	if type(x) ~= "number" then
+		lib.glRotated(a, x.x, x.y, x.z)
+	else
+		lib.glRotated(a, x, y, z)
+	end
 end
 
 function gl.Scale(x, y, z)
@@ -2111,8 +2117,11 @@ function gl.TexCoord(x, y, z, w)
 end
 
 function gl.Translate(x, y, z)
-	if type(x) == "table" then x, y, z = unpack(x) end
-	lib.glTranslated(x, y, z)
+	if type(x) == "number" then
+		lib.glTranslated(x, y, z)
+	else
+		lib.glTranslated(x.x, x.y, x.z)
+	end
 end
 
 function gl.Vertex(x, y, z, w)
@@ -2224,7 +2233,7 @@ end
 function gl.CreateShader(kind, code)
 	local shader = lib.glCreateShader(kind)
 	assert(shader ~= 0, "Failed to allocate shader; is the GL context ready?")
-	--print("shader", shader)
+	--print("shader", shader, kind, code)
 	if code then
 		local numshaders = 1
 		local codestr = ffi.new("const GLchar*[?]", numshaders)
@@ -2233,8 +2242,8 @@ function gl.CreateShader(kind, code)
 		codestr[0] = codeconstcharstar
 		local status = ffi.new("GLint[1]")
 		len[0] = #code
-		lib.glShaderSource(shader, 1, codestr, len)
-		lib.glGetShaderiv(shader, lib.GL_SHADER_SOURCE_LENGTH, status)
+		lib.glShaderSource(shader, 1, codestr, nil)
+		--lib.glGetShaderiv(shader, lib.GL_SHADER_SOURCE_LENGTH, status)
 		lib.glCompileShader(shader)
 		lib.glGetShaderiv(shader, lib.GL_COMPILE_STATUS, status)
 		if status[0] == gl.FALSE then
@@ -2254,6 +2263,7 @@ function gl.CreateShader(kind, code)
 end
 
 function gl.CreateProgram(...)
+	--print("creating program", ...)
 	local program = lib.glCreateProgram()
 	assert(program ~= 0, "Failed to allocate shader program; is the GL context ready?")
 	local args = {...}

@@ -301,15 +301,15 @@ void alive_tick() {
 	// process scheduled events up to t:
 	double t = audiotime + audiolag;
 	
-	// e.g. send a message:
-	//for (int i=0; i<100; i++) {
-	if (rng1.uniform() < 0.1) {
-		audiomsg * m = audioq.head();
-		if (m) {
-			m->t = t;
-			audioq.send();
-		}
-	}
+//	// e.g. send a message:
+//	//for (int i=0; i<100; i++) {
+//	if (rng1.uniform() < 0.1) {
+//		audiomsg * m = audioq.head();
+//		if (m) {
+//			m->t = t;
+//			audioq.send();
+//		}
+//	}
 	
 	maintime = t;
 	
@@ -406,7 +406,7 @@ int main(int argc, char * argv[]) {
 	// start threads:
 	audio.start();
 	
-	win.create(al::Window::Dim(300, 200), "alive");
+	win.create(al::Window::Dim(300, 600), "alive");
 	win.startLoop();
 	
 	return 0;

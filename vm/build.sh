@@ -40,7 +40,8 @@ LLVMLIBS="-lLLVMRuntimeDyld -lLLVMObject -lLLVMLinker -lLLVMipo -lLLVMJIT -lLLVM
 
 function build {
 	
-	SOURCES="*.cpp"
+	SOURCES="al_ffi.cpp alive.cpp"
+	#SOURCES="test.cpp"
 	
 	echo Building
 	if [[ $PLATFORM == 'Darwin' ]]; then

@@ -199,7 +199,7 @@ function vec(name, quatname)
 			return a.x==b.x and a.y==b.y and a.z==b.z
 		end,
 		__index = {
-			set = function(s, x, y, z) s.x = x; s.y = y; s.z = z end,
+			set = function(s, x, y, z) s.x = x; s.y = y or x; s.z = z or x end,
 			copy = function(s, q) s.x = q.x; s.y = q.y; s.z = q.z end,
 			zero = function(s) s.x = 0; s.y = 0; s.z = 0 end,
 			unpack = function(s) return s.x, s.y, s.z end,
@@ -598,7 +598,7 @@ function quat(name, vecname)
 			--]]
 			
 			toAxisAngle = function (s)
-				local unit = w*w
+				local unit = s.w*s.w
 				if unit < QUAT_ACCURACY_MIN then
 					-- |cos x| must always be less than or equal to 1!
 					local invsin = 1/sqrt(1 - unit) --approx = 1/sqrt(1 - cos^2(theta/2))
