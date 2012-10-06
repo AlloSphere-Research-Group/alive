@@ -2063,11 +2063,18 @@ function gl.Get(p) error("TODO for the array returns.") end
 
 function gl.GetString(p) return ffi.string(lib.glGetString(p)) end
 
-function gl.LoadMatrix(t) 
-	assert(type(t) == "table", "gl.LoadMatrix requires a table argument")
-	local m = ffi.new("GLdouble[?]", 16)
-	for i = 1, 16 do m[i-1] = t[i] end
-	lib.glLoadMatrixd(m)
+function gl.LoadMatrix(t, ...) 
+	if type(t) == "number" then
+		t = {t, ...}
+	end
+	if type(t) == "table" then
+		t = ffi.new("GLdouble[?]", 16, t)
+		for i = 0, 15, 4 do 
+			--print(t[i], t[i+1], t[i+2], t[i+3])
+		end
+		--t = m
+	end
+	lib.glLoadMatrixd(t)
 end
 
 function gl.MultMatrix(t) 

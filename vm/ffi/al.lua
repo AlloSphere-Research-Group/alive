@@ -180,6 +180,21 @@ function vec(name, quatname)
 				return ffi.new(name, a.x/b.x, a.y/b.y, a.z/b.z) 
 			end
 		end,
+		__mod = function(a, b)
+			if type(b) == "number" then
+				return ffi.new(name, 
+					wrap(a.x, 0, b),
+					wrap(a.y, 0, b),
+					wrap(a.z, 0, b)
+				)
+			else
+				return ffi.new(name, 
+					wrap(a.x, 0, b.x),
+					wrap(a.y, 0, b.y),
+					wrap(a.z, 0, b.z)
+				)
+			end
+		end,
 		__pow = function(a, b) 
 			if type(b) == "number" then 
 				return ffi.new(name, a.x^b, a.y^b, a.z^b) 
@@ -219,7 +234,7 @@ function vec(name, quatname)
 				s.y = s.y + v 
 				s.z = s.z + v
 			end,
-			scale = function(s, v) 
+			scale = function(s, v)
 				s.x = s.x * v
 				s.y = s.y * v 
 				s.z = s.z * v

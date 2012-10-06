@@ -4,6 +4,7 @@
 local ffi = require "ffi"
 local alive = require "ffi.alive"
 local gl = require "ffi.gl"
+local glutils = require "ffi.gl.utils"
 local Shader = require "ffi.gl.Shader"
 local al = require "ffi.al"
 local Vec3f, Quatf = al.Vec3f, al.Quatf
@@ -16,16 +17,44 @@ local start = os.time()
 
 local updating = true
 
-local function Nav()
-	local self = {
-		pos = Vec3f(),
-		scale = Vec3f(),
-		quat = Quatf(),
-		color = Vec3f(),
-	}
+local world
+
+local Nav = {}
+Nav.__index = Nav
+setmetatable(Nav, {
+	__call = function(_)
+		return setmetatable({
+			move = Vec3f(),
+			turn = Vec3f(),
+			pos = Vec3f(),
+			scale = Vec3f(),
+			quat = Quatf():identity(),
+			color = Vec3f(),
+			
+		}, Nav)
+	end
+})	
+
+function Nav:step()
+	-- standard pipeline:
+	self.pos:add(			
+		self.quat:ux() * self.move.x
+		+ self.quat:uy() * self.move.y
+		+ self.quat:uz() * -self.move.z
+	)
+	self.quat = self.quat * Quatf():fromEuler(self.turn.y, self.turn.x, self.turn.z)
+	self.quat:normalize()
 	
-	return self
+	-- wrap:
+	self.pos = self.pos % world.dim
 end
+
+world = {
+	dim = Vec3f(32, 32, 32),
+	nav = Nav(),
+}
+
+world.nav.pos = world.dim/2
 
 local agents = {}
 for i = 1, 100 do
@@ -33,17 +62,65 @@ for i = 1, 100 do
 	agent.nav = Nav()
 	agent.nav.color:set( random(), random(), random() )
 	agent.nav.pos:set( srandom(), srandom(), srandom() )
-	agent.nav.scale:set( 0.05 )
+	agent.nav.pos:mul(world.dim / 2)
+	agent.nav.pos:add(world.nav.pos)
+	agent.nav.scale:set( 0.2 )
 	agent.nav.quat:fromEuler(srandom(), srandom(), srandom())
 	agents[i] = agent
 end
 
+local t = 0.1
+local nav_move = Vec3f(t, t, -t)
+local t = math.pi * 0.01
+local nav_turn = Vec3f(t, t, t)
+local keydown = {
+	[46]  = function() world.nav.move.x =  nav_move.x end,
+	[44]  = function() world.nav.move.x = -nav_move.x end,
+	[39]  = function() world.nav.move.y =  nav_move.y end,
+	[47]  = function() world.nav.move.y = -nav_move.y end,
+	[270] = function() world.nav.move.z =  nav_move.z end,
+	[272] = function() world.nav.move.z = -nav_move.z end,
+	
+	[120] = function() world.nav.turn.x =  nav_turn.x end,
+	[119] = function() world.nav.turn.x = -nav_turn.x end,
+	[271] = function() world.nav.turn.y =  nav_turn.y end,
+	[269] = function() world.nav.turn.y = -nav_turn.y end,
+	[97] = function() world.nav.turn.z =  nav_turn.z end,
+	[100]  = function() world.nav.turn.z = -nav_turn.z end,
+}
+
+local keyup = {
+	[46]  = function() world.nav.move.x = 0 end,
+	[44]  = function() world.nav.move.x = 0 end,
+	[39]  = function() world.nav.move.y = 0 end,
+	[47]  = function() world.nav.move.y = 0 end,
+	[270] = function() world.nav.move.z = 0 end,
+	[272] = function() world.nav.move.z = 0 end,
+	
+	[120] = function() world.nav.turn.x = 0 end,
+	[119] = function() world.nav.turn.x = 0 end,
+	[271] = function() world.nav.turn.y = 0 end,
+	[269] = function() world.nav.turn.y = 0 end,
+	[97] = function() world.nav.turn.z = 0 end,
+	[100]  = function() world.nav.turn.z = 0 end,
+}
+
 function alive:onKey(e, k)
 	if e == "down" then
-		if k == 27 then
+		if keydown[k] then
+			keydown[k]()
+		elseif k == 27 then
 			self:fullscreen(not self:fullscreen())
 		elseif k == 32 then
 			updating = not updating
+		else
+			print(e, k)
+		end
+	elseif e == "up" then
+		if keyup[k] then
+			keyup[k]()
+		else
+			print(e, k)
 		end
 	end
 end
@@ -100,7 +177,7 @@ vec3 quat_rotate(vec4 q, vec3 v) {
 void main() {
 	vec3 V = position.xyz;
 	vec3 P = translate + quat_rotate(rotate, V * scale);
-	gl_Position = gl_ModelViewProjectionMatrix * vec4(P, 1.);
+	gl_Position = gl_ProjectionMatrix * gl_ModelViewMatrix * vec4(P, 1.);
 	N = normal;
 	C = color;
 }
@@ -169,14 +246,45 @@ end
 function updateWorld()
 	-- update all agents:
 	for i, agent in ipairs(agents) do
-		agent.nav.pos:add(agent.nav.quat:uf() * agent.nav.scale.z * 0.5)
-		agent.nav.quat:mul(Quatf():fromEuler(0.1, 0, 0))
+		local nav = agent.nav
+		
+		-- inputs:
+		nav.move:set(0, 0, nav.scale.z)
+		nav.turn:set(0.1*srandom(), 0.1, srandom()*0.5)
+		
+		-- standard pipeline:
+		nav:step()
+		--[[
+		nav.pos:add(			
+			nav.quat:ux() * nav.move.x
+			+ nav.quat:uy() * nav.move.y
+			+ nav.quat:uz() * -nav.move.z
+		)
+		nav.quat:mul(Quatf():fromEuler(nav.turn.y, nav.turn.x, nav.turn.z))
+		
+		-- wrap:
+		nav.pos = nav.pos % world.dim
+		--print(nav.pos)
+		--]]
 	end
 end
 
-function draw()
+function draw(w, h, q)
 	gl.ClearColor(0.5, 0.3, 0, 1)
 	gl.Clear()
+	
+	gl.MatrixMode(gl.PROJECTION)
+	gl.LoadMatrix(glutils.perspective(90, w/h, 0.01, 100))
+	
+	q = world.nav.quat * q
+	
+	gl.MatrixMode(gl.MODELVIEW)
+	gl.LoadMatrix(glutils.lookat(
+		world.nav.pos,
+		world.nav.pos - q:uz(),
+		q:uy()
+	))
+	
 	--gl.PolygonMode(gl.FRONT_AND_BACK, gl.LINE)
 	gl.PolygonMode(gl.FRONT_AND_BACK, gl.FILL)
 	gl.Enable(gl.DEPTH_TEST)
@@ -285,21 +393,23 @@ function alive:onFrame(w, h)
 		
 		created = true
 	end
-
+	
+	world.nav:step()
 	if updating then
 		updateWorld()
 	end	
+	
 
 	local h2 = h/2
 	gl.Enable(gl.SCISSOR_TEST)
 	
 	gl.Viewport(0, 0, w, h2)
 	gl.Scissor(0, 0, w, h2)
-	draw()
+	draw(w, h2, Quatf():identity())
 	
 	gl.Viewport(0, h2, w, h2)
 	gl.Scissor(0, h2, w, h2)
-	draw()
+	draw(w, h2, Quatf():fromAxisY(math.pi))
 end
 
 print("ok")
