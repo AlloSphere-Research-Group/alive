@@ -9,23 +9,7 @@ local Window = require "ffi.Window"
 local gl = require "ffi.gl"
 local C = ffi.C
 
-ffi.cdef [[
-	typedef struct al_Window al_Window;
-
-	typedef int (*idle_callback)(int status);
-	typedef int (*buffer_callback)(char * buffer, int size);
-	typedef int (*filewatcher_callback)(const char * filename);
-	
-	void idle(idle_callback cb);
-	void openfile(const char * path, buffer_callback cb);
-	void openfd(int fd, buffer_callback cb);
-	void watchfile(const char * filename, filewatcher_callback cb);
-	
-	al_Window * alive_window();
-	void alive_tick();
-	
-	void al_sleep(double);
-]]
+require "ffi.aliveheader"
 
 C.openfd(0, function(buffer, size)
 	print("received:", size)

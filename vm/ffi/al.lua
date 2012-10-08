@@ -214,6 +214,16 @@ function vec(name, quatname)
 			return a.x==b.x and a.y==b.y and a.z==b.z
 		end,
 		__index = {
+			clone = function(s)
+				return ffi.new(name, s.x, s.y, s.z)
+			end,
+			map = function(s, f)
+				s.x = f(s.x)
+				s.y = f(s.y)
+				s.z = f(s.z)
+				return s
+			end,
+			
 			set = function(s, x, y, z) s.x = x; s.y = y or x; s.z = z or x end,
 			copy = function(s, q) s.x = q.x; s.y = q.y; s.z = q.z end,
 			zero = function(s) s.x = 0; s.y = 0; s.z = 0 end,
@@ -270,6 +280,15 @@ function vec(name, quatname)
 				return ffi.new(name, s.x*scale, s.y*scale, s.z*scale)
 			end,
 			
+			normalized = function(s)
+				local unit = s:dot(s)	-- magSqr
+				if (unit*unit < QUAT_EPSILON) then return ffi.new(name, 0, 0, 1) end
+				local scale = 1./sqrt(unit)
+				s.x = s.x*scale
+				s.y = s.y*scale
+				s.z = s.z*scale
+			end,
+			
 			-- returns a quat:
 			getRotationTo = function(src, dst)
 				local q = ffi.new(quatname, 1, 0, 0, 0)
@@ -321,7 +340,6 @@ function vec(name, quatname)
 
 			-- linear interpolation
 			lerp = function(s, b, t)
-				assert(b and ffi.istype(b, ctype))
 				return s + t * (b-s)
 			end,
 			

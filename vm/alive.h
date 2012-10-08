@@ -4,10 +4,9 @@
 #ifdef __cplusplus
 
 #include "al_ffi.h"
-
 extern "C" {
 #else
-typedef struct al_Window al_Window;
+	typedef struct al_Window al_Window;
 #endif
 
 	typedef int (*idle_callback)(int status);
@@ -25,7 +24,8 @@ typedef struct al_Window al_Window;
 	
 	void al_sleep(double);
 	
-		
+	/* audio engine */
+	
 	typedef void (*audio_callback)(double sampletime);
 	
 	float * audio_outbuffer(int chan);
@@ -41,13 +41,40 @@ typedef struct al_Window al_Window;
 	double audio_cpu();
 	void audio_set_callback(audio_callback cb);
 	
-	typedef struct audiomsg {
-		double t;
-		char data[24];
+	typedef enum {
+		AUDIO_OTHER = 0,
+		AUDIO_CLEAR,
+		AUDIO_POS,
+		AUDIO_QUAT,
+		AUDIO_VOICE_NEW,
+		AUDIO_VOICE_FREE,
+		AUDIO_VOICE_POS,	
+		AUDIO_VOICE_PARAM,
+	} audiocmd;
+	
+	typedef union audiomsg {
+		struct {
+			uint32_t cmd;
+			uint32_t id;
+			union {
+				struct { float x, y, z, w; };
+				char data[16];
+			};
+		};
+		char str[24];
 	} audiomsg;
 	
-	audiomsg * audioq_peek(void);
-	audiomsg * audioq_next(void);
+	typedef struct audiomsg_packet {	
+		// body goes first so that (audiomsg *) cast works:
+		audiomsg body;
+		// message time (in samples)
+		double t;	
+	} audiomsg_packet;
+	
+	audiomsg * audioq_head();
+	void audioq_send();
+	audiomsg * audioq_peek(double maxtime);
+	audiomsg * audioq_next(double maxtime);
 	
 	al_Window * al_window_get();
 

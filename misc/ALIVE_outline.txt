@@ -47,6 +47,9 @@ creature[50]: agent
 
 
 
+creature[50]:
+	move forward (z scale)
+	turn randmoly
 
 
 

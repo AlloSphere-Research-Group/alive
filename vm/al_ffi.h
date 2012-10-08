@@ -1,9 +1,10 @@
 #ifndef AL_FFI_H
 #define AL_FFI_H
 
-#include "allocore/graphics/al_Image.hpp"
 #include "allocore/graphics/al_Asset.hpp"
 #include "allocore/graphics/al_Font.hpp"
+#include "allocore/graphics/al_Image.hpp"
+#include "allocore/graphics/al_Isosurface.hpp"
 #include "allocore/system/al_MainLoop.hpp"
 #include "allocore/system/al_Thread.hpp"
 #include "allocore/io/al_File.hpp"

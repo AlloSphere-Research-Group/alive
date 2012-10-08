@@ -178,6 +178,7 @@ struct FileWatcher {
 		this->cb = cb;
 		this->filename = filename;
 		uv_fs_event_init(loop, &handle, filename, static_notify, UV_FS_EVENT_RECURSIVE);
+		//printf("created fw %p %s on loop %p\n", &handle, filename, loop);
 	}
 	
 	void notify(int events, int status) {
@@ -261,9 +262,8 @@ struct Q {
 	T * peek() const {
 		return read == write ? 0 : &q[read];
 	}
-	T * next() {
+	void next() {
 		read = (read + 1) & wrap;
-		return peek();
 	}
 	
 	double used() const {
@@ -279,7 +279,7 @@ rnd::Random<> rng1;
 uv_loop_t *loop;
 Lua L, LA;
 AudioIO audio;
-Q<audiomsg> audioq;
+Q<audiomsg_packet> audioq;
 double audiotime = 0;
 double maintime = 0;
 double audiolag = 2000; // in samples
@@ -300,17 +300,7 @@ void alive_tick() {
 	
 	// process scheduled events up to t:
 	double t = audiotime + audiolag;
-	
-//	// e.g. send a message:
-//	//for (int i=0; i<100; i++) {
-//	if (rng1.uniform() < 0.1) {
-//		audiomsg * m = audioq.head();
-//		if (m) {
-//			m->t = t;
-//			audioq.send();
-//		}
-//	}
-	
+	// (task queue loop goes here)
 	maintime = t;
 	
 //	printf("used %04.1f%%\n", 100.*audioq.used() );
@@ -334,11 +324,21 @@ void audio_set_callback(audio_callback cb) {
 	audiocb = cb;
 }
 
-audiomsg * audioq_peek(void) {
-	return audioq.peek();
+audiomsg * audioq_head() {
+	return (audiomsg *)audioq.head();
 }
-audiomsg * audioq_next(void) {
-	return audioq.next();
+void audioq_send() {
+	audioq.q[audioq.write].t = audiotime + audiolag;
+	audioq.send();
+}
+
+audiomsg * audioq_peek(double maxtime) {
+	audiomsg_packet * p = audioq.peek();
+	return (p && p->t < maxtime) ? (audiomsg *)p : 0;
+}
+audiomsg * audioq_next(double maxtime) {
+	audioq.next();
+	return audioq_peek(maxtime);
 }
 
 void audioCB(al::AudioIOData& io) {
@@ -350,24 +350,33 @@ void audioCB(al::AudioIOData& io) {
 	double nexttime = audiotime + io.framesPerBuffer();
 	
 	// libuv in audio thread?
-	//uv_run_once(audioloop);
+	uv_run_once(audioloop);
 	
 	if (audiocb) audiocb(audiotime);
+	
+	//printf(".\n");
 	
 	audiotime = nexttime;
 
 	//if (io.time() < 0.1) printf("audio thread %lu\n", uv_thread_self());
 }
 
+int modifedaudiolua(const char * filename) {
+	printf("modified %s\n", filename);
+	return LA.dofile(filename) == 0;
+}
+
 int modifedmainlua(const char * filename) {
-	printf("modifedmainlua\n");
-	L.dofile(filename);
+	printf("modified %s\n", filename);
+	return L.dofile(filename) == 0;
+}
+
+int audio_idle(int status) {
 	return 1;
 }
 
-void runmainlua(const char * filename) {
-	modifedmainlua(filename);
-	new FileWatcher(uv_default_loop(), filename, modifedmainlua);
+int main_idle(int status) {
+	return 1;
 }
 
 int main(int argc, char * argv[]) {
@@ -381,13 +390,13 @@ int main(int argc, char * argv[]) {
 
 	// initialize libuv:
 	loop = uv_default_loop();
-	//audioloop = uv_loop_new();
+	audioloop = uv_loop_new();
 	
 	// configure audio:
 	audio.framesPerBuffer(256);
 	audio.callback = audioCB;
 
-	// set up the Lua state:
+	// set up the Lua state(s):
 	lua_newtable(L);
 	for (int i=0; i<argc; i++) {
 		lua_pushstring(L, argv[i]);
@@ -395,18 +404,29 @@ int main(int argc, char * argv[]) {
 	}
 	lua_setglobal(L, "argv");
 	
-	// run startup script:
-	//if (L.dofile("./alivetest.lua")) return -1;
+	const char * main_filename = "./alivetest.lua";
+	if (modifedmainlua(main_filename) == 0) return -1;
+	new FileWatcher(uv_default_loop(), main_filename, modifedmainlua);
+	// for some reason need this to stop loop from blocking:
+	new Idler(uv_default_loop(), main_idle);
 	
-	runmainlua("./alivetest.lua");
+	lua_newtable(LA);
+	for (int i=0; i<argc; i++) {
+		lua_pushstring(LA, argv[i]);
+		lua_rawseti(LA, -2, i+1);
+	}
+	lua_setglobal(LA, "argv");
 	
-	// run startup script:
-	if (LA.dofile("./alivetestaudio.lua")) return -1;
+	const char * audio_filename = "./alivetestaudio.lua";
+	if (modifedaudiolua(audio_filename) == 0) return -1;
+	new FileWatcher(audioloop, audio_filename, modifedaudiolua);
+	// for some reason need this to stop loop from blocking:
+	new Idler(audioloop, audio_idle);
 	
 	// start threads:
 	audio.start();
 	
-	win.create(al::Window::Dim(300, 600), "alive");
+	win.create(al::Window::Dim(400, 800), "alive");
 	win.startLoop();
 	
 	return 0;

@@ -30,10 +30,8 @@ function generate_ffi_header {
 	
 	# make the ffi header:
 	echo Making FFI header
-	#gcc -E vm.h > vm_ffi.h
 	
-	# gcc -E externs/libuv/include/uv.h > uv_ffi.h
-	# gcc -E al_ffi.cpp > al_ffi.h
+	luajit h2ffi.lua alive.h ffi/aliveheader.lua 
 }
 
 LLVMLIBS="-lLLVMRuntimeDyld -lLLVMObject -lLLVMLinker -lLLVMipo -lLLVMJIT -lLLVMExecutionEngine -lLLVMDebugInfo -lLLVMBitWriter -lLLVMX86Disassembler -lLLVMX86AsmParser -lLLVMX86CodeGen -lLLVMX86Desc -lLLVMX86AsmPrinter -lLLVMX86Utils -lLLVMX86Info -lLLVMArchive -lLLVMBitReader -lLLVMSelectionDAG -lLLVMAsmPrinter -lLLVMMCParser -lLLVMCodeGen -lLLVMScalarOpts -lLLVMInstCombine -lLLVMTransformUtils -lLLVMipa -lLLVMAnalysis -lLLVMTarget -lLLVMCore -lLLVMMC -lLLVMSupport"
@@ -77,7 +75,7 @@ function build {
 
 clean
 #allocore
-#generate_ffi_header
+generate_ffi_header
 build
 
 

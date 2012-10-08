@@ -242,6 +242,29 @@ extern "C" {
 	}
 }
 
+// Isosurface:
+typedef al::Isosurface al_Isosurface;
+extern "C" {
+	al_Isosurface * al_isosurface_new() { 
+		al_Isosurface * self = new Isosurface();
+		self->primitive(Graphics::TRIANGLES);
+		return self; 
+	}
+	void al_isosurface_free(al_Isosurface * self) { delete self; }
+	
+	void al_isosurface_level(al_Isosurface * self, double level) {
+		self->level(level);
+	}
+	void al_isosurface_generate(al_Isosurface * self, float * data, int dim) {
+		self->generate(data, dim, 1./dim);
+	}
+	
+	void al_isosurface_draw(al_Isosurface * self) {
+		Graphics gl;
+		gl.draw(*self);
+	}
+};
+
 // Font ffi:
 typedef al::Font al_Font;
 extern "C" {

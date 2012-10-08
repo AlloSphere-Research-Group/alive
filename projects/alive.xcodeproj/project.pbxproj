@@ -3729,6 +3729,9 @@
 		3684D49F161CFBDB001E34EA /* alive.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = alive.lua; sourceTree = "<group>"; };
 		3684D4AC161D077E001E34EA /* al_ffi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = al_ffi.h; sourceTree = "<group>"; };
 		36B47CD1161FE2110077650E /* test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test.cpp; sourceTree = "<group>"; };
+		36B47F161621FD400077650E /* h2ffi.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = h2ffi.lua; sourceTree = "<group>"; };
+		36B47F2F1621FF150077650E /* aliveheader.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = aliveheader.lua; sourceTree = "<group>"; };
+		36E43BBC16238098003881BF /* Isosurface.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = Isosurface.lua; sourceTree = "<group>"; };
 		36E5014A161659AA00A85578 /* alivetest.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = alivetest.lua; sourceTree = "<group>"; };
 		36E5023B1616812300A85578 /* alivetestaudio.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = alivetestaudio.lua; sourceTree = "<group>"; };
 		36E5FF971615538A00A85578 /* alive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = alive.h; sourceTree = "<group>"; };
@@ -7285,6 +7288,7 @@
 				36207BD01614CD9A001D4BEE /* notes.txt */,
 				3657550D16127877009D11CC /* install_dependencies.sh */,
 				3657550C1612783B009D11CC /* build.sh */,
+				36B47F161621FD400077650E /* h2ffi.lua */,
 				361764631613B55600C2748F /* proxy.js */,
 				3657555C16128C93009D11CC /* modules */,
 				36E5FFA21615541C00A85578 /* include */,
@@ -10491,6 +10495,7 @@
 		3684D47A161CF9E4001E34EA /* ffi */ = {
 			isa = PBXGroup;
 			children = (
+				36B47F2F1621FF150077650E /* aliveheader.lua */,
 				3684D49F161CFBDB001E34EA /* alive.lua */,
 				3684D47B161CF9E4001E34EA /* al.lua */,
 				3684D47C161CF9E4001E34EA /* compiler.lua */,
@@ -10503,6 +10508,7 @@
 				3684D488161CF9E4001E34EA /* Image.lua */,
 				3684D489161CF9E4001E34EA /* llvm.lua */,
 				3684D48A161CF9E4001E34EA /* Main.lua */,
+				36E43BBC16238098003881BF /* Isosurface.lua */,
 				3684D48B161CF9E4001E34EA /* Mesh.lua */,
 				3684D48C161CF9E4001E34EA /* Thread.lua */,
 			);
