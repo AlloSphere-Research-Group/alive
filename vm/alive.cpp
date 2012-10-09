@@ -380,6 +380,10 @@ int main_idle(int status) {
 }
 
 int main(int argc, char * argv[]) {
+
+	for (int i = -20; i<10; i++) {
+		printf("%d %d\n", i, i >= 0 ? i % 5 : ( 5*((-1-i)/5 + 1) + i));
+	}
 	
 	// execute in the context of wherever this is run from:
 	chdir("./");

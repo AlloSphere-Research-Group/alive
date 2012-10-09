@@ -5,10 +5,11 @@ local lib = ffi.C
 
 ffi.cdef [[
 	typedef struct al_Isosurface al_Isosurface;
-	al_Isosurface * al_isosurface_new();
+	al_Isosurface * al_isosurface_new(int dim);
 	void al_isosurface_free(al_Isosurface * self);
 	void al_isosurface_level(al_Isosurface * self, double s);
-	void al_isosurface_generate(al_Isosurface * self, float * data, int dim);
+	void al_isosurface_generate(al_Isosurface * self, float * data);
+	void al_isosurface_generate_shifted(al_Isosurface * self, float * data, const int sx, const int sy, const int sz);
 	void al_isosurface_generate_normals(al_Isosurface * self);
 	void al_isosurface_draw(al_Isosurface * self);
 	
@@ -27,8 +28,8 @@ local Isosurface = {
 Isosurface.__index = Isosurface
 
 setmetatable(Isosurface, {
-	__call = function(class, path)
-		local s = lib.al_isosurface_new()
+	__call = function(class, dim)
+		local s = lib.al_isosurface_new(dim)
 		ffi.gc(s, lib.al_isosurface_free)
 		return s
 	end,

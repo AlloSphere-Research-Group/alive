@@ -20,7 +20,7 @@ local ceil, floor = math.ceil, math.floor
 local pi = math.pi
 
 local start = os.time()
-local updating = true
+if updating == nil then updating = true end
 
 local Field = {}
 Field.__index = Field
@@ -187,8 +187,8 @@ function Field.map_rec(f)
 	end
 end
 
-Field.noise = Field.map(function(x, y, z)
-	return random()
+Field.noise = Field.map_rec(function(current, x, y, z, factor)
+	return current + srandom()*factor
 end)
 
 Field.decay = Field.map_rec(function(current, x, y, z, factor)
@@ -199,6 +199,42 @@ Field.min = Field.map_rec(function(current, x, y, z, factor)
 	return min(current, factor)
 end)
 
+--[[
+
+	'Infinite' world
+	
+	Viewer and Objects have an absolute world position, which is unbounded
+		Each viewer/object also has a local coordinate frame
+	
+	Field-space is axis-aligned to world, but repeats at world.dim
+		(so that temporal feedback works)
+		-> mapping position to field-space is wrap(pos, 0, world.dim)
+			(might also include scale, offset for low-res fields)
+	
+	Active-space is centered on the viewer, but voxel+axis aligned.
+		origin := floor(view.pos) - world.dim/2
+		-> mapping position to active-space:
+			apos := origin + wrap(pos - origin, 0, world.dim)
+		anything outside of this region is 'inactive':
+			is_active := apos >= 0 && apos < world.dim
+		compare new/old is_active 
+			to determine whether to add/remove collision-detection
+					
+	World-wrapping is also defined by active-space: 
+		position := apos
+		
+	Rendering field: 
+		for texture3D, make sure wrapping is enabled
+			texcoord := position/world.dim
+			(might also include scale, offset for low-res fields)
+		for isosurface,
+			wrapping vertices will give bad results (giant lines)
+			instead need to shift at generate() time
+				use generate_shifted with active.origin
+				
+	
+	
+--]]
 
 local Nav = {}
 Nav.__index = Nav
@@ -216,16 +252,23 @@ setmetatable(Nav, {
 	end
 })
 
-world = {
+world = world or {
 	dim = Vec3f(32, 32, 32),
 	nav = Nav(),
+	active_origin = Vec3f(0, 0, 0),	
+	infinite = true,
+	ambient_color = Vec3f(
+		0.3 + 0.1*srandom(), 
+		0.3 + 0.1*srandom(), 
+		0.3 + 0.1*srandom()
+	),
 }
-world.nav.pos = world.dim/2
+world.nav.pos = world.nav.pos or world.dim/2
 
 sugar = sugar or Field(world.dim)
 --sugar:noise()
 
-sugariso = sugariso or Isosurface()
+sugariso = sugariso or Isosurface(world.dim.x)
 sugariso:level(0.1)
 
 function Nav:step()
@@ -237,9 +280,6 @@ function Nav:step()
 	)
 	self.quat = self.quat * Quatf():fromEuler(self.turn.y, self.turn.x, self.turn.z)
 	self.quat:normalize()
-	
-	-- wrap:
-	self.pos = self.pos % world.dim
 end
 
 
@@ -315,6 +355,10 @@ local keydown = {
 		world.nav.pos = world.dim / 2
 		world.nav.quat = Quatf:identity()
 	end,
+	
+	[string.byte("n")] = function() 
+		sugar:noise(0.000001)
+	end,
 }
 
 local keyup = {
@@ -381,8 +425,11 @@ attribute vec4 rotate;
 attribute vec3 translate;
 attribute vec3 scale;
 
+uniform float far;
+
 varying vec4 C;
 varying vec3 N;
+varying float F;
 
 //	q must be a normalized quaternion
 vec3 quat_rotate(vec4 q, vec3 v) {
@@ -405,7 +452,12 @@ vec3 quat_rotate(vec4 q, vec3 v) {
 void main() {
 	vec3 V = position.xyz;
 	vec3 P = translate + quat_rotate(rotate, V * scale);
-	gl_Position = gl_ProjectionMatrix * gl_ModelViewMatrix * vec4(P, 1.);
+	vec4 M = gl_Position = gl_ProjectionMatrix * gl_ModelViewMatrix * vec4(P, 1.);
+
+	// fog effect
+	float dist = gl_Position.z / far;
+	F = 1.-pow(dist, 4.);
+	
 	N = normal;
 	C = color;
 }
@@ -414,16 +466,20 @@ void main() {
 fs = [[
 #version 110
 
+uniform vec3 ambient;
+
 varying vec4 C;
 varying vec3 N;
+varying float F;
 
 void main() {
 	
 	vec3 L = vec3(1, 1, -1);
 	float l = max(0., dot(N, L));
 	
-	vec3 color = mix(vec3(0.2), C.rgb, l+0.2);
-	gl_FragColor = vec4(color, C.a);
+	vec3 color = ambient + C.rgb*l;
+	
+	gl_FragColor = vec4(color, C.a*F);
 }
 ]]
 
@@ -478,8 +534,6 @@ function updateWorld()
 	sugar:diffuse(0.01)
 	-- clip:
 	--sugar:min(2)
-	-- update iso:
-	sugariso:generate(sugar.data, sugar.dim.x)
 	
 	-- update all agents:
 	for i, agent in ipairs(agents) do
@@ -523,6 +577,12 @@ function updateWorld()
 		-- standard pipeline:
 		nav:step()
 		
+		-- calculate position in 'active' space:
+		nav.apos = world.active_origin + ((nav.pos - world.active_origin) %world.dim)
+		-- wrap into active space:
+		nav.pos = nav.apos
+		-- (else mark as inactive?)
+		
 		local msg = C.audioq_head()
 		if msg ~= nil then
 			msg.cmd = C.AUDIO_VOICE_POS
@@ -561,6 +621,8 @@ function draw(w, h, q)
 	--print(shaderprogram)
 	--gl.UseProgram(shaderprogram)
 	program:bind()
+	program:uniform("ambient", world.ambient_color.x, world.ambient_color.y, world.ambient_color.z)
+	program:uniform("far", 12)
 	
 	-- map buffers:
 	gl.BindBuffer(gl.ARRAY_BUFFER, vertexbuffer)
@@ -596,7 +658,7 @@ function draw(w, h, q)
 		program:attribute("translate", nav.pos.x, nav.pos.y, nav.pos.z)
 		program:attribute("color", nav.color.x, nav.color.y, nav.color.z, 1)
 		
-		gl.DrawArrays(gl.TRIANGLES, 0, 12)
+		gl.DrawArrays(gl.TRIANGLES, 0, 14)
 	end
 	
 	--gl.DisableVertexAttribArray(shaderprogram_position)
@@ -605,8 +667,8 @@ function draw(w, h, q)
 	
 	program:attribute("scale", world.dim.x, world.dim.y, world.dim.z)
 	program:attribute("rotate", 0, 0, 0, 1)
-	program:attribute("translate", 0, 0, 0)
-	program:attribute("color", 1, 1, 1, 0.2)
+	program:attribute("translate", world.active_origin.x, world.active_origin.y, world.active_origin.z)
+	program:attribute("color", 1, 1, 1, 0.3)
 	
 	gl.Disable(gl.DEPTH_TEST)
 	gl.Enable(gl.BLEND)
@@ -663,11 +725,7 @@ function alive:onFrame(w, h)
 	frame = frame + 1
 	
 	if not created then
-		gl.ClearColor(
-			0.3 + 0.1*srandom(), 
-			0.3 + 0.1*srandom(), 
-			0.3 + 0.1*srandom()
-		)
+		gl.ClearColor(world.ambient_color.x, world.ambient_color.y, world.ambient_color.z)
 		
 		program:create()
 	
@@ -720,7 +778,14 @@ function alive:onFrame(w, h)
 		created = true
 	end
 	
+	-- update navigation:
 	world.nav:step()
+	world.active_origin = world.nav.pos:clone():map(floor) - world.dim/2
+	
+	-- update iso:
+	--sugariso:generate(sugar.data)
+	sugariso:generate_shifted(sugar.data, world.active_origin.x, world.active_origin.y, world.active_origin.z)
+	
 	msg = C.audioq_head()
 	if msg ~= nil then
 		msg.cmd = C.AUDIO_POS
@@ -741,6 +806,15 @@ function alive:onFrame(w, h)
 	
 	if updating then
 		updateWorld()
+	else
+		for i, agent in ipairs(agents) do
+			local nav = agent.nav
+			-- calculate position in 'active' space:
+			nav.apos = world.active_origin + ((nav.pos - world.active_origin) %world.dim)
+			-- wrap into active space:
+			nav.pos = nav.apos
+			-- (else mark as inactive?)
+		end
 	end	
 	
 
