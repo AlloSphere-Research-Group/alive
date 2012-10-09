@@ -38,7 +38,8 @@ LLVMLIBS="-lLLVMRuntimeDyld -lLLVMObject -lLLVMLinker -lLLVMipo -lLLVMJIT -lLLVM
 
 function build {
 	
-	SOURCES="al_ffi.cpp alive.cpp"
+	#SOURCES="al_ffi.cpp alive.cpp"
+	SOURCES="uvtest.cpp"
 	#SOURCES="test.cpp"
 	
 	echo Building
@@ -58,7 +59,7 @@ function build {
 	
 		INCLUDEPATHS="-I$ALLOSYSTEMPATH/build/include -I/usr/local/include/luajit-2.0 -I/usr/include/luajit-2.0 -I/usr/include/apr-1.0/ -Iexterns/libuv/include"
 		LINKERPATHS="-L$ALLOSYSTEMPATH/build/lib -L/usr/local/lib -L/usr/lib -L/usr/lib/llvm-3.0/lib/ -L/usr/lib"
-		LIBRARIES="-lallocore -lalloutil -lluajit-5.1 -lGLEW -lGLU -lGL -lglut -lassimp -lportaudio -lrt -lasound -lpthread -lfreeimage -lfreetype -lapr-1 -laprutil-1 externs/libuv/uv.a"
+		LIBRARIES="-lallocore -lalloutil -lluajit-5.1 -lGLEW -lGLU -lGL -lglut -lassimp -lportaudio  -lasound -lfreeimage -lfreetype -lapr-1 -laprutil-1 externs/libuv/uv.a -lrt -lpthread"
 		LINKERFLAGS="-w -rdynamic"
 
 		g++ -c -O3 -Wall -fPIC -ffast-math -Wno-unknown-pragmas -MMD -DAPR_FAST_COMPAT -DAPR_STRICT -D_GNU_SOURCE -DEV_MULTIPLICITY=1 $INCLUDEPATHS $SOURCES

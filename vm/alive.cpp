@@ -89,10 +89,22 @@ struct FileOpen {
 		delete this;
 	}
 	
-	static void static_read(uv_fs_t *req) { ((FileOpen *)(req->data))->read(*req); }
-	static void static_open(uv_fs_t *req) { ((FileOpen *)(req->data))->open(*req); }
-	static void static_stat(uv_fs_t *req) { ((FileOpen *)(req->data))->stat(*req); }
-	static void static_close(uv_fs_t *req) { ((FileOpen *)(req->data))->close(*req); }
+	static void static_read(uv_fs_t *req) { 		
+		printf("file read static notify\n");
+		((FileOpen *)(req->data))->read(*req); 
+	}
+	static void static_open(uv_fs_t *req) { 	
+		printf("file open static notify\n");
+		((FileOpen *)(req->data))->open(*req); 
+	}
+	static void static_stat(uv_fs_t *req) { 	
+		printf("file stat static notify\n");
+		((FileOpen *)(req->data))->stat(*req); 
+	}
+	static void static_close(uv_fs_t *req) { 	
+		printf("file close static notify\n");
+		((FileOpen *)(req->data))->close(*req);
+	}
 };
 
 struct FdOpen {
@@ -136,10 +148,12 @@ struct FdOpen {
 	}
 	
 	static void static_read(uv_stream_t *stream, ssize_t nread, uv_buf_t buf) {
+		printf("read static notify\n");
 		((FdOpen *)(stream->data))->read(*stream, nread, buf); 
 	}
 	
 	static uv_buf_t alloc_buffer(uv_handle_t *handle, size_t suggested_size) {
+		printf("read buf static notify\n");
 		return uv_buf_init((char*) malloc(suggested_size), suggested_size);
 	}
 };
@@ -164,6 +178,7 @@ struct Idler {
 	}
 	
 	static void static_idle(uv_idle_t* handle, int status) {
+		printf("idle static notify\n");
 		((Idler *)(handle->data))->idle(*handle, status); 
 	}
 };
@@ -184,6 +199,7 @@ struct FileWatcher {
 	void notify(int events, int status) {
 		if (cb(filename.c_str()) != 0) {
 			uv_fs_event_init(handle.loop, &handle, filename.c_str(), static_notify, UV_FS_EVENT_RECURSIVE);
+			printf("rescheduled filewatcher %s\n", filename.c_str());
 		} else {
 			// cleanup handle?
 			delete this;
@@ -191,6 +207,7 @@ struct FileWatcher {
 	}
 	
 	static void static_notify(uv_fs_event_t *handle, const char *filename, int events, int status) {
+		printf("fw static notify\n");
 		((FileWatcher *)(handle->data))->notify(events, status);
 	}
 };
@@ -292,7 +309,8 @@ al_Window * alive_window() {
 }
 
 void alive_tick() {
-	uv_run_once(loop);
+	printf("uv\n");
+	printf("%d\n", uv_run_once(loop));
 	
 	fflush(stdin);
 	fflush(stdout);
@@ -368,7 +386,9 @@ int modifedaudiolua(const char * filename) {
 
 int modifedmainlua(const char * filename) {
 	printf("modified %s\n", filename);
-	return L.dofile(filename) == 0;
+	int result = L.dofile(filename);
+	printf("result %d\n", result);
+	return 1;
 }
 
 int audio_idle(int status) {
@@ -376,6 +396,7 @@ int audio_idle(int status) {
 }
 
 int main_idle(int status) {
+	printf("main_idle\n");
 	return 1;
 }
 
@@ -399,7 +420,7 @@ int main(int argc, char * argv[]) {
 	// configure audio:
 	audio.framesPerBuffer(256);
 	audio.callback = audioCB;
-
+	
 	// set up the Lua state(s):
 	lua_newtable(L);
 	for (int i=0; i<argc; i++) {
@@ -414,6 +435,7 @@ int main(int argc, char * argv[]) {
 	// for some reason need this to stop loop from blocking:
 	new Idler(uv_default_loop(), main_idle);
 	
+	/*
 	lua_newtable(LA);
 	for (int i=0; i<argc; i++) {
 		lua_pushstring(LA, argv[i]);
@@ -429,6 +451,7 @@ int main(int argc, char * argv[]) {
 	
 	// start threads:
 	audio.start();
+	*/
 	
 	win.create(al::Window::Dim(400, 800), "alive");
 	win.startLoop();

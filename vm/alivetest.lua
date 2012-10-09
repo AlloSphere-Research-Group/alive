@@ -1,12 +1,23 @@
 -- force reload:
 --for k, v in pairs(package.loaded) do package.loaded[k] = nil end
+print("loading alivetest.lua")
 
 local ffi = require "ffi"
 local C = ffi.C
+
+print("got ffi")
+
 local al = require "ffi.al"
 local Vec3f, Quatf = al.Vec3f, al.Quatf
+print("got al")
 local alive = require "ffi.alive"
+print("got alive")
+
 local gl = require "ffi.gl"
+
+print("got gl")
+
+--[=[
 local glutils = require "ffi.gl.utils"
 local Shader = require "ffi.gl.Shader"
 local Isosurface = require "ffi.Isosurface"
@@ -833,5 +844,10 @@ function alive:onFrame(w, h)
 		print("fps", self:fpsAvg())
 	end
 end
+
+
+--]=]
+
+
 
 print("ok")

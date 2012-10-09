@@ -1,5 +1,5 @@
 local header = [[
-// generated from alive.h on Tue Oct  9 12:33:34 2012
+// generated from alive.h on Tue Oct  9 15:24:54 2012
  typedef struct al_Window al_Window;
  typedef int (*idle_callback)(int status);
  typedef int (*buffer_callback)(char * buffer, int size);
