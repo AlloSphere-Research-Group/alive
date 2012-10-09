@@ -52,20 +52,25 @@ struct Idler {
 struct FileWatcher {
 	uv_timer_t handle;
 	uv_fs_t stat_req;
+	time_t modified;
 	filewatcher_callback cb;
 	std::string filename;
 	
 	FileWatcher(uv_loop_t * loop, const char* filename, filewatcher_callback cb) {
 		handle.data = this;
+		stat_req.data = this;
 		this->cb = cb;
 		this->filename = filename;
+		modified = 0;
+		
+		printf("starting %p on %p\n", this, loop);
 		
 		uv_timer_init(loop, &handle);
 		uv_timer_start(&handle, static_notify, 100, 100); // ms
 	}
 	
 	void notify(int status) {
-		printf("tick\n");
+		printf("tick %p\n", handle.loop);
 		uv_fs_stat(handle.loop, &stat_req, filename.c_str(), static_stat);
 	}
 	
@@ -75,13 +80,17 @@ struct FileWatcher {
 			fprintf(stderr, "error on stat file: %d\n", req.errorno);
 		} else {
 			struct stat *s = (struct stat *)req.ptr;
-			
-			// the format of stat is totally platform/arch dependent
-			// puke!!
-			printf("mod %ld", s->st_mtime);
-			
+			time_t mt = s->st_mtime;
+			if (mt > modified) {
+				printf("modified %s\n", filename.c_str());
+				modified = mt;
+				if (cb(filename.c_str()) == 0) {
+					uv_timer_stop(&handle);
+					uv_fs_req_cleanup(&req);
+					delete this;
+				}
+			}
 		}
-		uv_fs_req_cleanup(&req);
 	}
 	
 	static void static_notify(uv_timer_t * handle, int status) {

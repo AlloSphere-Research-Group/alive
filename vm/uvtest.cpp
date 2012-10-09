@@ -30,11 +30,11 @@ int main_idle(int status) {
 
 
 int main_modified(const char * filename) {
-	printf("modified %s\n", filename);
+	printf("main modified %s\n", filename);
 	return 1;
 }
 
-
+void display() {}
 
 int main(int argc, char * argv[]) {
 
@@ -44,6 +44,8 @@ int main(int argc, char * argv[]) {
 	
 	win = glutCreateWindow("");
 	glutSetWindow(win);
+	
+	glutDisplayFunc(display);
 	
 	glutTimerFunc((unsigned int)(1000.0/30.), timerfunc, 0);
 	

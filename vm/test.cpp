@@ -188,9 +188,7 @@ void reshape(int w, int h) {
 	printf("reshape %d %d\n", w, h);
 }
 
-void display() {
-	// no-op
-}
+void display() {}
 
 void enterFullscreen() {
 	glutFullScreen();
