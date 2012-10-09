@@ -3,13 +3,13 @@
 
 local ffi = require "ffi"
 local C = ffi.C
+local al = require "ffi.al"
+local Vec3f, Quatf = al.Vec3f, al.Quatf
 local alive = require "ffi.alive"
 local gl = require "ffi.gl"
 local glutils = require "ffi.gl.utils"
 local Shader = require "ffi.gl.Shader"
 local Isosurface = require "ffi.Isosurface"
-local al = require "ffi.al"
-local Vec3f, Quatf = al.Vec3f, al.Quatf
 
 local random = math.random
 local srandom = function() return random()*2-1 end
@@ -261,14 +261,10 @@ for i = 1, 50 do
 		max(0, sin(pi * 2/3 + i/10 * pi * 2)), 
 		max(0, sin(           i/10 * pi * 2))
 	)
-	if i > 1 then
-		agent.nav.pos:set( srandom(), srandom(), srandom() )
-		agent.nav.pos:mul(world.dim / 2)
-		agent.nav.pos:add(world.nav.pos)
-	
-	else
-		agent.nav.pos = world.nav.pos + Vec3f(0, 0, -2)
-	end
+	agent.nav.pos:set( srandom(), srandom(), srandom() )
+	agent.nav.pos:mul(world.dim / 2)
+	agent.nav.pos:add(world.nav.pos)
+
 	agent.nav.scale:set( 0.2, 0.2, 0.1 * random(4) )
 	agent.nav.quat:fromEuler(srandom(), srandom(), srandom())
 	
@@ -380,12 +376,12 @@ vs = [[
 attribute vec3 position;
 attribute vec3 normal;
 
+attribute vec4 color;
 attribute vec4 rotate;
 attribute vec3 translate;
 attribute vec3 scale;
-attribute vec3 color;
 
-varying vec3 C;
+varying vec4 C;
 varying vec3 N;
 
 //	q must be a normalized quaternion
@@ -418,7 +414,7 @@ void main() {
 fs = [[
 #version 110
 
-varying vec3 C;
+varying vec4 C;
 varying vec3 N;
 
 void main() {
@@ -426,9 +422,8 @@ void main() {
 	vec3 L = vec3(1, 1, -1);
 	float l = max(0., dot(N, L));
 	
-	vec3 color = mix(vec3(0.5), C, l+0.2);
-
-    gl_FragColor = vec4(color, 1);
+	vec3 color = mix(vec3(0.2), C.rgb, l+0.2);
+	gl_FragColor = vec4(color, C.a);
 }
 ]]
 
@@ -557,8 +552,11 @@ function draw(w, h, q)
 	))
 	
 	gl.PolygonMode(gl.FRONT_AND_BACK, gl.FILL)
+	gl.Enable(gl.CULL_FACE)
 	gl.CullFace(gl.BACK)
 	gl.Enable(gl.DEPTH_TEST)
+	gl.Disable(gl.BLEND)
+	
 	
 	--print(shaderprogram)
 	--gl.UseProgram(shaderprogram)
@@ -596,7 +594,7 @@ function draw(w, h, q)
 		program:attribute("scale", nav.scale.x, nav.scale.y, nav.scale.z)
 		program:attribute("rotate", nav.quat.x, nav.quat.y, nav.quat.z, nav.quat.w)
 		program:attribute("translate", nav.pos.x, nav.pos.y, nav.pos.z)
-		program:attribute("color", nav.color.x, nav.color.y, nav.color.z)
+		program:attribute("color", nav.color.x, nav.color.y, nav.color.z, 1)
 		
 		gl.DrawArrays(gl.TRIANGLES, 0, 12)
 	end
@@ -608,10 +606,51 @@ function draw(w, h, q)
 	program:attribute("scale", world.dim.x, world.dim.y, world.dim.z)
 	program:attribute("rotate", 0, 0, 0, 1)
 	program:attribute("translate", 0, 0, 0)
-	program:attribute("color", 1, 1, 1)
+	program:attribute("color", 1, 1, 1, 0.2)
 	
+	gl.Disable(gl.DEPTH_TEST)
+	gl.Enable(gl.BLEND)
+	gl.BlendFunc(gl.SRC_ALPHA, gl.ONE)
+	gl.Disable(gl.CULL_FACE)
+	
+	gl.EnableClientState(gl.VERTEX_ARRAY)
+	gl.EnableVertexAttribArray(program.attributes.position.loc)
+	gl.VertexAttribPointer(	
+		program.attributes.position.loc,
+		3, gl.FLOAT, 
+		gl.FALSE, 0,
+		sugariso:vertices()
+	)
+	
+	gl.EnableClientState(gl.NORMAL_ARRAY)
+	gl.EnableVertexAttribArray(program.attributes.normal.loc)
+	gl.VertexAttribPointer(	
+		program.attributes.normal.loc,
+		3, gl.FLOAT, 
+		gl.FALSE, 0,
+		sugariso:normals()
+	)
+	
+	gl.PolygonMode(gl.FRONT_AND_BACK, gl.FILL)
+	gl.DrawElements(
+		gl.TRIANGLES, 
+		sugariso:num_indices(), 
+		gl.UNSIGNED_INT, 
+		sugariso:indices()
+	)
+	
+	---[[
 	gl.PolygonMode(gl.FRONT_AND_BACK, gl.LINE)
-	sugariso:draw()
+	gl.DrawElements(
+		gl.TRIANGLES, 
+		sugariso:num_indices(), 
+		gl.UNSIGNED_INT, 
+		sugariso:indices()
+	)
+	--]]
+	
+	gl.DisableClientState(gl.VERTEX_ARRAY)
+	gl.DisableClientState(gl.NORMAL_ARRAY)
 	
 	--gl.UseProgram(0)
 	program:unbind()

@@ -9,8 +9,13 @@ ffi.cdef [[
 	void al_isosurface_free(al_Isosurface * self);
 	void al_isosurface_level(al_Isosurface * self, double s);
 	void al_isosurface_generate(al_Isosurface * self, float * data, int dim);
+	void al_isosurface_generate_normals(al_Isosurface * self);
 	void al_isosurface_draw(al_Isosurface * self);
 	
+	Vec3f * al_isosurface_vertices(al_Isosurface * self);
+	Vec3f * al_isosurface_normals(al_Isosurface * self);
+	unsigned int * al_isosurface_indices(al_Isosurface * self);
+	unsigned int al_isosurface_num_indices(al_Isosurface * self);
 ]]
 
 -- the module:
@@ -26,6 +31,10 @@ setmetatable(Isosurface, {
 		local s = lib.al_isosurface_new()
 		ffi.gc(s, lib.al_isosurface_free)
 		return s
+	end,
+	__index = function(s, k)
+		Isosurface[k] = lib["al_isosurface_" .. k]
+		return Isosurface[k]
 	end,
 })
 

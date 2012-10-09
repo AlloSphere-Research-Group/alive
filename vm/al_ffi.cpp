@@ -258,11 +258,32 @@ extern "C" {
 	void al_isosurface_generate(al_Isosurface * self, float * data, int dim) {
 		self->generate(data, dim, 1./dim);
 	}
+	void al_isosurface_generate_normals(al_Isosurface * self) {
+		self->generateNormals();
+	}
 	
 	void al_isosurface_draw(al_Isosurface * self) {
 		Graphics gl;
 		gl.draw(*self);
 	}
+	
+	Vec3f * al_isosurface_vertices(al_Isosurface * self) {
+		return &((Mesh *)self)->vertices()[0];
+	}
+	
+	Vec3f * al_isosurface_normals(al_Isosurface * self) {
+		return &((Mesh *)self)->normals()[0];
+	}
+	
+	unsigned int * al_isosurface_indices(al_Isosurface * self) {
+		return &((Mesh *)self)->indices()[0];
+	}
+	
+	unsigned int al_isosurface_num_indices(al_Isosurface * self) {
+		return ((Mesh *)self)->indices().size();
+	}
+	
+	
 };
 
 // Font ffi:
