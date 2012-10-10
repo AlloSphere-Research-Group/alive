@@ -38,3 +38,5 @@ npm install socket.io
 npm install socket.io-client
 npm install mime
 npm install mdns
+npm install connect
+npm install share

@@ -52,6 +52,39 @@ $(document).ready( function() {
 	code 	= document.getElementById("code");
 	fileBrowser = document.getElementById("fileBrowser");
 	
+	var doc = null;
+
+	var setDoc = function(docName) {
+		if( doc !== null){
+			doc.close();
+			if( doc.detach_cm ){
+				doc.detach_cm();
+				console.log("detach: " + currentFile)
+			}
+		}
+		doc = null;
+
+		return sharejs.open(docName, function(error, newDoc) {
+
+			if (error) {
+				console.error(error);
+				return;
+			}
+			currentFile = newDoc.name;
+			console.log("opening: " + currentFile)
+			$("#filename").text(currentFile);
+			doc = newDoc;
+			if( doc.getLength() == 0 ){
+				console.log("read: "+currentFile)
+				slaveSocket.emit('cmd', 'read ' + currentFile);
+			}else{
+				doc.attach_cm(window.editor);
+				console.log("attach: " + currentFile)
+			}
+			
+		});
+	};
+
 	// remoteIP is provided by the web server when the page is served
 	slaveSocket = io.connect("http://" + remoteIP + ":8081/");	
 
@@ -84,8 +117,10 @@ $(document).ready( function() {
 				(function() {
 					var name = response.data[i].name;
 					$(a).click(function() {
-						slaveSocket.emit('cmd', 'read ' + name);
-						currentFile = name;
+						connection = setDoc(name);
+
+						//slaveSocket.emit('cmd', 'read ' + name);
+						//currentFile = name;
 					});
 					$(a).text(name);
                   $(a).css({ display: "block", cursor:"pointer", marginTop:"5px",});
@@ -118,8 +153,12 @@ $(document).ready( function() {
 	});
 	
 	slaveSocket.on('read', function (response) {
-		$("#filename").text(currentFile);
+		//$("#filename").text(currentFile);
+		console.log("red and attach: "+currentFile)
 		window.editor.setValue(response.data);
+		//doc.del(0,doc.getLength());
+		//doc.insert(0, response.data);
+		doc.attach_cm(window.editor, true);
 		//window.editor.refresh();
 	});
 		
@@ -137,7 +176,7 @@ $(document).ready( function() {
 	
     //editor = CodeMirror(document.body, { mode: "coffeescript", tabSize: 2 });
 
-    //setDoc('cm');  // Hooking ShareJS and CodeMirror for the first time.
+    var connection = setDoc('a.l.i.v.e.');  // Hooking ShareJS and CodeMirror for the first time.
 
     /*var namefield = document.getElementById('namefield');
     function fn() {
@@ -150,6 +189,20 @@ $(document).ready( function() {
     } else {
         namefield.attachEvent('oninput', fn);
     }*/
+
+	// *** Connection status display
+	var status = document.getElementById('sharejs_status');
+	var register = function(state, klass, text) {
+	connection.on(state, function() {
+	  status.className = 'label ' + klass;
+	  status.innerHTML = text;
+	});
+	};
+
+	register('ok', 'success', 'Online');
+	register('connecting', 'warning', 'Connecting...');
+	register('disconnected', 'important', 'Offline');
+	register('stopped', 'important', 'Error');
 
 	window.CodeMirror = CodeMirror;	
 	
