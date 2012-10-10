@@ -29,7 +29,7 @@ function win:draw()
 	if (wincb) then wincb(self, win:dim()) end
 	collectgarbage()
 end
---[[
+
 setmetatable(m, {
 	__newindex = function(self, name, value)
 		if name == "onFrame" then
@@ -38,7 +38,8 @@ setmetatable(m, {
 			win.key = value
 		end
 	end,
+
 })
---]]
+
 return m
 

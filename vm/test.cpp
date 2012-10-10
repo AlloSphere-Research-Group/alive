@@ -224,8 +224,8 @@ int main(int argc, char * argv[]) {
 //	glutPassiveMotionFunc(cbPassiveMotion);
 //	glutSpecialFunc(cbSpecial);
 //	glutSpecialUpFunc(cbSpecialUp);
-	glutReshapeFunc(reshape);
 //	glutVisibilityFunc(cbVisibility);
+	glutReshapeFunc(reshape);
 	glutDisplayFunc(display);
 
 	glutTimerFunc((unsigned int)(1000.0/30.), timerfunc, 0);

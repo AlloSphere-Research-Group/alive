@@ -4,20 +4,10 @@ print("loading alivetest.lua")
 
 local ffi = require "ffi"
 local C = ffi.C
-
-print("got ffi")
-
 local al = require "ffi.al"
 local Vec3f, Quatf = al.Vec3f, al.Quatf
-print("got al")
 local alive = require "ffi.alive"
-print("got alive")
-
 local gl = require "ffi.gl"
-
-print("got gl")
-
---[=[
 local glutils = require "ffi.gl.utils"
 local Shader = require "ffi.gl.Shader"
 local Isosurface = require "ffi.Isosurface"
@@ -115,25 +105,22 @@ function Field:overdub(vec, value)
 	local fbba = bf.x * bf.y * af.z
 	local fbbb = bf.x * bf.y * bf.z
 	-- get the cell for each neighbor:
-	local paaa = self:index_nocheck(a.x, a.y, a.z);
-	local paab = self:index_nocheck(a.x, a.y, b.z);
-	local paba = self:index_nocheck(a.x, b.y, a.z);
-	local pabb = self:index_nocheck(a.x, b.y, b.z);
-	local pbaa = self:index_nocheck(b.x, a.y, a.z);
-	local pbab = self:index_nocheck(b.x, a.y, b.z);
-	local pbba = self:index_nocheck(b.x, b.y, a.z);
-	local pbbb = self:index_nocheck(b.x, b.y, b.z);
-	-- for each plane of the field, do the 3D interp:
-	--for (size_t p=0; p<header.components; p++) {
-		self.data[paaa] = self.data[paaa] + value * faaa;
-		self.data[pbaa] = self.data[pbaa] + value * fbaa;
-		self.data[paba] = self.data[paba] + value * faba;
-		self.data[paab] = self.data[paab] + value * faab;
-		self.data[pbab] = self.data[pbab] + value * fbab;
-		self.data[pabb] = self.data[pabb] + value * fabb;
-		self.data[pbba] = self.data[pbba] + value * fbba;
-		self.data[pbbb] = self.data[pbbb] + value * fbbb;
-	--}
+	local paaa = self:index(a.x, a.y, a.z);
+	local paab = self:index(a.x, a.y, b.z);
+	local paba = self:index(a.x, b.y, a.z);
+	local pabb = self:index(a.x, b.y, b.z);
+	local pbaa = self:index(b.x, a.y, a.z);
+	local pbab = self:index(b.x, a.y, b.z);
+	local pbba = self:index(b.x, b.y, a.z);
+	local pbbb = self:index(b.x, b.y, b.z);
+	self.data[paaa] = self.data[paaa] + value * faaa;
+	self.data[pbaa] = self.data[pbaa] + value * fbaa;
+	self.data[paba] = self.data[paba] + value * faba;
+	self.data[paab] = self.data[paab] + value * faab;
+	self.data[pbab] = self.data[pbab] + value * fbab;
+	self.data[pabb] = self.data[pabb] + value * fabb;
+	self.data[pbba] = self.data[pbba] + value * fbba;
+	self.data[pbbb] = self.data[pbbb] + value * fbbb;
 end
 
 function Field:diffuse(diffusion, passes)
@@ -527,7 +514,6 @@ for i = 0, 3 do
 	end
 end
 
-
 function make_array_buffer(ptr, size)
 	local id = gl.GenBuffers(1)
 	gl.BindBuffer(gl.ARRAY_BUFFER, id)
@@ -552,7 +538,6 @@ function updateWorld()
 		
 		-- user-defined:
 		if i <= 3 then
-			
 			-- write to field:
 			sugar:overdub(nav.pos, 1)
 			
@@ -583,6 +568,7 @@ function updateWorld()
 			
 			-- remember:
 			agent.sugar = f --agent.sugar + 0.1*(f - agent.sugar)
+
 		end
 		
 		-- standard pipeline:
@@ -603,7 +589,6 @@ function updateWorld()
 			msg.z = agent.nav.pos .z
 			C.audioq_send()
 		end
-		
 	end
 end
 
@@ -844,10 +829,6 @@ function alive:onFrame(w, h)
 		print("fps", self:fpsAvg())
 	end
 end
-
-
---]=]
-
 
 
 print("ok")
