@@ -242,6 +242,105 @@ extern "C" {
 	}
 }
 
+// Isosurface:
+typedef al::Isosurface al_Isosurface;
+extern "C" {
+	al_Isosurface * al_isosurface_new(int dim) { 
+		al_Isosurface * self = new Isosurface();
+		self->fieldDims(dim, dim, dim);
+		self->cellLengths(1./dim, 1./dim, 1./dim);
+		self->primitive(Graphics::TRIANGLES);
+		return self; 
+	}
+	void al_isosurface_free(al_Isosurface * self) { delete self; }
+	
+	void al_isosurface_level(al_Isosurface * self, double level) {
+		self->level(level);
+	}
+	void al_isosurface_generate(al_Isosurface * self, float * data) {
+		self->generate(data);
+	}
+	void al_isosurface_generate_shifted(al_Isosurface * self, float * vals, const int sx, const int sy, const int sz) {
+		self->inBox(true);
+		self->begin();
+		
+		int Nx = self->fieldDim(0); //mNF[0];
+		int Ny = self->fieldDim(1); //mNF[1];
+		int Nz = self->fieldDim(2); //mNF[2];
+		int Nxy = Nx*Ny;
+		
+		// macro-puke, because i % n is messed-up for negative i in C/C++.
+		#define WRAP(i, n) ((i) >= 0 ? (i) % n : ( n*((-1-(i))/n + 1) + (i)))
+
+		// iterate through cubes (not field points)
+		for(int z=0; z < Nz-1; ++z){
+			int z0 = z+sz;
+			int z1 = z0+1;
+			z0 = WRAP(z0,Nz) *Nxy;
+			z1 = WRAP(z1,Nz) *Nxy;
+			
+			for(int y=0; y < Ny-1; ++y){
+				int y0 = y+sy;
+				int y1 = y0+1;
+				y0 = WRAP(y0,Ny) *Nx;
+				y1 = WRAP(y1,Ny) *Nx;
+				
+				int z0y0 = z0+y0;
+				int z0y1 = z0+y1;
+				int z1y0 = z1+y0;
+				int z1y1 = z1+y1;
+				
+				for(int x=0; x < Nx-1; ++x){
+					int x0 = x+sx;
+					int x1 = x0+1;
+					x0 = WRAP(x0,Nx);
+					x1 = WRAP(x1,Nx);
+					
+					float v8[] = {
+						vals[z0y0 + x0], vals[z0y0 + x1],
+						vals[z0y1 + x0], vals[z0y1 + x1],
+						vals[z1y0 + x0], vals[z1y0 + x1],
+						vals[z1y1 + x0], vals[z1y1 + x1]
+					};
+					int i3[] = {x, y, z};
+					self->addCell(i3,	v8);
+				}
+			}
+		}
+		
+		self->end();
+		
+		#undef WRAP
+		
+	}
+	void al_isosurface_generate_normals(al_Isosurface * self) {
+		self->generateNormals();
+	}
+	
+	void al_isosurface_draw(al_Isosurface * self) {
+		Graphics gl;
+		gl.draw(*self);
+	}
+	
+	Vec3f * al_isosurface_vertices(al_Isosurface * self) {
+		return &((Mesh *)self)->vertices()[0];
+	}
+	
+	Vec3f * al_isosurface_normals(al_Isosurface * self) {
+		return &((Mesh *)self)->normals()[0];
+	}
+	
+	unsigned int * al_isosurface_indices(al_Isosurface * self) {
+		return &((Mesh *)self)->indices()[0];
+	}
+	
+	unsigned int al_isosurface_num_indices(al_Isosurface * self) {
+		return ((Mesh *)self)->indices().size();
+	}
+	
+	
+};
+
 // Font ffi:
 typedef al::Font al_Font;
 extern "C" {

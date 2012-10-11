@@ -117,6 +117,8 @@ function Shader:create()
 	-- cleanup:
 	gl.DeleteShader(vs)
 	gl.DeleteShader(fs)
+	
+	return self
 end
 
 function Shader:addUniform(index)

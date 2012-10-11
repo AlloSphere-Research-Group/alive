@@ -102,17 +102,16 @@ function perspective_offaxis(nearBL, nearBR, nearTL, eye, near, far)
 	return perspective1(l, r, t, b, near, far)
 end
 
-
 local
 function lookat(eye, at, up)
 	local uz = (eye-at):normalize()
 	local up = up:normalize()
 	local ux = uz:cross(up)
 	local m = {	
-		ux.x,			ux.y,			ux.z,			0,
-		up.x,			up.y,			up.z,			0,
-		uz.x,			uz.y,			uz.z,			0,
-		-ux:dot(eye),	-up:dot(eye),	-uz:dot(eye),	1	
+		ux.x,			up.x,			uz.x,			0,
+		ux.y,			up.y,			uz.y,			0,
+		ux.z,			up.z,			uz.z,			0,
+		-ux:dot(eye),	-up:dot(eye),	-uz:dot(eye),	1,	
 	}
 	return m
 end

@@ -1,12 +1,8 @@
 #include "alive.h"
 #include "al_ffi.h"
-#include "uv.h"
+#include "uv_utils.h"
 
-#include "stdio.h"
-#include "stdlib.h"
 #include "syslimits.h"
-#include "unistd.h"
-#include "fcntl.h"
 
 #include "allocore/io/al_AudioIO.hpp"
 #include "allocore/graphics/al_Graphics.hpp"
@@ -17,182 +13,6 @@
 using namespace al;
 
 ////////////////////////////////////////////////////////////////////////////////
-
-struct FileOpen {	
-	uv_fs_t open_req;
-	uv_fs_t stat_req;
-	uv_fs_t read_req;
-	uv_fs_t close_req;
-	buffer_callback cb;
-	char path[1024];
-	char * buffer;
-	int32_t size;
-	
-	FileOpen(uv_loop_t * loop, const char * path, buffer_callback cb) {
-		open_req.data = this;
-		read_req.data = this;
-		stat_req.data = this;
-		close_req.data = this;
-		this->cb = cb;
-		strcpy(this->path, path);
-		buffer = 0;
-		size = 0;
-		
-		uv_fs_open(loop, &open_req, path, O_RDONLY, 0, static_open);
-	}
-
-	~FileOpen() {
-		//printf("released memory\n");
-	}
-	
-	void open(uv_fs_t& req) {
-		//printf("on_open %p %p %d\n", &req, this, (int)req.result);
-		// need to know file size to allocate a buffer for it...
-		uv_fs_stat(req.loop, &stat_req, path, static_stat);
-		uv_fs_req_cleanup(&req);
-	}
-	
-	void stat(uv_fs_t& req) {
-		//printf("on_stat %p %p %d\n", &req, req.ptr, (int)req.result);
-		if (req.result < 0) {
-			fprintf(stderr, "error opening file: %d\n", req.errorno);
-			uv_fs_close(req.loop, &close_req, open_req.result, static_close);
-		} else {
-			struct stat *s = (struct stat *)req.ptr;
-			size = s->st_size;
-			buffer = (char *)malloc(size + 1); // extra char for null terminator
-			buffer[size] = '\0';
-			
-			// now trigger read:
-			uv_fs_read(req.loop, &read_req, open_req.result, buffer, size, -1, static_read);
-		}
-		uv_fs_req_cleanup(&req);
-	}
-	
-	void read(uv_fs_t& req) {
-		//printf("on_read %p %p %d\n", &req, req.data, (int)req.result);
-		if (req.result < 0) {
-			fprintf(stderr, "Read error: %s\n", uv_strerror(uv_last_error(req.loop)));
-		} else if (req.result != 0) {
-			cb(buffer, size);
-		}
-		uv_fs_close(req.loop, &close_req, open_req.result, static_close);
-		uv_fs_req_cleanup(&req);
-		
-		// recycle:
-		if (buffer) { free(buffer); }
-	}
-	
-	void close(uv_fs_t& req) {
-		//printf("on close %p %p %d\n", &req, this, (int)req.result);
-		uv_fs_req_cleanup(&req);
-		delete this;
-	}
-	
-	static void static_read(uv_fs_t *req) { ((FileOpen *)(req->data))->read(*req); }
-	static void static_open(uv_fs_t *req) { ((FileOpen *)(req->data))->open(*req); }
-	static void static_stat(uv_fs_t *req) { ((FileOpen *)(req->data))->stat(*req); }
-	static void static_close(uv_fs_t *req) { ((FileOpen *)(req->data))->close(*req); }
-};
-
-struct FdOpen {
-	int fd;
-	buffer_callback cb;
-	uv_pipe_t pipe;
-
-	FdOpen(uv_loop_t * loop, int fd, buffer_callback cb) {
-		this->fd = fd;
-		this->cb = cb;
-		pipe.data = this;
-		
-		uv_pipe_init(loop, &pipe, 0);
-		uv_pipe_open(&pipe, fd); 
-		uv_read_start((uv_stream_t*)&pipe, alloc_buffer, static_read);
-	}
-	
-	~FdOpen() {
-		uv_close((uv_handle_t*)&pipe, NULL);
-	}
-	
-	void read(uv_stream_t& stream, ssize_t nread, uv_buf_t& buf) {
-		if (nread == -1) {
-			if (uv_last_error(stream.loop).code == UV_EOF) {
-				delete this;
-			}
-		} else {
-			if (nread > 0) {
-				if (cb(buf.base, nread - 1) == 0) {
-					// kill it.
-					free(buf.base);
-					uv_read_stop((uv_stream_t*)&pipe);
-					delete this;
-				}
-			}
-		}
-		// recycle:
-		if (buf.base) { free(buf.base); }
-		
-		//void uv_close(uv_handle_t* handle, uv_close_cb close_cb)
-	}
-	
-	static void static_read(uv_stream_t *stream, ssize_t nread, uv_buf_t buf) {
-		((FdOpen *)(stream->data))->read(*stream, nread, buf); 
-	}
-	
-	static uv_buf_t alloc_buffer(uv_handle_t *handle, size_t suggested_size) {
-		return uv_buf_init((char*) malloc(suggested_size), suggested_size);
-	}
-};
-
-struct Idler {
-	uv_idle_t handle;
-	idle_callback cb;
-	
-	Idler(uv_loop_t * loop, idle_callback cb) {
-		handle.data = this;
-		this->cb = cb;
-		
-		uv_idle_init(loop, &handle);
-		uv_idle_start(&handle, static_idle);
-	}
-	
-	void idle(uv_idle_t& handle, int status) {
-		if (cb(status) == 0) {
-			uv_idle_stop(&handle);
-			delete this;
-		}
-	}
-	
-	static void static_idle(uv_idle_t* handle, int status) {
-		((Idler *)(handle->data))->idle(*handle, status); 
-	}
-};
-
-struct FileWatcher {
-	uv_fs_event_t handle;
-	filewatcher_callback cb;
-	std::string filename;
-	
-	FileWatcher(uv_loop_t * loop, const char* filename, filewatcher_callback cb) {
-		handle.data = this;
-		this->cb = cb;
-		this->filename = filename;
-		uv_fs_event_init(loop, &handle, filename, static_notify, UV_FS_EVENT_RECURSIVE);
-	}
-	
-	void notify(int events, int status) {
-		if (cb(filename.c_str()) != 0) {
-			uv_fs_event_init(handle.loop, &handle, filename.c_str(), static_notify, UV_FS_EVENT_RECURSIVE);
-		} else {
-			// cleanup handle?
-			delete this;
-		}
-	}
-	
-	static void static_notify(uv_fs_event_t *handle, const char *filename, int events, int status) {
-		((FileWatcher *)(handle->data))->notify(events, status);
-	}
-};
 
 void idle(idle_callback cb) {
 	new Idler(uv_default_loop(), cb);
@@ -261,9 +81,8 @@ struct Q {
 	T * peek() const {
 		return read == write ? 0 : &q[read];
 	}
-	T * next() {
+	void next() {
 		read = (read + 1) & wrap;
-		return peek();
 	}
 	
 	double used() const {
@@ -279,7 +98,7 @@ rnd::Random<> rng1;
 uv_loop_t *loop;
 Lua L, LA;
 AudioIO audio;
-Q<audiomsg> audioq;
+Q<audiomsg_packet> audioq;
 double audiotime = 0;
 double maintime = 0;
 double audiolag = 2000; // in samples
@@ -292,7 +111,9 @@ al_Window * alive_window() {
 }
 
 void alive_tick() {
-	uv_run_once(loop);
+	//printf("uv\n");
+	int res = uv_run_once(loop);
+	//printf("%d\n", res);
 	
 	fflush(stdin);
 	fflush(stdout);
@@ -300,17 +121,7 @@ void alive_tick() {
 	
 	// process scheduled events up to t:
 	double t = audiotime + audiolag;
-	
-	// e.g. send a message:
-	//for (int i=0; i<100; i++) {
-	if (rng1.uniform() < 0.1) {
-		audiomsg * m = audioq.head();
-		if (m) {
-			m->t = t;
-			audioq.send();
-		}
-	}
-	
+	// (task queue loop goes here)
 	maintime = t;
 	
 //	printf("used %04.1f%%\n", 100.*audioq.used() );
@@ -334,11 +145,21 @@ void audio_set_callback(audio_callback cb) {
 	audiocb = cb;
 }
 
-audiomsg * audioq_peek(void) {
-	return audioq.peek();
+audiomsg * audioq_head() {
+	return (audiomsg *)audioq.head();
 }
-audiomsg * audioq_next(void) {
-	return audioq.next();
+void audioq_send() {
+	audioq.q[audioq.write].t = audiotime + audiolag;
+	audioq.send();
+}
+
+audiomsg * audioq_peek(double maxtime) {
+	audiomsg_packet * p = audioq.peek();
+	return (p && p->t < maxtime) ? (audiomsg *)p : 0;
+}
+audiomsg * audioq_next(double maxtime) {
+	audioq.next();
+	return audioq_peek(maxtime);
 }
 
 void audioCB(al::AudioIOData& io) {
@@ -350,28 +171,40 @@ void audioCB(al::AudioIOData& io) {
 	double nexttime = audiotime + io.framesPerBuffer();
 	
 	// libuv in audio thread?
-	//uv_run_once(audioloop);
+	uv_run_once(audioloop);
 	
 	if (audiocb) audiocb(audiotime);
+	
+	//printf(".\n");
 	
 	audiotime = nexttime;
 
 	//if (io.time() < 0.1) printf("audio thread %lu\n", uv_thread_self());
 }
 
+int modifedaudiolua(const char * filename) {
+	printf("modified %s\n", filename);
+	return LA.dofile(filename) == 0;
+}
+
 int modifedmainlua(const char * filename) {
-	printf("modifedmainlua\n");
-	L.dofile(filename);
+	printf("modified %s\n", filename);
+	int result = L.dofile(filename);
+	printf("result %d\n", result);
 	return 1;
 }
 
-void runmainlua(const char * filename) {
-	modifedmainlua(filename);
-	new FileWatcher(uv_default_loop(), filename, modifedmainlua);
+int audio_idle(int status) {
+	return 1;
+}
+
+int main_idle(int status) {
+	//printf("main_idle\n");
+	return 1;
 }
 
 int main(int argc, char * argv[]) {
-	
+
 	// execute in the context of wherever this is run from:
 	chdir("./");
 	
@@ -381,13 +214,13 @@ int main(int argc, char * argv[]) {
 
 	// initialize libuv:
 	loop = uv_default_loop();
-	//audioloop = uv_loop_new();
+	audioloop = uv_loop_new();
 	
 	// configure audio:
 	audio.framesPerBuffer(256);
 	audio.callback = audioCB;
-
-	// set up the Lua state:
+	
+	// set up the Lua state(s):
 	lua_newtable(L);
 	for (int i=0; i<argc; i++) {
 		lua_pushstring(L, argv[i]);
@@ -395,18 +228,31 @@ int main(int argc, char * argv[]) {
 	}
 	lua_setglobal(L, "argv");
 	
-	// run startup script:
-	//if (L.dofile("./alivetest.lua")) return -1;
+	const char * main_filename = "./alivetest.lua";
+	if (modifedmainlua(main_filename) == 0) return -1;
+	new FileWatcher(uv_default_loop(), main_filename, modifedmainlua);
+	// for some reason need this to stop loop from blocking:
+	new Idler(uv_default_loop(), main_idle);
 	
-	runmainlua("./alivetest.lua");
+	/*
+	lua_newtable(LA);
+	for (int i=0; i<argc; i++) {
+		lua_pushstring(LA, argv[i]);
+		lua_rawseti(LA, -2, i+1);
+	}
+	lua_setglobal(LA, "argv");
 	
-	// run startup script:
-	if (LA.dofile("./alivetestaudio.lua")) return -1;
+	const char * audio_filename = "./alivetestaudio.lua";
+	if (modifedaudiolua(audio_filename) == 0) return -1;
+	new FileWatcher(audioloop, audio_filename, modifedaudiolua);
+	// for some reason need this to stop loop from blocking:
+	new Idler(audioloop, audio_idle);
 	
 	// start threads:
 	audio.start();
+	*/
 	
-	win.create(al::Window::Dim(300, 200), "alive");
+	win.create(al::Window::Dim(400, 800), "alive");
 	win.startLoop();
 	
 	return 0;

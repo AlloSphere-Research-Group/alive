@@ -180,6 +180,21 @@ function vec(name, quatname)
 				return ffi.new(name, a.x/b.x, a.y/b.y, a.z/b.z) 
 			end
 		end,
+		__mod = function(a, b)
+			if type(b) == "number" then
+				return ffi.new(name, 
+					wrap(a.x, 0, b),
+					wrap(a.y, 0, b),
+					wrap(a.z, 0, b)
+				)
+			else
+				return ffi.new(name, 
+					wrap(a.x, 0, b.x),
+					wrap(a.y, 0, b.y),
+					wrap(a.z, 0, b.z)
+				)
+			end
+		end,
 		__pow = function(a, b) 
 			if type(b) == "number" then 
 				return ffi.new(name, a.x^b, a.y^b, a.z^b) 
@@ -199,7 +214,17 @@ function vec(name, quatname)
 			return a.x==b.x and a.y==b.y and a.z==b.z
 		end,
 		__index = {
-			set = function(s, x, y, z) s.x = x; s.y = y; s.z = z end,
+			clone = function(s)
+				return ffi.new(name, s.x, s.y, s.z)
+			end,
+			map = function(s, f)
+				s.x = f(s.x)
+				s.y = f(s.y)
+				s.z = f(s.z)
+				return s
+			end,
+			
+			set = function(s, x, y, z) s.x = x; s.y = y or x; s.z = z or x end,
 			copy = function(s, q) s.x = q.x; s.y = q.y; s.z = q.z end,
 			zero = function(s) s.x = 0; s.y = 0; s.z = 0 end,
 			unpack = function(s) return s.x, s.y, s.z end,
@@ -219,7 +244,7 @@ function vec(name, quatname)
 				s.y = s.y + v 
 				s.z = s.z + v
 			end,
-			scale = function(s, v) 
+			scale = function(s, v)
 				s.x = s.x * v
 				s.y = s.y * v 
 				s.z = s.z * v
@@ -253,6 +278,15 @@ function vec(name, quatname)
 				if (unit*unit < QUAT_EPSILON) then return ffi.new(name, 0, 0, 1) end
 				local scale = 1./sqrt(unit)
 				return ffi.new(name, s.x*scale, s.y*scale, s.z*scale)
+			end,
+			
+			normalized = function(s)
+				local unit = s:dot(s)	-- magSqr
+				if (unit*unit < QUAT_EPSILON) then return ffi.new(name, 0, 0, 1) end
+				local scale = 1./sqrt(unit)
+				s.x = s.x*scale
+				s.y = s.y*scale
+				s.z = s.z*scale
 			end,
 			
 			-- returns a quat:
@@ -306,7 +340,6 @@ function vec(name, quatname)
 
 			-- linear interpolation
 			lerp = function(s, b, t)
-				assert(b and ffi.istype(b, ctype))
 				return s + t * (b-s)
 			end,
 			
@@ -598,7 +631,7 @@ function quat(name, vecname)
 			--]]
 			
 			toAxisAngle = function (s)
-				local unit = w*w
+				local unit = s.w*s.w
 				if unit < QUAT_ACCURACY_MIN then
 					-- |cos x| must always be less than or equal to 1!
 					local invsin = 1/sqrt(1 - unit) --approx = 1/sqrt(1 - cos^2(theta/2))

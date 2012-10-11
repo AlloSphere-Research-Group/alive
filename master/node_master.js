@@ -9,6 +9,7 @@ var util		= require('util');
 var exec 		= require('child_process').exec;
 var path 		= require('path');
 var mdns 		= require('mdns');
+var connect 	= require('connect');
 var sharejs 	= require('share').server;
 
 var editors_in 	 = require('socket.io').listen(8081);
@@ -91,8 +92,10 @@ editors_in.sockets.on('connection', function (socket) {
 				editors[socket.addr].emit("dir", editors[socket.addr].currentDir );				
 				break;
 			case "read" :
-				var data = fs.readFileSync(editors[socket.addr].currentDir + "/" + args, 'utf8');///read(args);
-				editors[socket.addr].emit("read", { "data" : data } );
+				try {
+					var data = fs.readFileSync(editors[socket.addr].currentDir + "/" + args, 'utf8');///read(args);
+					editors[socket.addr].emit("read", { "data" : data } );
+				} catch(err){ console.log(err);}
 				break;
 			default:
 				console.log("could not process command");
@@ -177,71 +180,96 @@ var root = __dirname + "/../editor";
 console.log("serving from " + root);
 
 var port = 8080;
-var server = http.createServer(function(req, res) {
-	req.uri = url.parse(req.url);
-	var pathname = req.uri.pathname;
+// var server = http.createServer(function(req, res) {
+// 	req.uri = url.parse(req.url);
+// 	var pathname = req.uri.pathname;
 	
-	// static file server:
-	//console.log("PATH" + pathname);
+// 	// static file server:
+// 	//console.log("PATH" + pathname);
 	
-	if (pathname == "/") {
-		pathname = pathname + "index.htm";
-	} else if (pathname == "/config.js") {
-		console.log("sending config");
-		var text = "remoteIP = '" + myIP + "';";
-		res.writeHead(200, {
-			'Content-Type': 'text/javascript',
-			'Content-Length': text.length
-		})
-		res.end(text);
-		console.log("done sending config");
-		return;
-	}
+// 	if (pathname == "/") {
+// 		pathname = pathname + "index.htm";
+// 	} else if (pathname == "/config.js") {
+// 		console.log("sending config");
+// 		var text = "remoteIP = '" + myIP + "';";
+// 		res.writeHead(200, {
+// 			'Content-Type': 'text/javascript',
+// 			'Content-Length': text.length
+// 		})
+// 		res.end(text);
+// 		console.log("done sending config");
+// 		return;
+// 	}
 	
-	req.uri.pathname = root + pathname;
-	var filepath = req.uri.pathname;
-	//console.log(filepath);
+// 	req.uri.pathname = root + pathname;
+// 	var filepath = req.uri.pathname;
+// 	//console.log(filepath);
 	
-	fs.stat(filepath, function (err, stat) {
-		if (err || stat == undefined) {
-			var reason = "not found: " + filepath;
-			res.writeHead(500, {
-				'Content-Length': reason.length,
-				'Content-Type': "text/plain"
-			});
-			res.write(reason);
-		} else if (!stat.isFile()) {
-			var reason = "not a file: " + filepath;
-			res.writeHead(500, {
-				'Content-Length': reason.length,
-				'Content-Type': "text/plain"
-			});
-			res.write(reason);
+// 	fs.stat(filepath, function (err, stat) {
+// 		if (err || stat == undefined) {
+// 			var reason = "not found: " + filepath;
+// 			res.writeHead(500, {
+// 				'Content-Length': reason.length,
+// 				'Content-Type': "text/plain"
+// 			});
+// 			res.write(reason);
+// 		} else if (!stat.isFile()) {
+// 			var reason = "not a file: " + filepath;
+// 			res.writeHead(500, {
+// 				'Content-Length': reason.length,
+// 				'Content-Type': "text/plain"
+// 			});
+// 			res.write(reason);
 		
-		} else {
-			var rs;
-			res.writeHead(200, {
-				'Content-Type' : mime.lookup(filepath),
-				'Content-Length' : stat.size
-			});
-			rs = fs.createReadStream(filepath);
+// 		} else {
+// 			var rs;
+// 			res.writeHead(200, {
+// 				'Content-Type' : mime.lookup(filepath),
+// 				'Content-Length' : stat.size
+// 			});
+// 			rs = fs.createReadStream(filepath);
 			
-			//docs say that util.pump is deprecated,
-			// use rs.pipe(res) instead
-			util.pump(rs, res, function(err) {
-				if(err) {
-					console.log("the error is reported");
-					throw err;
-				}
-			});
-		}
-	})
-});
+// 			//docs say that util.pump is deprecated,
+// 			// use rs.pipe(res) instead
+// 			util.pump(rs, res, function(err) {
+// 				if(err) {
+// 					console.log("the error is reported");
+// 					throw err;
+// 				}
+// 			});
+// 		}
+// 	})
+// });
 
+var connectServer = connect(
+	connect.logger(),
+	function(req, res, next){
+		req.uri = url.parse(req.url);
+		var pathname = req.uri.pathname;
+		if( pathname == "/"){
+			req.url = "/index.htm"
+		}else if (pathname == "/config.js") {
+			console.log("sending config");
+			var text = "remoteIP = '" + myIP + "';";
+			res.writeHead(200, {
+				'Content-Type': 'text/javascript',
+				'Content-Length': text.length
+			})
+			res.end(text);
+			console.log("done sending config");
+			return;
+		}
+		return next()
+	},
+	connect.static(root)
+);
+//var connectServer = connect.createServer();
+//connectServer.use(server);
 var options = {db: {type: 'none'}}; // See docs for options. {type: 'redis'} to enable persistance.
-server.listen(8080);
+//server.listen(8080);
 // Attach the sharejs REST and Socket.io interfaces to the server
-sharejs.attach(server, options);
+sharejs.attach(connectServer, options);
+connectServer.listen(port);
 
 //
 //console.log('Server running at http://127.0.0.1:8000/');

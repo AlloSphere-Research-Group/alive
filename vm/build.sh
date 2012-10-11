@@ -9,10 +9,10 @@ PLATFORM=`uname`
 ARCH=`uname -m`
 echo Building for $PLATFORM $ARCH from $ROOT
 
-ALLOCOREPATH="../../AlloSystem"
-function allocore {
-	echo Building Allocore from $ALLOCOREPATH
-	cd $ALLOCOREPATH
+ALLOSYSTEMPATH="../../AlloSystem"
+function allosystem {
+	echo Building AlloSystem from $ALLOSYSTEMPATH
+	cd $ALLOSYSTEMPATH
 	make allocore -j8
 	make alloutil -j8
 	cd $ROOT
@@ -30,24 +30,23 @@ function generate_ffi_header {
 	
 	# make the ffi header:
 	echo Making FFI header
-	#gcc -E vm.h > vm_ffi.h
 	
-	# gcc -E externs/libuv/include/uv.h > uv_ffi.h
-	# gcc -E al_ffi.cpp > al_ffi.h
+	luajit h2ffi.lua alive.h ffi/aliveheader.lua 
 }
 
 LLVMLIBS="-lLLVMRuntimeDyld -lLLVMObject -lLLVMLinker -lLLVMipo -lLLVMJIT -lLLVMExecutionEngine -lLLVMDebugInfo -lLLVMBitWriter -lLLVMX86Disassembler -lLLVMX86AsmParser -lLLVMX86CodeGen -lLLVMX86Desc -lLLVMX86AsmPrinter -lLLVMX86Utils -lLLVMX86Info -lLLVMArchive -lLLVMBitReader -lLLVMSelectionDAG -lLLVMAsmPrinter -lLLVMMCParser -lLLVMCodeGen -lLLVMScalarOpts -lLLVMInstCombine -lLLVMTransformUtils -lLLVMipa -lLLVMAnalysis -lLLVMTarget -lLLVMCore -lLLVMMC -lLLVMSupport"
 
 function build {
 	
-	SOURCES="*.cpp"
+	SOURCES="al_ffi.cpp alive.cpp"
+	#SOURCES="uvtest.cpp"
 	
 	echo Building
 	if [[ $PLATFORM == 'Darwin' ]]; then
 	
-		INCLUDEPATHS="-I$ALLOCOREPATH/build/include -I/usr/include/apr-1/ -Iexterns/libuv/include"
-		LINKERPATHS="-L$ALLOCOREPATH/build/lib -L/usr/lib"
-		LIBRARIES="-lluajit-5.1 -lassimp -lportaudio -lfreeimage -lfreetype -lapr-1 -laprutil-1 -force_load $ALLOCOREPATH/build/lib/liballocore.a -force_load $ALLOCOREPATH/build/lib/liballoutil.a -force_load externs/libuv/uv.a"
+		INCLUDEPATHS="-I$ALLOSYSTEMPATH/build/include -I/usr/include/apr-1/ -Iexterns/libuv/include"
+		LINKERPATHS="-L$ALLOSYSTEMPATH/build/lib -L/usr/lib"
+		LIBRARIES="-lluajit-5.1 -lassimp -lportaudio -lfreeimage -lfreetype -lapr-1 -laprutil-1 -force_load $ALLOSYSTEMPATH/build/lib/liballocore.a -force_load $ALLOSYSTEMPATH/build/lib/liballoutil.a -force_load externs/libuv/uv.a"
 		FRAMEWORKS="-framework Carbon -framework Cocoa -framework CoreAudio -framework GLUT -framework OpenGL -framework AudioUnit -framework AudioToolbox -framework CoreMidi"
 		LINKERFLAGS="-w -rdynamic -pagezero_size 10000 -image_base 100000000 -keep_private_externs"
 
@@ -57,9 +56,9 @@ function build {
 		
 	elif [[ $PLATFORM == 'Linux' ]]; then
 	
-		INCLUDEPATHS="-I$ALLOCOREPATH/build/include -I/usr/local/include/luajit-2.0 -I/usr/include/luajit-2.0 -I/usr/include/apr-1.0/ -Iexterns/libuv/include"
-		LINKERPATHS="-L$ALLOCOREPATH/build/lib -L/usr/local/lib -L/usr/lib -L/usr/lib/llvm-3.0/lib/ -L/usr/lib"
-		LIBRARIES="-lallocore -lalloutil  -lluajit-5.1 -lGLEW -lGLU -lGL -lglut -lassimp -lportaudio -lrt -lasound -lpthread -lfreeimage -lfreetype -lapr-1 -laprutil-1 externs/libuv/uv.a"
+		INCLUDEPATHS="-I$ALLOSYSTEMPATH/build/include -I/usr/local/include/luajit-2.0 -I/usr/include/luajit-2.0 -I/usr/include/apr-1.0/ -Iexterns/libuv/include"
+		LINKERPATHS="-L$ALLOSYSTEMPATH/build/lib -L/usr/local/lib -L/usr/lib -L/usr/lib/llvm-3.0/lib/ -L/usr/lib"
+		LIBRARIES="-lallocore -lalloutil -lluajit-5.1 -lGLEW -lGLU -lGL -lglut -lassimp -lportaudio  -lasound -lfreeimage -lfreetype -lapr-1 -laprutil-1 externs/libuv/uv.a -lrt -lpthread"
 		LINKERFLAGS="-w -rdynamic"
 
 		g++ -c -O3 -Wall -fPIC -ffast-math -Wno-unknown-pragmas -MMD -DAPR_FAST_COMPAT -DAPR_STRICT -D_GNU_SOURCE -DEV_MULTIPLICITY=1 $INCLUDEPATHS $SOURCES
@@ -75,8 +74,8 @@ function build {
 
 
 clean
-#allocore
-#generate_ffi_header
+allosystem
+generate_ffi_header
 build
 
 
