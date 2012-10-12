@@ -44,8 +44,8 @@
 	361C59811626859F00E08BE8 /* build.sh */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {612, 1222}}";
-			sepNavSelRange = "{566, 0}";
-			sepNavVisRange = "{565, 1786}";
+			sepNavSelRange = "{1510, 0}";
+			sepNavVisRange = "{0, 1390}";
 		};
 	};
 	361C5982162685C900E08BE8 /* PBXTextBookmark */ = {
@@ -398,7 +398,7 @@
 		fRef = 3657550C1612783B009D11CC /* build.sh */;
 		name = "build.sh: 54";
 		rLen = 0;
-		rLoc = 1921;
+		rLoc = 1504;
 		rType = 0;
 		vrLen = 1749;
 		vrLoc = 274;
@@ -408,7 +408,7 @@
 		fRef = 3657550C1612783B009D11CC /* build.sh */;
 		name = "build.sh: 48";
 		rLen = 0;
-		rLoc = 1323;
+		rLoc = 1154;
 		rType = 0;
 		vrLen = 2120;
 		vrLoc = 403;
@@ -616,7 +616,7 @@
 		fRef = 3657550C1612783B009D11CC /* build.sh */;
 		name = "build.sh: 48";
 		rLen = 0;
-		rLoc = 1323;
+		rLoc = 1154;
 		rType = 0;
 		vrLen = 2131;
 		vrLoc = 392;
@@ -2978,6 +2978,36 @@
 		vrLen = 1786;
 		vrLoc = 565;
 	};
+	364D1E161628DD450002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 361C59811626859F00E08BE8 /* build.sh */;
+		name = "build.sh: 55";
+		rLen = 0;
+		rLoc = 1510;
+		rType = 0;
+		vrLen = 1390;
+		vrLoc = 0;
+	};
+	364D1E171628DD450002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3657550C1612783B009D11CC /* build.sh */;
+		name = "build.sh: 41";
+		rLen = 0;
+		rLoc = 1045;
+		rType = 0;
+		vrLen = 2203;
+		vrLoc = 325;
+	};
+	364D1E181628DD450002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3657550C1612783B009D11CC /* build.sh */;
+		name = "build.sh: 46";
+		rLen = 0;
+		rLoc = 1154;
+		rType = 0;
+		vrLen = 1847;
+		vrLoc = 1098;
+	};
 	3657520A161277BC009D11CC /* Project object */ = {
 		activeArchitecturePreference = i386;
 		activeBuildConfigurationName = Debug;
@@ -3332,6 +3362,9 @@
 			364D1E131628DB1A0002CFC9 /* PBXTextBookmark */ = 364D1E131628DB1A0002CFC9 /* PBXTextBookmark */;
 			364D1E141628DB1A0002CFC9 /* PBXTextBookmark */ = 364D1E141628DB1A0002CFC9 /* PBXTextBookmark */;
 			364D1E151628DB1A0002CFC9 /* PBXTextBookmark */ = 364D1E151628DB1A0002CFC9 /* PBXTextBookmark */;
+			364D1E161628DD450002CFC9 /* PBXTextBookmark */ = 364D1E161628DD450002CFC9 /* PBXTextBookmark */;
+			364D1E171628DD450002CFC9 /* PBXTextBookmark */ = 364D1E171628DD450002CFC9 /* PBXTextBookmark */;
+			364D1E181628DD450002CFC9 /* PBXTextBookmark */ = 364D1E181628DD450002CFC9 /* PBXTextBookmark */;
 			36575F2B1612A950009D11CC = 36575F2B1612A950009D11CC /* PBXTextBookmark */;
 			36575F321612A950009D11CC = 36575F321612A950009D11CC /* PBXTextBookmark */;
 			36575F341612A950009D11CC = 36575F341612A950009D11CC /* PBXTextBookmark */;
@@ -3467,9 +3500,9 @@
 	};
 	3657550C1612783B009D11CC /* build.sh */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {612, 1183}}";
-			sepNavSelRange = "{1045, 0}";
-			sepNavVisRange = "{342, 2180}";
+			sepNavIntBoundsRect = "{{0, 0}, {612, 1352}}";
+			sepNavSelRange = "{1154, 0}";
+			sepNavVisRange = "{1098, 1847}";
 		};
 	};
 	3657550D16127877009D11CC /* install_dependencies.sh */ = {
