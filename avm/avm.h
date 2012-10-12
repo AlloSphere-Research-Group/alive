@@ -1,6 +1,14 @@
 #ifndef ALIVE_AVM_H
 #define ALIVE_AVM_H
 
+#ifdef __APPLE__
+#include <OpenGL/OpenGL.h>
+#include <GLUT/glut.h>
+#else
+#include <GL/gl.h>
+#include <GL/glut.h>
+#endif
+
 #ifdef __cplusplus
 extern "C" {
 #endif

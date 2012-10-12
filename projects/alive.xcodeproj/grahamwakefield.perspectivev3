@@ -233,6 +233,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -270,22 +272,19 @@
 							<array>
 								<string>36575208161277BC009D11CC</string>
 								<string>360F39F4161E930400F6E395</string>
-								<string>364D1BF01628C0730002CFC9</string>
-								<string>364D1BF11628C0730002CFC9</string>
-								<string>364D1CD21628C0740002CFC9</string>
 								<string>361C597E1626857100E08BE8</string>
 								<string>3657550A161277FE009D11CC</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>137</integer>
-									<integer>134</integer>
+									<integer>15</integer>
+									<integer>11</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 1985}, {264, 769}}</string>
+							<string>{{0, 0}, {264, 769}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -313,14 +312,12 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>36575212161277BE009D11CC</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>build.sh</string>
+								<string>avm.cpp</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -328,11 +325,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>36575213161277BE009D11CC</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>build.sh</string>
+										<string>avm.cpp</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>364D1E181628DD450002CFC9</string>
+										<string>364D1E2A1628E4BE0002CFC9</string>
 										<key>history</key>
 										<array>
 											<string>36575F2B1612A950009D11CC</string>
@@ -387,14 +384,12 @@
 											<string>36E43E911624DCE8003881BF</string>
 											<string>36E43E921624DCE8003881BF</string>
 											<string>36E43E961624DD81003881BF</string>
-											<string>36E43EA81624DE56003881BF</string>
 											<string>361C5982162685C900E08BE8</string>
 											<string>361C59A31626876500E08BE8</string>
 											<string>361C59A41626876500E08BE8</string>
 											<string>361C59A91626877100E08BE8</string>
 											<string>361C59B91626898000E08BE8</string>
 											<string>361C59DF16268C3200E08BE8</string>
-											<string>361C59F516268EA000E08BE8</string>
 											<string>361C5A311626927200E08BE8</string>
 											<string>361C5C5616276B2800E08BE8</string>
 											<string>361C5C6616276C3C00E08BE8</string>
@@ -411,7 +406,6 @@
 											<string>361C66821627798000E08BE8</string>
 											<string>361C66831627798000E08BE8</string>
 											<string>364D1D3D1628C1580002CFC9</string>
-											<string>364D1D3E1628C1580002CFC9</string>
 											<string>364D1D541628C3160002CFC9</string>
 											<string>364D1D551628C3160002CFC9</string>
 											<string>364D1DA41628CB5C0002CFC9</string>
@@ -423,9 +417,14 @@
 											<string>364D1DEB1628D65F0002CFC9</string>
 											<string>364D1E0E1628DAA40002CFC9</string>
 											<string>364D1E0F1628DAA40002CFC9</string>
-											<string>364D1E131628DB1A0002CFC9</string>
 											<string>364D1E161628DD450002CFC9</string>
-											<string>364D1E171628DD450002CFC9</string>
+											<string>364D1E191628DF3C0002CFC9</string>
+											<string>364D1E1E1628E4720002CFC9</string>
+											<string>364D1E1F1628E4720002CFC9</string>
+											<string>364D1E211628E4720002CFC9</string>
+											<string>364D1E221628E4720002CFC9</string>
+											<string>364D1E281628E4BE0002CFC9</string>
+											<string>364D1E291628E4BE0002CFC9</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
