@@ -89,7 +89,8 @@ $(document).ready( function() {
 	slaveSocket = io.connect("http://" + remoteIP + ":8081/");	
 
 	slaveSocket.on('handshake', function (response) {
-		console.log("HANDSHAKE : ", response.data);
+		//console.log("HANDSHAKE : ", response.data);
+		console.log("HANDSHAKE");
 	});
 				
 	slaveSocket.on('ls', function (response) {

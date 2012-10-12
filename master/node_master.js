@@ -12,6 +12,9 @@ var mdns 		= require('mdns');
 var connect 	= require('connect');
 var sharejs 	= require('share').server;
 
+var options = {db: {type: 'none'}}; // See docs for options. {type: 'redis'} to enable persistance.
+var sharemdl = sharejs.createModel(options);
+
 var editors_in 	 = require('socket.io').listen(8081);
 var renderers_in = require('socket.io').listen(8082);
 
@@ -94,6 +97,36 @@ editors_in.sockets.on('connection', function (socket) {
 			case "read" :
 				try {
 					var data = fs.readFileSync(editors[socket.addr].currentDir + "/" + args, 'utf8');///read(args);
+					
+					console.log("trying to open", args);
+					
+					var doc = sharemdl.getSnapshot(args, function(error, newDoc) {
+						
+						console.log("got doc");
+						console.log(newDoc);
+						/*
+						if (error) {
+							console.log("sharejs open error");
+							console.error(error);
+							return;
+						}
+						currentFile = newDoc.name;
+						console.log("opening: " + currentFile)
+						$("#filename").text(currentFile);
+						doc = newDoc;
+						if( doc.getLength() == 0 ){
+							console.log("read: "+currentFile)
+							slaveSocket.emit('cmd', 'read ' + currentFile);
+						}else{
+							doc.attach_cm(window.editor);
+							console.log("attach: " + currentFile)
+						}
+						*/
+					});
+					
+					console.log("tried to open");
+
+					
 					editors[socket.addr].emit("read", { "data" : data } );
 				} catch(err){ console.log(err);}
 				break;
@@ -242,13 +275,13 @@ var port = 8080;
 // });
 
 var connectServer = connect(
-	connect.logger(),
+	//connect.logger(),
 	function(req, res, next){
 		req.uri = url.parse(req.url);
 		var pathname = req.uri.pathname;
 		if( pathname == "/"){
 			req.url = "/index.htm"
-		}else if (pathname == "/config.js") {
+		} else if (pathname == "/config.js") {
 			console.log("sending config");
 			var text = "remoteIP = '" + myIP + "';";
 			res.writeHead(200, {
@@ -265,10 +298,10 @@ var connectServer = connect(
 );
 //var connectServer = connect.createServer();
 //connectServer.use(server);
-var options = {db: {type: 'none'}}; // See docs for options. {type: 'redis'} to enable persistance.
 //server.listen(8080);
 // Attach the sharejs REST and Socket.io interfaces to the server
-sharejs.attach(connectServer, options);
+console.log("MODEL", sharemdl);
+var sharer = sharejs.attach(connectServer, options, sharemdl);
 connectServer.listen(port);
 
 //

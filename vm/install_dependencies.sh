@@ -6,7 +6,7 @@ PLATFORM=`uname`
 ARCH=`uname -m`
 echo Installing dependencies for $PLATFORM $ARCH from $ROOT
 
-mkdir -p externs
+mkdir -p ../externs
 
 if [[ $PLATFORM == 'Darwin' ]]; then
 
@@ -36,7 +36,9 @@ npm install socket.io
 npm install socket.io-client
 npm install mdns
 
-cd $ROOT/externs
+cd $ROOT/../externs
 git clone git://github.com/joyent/libuv.git
 cd libuv
 make
+
+cd $ROOT
