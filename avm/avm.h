@@ -26,6 +26,9 @@ av_Window * av_window_create();
 
 void av_window_setfullscreen(av_Window * self, int b);
 void av_window_settitle(av_Window * self, const char * name);
+void av_window_setdim(av_Window * self, int x, int y);
+
+
 
 #ifdef __cplusplus
 }
