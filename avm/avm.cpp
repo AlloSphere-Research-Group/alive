@@ -76,6 +76,10 @@ int main(int argc, char * argv[]) {
 	
 	#ifdef __APPLE__
 		if (argc > 0) {
+		
+			char tmp[PATH_MAX];
+			realpath(argv[0], tmp);
+		
 			// try argv:
 			if (argc && argv[0][0] == '/') {
 				strncpy(apppath, argv[0], PATH_MAX);
