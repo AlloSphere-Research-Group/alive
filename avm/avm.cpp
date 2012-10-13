@@ -1,8 +1,12 @@
 #include "avm.h"
 #include "uv_utils.h"
-#include <string.h>
 
+#include <string.h>
+#include <libgen.h>
+
+// the path from where it was invoked, e.g. user workspace:
 char wd[PATH_MAX];
+// the path where the binary actually resides, e.g. with resources:
 char apppath[PATH_MAX];
 
 uv_loop_t * mainloop;
@@ -74,32 +78,27 @@ int main(int argc, char * argv[]) {
 	}
 	printf("wd %s\n", wd);
 	
+	// get binary path:
 	#ifdef __APPLE__
 		if (argc > 0) {
-		
-			char tmp[PATH_MAX];
-			realpath(argv[0], tmp);
-			
-			printf("tmp %s\n", tmp);
-		
-			// try argv:
-			if (argc && argv[0][0] == '/') {
-				strncpy(apppath, argv[0], PATH_MAX);
-			} else {
-				snprintf(apppath, PATH_MAX, "%s/%s", wd, argv[0]);
-			}
+			realpath(argv[0], apppath);
 		}
 	#else
 		// Linux only?
 		int count = readlink("/proc/self/exe", apppath, PATH_MAX);
 		if (count > 0) {
 			apppath[count] = '\0';
-		} else 
+		} else if (argc > 0) {
+			realpath(argv[0], apppath);
+		}
 	#endif
 	// Windows only:
 	// GetModuleFileName(NULL, apppath, PATH_MAX)
 	
 	printf("apppath %s\n", apppath);
+	
+	char * path = dirname(apppath);
+	printf("path %s\n", path);
 	
 	// see also realpath(), which gets rid of ~, ../ etc.
 	
