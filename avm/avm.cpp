@@ -29,7 +29,7 @@ uv_loop_t * mainloop;
 lua_State * L = 0;
 
 // the window
-Window win;
+av_Window win;
 
 
 
@@ -76,8 +76,8 @@ void timerfunc(int id) {
 	glClearColor(0., 0.2, 0.5, 1.);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	
-	if (win.onframe) {
-		(win.onframe)(&win);
+	if (win.draw) {
+		(win.draw)(&win);
 	}
 	
 	glutSwapBuffers();
@@ -102,15 +102,17 @@ int main_modified(const char * filename) {
 
 void ondisplay() {}
 void onreshape(int w, int h) {
-	if (!win.fullscreen) {
+	if (!win.is_fullscreen) {
 		win.width = w;
 		win.height = h;
 	}
-	printf("reshaped %d %d\n", win.width, win.height);
+	if (win.resize) {
+		(win.resize)(&win, w, h);
+	}
 }
 
-void gofullscreen(bool b=true) {
-	win.fullscreen = b;
+void av_window_setfullscreen(av_Window * self, int b) {
+	win.is_fullscreen = b;
 	if (b) {
 		glutFullScreen();
 	} else {
@@ -118,21 +120,65 @@ void gofullscreen(bool b=true) {
 	}
 }
 
+void getmodifiers() {
+	int mod = glutGetModifiers();
+	win.shift = mod & GLUT_ACTIVE_SHIFT;
+	win.alt = mod & GLUT_ACTIVE_ALT;
+	win.ctrl = mod & GLUT_ACTIVE_CTRL;
+}
+
 void onkeydown(unsigned char k, int x, int y) {
-	printf("key %d\n", k);
-	if (k == 27) {
-		gofullscreen(!win.fullscreen);
+	getmodifiers();
+	if (win.onkey) {
+		(win.onkey)(&win, 1, k);
+	}
+}
+
+void onkeyup(unsigned char k, int x, int y) {
+	getmodifiers();
+	if (win.onkey) {
+		(win.onkey)(&win, 2, k);
+	}
+}
+
+void onspecialkey(int key, int x, int y) {
+	getmodifiers();
+	printf("special %d\n", key);
+	// like function keys etc. what to do with these?
+}
+
+void onmouse(int button, int state, int x, int y) {
+	getmodifiers();
+	win.button = button;
+	if (win.onmouse) {
+		(win.onmouse)(&win, state, win.button, x, y);
+	}
+}
+
+void onmotion(int x, int y) {
+	getmodifiers();
+	if (win.onmouse) {
+		(win.onmouse)(&win, 2, win.button, x, y);
+	}
+}
+
+void onpassivemotion(int x, int y) {
+	if (win.onmouse) {
+		(win.onmouse)(&win, 3, win.button, x, y);
 	}
 }
 
 void initwindow() {
 	// initialize window:
-	win.id = 0;
 	win.width = 720;
 	win.height = 480;
-	win.fullscreen = false;
+	win.button = 0;
+	win.is_fullscreen = false;
 	win.fps = 40.;
-	win.onframe = 0;
+	win.draw = 0;
+	win.resize = 0;
+	win.onkey = 0;
+	win.onmouse = 0;
 	
 //	screen_width = glutGet(GLUT_SCREEN_WIDTH);
 //	screen_height = glutGet(GLUT_SCREEN_HEIGHT);	
@@ -143,16 +189,15 @@ void initwindow() {
 	win.id = glutCreateWindow("");
 	glutSetWindow(win.id);
 	
-//	glutSetWindowTitle("");
 //	glutIgnoreKeyRepeat(1);
 //	glutSetCursor(GLUT_CURSOR_NONE);
 
 	glutKeyboardFunc(onkeydown);
-//	glutKeyboardUpFunc(cbKeyboardUp);
-//	glutMouseFunc(cbMouse);
-//	glutMotionFunc(cbMotion);
-//	glutPassiveMotionFunc(cbPassiveMotion);
-//	glutSpecialFunc(cbSpecial);
+	glutKeyboardUpFunc(onkeyup);
+	glutMouseFunc(onmouse);
+	glutMotionFunc(onmotion);
+	glutPassiveMotionFunc(onpassivemotion);
+//	glutSpecialFunc(onspecialkey);
 //	glutSpecialUpFunc(cbSpecialUp);
 //	glutVisibilityFunc(cbVisibility);
 	glutReshapeFunc(onreshape);
@@ -160,8 +205,12 @@ void initwindow() {
 
 }
 
-Window * window_get() {
+av_Window * av_window_create() {
 	return &win;
+}
+
+void av_window_settitle(av_Window * self, const char * name) {
+	glutSetWindowTitle(name);
 }
 
 lua_State * initLua(const char * apppath) {
