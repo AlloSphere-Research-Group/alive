@@ -5,9 +5,41 @@
 #include <libgen.h>
 
 // the path from where it was invoked, e.g. user workspace:
-char wd[PATH_MAX];
+char workpath[PATH_MAX];
 // the path where the binary actually resides, e.g. with resources:
 char apppath[PATH_MAX];
+
+void getpaths(int argc, char ** argv) {
+	char wd[PATH_MAX];
+	if (getcwd(wd, PATH_MAX) == 0) {
+		printf("could not derive working path\n");
+		exit(0);
+	}
+	snprintf(workpath, PATH_MAX, "%s/", wd);
+	
+	printf("workpath %s\n", workpath);
+	
+	// get binary path:
+	char tmppath[PATH_MAX];
+	#ifdef __APPLE__
+		if (argc > 0) {
+			realpath(argv[0], tmppath);
+		}
+		snprintf(apppath, PATH_MAX, "%s/", dirname(tmppath));
+	#else
+		// Linux only?
+		int count = readlink("/proc/self/exe", tmppath, PATH_MAX);
+		if (count > 0) {
+			tmppath[count] = '\0';
+		} else if (argc > 0) {
+			realpath(argv[0], tmppath);
+		}
+		snprintf(apppath, PATH_MAX, "%s/", dirname(tmppath));
+	#endif
+	// Windows only:
+	// GetModuleFileName(NULL, apppath, PATH_MAX)
+	printf("apppath %s\n", apppath);
+}
 
 uv_loop_t * mainloop;
 int win;
@@ -72,43 +104,12 @@ void onkeydown(unsigned char k, int x, int y) {
 int main(int argc, char * argv[]) {
 	glutInit(&argc, argv);
 	
-	if (getcwd(wd, PATH_MAX) == 0) {
-		printf("could not derive working path\n");
-		exit(0);
-	}
-	printf("wd %s\n", wd);
-	
-	// get binary path:
-	char tmppath[PATH_MAX];
-	#ifdef __APPLE__
-		if (argc > 0) {
-			realpath(argv[0], apppath);
-		}
-	#else
-		// Linux only?
-		int count = readlink("/proc/self/exe", tmppath, PATH_MAX);
-		if (count > 0) {
-			tmppath[count] = '\0';
-		} else if (argc > 0) {
-			realpath(argv[0], tmppath);
-		}
-	#endif
-	// Windows only:
-	// GetModuleFileName(NULL, apppath, PATH_MAX)
-	
-	snprintf(apppath, PATH_MAX, "%s/", dirname(tmppath));
-	printf("path %s\n", apppath);
+	getpaths(argc, argv);
 	
 	// see also realpath(), which gets rid of ~, ../ etc.
 	
 	// execute in the context of wherever this is run from:
 	chdir("./");
-	
-	if (getcwd(wd, PATH_MAX) == 0) {
-		printf("could not derive working path\n");
-		exit(0);
-	}
-	printf("wd %s\n", wd);
 	
 	L = lua_open();
 	luaL_openlibs(L);
