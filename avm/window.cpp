@@ -1,5 +1,5 @@
 
-#include "avm.h"
+#include "avm_dev.h"
 
 // the window
 av_Window win;
@@ -7,15 +7,16 @@ av_Window win;
 static bool initialized = 0;
 
 void timerfunc(int id) {
-	// do stuff
-	//int res = 
-	uv_run_once(mainloop);
-	//printf("uv: %d\n", res);
+
+	// trigger scheduled events via uv_run_once()
+	av_tick();
 	
+	// update window:
 	if (win.draw) {
 		(win.draw)(&win);
 	}	
 	glutSwapBuffers();
+	
 	// reschedule:
 	glutTimerFunc((unsigned int)(1000.0/win.fps), timerfunc, 0);
 }
@@ -73,7 +74,6 @@ void onmouse(int button, int state, int x, int y) {
 }
 
 void onmotion(int x, int y) {
-	getmodifiers();
 	if (win.onmouse) {
 		(win.onmouse)(&win, 2, win.button, x, y);
 	}

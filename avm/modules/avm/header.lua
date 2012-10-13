@@ -1,5 +1,5 @@
 local header = [[
-// generated from avm.h on Sat Oct 13 15:12:38 2012
+// generated from avm.h on Sat Oct 13 15:23:30 2012
 typedef struct av_Window {
  int id;
  int width, height;

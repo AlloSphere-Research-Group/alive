@@ -1,19 +1,5 @@
-#include "avm.h"
+#include "avm_dev.h"
 #include "uv_utils.h"
-
-#ifdef __APPLE__
-#include <OpenGL/OpenGL.h>
-#include <GLUT/glut.h>
-#else
-#include <GL/gl.h>
-#include <GL/glut.h>
-#endif
-
-extern "C" {
-	#include "lua.h"
-	#include "lualib.h"
-	#include "lauxlib.h"
-}
 
 #include <string.h>
 #include <libgen.h>
@@ -27,7 +13,6 @@ char apppath[PATH_MAX];
 uv_loop_t * mainloop;
 // the main-thread Lua state:
 lua_State * L = 0;
-
 
 void getpaths(int argc, char ** argv) {
 	char wd[PATH_MAX];
@@ -61,7 +46,9 @@ void getpaths(int argc, char ** argv) {
 	printf("apppath %s\n", apppath);
 }
 
-
+void av_tick() {
+	uv_run_once(mainloop);
+}
 
 int main_idle(int status) {
 	//printf("main_idle\n");
@@ -107,18 +94,19 @@ int main(int argc, char * argv[]) {
 	
 	// initialize UV:
 	mainloop = uv_default_loop();
+	
+	// initialize Lua:
+	L = initLua(apppath);
+	
 	// add an idler to prevent uv loop blocking:
 	new Idler(mainloop, main_idle);
-	
-	// start watching:
-	const char * main_filename = "main.lua";
-	new FileWatcher(mainloop, main_filename, main_modified);
 	
 	// initialize window:
 	av_Window * win = av_window_create();
 	
-	// initialize Lua:
-	L = initLua(apppath);
+	// start watching:
+	const char * main_filename = "main.lua";
+	new FileWatcher(mainloop, main_filename, main_modified);
 	
 	glutMainLoop();
 	return 0;
