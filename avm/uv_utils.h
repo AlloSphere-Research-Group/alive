@@ -203,7 +203,7 @@ struct FileWatcher {
 		this->filename = filename;
 		modified = 0;
 		
-		printf("starting %p on %p\n", this, loop);
+		//printf("starting %p on %p\n", this, loop);
 		
 		uv_timer_init(loop, &handle);
 		uv_timer_start(&handle, static_notify, 100, 100); // ms

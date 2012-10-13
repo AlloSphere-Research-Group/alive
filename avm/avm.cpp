@@ -1,10 +1,16 @@
 #include "avm.h"
 #include "uv_utils.h"
+#include <string.h>
+
+char wd[PATH_MAX];
+char apppath[PATH_MAX];
 
 uv_loop_t * mainloop;
 int win;
 bool fullscreen = false;
 int w = 720, h = 480;
+
+lua_State * L = 0;
 
 void timerfunc(int id) {
 	// do stuff
@@ -25,6 +31,11 @@ int main_idle(int status) {
 
 int main_modified(const char * filename) {
 	printf("main modified %s\n", filename);
+	
+	if (luaL_dofile(L, filename)) {
+		printf("error: %s\n", lua_tostring(L, -1));
+	}
+	
 	return 1;
 }
 
@@ -57,8 +68,43 @@ void onkeydown(unsigned char k, int x, int y) {
 int main(int argc, char * argv[]) {
 	glutInit(&argc, argv);
 	
+	if (getcwd(wd, PATH_MAX) == 0) {
+		printf("could not derive working path\n");
+		exit(0);
+	}
+	printf("wd %s\n", wd);
+	
+	
+		// Linux only?
+		int count = readlink("/proc/self/exe", apppath, PATH_MAX);
+		if (count > 0) {
+			apppath[count] = '\0';
+		} else if (argc > 0) {
+			// try argv:
+			if (argc && argv[0][0] == '/') {
+				strncpy(apppath, argv[0], PATH_MAX);
+			} else {
+				snprintf(apppath, PATH_MAX, "%s/%s", wd, argv[0]);
+			}
+		}
+	// Windows only:
+	// GetModuleFileName(NULL, apppath, PATH_MAX)
+	
+	printf("apppath %s\n", apppath);
+	
+	// see also realpath(), which gets rid of ~, ../ etc.
+	
 	// execute in the context of wherever this is run from:
 	chdir("./");
+	
+	if (getcwd(wd, PATH_MAX) == 0) {
+		printf("could not derive working path\n");
+		exit(0);
+	}
+	printf("wd %s\n", wd);
+	
+	L = lua_open();
+	luaL_openlibs(L);
 
 //	screen_width = glutGet(GLUT_SCREEN_WIDTH);
 //	screen_height = glutGet(GLUT_SCREEN_HEIGHT);	
