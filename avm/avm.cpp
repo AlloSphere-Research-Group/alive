@@ -9,6 +9,17 @@ char workpath[PATH_MAX];
 // the path where the binary actually resides, e.g. with resources:
 char apppath[PATH_MAX];
 
+// the main-thread UV loop:
+uv_loop_t * mainloop;
+// the main-thread Lua state:
+lua_State * L = 0;
+
+// window ID & state:
+int win;
+bool fullscreen = false;
+int w = 720, h = 480;
+
+
 void getpaths(int argc, char ** argv) {
 	char wd[PATH_MAX];
 	if (getcwd(wd, PATH_MAX) == 0) {
@@ -41,12 +52,6 @@ void getpaths(int argc, char ** argv) {
 	printf("apppath %s\n", apppath);
 }
 
-uv_loop_t * mainloop;
-int win;
-bool fullscreen = false;
-int w = 720, h = 480;
-
-lua_State * L = 0;
 
 void timerfunc(int id) {
 	// do stuff
