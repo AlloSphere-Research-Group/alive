@@ -28,15 +28,22 @@ int main_modified(const char * filename) {
 	return 1;
 }
 
-void display() {}
+void ondisplay() {}
+void onreshape(int w1, int h1) {
+	if (!fullscreen) {
+		w = w1;
+		h = h1;
+	}
+	printf("reshaped %d %d\n", w, h);
+}
 
 void gofullscreen(bool b=true) {
+	fullscreen = b;
 	if (b) {
 		glutFullScreen();
 	} else {
 		glutReshapeWindow(w, h);
 	}
-	fullscreen = b;
 }
 
 void onkeydown(unsigned char k, int x, int y) {
@@ -74,8 +81,8 @@ int main(int argc, char * argv[]) {
 //	glutSpecialFunc(cbSpecial);
 //	glutSpecialUpFunc(cbSpecialUp);
 //	glutVisibilityFunc(cbVisibility);
-//	glutReshapeFunc(reshape);
-	glutDisplayFunc(display);
+	glutReshapeFunc(onreshape);
+	glutDisplayFunc(ondisplay);
 	
 	glutTimerFunc((unsigned int)(1000.0/30.), timerfunc, 0);
 	
