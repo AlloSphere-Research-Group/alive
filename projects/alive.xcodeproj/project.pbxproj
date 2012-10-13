@@ -3330,6 +3330,7 @@
 		364D1DEA1628D64A0002CFC9 /* remote.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = remote.lua; sourceTree = "<group>"; };
 		364D1E1C1628E4480002CFC9 /* main.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = main.lua; sourceTree = "<group>"; };
 		364D1E1D1628E4590002CFC9 /* uv_utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uv_utils.h; sourceTree = "<group>"; };
+		364D1E3B1628E7260002CFC9 /* window.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = window.cpp; sourceTree = "<group>"; };
 		36575226161277FD009D11CC /* corner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = corner.png; sourceTree = "<group>"; };
 		36575227161277FD009D11CC /* folder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = folder.png; sourceTree = "<group>"; };
 		36575228161277FD009D11CC /* index.htm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.htm; sourceTree = "<group>"; };
@@ -6211,6 +6212,7 @@
 				361C598A162685E000E08BE8 /* avm.h */,
 				361C598B162685E000E08BE8 /* avm.cpp */,
 				364D1E1C1628E4480002CFC9 /* main.lua */,
+				364D1E3B1628E7260002CFC9 /* window.cpp */,
 			);
 			name = avm;
 			path = ../avm;
