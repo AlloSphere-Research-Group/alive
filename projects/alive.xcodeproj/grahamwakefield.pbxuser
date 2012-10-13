@@ -71,15 +71,15 @@
 	361C598A162685E000E08BE8 /* avm.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {612, 740}}";
-			sepNavSelRange = "{615, 55}";
+			sepNavSelRange = "{465, 31}";
 			sepNavVisRange = "{0, 707}";
 		};
 	};
 	361C598B162685E000E08BE8 /* avm.cpp */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {612, 3640}}";
-			sepNavSelRange = "{2374, 0}";
-			sepNavVisRange = "{1940, 1067}";
+			sepNavIntBoundsRect = "{{0, 0}, {612, 1664}}";
+			sepNavSelRange = "{2735, 0}";
+			sepNavVisRange = "{1392, 1440}";
 			sepNavWindowFrame = "{{631, 0}, {759, 878}}";
 		};
 	};
@@ -3112,7 +3112,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 65";
 		rLen = 0;
-		rLoc = 2540;
+		rLoc = 1574;
 		rType = 0;
 		vrLen = 1290;
 		vrLoc = 351;
@@ -3192,7 +3192,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 28";
 		rLen = 0;
-		rLoc = 1529;
+		rLoc = 1322;
 		rType = 0;
 		vrLen = 1255;
 		vrLoc = 0;
@@ -3202,7 +3202,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 37";
 		rLen = 0;
-		rLoc = 1678;
+		rLoc = 1322;
 		rType = 0;
 		vrLen = 1255;
 		vrLoc = 0;
@@ -3282,7 +3282,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 36";
 		rLen = 0;
-		rLoc = 1529;
+		rLoc = 1322;
 		rType = 0;
 		vrLen = 1302;
 		vrLoc = 97;
@@ -3312,7 +3312,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 36";
 		rLen = 0;
-		rLoc = 1529;
+		rLoc = 1322;
 		rType = 0;
 		vrLen = 1302;
 		vrLoc = 97;
@@ -3332,16 +3332,16 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 51";
 		rLen = 0;
-		rLoc = 1807;
+		rLoc = 1429;
 		rType = 0;
 		vrLen = 1291;
 		vrLoc = 541;
 	};
 	364D1E3B1628E7260002CFC9 /* window.cpp */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {612, 740}}";
-			sepNavSelRange = "{18, 0}";
-			sepNavVisRange = "{0, 21}";
+			sepNavIntBoundsRect = "{{0, 0}, {612, 1885}}";
+			sepNavSelRange = "{2831, 0}";
+			sepNavVisRange = "{838, 1021}";
 		};
 	};
 	364D1E3C1628E74B0002CFC9 /* PBXTextBookmark */ = {
@@ -3373,7 +3373,7 @@
 		fRef = 364D1E3B1628E7260002CFC9 /* window.cpp */;
 		name = "window.cpp: 3";
 		rLen = 0;
-		rLoc = 18;
+		rLoc = 325;
 		rType = 0;
 		vrLen = 18;
 		vrLoc = 0;
@@ -3383,7 +3383,7 @@
 		fRef = 364D1E3B1628E7260002CFC9 /* window.cpp */;
 		name = "window.cpp: 3";
 		rLen = 0;
-		rLoc = 18;
+		rLoc = 325;
 		rType = 0;
 		vrLen = 18;
 		vrLoc = 0;
@@ -3684,7 +3684,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 87";
 		rLen = 0;
-		rLoc = 2540;
+		rLoc = 1574;
 		rType = 0;
 		vrLen = 1244;
 		vrLoc = 1230;
@@ -3694,7 +3694,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 101";
 		rLen = 0;
-		rLoc = 2540;
+		rLoc = 1574;
 		rType = 0;
 		vrLen = 1282;
 		vrLoc = 1230;
@@ -3704,7 +3704,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 96";
 		rLen = 0;
-		rLoc = 2540;
+		rLoc = 1574;
 		rType = 0;
 		vrLen = 1335;
 		vrLoc = 1230;
@@ -3714,7 +3714,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 38";
 		rLen = 0;
-		rLoc = 1218;
+		rLoc = 1187;
 		rType = 0;
 		vrLen = 1287;
 		vrLoc = 1925;
@@ -3734,7 +3734,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 104";
 		rLen = 0;
-		rLoc = 2540;
+		rLoc = 1574;
 		rType = 0;
 		vrLen = 1297;
 		vrLoc = 1947;
@@ -3744,7 +3744,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 20";
 		rLen = 25;
-		rLoc = 715;
+		rLoc = 684;
 		rType = 0;
 		vrLen = 1317;
 		vrLoc = 0;
@@ -3774,7 +3774,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 18";
 		rLen = 0;
-		rLoc = 612;
+		rLoc = 581;
 		rType = 0;
 		vrLen = 1268;
 		vrLoc = 0;
@@ -3784,7 +3784,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 33";
 		rLen = 0;
-		rLoc = 985;
+		rLoc = 954;
 		rType = 0;
 		vrLen = 1268;
 		vrLoc = 0;
@@ -3814,7 +3814,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 198";
 		rLen = 0;
-		rLoc = 5626;
+		rLoc = 2832;
 		rType = 0;
 		vrLen = 1168;
 		vrLoc = 0;
@@ -3834,7 +3834,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 34";
 		rLen = 0;
-		rLoc = 648;
+		rLoc = 617;
 		rType = 0;
 		vrLen = 1168;
 		vrLoc = 0;
@@ -3844,7 +3844,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 155";
 		rLen = 0;
-		rLoc = 5447;
+		rLoc = 2691;
 		rType = 0;
 		vrLen = 1436;
 		vrLoc = 2173;
@@ -3854,7 +3854,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 137";
 		rLen = 0;
-		rLoc = 5446;
+		rLoc = 2690;
 		rType = 0;
 		vrLen = 1436;
 		vrLoc = 2173;
@@ -3874,7 +3874,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 84";
 		rLen = 0;
-		rLoc = 1636;
+		rLoc = 1322;
 		rType = 0;
 		vrLen = 1061;
 		vrLoc = 1124;
@@ -3884,7 +3884,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 134";
 		rLen = 0;
-		rLoc = 3442;
+		rLoc = 1574;
 		rType = 0;
 		vrLen = 1368;
 		vrLoc = 3229;
@@ -3894,7 +3894,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 134";
 		rLen = 0;
-		rLoc = 3442;
+		rLoc = 1574;
 		rType = 0;
 		vrLen = 1368;
 		vrLoc = 3229;
@@ -3904,7 +3904,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 177";
 		rLen = 0;
-		rLoc = 4836;
+		rLoc = 2080;
 		rType = 0;
 		vrLen = 1368;
 		vrLoc = 3229;
@@ -3914,7 +3914,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 181";
 		rLen = 0;
-		rLoc = 4976;
+		rLoc = 2220;
 		rType = 0;
 		vrLen = 1368;
 		vrLoc = 3229;
@@ -3938,7 +3938,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 177";
 		rLen = 0;
-		rLoc = 4837;
+		rLoc = 2081;
 		rType = 0;
 		vrLen = 1565;
 		vrLoc = 2470;
@@ -4165,7 +4165,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 160";
 		rLen = 0;
-		rLoc = 3925;
+		rLoc = 1574;
 		rType = 0;
 		vrLen = 1551;
 		vrLoc = 2510;
@@ -4175,7 +4175,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 123";
 		rLen = 0;
-		rLoc = 2645;
+		rLoc = 1574;
 		rType = 0;
 		vrLen = 1051;
 		vrLoc = 1772;
@@ -4185,7 +4185,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 127";
 		rLen = 0;
-		rLoc = 2654;
+		rLoc = 1574;
 		rType = 0;
 		vrLen = 1051;
 		vrLoc = 1772;
@@ -4285,7 +4285,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 172";
 		rLen = 0;
-		rLoc = 4217;
+		rLoc = 1574;
 		rType = 0;
 		vrLen = 1540;
 		vrLoc = 2870;
@@ -4355,7 +4355,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 172";
 		rLen = 0;
-		rLoc = 4217;
+		rLoc = 1574;
 		rType = 0;
 		vrLen = 1540;
 		vrLoc = 2870;
@@ -4365,7 +4365,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 143";
 		rLen = 0;
-		rLoc = 3455;
+		rLoc = 1574;
 		rType = 0;
 		vrLen = 1208;
 		vrLoc = 2186;
@@ -4375,7 +4375,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 143";
 		rLen = 0;
-		rLoc = 3455;
+		rLoc = 1574;
 		rType = 0;
 		vrLen = 1208;
 		vrLoc = 2186;
@@ -4395,7 +4395,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 123";
 		rLen = 0;
-		rLoc = 2639;
+		rLoc = 1574;
 		rType = 0;
 		vrLen = 1218;
 		vrLoc = 2176;
@@ -4405,7 +4405,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 132";
 		rLen = 0;
-		rLoc = 2760;
+		rLoc = 1574;
 		rType = 0;
 		vrLen = 1209;
 		vrLoc = 2176;
@@ -4415,7 +4415,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 132";
 		rLen = 0;
-		rLoc = 2760;
+		rLoc = 1574;
 		rType = 0;
 		vrLen = 1209;
 		vrLoc = 2176;
@@ -4582,7 +4582,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 132";
 		rLen = 0;
-		rLoc = 2760;
+		rLoc = 1574;
 		rType = 0;
 		vrLen = 1209;
 		vrLoc = 2176;
@@ -4671,8 +4671,8 @@
 		isa = PBXTextBookmark;
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 112";
-		rLen = 23;
-		rLoc = 2128;
+		rLen = 0;
+		rLoc = 1574;
 		rType = 0;
 		vrLen = 1153;
 		vrLoc = 1940;
@@ -4771,8 +4771,8 @@
 		isa = PBXTextBookmark;
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 112";
-		rLen = 23;
-		rLoc = 2128;
+		rLen = 0;
+		rLoc = 1574;
 		rType = 0;
 		vrLen = 1123;
 		vrLoc = 1940;
@@ -4782,7 +4782,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 105";
 		rLen = 0;
-		rLoc = 2031;
+		rLoc = 1574;
 		rType = 0;
 		vrLen = 1007;
 		vrLoc = 1504;
@@ -4792,7 +4792,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 105";
 		rLen = 0;
-		rLoc = 2031;
+		rLoc = 1574;
 		rType = 0;
 		vrLen = 1007;
 		vrLoc = 1504;
@@ -4852,7 +4852,7 @@
 		fRef = 364D1E3B1628E7260002CFC9 /* window.cpp */;
 		name = "window.cpp: 3";
 		rLen = 0;
-		rLoc = 18;
+		rLoc = 325;
 		rType = 0;
 		vrLen = 21;
 		vrLoc = 0;
@@ -4932,7 +4932,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 105";
 		rLen = 0;
-		rLoc = 2031;
+		rLoc = 1574;
 		rType = 0;
 		vrLen = 1007;
 		vrLoc = 1504;
@@ -5032,7 +5032,7 @@
 		fRef = 364D1E3B1628E7260002CFC9 /* window.cpp */;
 		name = "window.cpp: 3";
 		rLen = 0;
-		rLoc = 18;
+		rLoc = 325;
 		rType = 0;
 		vrLen = 21;
 		vrLoc = 0;
@@ -5042,7 +5042,7 @@
 		fRef = 364D1E3B1628E7260002CFC9 /* window.cpp */;
 		name = "window.cpp: 3";
 		rLen = 0;
-		rLoc = 18;
+		rLoc = 325;
 		rType = 0;
 		vrLen = 21;
 		vrLoc = 0;
@@ -5052,7 +5052,7 @@
 		fRef = 364D1E3B1628E7260002CFC9 /* window.cpp */;
 		name = "window.cpp: 3";
 		rLen = 0;
-		rLoc = 18;
+		rLoc = 325;
 		rType = 0;
 		vrLen = 21;
 		vrLoc = 0;
@@ -5112,7 +5112,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 135";
 		rLen = 0;
-		rLoc = 3074;
+		rLoc = 1574;
 		rType = 0;
 		vrLen = 1192;
 		vrLoc = 2032;
@@ -5262,7 +5262,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 111";
 		rLen = 0;
-		rLoc = 2119;
+		rLoc = 1574;
 		rType = 0;
 		vrLen = 1002;
 		vrLoc = 1702;
@@ -5312,7 +5312,7 @@
 		fRef = 364D1E3B1628E7260002CFC9 /* window.cpp */;
 		name = "window.cpp: 3";
 		rLen = 0;
-		rLoc = 18;
+		rLoc = 325;
 		rType = 0;
 		vrLen = 21;
 		vrLoc = 0;
@@ -5321,8 +5321,8 @@
 		isa = PBXTextBookmark;
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 169";
-		rLen = 14;
-		rLoc = 3954;
+		rLen = 0;
+		rLoc = 1574;
 		rType = 0;
 		vrLen = 1255;
 		vrLoc = 2292;
@@ -5332,7 +5332,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 142";
 		rLen = 0;
-		rLoc = 3129;
+		rLoc = 1574;
 		rType = 0;
 		vrLen = 1286;
 		vrLoc = 2293;
@@ -5352,7 +5352,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 143";
 		rLen = 0;
-		rLoc = 3129;
+		rLoc = 1574;
 		rType = 0;
 		vrLen = 1160;
 		vrLoc = 2179;
@@ -5362,7 +5362,7 @@
 		fRef = 364D1E3B1628E7260002CFC9 /* window.cpp */;
 		name = "window.cpp: 3";
 		rLen = 0;
-		rLoc = 18;
+		rLoc = 325;
 		rType = 0;
 		vrLen = 21;
 		vrLoc = 0;
@@ -5442,7 +5442,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 150";
 		rLen = 0;
-		rLoc = 3278;
+		rLoc = 1574;
 		rType = 0;
 		vrLen = 1239;
 		vrLoc = 2392;
@@ -5501,8 +5501,8 @@
 		isa = PBXTextBookmark;
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 185";
-		rLen = 15;
-		rLoc = 4024;
+		rLen = 0;
+		rLoc = 1574;
 		rType = 0;
 		vrLen = 1257;
 		vrLoc = 2667;
@@ -5512,7 +5512,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 136";
 		rLen = 0;
-		rLoc = 2859;
+		rLoc = 1574;
 		rType = 0;
 		vrLen = 1145;
 		vrLoc = 2341;
@@ -5522,7 +5522,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 136";
 		rLen = 0;
-		rLoc = 2859;
+		rLoc = 1574;
 		rType = 0;
 		vrLen = 1145;
 		vrLoc = 2341;
@@ -5562,7 +5562,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 192";
 		rLen = 0;
-		rLoc = 4092;
+		rLoc = 1574;
 		rType = 0;
 		vrLen = 1243;
 		vrLoc = 2763;
@@ -5571,8 +5571,8 @@
 		isa = PBXTextBookmark;
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 198";
-		rLen = 16;
-		rLoc = 4201;
+		rLen = 0;
+		rLoc = 1574;
 		rType = 0;
 		vrLen = 1246;
 		vrLoc = 2763;
@@ -5592,7 +5592,7 @@
 		fRef = 364D1E3B1628E7260002CFC9 /* window.cpp */;
 		name = "window.cpp: 3";
 		rLen = 0;
-		rLoc = 18;
+		rLoc = 325;
 		rType = 0;
 		vrLen = 21;
 		vrLoc = 0;
@@ -5632,7 +5632,7 @@
 		fRef = 364D1E3B1628E7260002CFC9 /* window.cpp */;
 		name = "window.cpp: 3";
 		rLen = 0;
-		rLoc = 18;
+		rLoc = 325;
 		rType = 0;
 		vrLen = 21;
 		vrLoc = 0;
@@ -5642,7 +5642,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 160";
 		rLen = 0;
-		rLoc = 3303;
+		rLoc = 1574;
 		rType = 0;
 		vrLen = 1020;
 		vrLoc = 2117;
@@ -5689,7 +5689,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 231";
 		rLen = 0;
-		rLoc = 5039;
+		rLoc = 2283;
 		rType = 0;
 		vrLen = 1377;
 		vrLoc = 4098;
@@ -5738,8 +5738,8 @@
 		isa = PBXTextBookmark;
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 212";
-		rLen = 8;
-		rLoc = 4254;
+		rLen = 0;
+		rLoc = 1574;
 		rType = 0;
 		vrLen = 1515;
 		vrLoc = 3219;
@@ -5789,7 +5789,7 @@
 		fRef = 364D1E3B1628E7260002CFC9 /* window.cpp */;
 		name = "window.cpp: 3";
 		rLen = 0;
-		rLoc = 18;
+		rLoc = 325;
 		rType = 0;
 		vrLen = 21;
 		vrLoc = 0;
@@ -5809,7 +5809,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 124";
 		rLen = 0;
-		rLoc = 2374;
+		rLoc = 1574;
 		rType = 0;
 		vrLen = 1067;
 		vrLoc = 1940;
@@ -5833,6 +5833,56 @@
 		rType = 0;
 		vrLen = 898;
 		vrLoc = 176;
+	};
+	364D1F39162A20010002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D1EBA162A15D10002CFC9 /* window.lua */;
+		name = "window.lua: 50";
+		rLen = 0;
+		rLoc = 825;
+		rType = 0;
+		vrLen = 898;
+		vrLoc = 176;
+	};
+	364D1F3A162A20010002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D1E3B1628E7260002CFC9 /* window.cpp */;
+		name = "window.cpp: 145";
+		rLen = 0;
+		rLoc = 2831;
+		rType = 0;
+		vrLen = 1021;
+		vrLoc = 838;
+	};
+	364D1F3B162A20010002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 361C598A162685E000E08BE8 /* avm.h */;
+		name = "avm.h: 25";
+		rLen = 31;
+		rLoc = 465;
+		rType = 0;
+		vrLen = 707;
+		vrLoc = 0;
+	};
+	364D1F3C162A20010002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
+		name = "avm.cpp: 118";
+		rLen = 38;
+		rLoc = 2717;
+		rType = 0;
+		vrLen = 1416;
+		vrLoc = 1392;
+	};
+	364D1F3D162A20010002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
+		name = "avm.cpp: 118";
+		rLen = 0;
+		rLoc = 2735;
+		rType = 0;
+		vrLen = 1440;
+		vrLoc = 1392;
 	};
 	3657520A161277BC009D11CC /* Project object */ = {
 		activeArchitecturePreference = i386;
@@ -6467,6 +6517,11 @@
 			364D1F36162A1ECC0002CFC9 /* PBXTextBookmark */ = 364D1F36162A1ECC0002CFC9 /* PBXTextBookmark */;
 			364D1F37162A1ECC0002CFC9 /* PBXTextBookmark */ = 364D1F37162A1ECC0002CFC9 /* PBXTextBookmark */;
 			364D1F38162A1ECC0002CFC9 /* PBXTextBookmark */ = 364D1F38162A1ECC0002CFC9 /* PBXTextBookmark */;
+			364D1F39162A20010002CFC9 /* PBXTextBookmark */ = 364D1F39162A20010002CFC9 /* PBXTextBookmark */;
+			364D1F3A162A20010002CFC9 /* PBXTextBookmark */ = 364D1F3A162A20010002CFC9 /* PBXTextBookmark */;
+			364D1F3B162A20010002CFC9 /* PBXTextBookmark */ = 364D1F3B162A20010002CFC9 /* PBXTextBookmark */;
+			364D1F3C162A20010002CFC9 /* PBXTextBookmark */ = 364D1F3C162A20010002CFC9 /* PBXTextBookmark */;
+			364D1F3D162A20010002CFC9 /* PBXTextBookmark */ = 364D1F3D162A20010002CFC9 /* PBXTextBookmark */;
 			36575F2B1612A950009D11CC = 36575F2B1612A950009D11CC /* PBXTextBookmark */;
 			36575F321612A950009D11CC = 36575F321612A950009D11CC /* PBXTextBookmark */;
 			36575F341612A950009D11CC = 36575F341612A950009D11CC /* PBXTextBookmark */;
