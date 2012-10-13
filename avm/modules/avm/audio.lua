@@ -30,8 +30,6 @@ local pa = setmetatable({}, {
 local version_num = pa.GetVersion()
 -- assert on version here, if necessary
 
-print(ffi.string(pa.GetVersionText()))
-
 local function check(err)
 	if err ~= pa.NoError then
 		error(pa.GetErrorText(err))
@@ -53,6 +51,8 @@ function pa.find(name)
 end
 
 local function dump()
+	print(ffi.string(pa.GetVersionText()))
+	
 	--[[
 	local num_apis = pa.GetHostApiCount()
 	print("num_apis", num_apis)
@@ -70,15 +70,23 @@ local function dump()
 	--]]
 	
 	local devices = pa.GetDeviceCount()
-	print("devices:", devices)
 	local default_input = pa.GetDefaultInputDevice()
-	print("default input", default_input)
 	local default_output = pa.GetDefaultOutputDevice()
-	print("default output", default_output)
 	
 	for i = 0, devices-1 do
 		local info = pa.GetDeviceInfo(i)
-		print("device", i, ffi.string(info.name), info.maxInputChannels, info.maxOutputChannels)
+		
+		local msg = ""
+		if i == default_input then
+			msg = msg .. "<input>"
+		end
+		if i == default_output then
+			msg = msg .. "<output>"
+		end
+		
+		print(string.format("dev %d: %dx%d %s %s",
+			i, info.maxInputChannels, info.maxOutputChannels, ffi.string(info.name), msg
+		))
 		--print("defaultLowInputLatency", info.defaultLowInputLatency)
 		--print("defaultLowOutputLatency", info.defaultLowOutputLatency)
 		--print("defaultHighInputLatency", info.defaultHighInputLatency)
