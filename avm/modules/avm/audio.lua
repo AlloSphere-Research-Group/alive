@@ -27,4 +27,12 @@ local version_num = pa.GetVersion()
 
 print(ffi.string(pa.GetVersionText()))
 
+local function check(err)
+	if err ~= pa.NoError then
+		error(pa.GetErrorText(err))
+	end
+end
+
+check( pa.Initialize() )
+
 return pa

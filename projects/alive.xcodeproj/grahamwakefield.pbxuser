@@ -6071,7 +6071,7 @@
 	364D1F50162A227C0002CFC9 /* audio.lua */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {612, 740}}";
-			sepNavSelRange = "{516, 0}";
+			sepNavSelRange = "{476, 0}";
 			sepNavVisRange = "{0, 568}";
 		};
 	};
@@ -6883,6 +6883,26 @@
 		vrLen = 1330;
 		vrLoc = 1517;
 	};
+	364D1FA6162A27D10002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
+		name = "audio.lua: 25";
+		rLen = 0;
+		rLoc = 476;
+		rType = 0;
+		vrLen = 568;
+		vrLoc = 0;
+	};
+	364D1FA7162A27D10002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D1F71162A244B0002CFC9 /* portaudio.h */;
+		name = "portaudio.h: 62";
+		rLen = 17;
+		rLoc = 2169;
+		rType = 0;
+		vrLen = 1330;
+		vrLoc = 1517;
+	};
 	3657520A161277BC009D11CC /* Project object */ = {
 		activeArchitecturePreference = i386;
 		activeBuildConfigurationName = Debug;
@@ -7616,6 +7636,8 @@
 			364D1FA3162A27550002CFC9 /* PBXTextBookmark */ = 364D1FA3162A27550002CFC9 /* PBXTextBookmark */;
 			364D1FA4162A27A60002CFC9 /* PBXTextBookmark */ = 364D1FA4162A27A60002CFC9 /* PBXTextBookmark */;
 			364D1FA5162A27A60002CFC9 /* PBXTextBookmark */ = 364D1FA5162A27A60002CFC9 /* PBXTextBookmark */;
+			364D1FA6162A27D10002CFC9 /* PBXTextBookmark */ = 364D1FA6162A27D10002CFC9 /* PBXTextBookmark */;
+			364D1FA7162A27D10002CFC9 /* PBXTextBookmark */ = 364D1FA7162A27D10002CFC9 /* PBXTextBookmark */;
 			36575F2B1612A950009D11CC = 36575F2B1612A950009D11CC /* PBXTextBookmark */;
 			36575F321612A950009D11CC = 36575F321612A950009D11CC /* PBXTextBookmark */;
 			36575F341612A950009D11CC = 36575F341612A950009D11CC /* PBXTextBookmark */;
