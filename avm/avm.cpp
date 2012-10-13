@@ -74,12 +74,8 @@ int main(int argc, char * argv[]) {
 	}
 	printf("wd %s\n", wd);
 	
-	
-		// Linux only?
-		int count = readlink("/proc/self/exe", apppath, PATH_MAX);
-		if (count > 0) {
-			apppath[count] = '\0';
-		} else if (argc > 0) {
+	#ifdef __APPLE__
+		if (argc > 0) {
 			// try argv:
 			if (argc && argv[0][0] == '/') {
 				strncpy(apppath, argv[0], PATH_MAX);
@@ -87,6 +83,13 @@ int main(int argc, char * argv[]) {
 				snprintf(apppath, PATH_MAX, "%s/%s", wd, argv[0]);
 			}
 		}
+	#else
+		// Linux only?
+		int count = readlink("/proc/self/exe", apppath, PATH_MAX);
+		if (count > 0) {
+			apppath[count] = '\0';
+		} else 
+	#endif
 	// Windows only:
 	// GetModuleFileName(NULL, apppath, PATH_MAX)
 	
