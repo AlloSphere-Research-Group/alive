@@ -53,12 +53,11 @@ function pa.find(name)
 end
 
 local function dump()
+	--[[
 	local num_apis = pa.GetHostApiCount()
 	print("num_apis", num_apis)
-
 	local default_api = pa.GetDefaultHostApi()
 	print("default_api", default_api)
-	
 	for i = 0, num_apis-1 do
 		local info = pa.GetHostApiInfo(i)
 		print("api", i)
@@ -68,6 +67,7 @@ local function dump()
 		print("default input", info.defaultInputDevice, pa.HostApiDeviceIndexToDeviceIndex(i, info.defaultInputDevice))
 		print("default output", info.defaultOutputDevice, pa.HostApiDeviceIndexToDeviceIndex(i, info.defaultOutputDevice))
 	end
+	--]]
 	
 	local devices = pa.GetDeviceCount()
 	print("devices:", devices)
@@ -78,21 +78,19 @@ local function dump()
 	
 	for i = 0, devices-1 do
 		local info = pa.GetDeviceInfo(i)
+		print("device", i, ffi.string(info.name), info.maxInputChannels, info.maxOutputChannels)
+		--print("defaultLowInputLatency", info.defaultLowInputLatency)
+		--print("defaultLowOutputLatency", info.defaultLowOutputLatency)
+		--print("defaultHighInputLatency", info.defaultHighInputLatency)
+		--print("defaultHighOutputLatency", info.defaultHighOutputLatency)
+		--print("defaultSampleRate", info.defaultSampleRate)
+		--print("api index", info.hostApi)
 		
-		print("device", i, ffi.string(info.name))
-		print("api index", info.hostApi)
-		print("max inputs", info.maxInputChannels)
-		print("max outputs", info.maxOutputChannels)
-		print("defaultLowInputLatency", info.defaultLowInputLatency)
-		print("defaultLowOutputLatency", info.defaultLowOutputLatency)
-		print("defaultHighInputLatency", info.defaultHighInputLatency)
-		print("defaultHighOutputLatency", info.defaultHighOutputLatency)
-		print("defaultSampleRate", info.defaultSampleRate)
 	end
 	
 end
 
---dump()
+dump()
 
 
 local Audio = {}
