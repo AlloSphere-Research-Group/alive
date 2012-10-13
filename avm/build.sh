@@ -31,7 +31,7 @@ function generate_ffi_header {
 	# make the ffi header:
 	echo Making FFI header
 	
-	luajit h2ffi.lua alive.h ffi/aliveheader.lua 
+	luajit h2ffi.lua avm.h modules/avm/header.lua 
 }
 
 function build {
@@ -72,7 +72,7 @@ function build {
 
 clean
 #allosystem
-#generate_ffi_header
+generate_ffi_header
 build
 
 
