@@ -120,6 +120,10 @@ void av_window_setfullscreen(av_Window * self, int b) {
 	}
 }
 
+void av_window_setdim(av_Window * self, int x, int y) {
+	glutReshapeWindow(x, y);
+}
+
 void getmodifiers() {
 	int mod = glutGetModifiers();
 	win.shift = mod & GLUT_ACTIVE_SHIFT;

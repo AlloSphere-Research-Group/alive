@@ -37,6 +37,9 @@ function Window:__newindex(k, v)
 	elseif k == "title" then
 		self:settitle(v)
 		
+	elseif k == "dim" then
+		self:setdim(unpack(v))
+		
 	else
 		error("cannot assign to Window: "..k)
 	end
@@ -45,6 +48,8 @@ end
 function Window:__index(k)
 	if k == "fullscreen" then
 		return self.is_fullscreen ~= 0
+	elseif k == "dim" then
+		return { self.width, self.height }
 	else
 		return Window[k]
 	end

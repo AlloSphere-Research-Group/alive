@@ -1,5 +1,5 @@
 local header = [[
-// generated from avm.h on Sat Oct 13 15:07:11 2012
+// generated from avm.h on Sat Oct 13 15:12:38 2012
 typedef struct av_Window {
  int id;
  int width, height;
@@ -15,6 +15,7 @@ typedef struct av_Window {
 av_Window * av_window_create();
 void av_window_setfullscreen(av_Window * self, int b);
 void av_window_settitle(av_Window * self, const char * name);
+void av_window_setdim(av_Window * self, int x, int y);
 ]]
 local ffi = require 'ffi'
 ffi.cdef(header)
