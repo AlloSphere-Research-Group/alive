@@ -3,7 +3,7 @@
 
 uv_loop_t * mainloop;
 int win;
-
+bool fullscreen = false;
 int w = 720, h = 480;
 
 void timerfunc(int id) {
@@ -30,12 +30,21 @@ int main_modified(const char * filename) {
 
 void display() {}
 
-void enterFullscreen() {
-	glutFullScreen();
+void gofullscreen(bool b=true) {
+	if (b) {
+		glutFullScreen();
+	} else {
+		glutReshapeWindow(w, h);
+	}
+	fullscreen = b;
 }
 
-void exitFullscreen() {
-	glutReshapeWindow(w, h);
+void onkeydown(unsigned char k, int x, int y) {
+	printf("key %d\n", k);
+
+	if (k == 27) {
+		gofullscreen(!fullscreen);
+	}
 }
 
 int main(int argc, char * argv[]) {
@@ -57,7 +66,7 @@ int main(int argc, char * argv[]) {
 //	glutIgnoreKeyRepeat(1);
 //	glutSetCursor(GLUT_CURSOR_NONE);
 
-//	glutKeyboardFunc(cbKeyboard);
+	glutKeyboardFunc(onkeydown);
 //	glutKeyboardUpFunc(cbKeyboardUp);
 //	glutMouseFunc(cbMouse);
 //	glutMotionFunc(cbMotion);

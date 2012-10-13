@@ -55,7 +55,7 @@ function build {
 	
 		INCLUDEPATHS="-I/usr/local/include/luajit-2.0 -I/usr/include/luajit-2.0 -I../externs/libuv/include"
 		LINKERPATHS="-L/usr/local/lib -L/usr/lib"
-		LIBRARIES="-lluajit-5.1 -lGLEW -lGLU -lGL -lglut -lportaudio -lasound ../externs/libuv/uv.a -lrt -lpthread"
+		LIBRARIES="-lluajit-5.1 -lGLEW -lGLU -lGL -lglut -lportaudio -lasound ../externs/libuv/libuv.a -lrt -lpthread"
 		LINKERFLAGS="-w -rdynamic"
 
 		g++ -c -O3 -Wall -fPIC -ffast-math -Wno-unknown-pragmas -MMD -DAPR_FAST_COMPAT -DAPR_STRICT -D_GNU_SOURCE -DEV_MULTIPLICITY=1 $INCLUDEPATHS $SOURCES

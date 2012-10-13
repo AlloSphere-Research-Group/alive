@@ -14,7 +14,8 @@ if [[ $PLATFORM == 'Darwin' ]]; then
 
 elif [[ $PLATFORM == 'Linux' ]]; then
 
-	sudo apt-get install libavahi-compat-libdnssd-dev
+	sudo apt-get install libavahi-compat-libdnssd-dev luarocks
+	sudo luarocks install luafilesystem
 	
 fi
 
