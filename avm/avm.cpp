@@ -79,25 +79,24 @@ int main(int argc, char * argv[]) {
 	printf("wd %s\n", wd);
 	
 	// get binary path:
+	char tmppath[PATH_MAX];
 	#ifdef __APPLE__
 		if (argc > 0) {
 			realpath(argv[0], apppath);
 		}
 	#else
 		// Linux only?
-		int count = readlink("/proc/self/exe", apppath, PATH_MAX);
+		int count = readlink("/proc/self/exe", tmppath, PATH_MAX);
 		if (count > 0) {
-			apppath[count] = '\0';
+			tmppath[count] = '\0';
 		} else if (argc > 0) {
-			realpath(argv[0], apppath);
+			realpath(argv[0], tmppath);
 		}
 	#endif
 	// Windows only:
 	// GetModuleFileName(NULL, apppath, PATH_MAX)
 	
-	char app_path[PATH_MAX];
-	
-	snprintf(apppath, PATH_MAX, "%s/", dirname(apppath));
+	snprintf(apppath, PATH_MAX, "%s/", dirname(tmppath));
 	printf("path %s\n", apppath);
 	
 	// see also realpath(), which gets rid of ~, ../ etc.
