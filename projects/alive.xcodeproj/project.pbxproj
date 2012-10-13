@@ -6211,8 +6211,8 @@
 				364D1E1D1628E4590002CFC9 /* uv_utils.h */,
 				361C598A162685E000E08BE8 /* avm.h */,
 				361C598B162685E000E08BE8 /* avm.cpp */,
-				364D1E1C1628E4480002CFC9 /* main.lua */,
 				364D1E3B1628E7260002CFC9 /* window.cpp */,
+				364D1E1C1628E4480002CFC9 /* main.lua */,
 			);
 			name = avm;
 			path = ../avm;

@@ -10,6 +10,8 @@ typedef struct Window {
 	int width, height;
 	int fullscreen;
 	
+	double fps;
+	
 	void (*onframe)(struct Window * self);
 } Window;
 

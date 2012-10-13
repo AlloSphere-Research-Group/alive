@@ -28,7 +28,10 @@ uv_loop_t * mainloop;
 // the main-thread Lua state:
 lua_State * L = 0;
 
+// the window
 Window win;
+
+
 
 void getpaths(int argc, char ** argv) {
 	char wd[PATH_MAX];
@@ -78,7 +81,8 @@ void timerfunc(int id) {
 	}
 	
 	glutSwapBuffers();
-	glutTimerFunc((unsigned int)(1000.0/30.), timerfunc, 0);
+	// reschedule:
+	glutTimerFunc((unsigned int)(1000.0/win.fps), timerfunc, 0);
 }
 
 int main_idle(int status) {
@@ -121,38 +125,13 @@ void onkeydown(unsigned char k, int x, int y) {
 	}
 }
 
-Window * window_get() {
-	return &win;
-}
-
-int main(int argc, char * argv[]) {
-	glutInit(&argc, argv);
-	
-	getpaths(argc, argv);
-	// execute in the context of wherever this is run from:
-	int r = chdir("./");
-	printf("chdir %d\n", r);
-	
-	// initialize Lua:
-	L = lua_open();
-	luaL_openlibs(L);
-	
-	// set up module search paths:
-	if (luaL_loadstring(L, "package.path = ... .. 'modules/?.lua;' .. ... .. 'modules/?/init.lua;' .. package.path")) printf("error %s\n", lua_tostring(L, -1));
-	lua_pushstring(L, apppath);
-	if (lua_pcall(L, 1, 0, 0)) printf("error %s\n", lua_tostring(L, -1));
-
-	if (luaL_loadstring(L, "package.cpath = ... .. 'modules/?.so;' .. package.cpath")) printf("error %s\n", lua_tostring(L, -1));
-	lua_pushstring(L, apppath);
-	if (lua_pcall(L, 1, 0, 0)) printf("error %s\n", lua_tostring(L, -1));
-
-	
+void initwindow() {
 	// initialize window:
 	win.id = 0;
 	win.width = 720;
 	win.height = 480;
 	win.fullscreen = false;
-	
+	win.fps = 40.;
 	win.onframe = 0;
 	
 //	screen_width = glutGet(GLUT_SCREEN_WIDTH);
@@ -178,20 +157,56 @@ int main(int argc, char * argv[]) {
 //	glutVisibilityFunc(cbVisibility);
 	glutReshapeFunc(onreshape);
 	glutDisplayFunc(ondisplay);
+
+}
+
+Window * window_get() {
+	return &win;
+}
+
+lua_State * initLua(const char * apppath) {
+	// initialize Lua:
+	lua_State * L = lua_open();
+	luaL_openlibs(L);
 	
-	glutTimerFunc((unsigned int)(1000.0/30.), timerfunc, 0);
+	// set up module search paths:
+	if (luaL_loadstring(L, "package.path = ... .. 'modules/?.lua;' .. ... .. 'modules/?/init.lua;' .. package.path")) printf("error %s\n", lua_tostring(L, -1));
+	lua_pushstring(L, apppath);
+	if (lua_pcall(L, 1, 0, 0)) printf("error %s\n", lua_tostring(L, -1));
+
+	if (luaL_loadstring(L, "package.cpath = ... .. 'modules/?.so;' .. package.cpath")) printf("error %s\n", lua_tostring(L, -1));
+	lua_pushstring(L, apppath);
+	if (lua_pcall(L, 1, 0, 0)) printf("error %s\n", lua_tostring(L, -1));
 	
+	return L;
+}
+
+int main(int argc, char * argv[]) {
+	glutInit(&argc, argv);
 	
+	// initialize paths:
+	getpaths(argc, argv);
+	
+	// execute in the context of wherever this is run from:
+	int r = chdir("./");
+	printf("chdir %d\n", r);
+	
+	// initialize UV:
 	mainloop = uv_default_loop();
-	
-	const char * main_filename = "main.lua";
-	new FileWatcher(mainloop, main_filename, main_modified);
-	// add an idler to prevent runloop blocking:
+	// add an idler to prevent uv loop blocking:
 	new Idler(mainloop, main_idle);
 	
-	printf("starting\n");
+	// start watching:
+	const char * main_filename = "main.lua";
+	new FileWatcher(mainloop, main_filename, main_modified);
+	
+	// initialize window:
+	initwindow();
+	
+	// initialize Lua:
+	L = initLua(apppath);
+	
+	glutTimerFunc((unsigned int)(1000.0/win.fps), timerfunc, 0);
 	glutMainLoop();
-		
-	printf("bye\n");
 	return 0;
 }
