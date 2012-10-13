@@ -41,9 +41,9 @@ function build {
 	echo Building
 	if [[ $PLATFORM == 'Darwin' ]]; then
 	
-		INCLUDEPATHS="-I$ALLOSYSTEMPATH/build/include -I/usr/include/apr-1/ -I../externs/libuv/include"
+		INCLUDEPATHS="-I../externs/libuv/include"
 		LINKERPATHS="-L$ALLOSYSTEMPATH/build/lib -L/usr/lib"
-		LIBRARIES="-lluajit-5.1 -lassimp -lportaudio -lfreeimage -lfreetype -lapr-1 -laprutil-1 -force_load $ALLOSYSTEMPATH/build/lib/liballocore.a -force_load $ALLOSYSTEMPATH/build/lib/liballoutil.a -force_load ../externs/libuv/uv.a"
+		LIBRARIES="-lluajit-5.1 -lportaudio -force_load ../externs/libuv/uv.a"
 		FRAMEWORKS="-framework Carbon -framework Cocoa -framework CoreAudio -framework GLUT -framework OpenGL -framework AudioUnit -framework AudioToolbox -framework CoreMidi"
 		LINKERFLAGS="-w -rdynamic -pagezero_size 10000 -image_base 100000000 -keep_private_externs"
 
@@ -53,9 +53,9 @@ function build {
 		
 	elif [[ $PLATFORM == 'Linux' ]]; then
 	
-		INCLUDEPATHS="-I$ALLOSYSTEMPATH/build/include -I/usr/local/include/luajit-2.0 -I/usr/include/luajit-2.0 -I/usr/include/apr-1.0/ -I../externs/libuv/include"
-		LINKERPATHS="-L$ALLOSYSTEMPATH/build/lib -L/usr/local/lib -L/usr/lib -L/usr/lib/llvm-3.0/lib/ -L/usr/lib"
-		LIBRARIES="-lallocore -lalloutil -lluajit-5.1 -lGLEW -lGLU -lGL -lglut -lassimp -lportaudio  -lasound -lfreeimage -lfreetype -lapr-1 -laprutil-1 ../externs/libuv/uv.a -lrt -lpthread"
+		INCLUDEPATHS="-I/usr/local/include/luajit-2.0 -I/usr/include/luajit-2.0 -I../externs/libuv/include"
+		LINKERPATHS="-L/usr/local/lib -L/usr/lib"
+		LIBRARIES="-lluajit-5.1 -lGLEW -lGLU -lGL -lglut -lportaudio -lasound ../externs/libuv/uv.a -lrt -lpthread"
 		LINKERFLAGS="-w -rdynamic"
 
 		g++ -c -O3 -Wall -fPIC -ffast-math -Wno-unknown-pragmas -MMD -DAPR_FAST_COMPAT -DAPR_STRICT -D_GNU_SOURCE -DEV_MULTIPLICITY=1 $INCLUDEPATHS $SOURCES

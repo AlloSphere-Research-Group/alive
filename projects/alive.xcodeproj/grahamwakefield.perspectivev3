@@ -233,8 +233,6 @@
 			<key>Layout</key>
 			<array>
 				<dict>
-					<key>BecomeActive</key>
-					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -312,6 +310,8 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -329,7 +329,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>364D1E2A1628E4BE0002CFC9</string>
+										<string>364D1E391628E6920002CFC9</string>
 										<key>history</key>
 										<array>
 											<string>36575F2B1612A950009D11CC</string>
@@ -382,7 +382,6 @@
 											<string>36E43E8A1624DCE8003881BF</string>
 											<string>36E43E8D1624DCE8003881BF</string>
 											<string>36E43E911624DCE8003881BF</string>
-											<string>36E43E921624DCE8003881BF</string>
 											<string>36E43E961624DD81003881BF</string>
 											<string>361C5982162685C900E08BE8</string>
 											<string>361C59A31626876500E08BE8</string>
@@ -417,14 +416,15 @@
 											<string>364D1DEB1628D65F0002CFC9</string>
 											<string>364D1E0E1628DAA40002CFC9</string>
 											<string>364D1E0F1628DAA40002CFC9</string>
-											<string>364D1E161628DD450002CFC9</string>
 											<string>364D1E191628DF3C0002CFC9</string>
-											<string>364D1E1E1628E4720002CFC9</string>
-											<string>364D1E1F1628E4720002CFC9</string>
 											<string>364D1E211628E4720002CFC9</string>
 											<string>364D1E221628E4720002CFC9</string>
 											<string>364D1E281628E4BE0002CFC9</string>
-											<string>364D1E291628E4BE0002CFC9</string>
+											<string>364D1E2D1628E5870002CFC9</string>
+											<string>364D1E311628E6300002CFC9</string>
+											<string>364D1E351628E66F0002CFC9</string>
+											<string>364D1E361628E66F0002CFC9</string>
+											<string>364D1E371628E66F0002CFC9</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>

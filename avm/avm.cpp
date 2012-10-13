@@ -4,12 +4,15 @@
 uv_loop_t * mainloop;
 int win;
 
+int w = 720, h = 480;
+
 void timerfunc(int id) {
 	// do stuff
 	int res = uv_run_once(mainloop);
 	//printf("uv: %d\n", res);
 	
 	//draw();
+	glClearColor(0., 0.2, 0.5, 1.);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glutSwapBuffers();
 	glutTimerFunc((unsigned int)(1000.0/30.), timerfunc, 0);
@@ -27,18 +30,25 @@ int main_modified(const char * filename) {
 
 void display() {}
 
+void enterFullscreen() {
+	glutFullScreen();
+}
+
+void exitFullscreen() {
+	glutReshapeWindow(w, h);
+}
+
 int main(int argc, char * argv[]) {
 	glutInit(&argc, argv);
 	
 	// execute in the context of wherever this is run from:
 	chdir("./");
-	
 
-	int sw = glutGet(GLUT_SCREEN_WIDTH);
-	int sh = glutGet(GLUT_SCREEN_HEIGHT);	
+//	screen_width = glutGet(GLUT_SCREEN_WIDTH);
+//	screen_height = glutGet(GLUT_SCREEN_HEIGHT);	
 	
 	glutInitWindowPosition(0, 0);
-//	glutInitWindowSize(w, h);
+	glutInitWindowSize(w, h);
 	glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
 	win = glutCreateWindow("");
 	glutSetWindow(win);
