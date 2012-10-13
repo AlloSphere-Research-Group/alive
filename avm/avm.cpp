@@ -95,11 +95,10 @@ int main(int argc, char * argv[]) {
 	// Windows only:
 	// GetModuleFileName(NULL, apppath, PATH_MAX)
 	
-	printf("apppath %s\n", apppath);
 	char app_path[PATH_MAX];
 	
-	snprintf(app_path, PATH_MAX, "%s/", dirname(apppath));
-	printf("path %s\n", app_path);
+	snprintf(apppath, PATH_MAX, "%s/", dirname(apppath));
+	printf("path %s\n", apppath);
 	
 	// see also realpath(), which gets rid of ~, ../ etc.
 	
