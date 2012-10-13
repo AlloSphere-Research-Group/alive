@@ -5,6 +5,8 @@
 extern "C" {
 #endif
 
+void av_sleep(double seconds);
+
 typedef struct av_Window {
 	int id;
 	int width, height;
@@ -29,6 +31,16 @@ void av_window_settitle(av_Window * self, const char * name);
 void av_window_setdim(av_Window * self, int x, int y);
 
 
+typedef struct av_Audio {
+	double time;		// in seconds
+	double samplerate;
+	
+	void (*callback)(struct av_Audio * self, double sampletime);
+} av_Audio;
+
+av_Audio * av_audio_get();
+
+void * av_audio_open(int inchannels, int outchannels, double samplerate,int blocksize, int * err);
 
 #ifdef __cplusplus
 }

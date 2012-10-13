@@ -109,7 +109,7 @@ int main(int argc, char * argv[]) {
 	av_Window * win = av_window_create();
 	
 	// initialize audio:
-	av_audio_init();
+	av_Audio * audio = av_audio_get();
 	
 	// start watching:
 	const char * main_filename = "main.lua";

@@ -24,8 +24,12 @@ extern "C" {
 extern "C" {
 	void av_tick();
 	
-	void av_sleep(double seconds);
-	void av_audio_init();
+	int av_portaudio_callback(	const void *input, 
+								void *output,
+								unsigned long frameCount,
+								const PaStreamCallbackTimeInfo* timeInfo,
+								PaStreamCallbackFlags statusFlags,
+								void *userData );
 }
 
 /*
