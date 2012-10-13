@@ -50,6 +50,11 @@ void av_tick() {
 	uv_run_once(mainloop);
 }
 
+void av_sleep(double seconds) {
+	// there may be better options than this, but it will do for now: 
+	Pa_Sleep(seconds * 1000);
+}
+
 int main_idle(int status) {
 	//printf("main_idle\n");
 	return 1;
@@ -89,8 +94,7 @@ int main(int argc, char * argv[]) {
 	getpaths(argc, argv);
 	
 	// execute in the context of wherever this is run from:
-	int r = chdir("./");
-	printf("chdir %d\n", r);
+	chdir("./");
 	
 	// initialize UV:
 	mainloop = uv_default_loop();
@@ -103,6 +107,9 @@ int main(int argc, char * argv[]) {
 	
 	// initialize window:
 	av_Window * win = av_window_create();
+	
+	// initialize audio:
+	av_audio_init();
 	
 	// start watching:
 	const char * main_filename = "main.lua";

@@ -5,6 +5,7 @@ local gl = require "gl"
 
 -- currently just one window:
 local win = avm.window
+local audio = avm.audio
 
 function win:resize(w, h)
 	print("resize", w, h)
@@ -23,6 +24,9 @@ function win:key(e, k)
 		end
 	else
 		print("key", e, k)
+		
+		-- e.g. trigger a sound... 
+		
 	end
 end
 
@@ -35,7 +39,3 @@ function win:draw()
 	
 	
 end
-
-
-
-

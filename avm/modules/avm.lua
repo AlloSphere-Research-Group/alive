@@ -3,8 +3,7 @@ local C = ffi.C
 
 local header = require 'avm.header'
 local window = require 'avm.window'
-
-
+local audio = require 'avm.audio'
 
 
 
