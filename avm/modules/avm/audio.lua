@@ -32,7 +32,7 @@ local version_num = pa.GetVersion()
 
 local function check(err)
 	if err ~= pa.NoError then
-		error(pa.GetErrorText(err))
+		error(ffi.string(pa.GetErrorText(err)))
 	end
 end
 
@@ -136,7 +136,7 @@ function Audio:open(inchannels, outchannels, samplerate, blocksize, indevname, o
 		indev = pa.find(indevname) or indev
 	end
 	
-	local outdev = pa.GetDefaultInputDevice()
+	local outdev = pa.GetDefaultOutputDevice()
 	if outdevname then
 		outdev = pa.find(outdevname) or outdev
 	end
