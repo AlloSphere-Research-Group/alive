@@ -1,5 +1,6 @@
-#include "avm_dev.h"
+
 #include "uv_utils.h"
+#include "avm_dev.h"
 
 #ifdef AV_WINDOWS
 	#include <windows.h>

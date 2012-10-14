@@ -14128,8 +14128,8 @@
 			children = (
 				364D1E78162A0A0D0002CFC9 /* header.lua */,
 				364D1F50162A227C0002CFC9 /* audio.lua */,
-				364D1EBA162A15D10002CFC9 /* window.lua */,
 				364D22EE162AA5C60002CFC9 /* audiothread.lua */,
+				364D1EBA162A15D10002CFC9 /* window.lua */,
 			);
 			path = avm;
 			sourceTree = "<group>";

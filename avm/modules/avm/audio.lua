@@ -30,6 +30,29 @@ setmetatable(Audio, {
 	end,
 })
 
+function Audio.pos(x, y, z)
+	local msg = Audio.message()
+	if msg ~= nil then
+		msg.cmd = lib.AV_AUDIO_POS
+		msg.x = x
+		msg.y = y
+		msg.z = z
+		Audio.send()
+	end
+end
+
+function Audio.quat(x, y, z, w)
+	local msg = Audio.message()
+	if msg ~= nil then
+		msg.cmd = lib.AV_AUDIO_QUAT
+		msg.x = world.nav.quat.x
+		msg.y = world.nav.quat.y
+		msg.z = world.nav.quat.z
+		msg.w = world.nav.quat.w
+		Audio.send()
+	end	
+end 
+
 ffi.metatype("av_Audio", Audio)
 
 return Audio.get()

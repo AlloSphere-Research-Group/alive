@@ -4,8 +4,9 @@ local gl = require "gl"
 
 -- currently just one window:
 local win = avm.window
+local audio = avm.audio
 
-avm.audio.start()
+audio.start()
 
 function win:resize(w, h)
 	print("resize", w, h)
@@ -35,7 +36,6 @@ function win:draw()
 	gl.Viewport(0, 0, self.width, self.height)
 	
 	
-	
-	
+	audio.pos(0, 1, 2)
 	
 end

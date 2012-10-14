@@ -32,7 +32,7 @@ function build {
 		INCLUDEPATHS="-I../externs/libuv/include -Irtaudio-4.0.11"
 		LINKERPATHS="-L$ALLOSYSTEMPATH/build/lib -L/usr/lib"
 		LIBRARIES="-lluajit-5.1 -force_load ../externs/libuv/uv.a"
-		FRAMEWORKS="-framework Carbon -framework Cocoa -framework CoreAudio -framework GLUT -framework OpenGL -framework AudioUnit -framework AudioToolbox -framework CoreMidi"
+		FRAMEWORKS="-framework Carbon -framework CoreAudio -framework GLUT -framework OpenGL"
 		LINKERFLAGS="-w -rdynamic -pagezero_size 10000 -image_base 100000000 -keep_private_externs"
 
 		g++ -c -x c++ -arch $ARCH -O3 -Wall -fno-stack-protector -DEV_MULTIPLICITY=1 -DHAVE_GETTIMEOFDAY -D__MACOSX_CORE__ $INCLUDEPATHS $SOURCES
