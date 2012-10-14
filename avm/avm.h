@@ -2,6 +2,7 @@
 #define ALIVE_AVM_H
 
 #ifdef __cplusplus
+#include <stdint.h>
 extern "C" {
 #endif
 
@@ -38,12 +39,55 @@ typedef struct av_Audio {
 	unsigned int indevice, outdevice;
 	unsigned int inchannels, outchannels;
 	
-	void (*callback)(struct av_Audio * self, double sampletime);
+	double lag; // in seconds
+	
+	// only access from audio thread:
+	float * input;
+	float * output;	
+	unsigned int frames;
+	void (*callback)(struct av_Audio * self, double sampletime, float * inputs, float * outputs, int frames);
 } av_Audio;
+
+typedef enum {
+	AV_AUDIO_OTHER = 0,
+	AV_AUDIO_CLEAR,
+	AV_AUDIO_POS,
+	AV_AUDIO_QUAT,
+	AV_AUDIO_VOICE_NEW,
+	AV_AUDIO_VOICE_FREE,
+	AV_AUDIO_VOICE_POS,	
+	AV_AUDIO_VOICE_PARAM,
+} audiocmd;
+
+typedef union av_audiomsg {
+	struct {
+		uint32_t cmd;
+		uint32_t id;
+		union {
+			struct { float x, y, z, w; };
+			char data[16];
+		};
+	};
+	char str[24];
+} av_audiomsg;
+
+typedef struct av_audiomsg_packet {	
+	// body goes first so that (audiomsg *) cast works:
+	av_audiomsg body;
+	// message time (in samples)
+	double t;	
+} av_audiomsg_packet;
 
 av_Audio * av_audio_get();
 
-void av_audio_start(av_Audio * self);
+// only use from main thread:
+void av_audio_start();
+av_audiomsg * av_audio_message();
+void av_audio_send();
+
+// use only from audio thread:
+av_audiomsg * av_audio_peek(double maxtime);
+av_audiomsg * av_audio_next(double maxtime);
 
 #ifdef __cplusplus
 }

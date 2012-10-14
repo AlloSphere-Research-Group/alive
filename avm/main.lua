@@ -1,5 +1,4 @@
 local ffi = require "ffi"
-
 local avm = require "avm"
 local gl = require "gl"
 
@@ -7,7 +6,6 @@ local gl = require "gl"
 local win = avm.window
 local audio = avm.audio
 
---audio:open(2, 2, 44100, 256, 6, 6)
 audio:start()
 
 function win:resize(w, h)
@@ -21,8 +19,6 @@ end
 function win:key(e, k)	
 	if e == "down" then
 		if k == 27 then
-			print("currently", win.fullscreen)
-			print("to", not win.fullscreen)
 			win.fullscreen = not win.fullscreen
 		end
 	else
@@ -40,5 +36,6 @@ function win:draw()
 	gl.Viewport(0, 0, self.width, self.height)
 	
 	
+	audio.pos(0, 1, 2)
 	
 end
