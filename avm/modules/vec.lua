@@ -239,7 +239,7 @@ function vec3:mod(b)
 end
 
 function vec3:normalize()
-	local unit = s:dot(s)	-- magSqr
+	local unit = self:dot(self)	-- magSqr
 	if unit < EPSILON then 
 		self:set(0, 0, 1)
 	else

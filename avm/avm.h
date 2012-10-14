@@ -8,6 +8,25 @@ extern "C" {
 
 void av_sleep(double seconds);
 
+enum {
+	// Standard ASCII non-printable characters 
+	AV_KEY_ENTER		=3,		
+	AV_KEY_BACKSPACE	=8,		
+	AV_KEY_TAB			=9,
+	AV_KEY_RETURN		=13,
+	AV_KEY_ESCAPE		=27,
+	AV_KEY_DELETE		=127,
+		
+	// Non-standard, but common keys
+	AV_KEY_F1=256, 
+	AV_KEY_F2, AV_KEY_F3, AV_KEY_F4, AV_KEY_F5, AV_KEY_F6, AV_KEY_F7, AV_KEY_F8, AV_KEY_F9, AV_KEY_F10, AV_KEY_F11, AV_KEY_F12,
+	 
+	AV_KEY_INSERT, 
+	AV_KEY_LEFT, AV_KEY_UP, AV_KEY_RIGHT, AV_KEY_DOWN, 
+	AV_KEY_PAGE_DOWN, AV_KEY_PAGE_UP, 
+	AV_KEY_END, AV_KEY_HOME
+};
+
 typedef struct av_Window {
 	int id;
 	int width, height;

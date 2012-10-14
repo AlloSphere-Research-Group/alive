@@ -65,10 +65,48 @@ void onkeyup(unsigned char k, int x, int y) {
 	}
 }
 
-void onspecialkey(int key, int x, int y) {
+void onspecialkeydown(int key, int x, int y) {
 	getmodifiers();
 	printf("special %d\n", key);
-	// like function keys etc. what to do with these?
+	
+	#define CS(k) case GLUT_KEY_##k: key = AV_KEY_##k; break;
+	switch(key){
+		CS(LEFT) CS(UP) CS(RIGHT) CS(DOWN)
+		CS(PAGE_UP) CS(PAGE_DOWN)
+		CS(HOME) CS(END) CS(INSERT)
+
+		CS(F1) CS(F2) CS(F3) CS(F4)
+		CS(F5) CS(F6) CS(F7) CS(F8)
+		CS(F9) CS(F10)	CS(F11) CS(F12)
+	}
+	#undef CS
+	
+	printf("special %d\n", key);
+	if (win.onkey) {
+		(win.onkey)(&win, 1, key);
+	}
+}
+
+void onspecialkeyup(int key, int x, int y) {
+	getmodifiers();
+	printf("special up %d\n", key);
+	
+	#define CS(k) case GLUT_KEY_##k: key = AV_KEY_##k; break;
+	switch(key){
+		CS(F1) CS(F2) CS(F3) CS(F4)
+		CS(F5) CS(F6) CS(F7) CS(F8)
+		CS(F9) CS(F10)	CS(F11) CS(F12)
+		
+		CS(LEFT) CS(UP) CS(RIGHT) CS(DOWN)
+		CS(PAGE_UP) CS(PAGE_DOWN)
+		CS(HOME) CS(END) CS(INSERT)
+	}
+	#undef CS
+	
+	printf("special up %d\n", key);
+	if (win.onkey) {
+		(win.onkey)(&win, 2, key);
+	}
 }
 
 void onmouse(int button, int state, int x, int y) {
@@ -133,8 +171,8 @@ void initwindow() {
 	glutMouseFunc(onmouse);
 	glutMotionFunc(onmotion);
 	glutPassiveMotionFunc(onpassivemotion);
-//	glutSpecialFunc(onspecialkey);
-//	glutSpecialUpFunc(cbSpecialUp);
+	glutSpecialFunc(onspecialkeydown);
+	glutSpecialUpFunc(onspecialkeyup);
 //	glutVisibilityFunc(cbVisibility);
 	glutReshapeFunc(onreshape);
 	glutDisplayFunc(ondisplay);
