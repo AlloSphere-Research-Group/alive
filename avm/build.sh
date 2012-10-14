@@ -18,10 +18,7 @@ function clean {
 }
 
 function generate_ffi_header {
-	
-	# make the ffi header:
 	echo Making FFI header
-	
 	luajit h2ffi.lua avm.h modules/avm/header.lua 
 }
 

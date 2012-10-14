@@ -15,7 +15,7 @@ end
 
 
 function Audio:__newindex(k, v)
-		error("cannot assign to Audio: "..k)
+	error("cannot assign to Audio: "..k)
 end
 
 function Audio:__index(k)
@@ -32,4 +32,4 @@ setmetatable(Audio, {
 
 ffi.metatype("av_Audio", Audio)
 
-return Audio
+return Audio.get()

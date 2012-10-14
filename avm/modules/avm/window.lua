@@ -1,5 +1,5 @@
 local ffi = require 'ffi'
-local C = ffi.C
+local lib = ffi.C
 local header = require 'avm.header'
 
 local Window = {}
@@ -57,12 +57,13 @@ end
 
 setmetatable(Window, {
 	__index = function(self, k)
-		Window[k] = C["av_window_" .. k]
+		Window[k] = lib["av_window_" .. k]
 		return Window[k]
 	end,
 })
 
 ffi.metatype("av_Window", Window)
 
+local w = lib.av_window_create()
 
-
+return w

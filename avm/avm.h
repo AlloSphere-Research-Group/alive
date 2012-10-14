@@ -38,12 +38,17 @@ typedef struct av_Audio {
 	unsigned int indevice, outdevice;
 	unsigned int inchannels, outchannels;
 	
-	void (*callback)(struct av_Audio * self, double sampletime);
+	// only access from audio thread:
+	float * input;
+	float * output;	
+	unsigned int frames;
+	void (*callback)(struct av_Audio * self, double sampletime, float * inputs, float * outputs, int frames);
 } av_Audio;
 
 av_Audio * av_audio_get();
 
-void av_audio_start(av_Audio * self);
+// only use from main thread:
+void av_audio_start();
 
 #ifdef __cplusplus
 }

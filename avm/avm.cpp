@@ -77,12 +77,9 @@ int main_idle(int status) {
 }
 
 int main_modified(const char * filename) {
-	printf("main modified %s\n", filename);
-	
 	if (luaL_dofile(L, filename)) {
 		printf("error: %s\n", lua_tostring(L, -1));
 	}
-	
 	return 1;
 }
 

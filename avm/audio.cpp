@@ -35,23 +35,15 @@ int av_rtaudio_callback(void *outputBuffer,
 	// catch up with UV events:
 	uv_run_once(loop);
 						
-	//float * input = (float *)inputBuffer;
-	float * output = (float *)outputBuffer;
+	audio.input = (float *)inputBuffer;
+	audio.output = (float *)outputBuffer;
+	audio.frames = frames;
 	
-	double newtime = audio.time + frames * audio.samplerate;
+	double newtime = audio.time + frames / audio.samplerate;
 	
-	float * out0 = output;
-	float * out1 = output + frames;
-	
-	for (unsigned int i=0; i<frames; i++) {
-		p = p + 440 * M_PI * 2./audio.samplerate;
-		out0[i] = sin(p);
-		out1[i] = out0[i];
-	}
-	
-	
+	// this calls back into Lua:
 	if (audio.callback) {
-		//(audio.callback)(&audio, newtime);
+		(audio.callback)(&audio, newtime, audio.input, audio.output, frames);
 	}
 	
 	audio.time = newtime;
@@ -60,7 +52,7 @@ int av_rtaudio_callback(void *outputBuffer,
 }
 
 
-void av_audio_start(av_Audio * self) {
+void av_audio_start() {
 	
 	unsigned int devices = rta.getDeviceCount();
 	if (devices < 1) {
@@ -70,19 +62,19 @@ void av_audio_start(av_Audio * self) {
 	
 	RtAudio::DeviceInfo info;
 	
-	info = rta.getDeviceInfo(self->indevice);
-	printf("input %d: %dx%d (%d) %s\n", self->indevice, info.inputChannels, info.outputChannels, info.duplexChannels, info.name.c_str());
+	info = rta.getDeviceInfo(audio.indevice);
+	printf("input %d: %dx%d (%d) %s\n", audio.indevice, info.inputChannels, info.outputChannels, info.duplexChannels, info.name.c_str());
 	
-	info = rta.getDeviceInfo(self->outdevice);
-	printf("output %d: %dx%d (%d) %s\n", self->outdevice, info.inputChannels, info.outputChannels, info.duplexChannels, info.name.c_str());
+	info = rta.getDeviceInfo(audio.outdevice);
+	printf("output %d: %dx%d (%d) %s\n", audio.outdevice, info.inputChannels, info.outputChannels, info.duplexChannels, info.name.c_str());
 	
 	RtAudio::StreamParameters iParams, oParams;
-	iParams.deviceId = self->indevice;
-	iParams.nChannels = self->inchannels;
+	iParams.deviceId = audio.indevice;
+	iParams.nChannels = audio.inchannels;
 	iParams.firstChannel = 0;
 	
-	oParams.deviceId = self->outdevice;
-	oParams.nChannels = self->outchannels;
+	oParams.deviceId = audio.outdevice;
+	oParams.nChannels = audio.outchannels;
 	oParams.firstChannel = 0;
 
 	RtAudio::StreamOptions options;
@@ -90,7 +82,7 @@ void av_audio_start(av_Audio * self) {
 	options.streamName = "av";
 	
 	try {
-		rta.openStream( &oParams, &iParams, RTAUDIO_FLOAT32, self->samplerate, &self->blocksize, &av_rtaudio_callback, NULL, &options );
+		rta.openStream( &oParams, &iParams, RTAUDIO_FLOAT32, audio.samplerate, &audio.blocksize, &av_rtaudio_callback, NULL, &options );
 		rta.startStream();
 	}
 	catch ( RtError& e ) {
@@ -102,10 +94,7 @@ av_Audio * av_audio_get() {
 	static bool initialized = false;
 	if (!initialized) {
 		
-		rta.showWarnings( true );
-		
-		L = av_init_lua();
-		
+		rta.showWarnings( true );		
 		loop = uv_loop_new();
 		// for some reason need this to stop loop from blocking:
 		// (maybe uv_ref() would have the same effect?)
@@ -122,6 +111,13 @@ av_Audio * av_audio_get() {
 		audio.outdevice = rta.getDefaultOutputDevice();
 		
 		initialized = true;
+		
+		L = av_init_lua();
+		
+		// unique to audio thread:
+		if (luaL_dostring(L, "require 'avm.audiothread'")) {
+			printf("error: %s\n", lua_tostring(L, -1));
+		}
 	}
 	return &audio;
 }

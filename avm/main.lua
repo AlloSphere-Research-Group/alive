@@ -1,13 +1,11 @@
 local ffi = require "ffi"
-
 local avm = require "avm"
 local gl = require "gl"
 
 -- currently just one window:
 local win = avm.window
-local audio = avm.audio
 
-audio:start()
+avm.audio.start()
 
 function win:resize(w, h)
 	print("resize", w, h)
@@ -20,8 +18,6 @@ end
 function win:key(e, k)	
 	if e == "down" then
 		if k == 27 then
-			print("currently", win.fullscreen)
-			print("to", not win.fullscreen)
 			win.fullscreen = not win.fullscreen
 		end
 	else
