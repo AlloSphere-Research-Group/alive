@@ -4,6 +4,7 @@ local ffi = require "ffi"
 local lib = ffi.C
 
 local Audio = {}
+Audio.__index = Audio
 
 function Audio:__tostring()
 	return string.format("Audio")
