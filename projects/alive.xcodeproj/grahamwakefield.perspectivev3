@@ -287,13 +287,13 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>105</integer>
+									<integer>106</integer>
 									<integer>74</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 1362}, {264, 769}}</string>
+							<string>{{0, 1518}, {264, 769}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -328,7 +328,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>36575212161277BE009D11CC</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>avm.cpp</string>
+								<string>audio.cpp</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -336,11 +336,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>36575213161277BE009D11CC</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>avm.cpp</string>
+										<string>audio.cpp</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>364D2260162A98F90002CFC9</string>
+										<string>364D227A162A9B2B0002CFC9</string>
 										<key>history</key>
 										<array>
 											<string>36575F2B1612A950009D11CC</string>
@@ -429,7 +429,6 @@
 											<string>364D1F56162A229A0002CFC9</string>
 											<string>364D1F5E162A244B0002CFC9</string>
 											<string>364D1F62162A244B0002CFC9</string>
-											<string>364D1F63162A244B0002CFC9</string>
 											<string>364D1F67162A244B0002CFC9</string>
 											<string>364D1F79162A250A0002CFC9</string>
 											<string>364D1F7E162A254F0002CFC9</string>
@@ -454,7 +453,6 @@
 											<string>364D223F162A98040002CFC9</string>
 											<string>364D2240162A98040002CFC9</string>
 											<string>364D2241162A98040002CFC9</string>
-											<string>364D2247162A982D0002CFC9</string>
 											<string>364D224B162A98A60002CFC9</string>
 											<string>364D224C162A98A60002CFC9</string>
 											<string>364D224D162A98A60002CFC9</string>
@@ -462,8 +460,10 @@
 											<string>364D224F162A98A60002CFC9</string>
 											<string>364D2252162A98BA0002CFC9</string>
 											<string>364D2258162A98CB0002CFC9</string>
-											<string>364D225D162A98EF0002CFC9</string>
-											<string>364D225E162A98EF0002CFC9</string>
+											<string>364D2268162A9A7B0002CFC9</string>
+											<string>364D2277162A9B2B0002CFC9</string>
+											<string>364D2278162A9B2B0002CFC9</string>
+											<string>364D2279162A9B2B0002CFC9</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>

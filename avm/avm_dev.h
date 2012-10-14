@@ -5,6 +5,7 @@
 
 #if defined(WIN32) || defined(__WINDOWS_MM__) || defined(WIN64)
 	#define AV_WINDOWS 1
+	// just placeholder really; Windows requires a bit more work yet.
 
 #elif defined( __APPLE__ ) && defined( __MACH__ )
 	#define AV_OSX 1
@@ -28,6 +29,8 @@ extern "C" {
 
 extern "C" {
 	void av_tick();
+	
+	lua_State * av_init_lua();
 }
 
 /*
@@ -76,7 +79,6 @@ struct Q {
 	}
 	
 	double used() const {
-		printf("%d %d\n", read, write);
 		return ((size + write - read) & wrap)/double(size);
 	}
 };

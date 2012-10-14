@@ -1,5 +1,6 @@
 
 #include "avm_dev.h"
+#include "uv_utils.h"
 
 #include "RtAudio.h"
 
@@ -12,69 +13,15 @@ static av_Audio audio;
 // the internal object:
 static RtAudio rta;
 
+// the audio-thread UV loop:
+static uv_loop_t * loop;
+// the audio-thread Lua state:
+static lua_State * L = 0;
 
-unsigned long framecount;
-
-/*
-int av_portaudio_callback(	const void *input, 
-							void *output,
-							unsigned long frameCount,
-							const PaStreamCallbackTimeInfo* timeInfo,
-							PaStreamCallbackFlags statusFlags,
-							void *userData ) {
-	
-	double newtime = audio.time + frameCount * audio.samplerate;
-	
-	if (audio.callback) {
-		//(audio.callback)(&audio, newtime);
-	}
-	
-	//printf(".\n");
-	
-	audio.time = newtime;
+// any idle process for audio UV loop:
+int idle(int status) {
+	return 1;
 }
-
-void * av_audio_open(int inchannels, int outchannels, double samplerate,int blocksize, int indev, int outdev, int * errptr) {
-	PaStream * stream = 0;
-	int err = paNoError;
-	
-	PaStreamParameters inputparams;
-	inputparams.device = indev;
-	inputparams.channelCount = inchannels;
-	inputparams.sampleFormat = paFloat32 | paNonInterleaved;
-	inputparams.suggestedLatency = 0;
-	inputparams.hostApiSpecificStreamInfo = 0;
-	
-	PaStreamParameters outputparams;
-	outputparams.device = outdev;
-	outputparams.channelCount = outchannels;
-	outputparams.sampleFormat = paFloat32 | paNonInterleaved;
-	outputparams.suggestedLatency = 0;
-	outputparams.hostApiSpecificStreamInfo = 0;
-	
-	err = Pa_IsFormatSupported(
-		&inputparams,
-		&outputparams,
-		samplerate
-	);
-	
-	if (err == paNoError) {
-		err = Pa_OpenStream( 
-			&stream,
-			&inputparams,
-			&outputparams,
-			samplerate,
-			blocksize,
-			paNoFlag,
-			av_portaudio_callback,
-			0
-		); 	
-	}
-	
-	*errptr = err;
-	return 0;
-}
-*/
 
 // for debugging:
 float p;
@@ -85,6 +32,9 @@ int av_rtaudio_callback(void *outputBuffer,
 						double streamTime, 
 						RtAudioStreamStatus status, 
 						void *data) {
+	// catch up with UV events:
+	uv_run_once(loop);
+						
 	//float * input = (float *)inputBuffer;
 	float * output = (float *)outputBuffer;
 	
@@ -146,8 +96,6 @@ void av_audio_start(av_Audio * self) {
 	catch ( RtError& e ) {
 		fprintf(stderr, "%s\n", e.getMessage().c_str());
 	}
-	
-	
 }
 
 av_Audio * av_audio_get() {
@@ -155,6 +103,13 @@ av_Audio * av_audio_get() {
 	if (!initialized) {
 		
 		rta.showWarnings( true );
+		
+		L = av_init_lua();
+		
+		loop = uv_loop_new();
+		// for some reason need this to stop loop from blocking:
+		// (maybe uv_ref() would have the same effect?)
+		new Idler(loop, idle);
 		
 		// set defaults:
 		audio.samplerate = 44100;

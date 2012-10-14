@@ -78,8 +78,8 @@
 	361C598B162685E000E08BE8 /* avm.cpp */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {548, 1846}}";
-			sepNavSelRange = "{2863, 0}";
-			sepNavVisRange = "{1814, 1309}";
+			sepNavSelRange = "{1839, 25}";
+			sepNavVisRange = "{1825, 1275}";
 			sepNavWindowFrame = "{{631, 0}, {759, 878}}";
 		};
 	};
@@ -3147,7 +3147,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 65";
 		rLen = 0;
-		rLoc = 1831;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1290;
 		vrLoc = 351;
@@ -3227,7 +3227,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 28";
 		rLen = 0;
-		rLoc = 1579;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1255;
 		vrLoc = 0;
@@ -3237,7 +3237,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 37";
 		rLen = 0;
-		rLoc = 1579;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1255;
 		vrLoc = 0;
@@ -3317,7 +3317,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 36";
 		rLen = 0;
-		rLoc = 1579;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1302;
 		vrLoc = 97;
@@ -3347,7 +3347,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 36";
 		rLen = 0;
-		rLoc = 1579;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1302;
 		vrLoc = 97;
@@ -3367,7 +3367,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 51";
 		rLen = 0;
-		rLoc = 1686;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1291;
 		vrLoc = 541;
@@ -3719,7 +3719,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 87";
 		rLen = 0;
-		rLoc = 1831;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1244;
 		vrLoc = 1230;
@@ -3729,7 +3729,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 101";
 		rLen = 0;
-		rLoc = 1831;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1282;
 		vrLoc = 1230;
@@ -3739,7 +3739,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 96";
 		rLen = 0;
-		rLoc = 1831;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1335;
 		vrLoc = 1230;
@@ -3749,7 +3749,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 38";
 		rLen = 0;
-		rLoc = 1180;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1287;
 		vrLoc = 1925;
@@ -3769,7 +3769,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 104";
 		rLen = 0;
-		rLoc = 1831;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1297;
 		vrLoc = 1947;
@@ -3778,8 +3778,8 @@
 		isa = PBXTextBookmark;
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 20";
-		rLen = 25;
-		rLoc = 586;
+		rLen = 0;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1317;
 		vrLoc = 0;
@@ -3798,7 +3798,7 @@
 		isa = PBXTextBookmark;
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 13";
-		rLen = 6;
+		rLen = 0;
 		rLoc = 407;
 		rType = 0;
 		vrLen = 1245;
@@ -3809,7 +3809,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 18";
 		rLen = 0;
-		rLoc = 483;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1268;
 		vrLoc = 0;
@@ -3819,7 +3819,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 33";
 		rLen = 0;
-		rLoc = 853;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1268;
 		vrLoc = 0;
@@ -3849,7 +3849,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 198";
 		rLen = 0;
-		rLoc = 3125;
+		rLoc = 3100;
 		rType = 0;
 		vrLen = 1168;
 		vrLoc = 0;
@@ -3869,7 +3869,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 34";
 		rLen = 0;
-		rLoc = 519;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1168;
 		vrLoc = 0;
@@ -3879,7 +3879,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 155";
 		rLen = 0;
-		rLoc = 3092;
+		rLoc = 3067;
 		rType = 0;
 		vrLen = 1436;
 		vrLoc = 2173;
@@ -3889,7 +3889,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 137";
 		rLen = 0;
-		rLoc = 3092;
+		rLoc = 3067;
 		rType = 0;
 		vrLen = 1436;
 		vrLoc = 2173;
@@ -3909,7 +3909,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 84";
 		rLen = 0;
-		rLoc = 1579;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1061;
 		vrLoc = 1124;
@@ -3919,7 +3919,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 134";
 		rLen = 0;
-		rLoc = 1831;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1368;
 		vrLoc = 3229;
@@ -3929,7 +3929,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 134";
 		rLen = 0;
-		rLoc = 1831;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1368;
 		vrLoc = 3229;
@@ -3939,7 +3939,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 177";
 		rLen = 0;
-		rLoc = 2337;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1368;
 		vrLoc = 3229;
@@ -3949,7 +3949,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 181";
 		rLen = 0;
-		rLoc = 2477;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1368;
 		vrLoc = 3229;
@@ -3973,7 +3973,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 177";
 		rLen = 0;
-		rLoc = 2338;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1565;
 		vrLoc = 2470;
@@ -4200,7 +4200,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 160";
 		rLen = 0;
-		rLoc = 1831;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1551;
 		vrLoc = 2510;
@@ -4210,7 +4210,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 123";
 		rLen = 0;
-		rLoc = 1831;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1051;
 		vrLoc = 1772;
@@ -4220,7 +4220,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 127";
 		rLen = 0;
-		rLoc = 1831;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1051;
 		vrLoc = 1772;
@@ -4320,7 +4320,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 172";
 		rLen = 0;
-		rLoc = 1831;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1540;
 		vrLoc = 2870;
@@ -4390,7 +4390,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 172";
 		rLen = 0;
-		rLoc = 1831;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1540;
 		vrLoc = 2870;
@@ -4400,7 +4400,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 143";
 		rLen = 0;
-		rLoc = 1831;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1208;
 		vrLoc = 2186;
@@ -4410,7 +4410,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 143";
 		rLen = 0;
-		rLoc = 1831;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1208;
 		vrLoc = 2186;
@@ -4430,7 +4430,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 123";
 		rLen = 0;
-		rLoc = 1831;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1218;
 		vrLoc = 2176;
@@ -4440,7 +4440,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 132";
 		rLen = 0;
-		rLoc = 1831;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1209;
 		vrLoc = 2176;
@@ -4450,7 +4450,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 132";
 		rLen = 0;
-		rLoc = 1831;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1209;
 		vrLoc = 2176;
@@ -4617,7 +4617,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 132";
 		rLen = 0;
-		rLoc = 1831;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1209;
 		vrLoc = 2176;
@@ -4707,7 +4707,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 112";
 		rLen = 0;
-		rLoc = 1831;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1153;
 		vrLoc = 1940;
@@ -4807,7 +4807,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 112";
 		rLen = 0;
-		rLoc = 1831;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1123;
 		vrLoc = 1940;
@@ -4817,7 +4817,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 105";
 		rLen = 0;
-		rLoc = 1831;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1007;
 		vrLoc = 1504;
@@ -4827,7 +4827,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 105";
 		rLen = 0;
-		rLoc = 1831;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1007;
 		vrLoc = 1504;
@@ -4967,7 +4967,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 105";
 		rLen = 0;
-		rLoc = 1831;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1007;
 		vrLoc = 1504;
@@ -5147,7 +5147,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 135";
 		rLen = 0;
-		rLoc = 1831;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1192;
 		vrLoc = 2032;
@@ -5297,7 +5297,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 111";
 		rLen = 0;
-		rLoc = 1831;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1002;
 		vrLoc = 1702;
@@ -5357,7 +5357,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 169";
 		rLen = 0;
-		rLoc = 1831;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1255;
 		vrLoc = 2292;
@@ -5367,7 +5367,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 142";
 		rLen = 0;
-		rLoc = 1831;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1286;
 		vrLoc = 2293;
@@ -5387,7 +5387,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 143";
 		rLen = 0;
-		rLoc = 1831;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1160;
 		vrLoc = 2179;
@@ -5477,7 +5477,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 150";
 		rLen = 0;
-		rLoc = 1831;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1239;
 		vrLoc = 2392;
@@ -5537,7 +5537,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 185";
 		rLen = 0;
-		rLoc = 1831;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1257;
 		vrLoc = 2667;
@@ -5547,7 +5547,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 136";
 		rLen = 0;
-		rLoc = 1831;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1145;
 		vrLoc = 2341;
@@ -5557,7 +5557,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 136";
 		rLen = 0;
-		rLoc = 1831;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1145;
 		vrLoc = 2341;
@@ -5597,7 +5597,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 192";
 		rLen = 0;
-		rLoc = 1831;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1243;
 		vrLoc = 2763;
@@ -5607,7 +5607,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 198";
 		rLen = 0;
-		rLoc = 1831;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1246;
 		vrLoc = 2763;
@@ -5677,7 +5677,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 160";
 		rLen = 0;
-		rLoc = 1831;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1020;
 		vrLoc = 2117;
@@ -5724,7 +5724,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 231";
 		rLen = 0;
-		rLoc = 2540;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1377;
 		vrLoc = 4098;
@@ -5774,7 +5774,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 212";
 		rLen = 0;
-		rLoc = 1831;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1515;
 		vrLoc = 3219;
@@ -5844,7 +5844,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 124";
 		rLen = 0;
-		rLoc = 1831;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1067;
 		vrLoc = 1940;
@@ -5904,7 +5904,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 118";
 		rLen = 0;
-		rLoc = 3092;
+		rLoc = 3067;
 		rType = 0;
 		vrLen = 1416;
 		vrLoc = 1392;
@@ -5914,16 +5914,16 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 118";
 		rLen = 0;
-		rLoc = 3092;
+		rLoc = 3067;
 		rType = 0;
 		vrLen = 1440;
 		vrLoc = 1392;
 	};
 	364D1F3E162A201D0002CFC9 /* avm_dev.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {548, 1092}}";
-			sepNavSelRange = "{480, 0}";
-			sepNavVisRange = "{0, 902}";
+			sepNavIntBoundsRect = "{{0, 0}, {548, 1131}}";
+			sepNavSelRange = "{563, 11}";
+			sepNavVisRange = "{341, 929}";
 		};
 	};
 	364D1F3F162A204B0002CFC9 /* PBXTextBookmark */ = {
@@ -5941,7 +5941,7 @@
 		fRef = 364D1F3E162A201D0002CFC9 /* avm_dev.h */;
 		name = "avm_dev.h: 4";
 		rLen = 0;
-		rLoc = 352;
+		rLoc = 419;
 		rType = 0;
 		vrLen = 272;
 		vrLoc = 0;
@@ -6001,7 +6001,7 @@
 		fRef = 364D1F3E162A201D0002CFC9 /* avm_dev.h */;
 		name = "avm_dev.h: 20";
 		rLen = 0;
-		rLoc = 450;
+		rLoc = 517;
 		rType = 0;
 		vrLen = 306;
 		vrLoc = 0;
@@ -6031,7 +6031,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 110";
 		rLen = 0;
-		rLoc = 3094;
+		rLoc = 3069;
 		rType = 0;
 		vrLen = 1358;
 		vrLoc = 1323;
@@ -6041,7 +6041,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 110";
 		rLen = 0;
-		rLoc = 3094;
+		rLoc = 3069;
 		rType = 0;
 		vrLen = 1358;
 		vrLoc = 1323;
@@ -6105,9 +6105,9 @@
 	};
 	364D1F51162A228B0002CFC9 /* audio.cpp */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {548, 2275}}";
-			sepNavSelRange = "{1775, 0}";
-			sepNavVisRange = "{1664, 1390}";
+			sepNavIntBoundsRect = "{{0, 0}, {548, 1703}}";
+			sepNavSelRange = "{2385, 0}";
+			sepNavVisRange = "{1399, 1456}";
 		};
 	};
 	364D1F52162A229A0002CFC9 /* PBXTextBookmark */ = {
@@ -6175,7 +6175,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 4";
 		rLen = 0;
-		rLoc = 108;
+		rLoc = 130;
 		rType = 0;
 		vrLen = 25;
 		vrLoc = 0;
@@ -6185,7 +6185,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 4";
 		rLen = 0;
-		rLoc = 108;
+		rLoc = 130;
 		rType = 0;
 		vrLen = 25;
 		vrLoc = 0;
@@ -6195,7 +6195,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 7";
 		rLen = 0;
-		rLoc = 1558;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 50;
 		vrLoc = 0;
@@ -6205,7 +6205,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 80";
 		rLen = 0;
-		rLoc = 2423;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1399;
 		vrLoc = 1282;
@@ -6305,7 +6305,7 @@
 		fRef = 364D1F3E162A201D0002CFC9 /* avm_dev.h */;
 		name = "avm_dev.h: 23";
 		rLen = 0;
-		rLoc = 480;
+		rLoc = 577;
 		rType = 0;
 		vrLen = 940;
 		vrLoc = 0;
@@ -6315,7 +6315,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 108";
 		rLen = 0;
-		rLoc = 2970;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1387;
 		vrLoc = 1323;
@@ -6352,7 +6352,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 10";
 		rLen = 0;
-		rLoc = 3371;
+		rLoc = 2246;
 		rType = 0;
 		vrLen = 77;
 		vrLoc = 0;
@@ -6362,7 +6362,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 10";
 		rLen = 0;
-		rLoc = 3371;
+		rLoc = 2246;
 		rType = 0;
 		vrLen = 77;
 		vrLoc = 0;
@@ -6413,7 +6413,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 10";
 		rLen = 0;
-		rLoc = 3371;
+		rLoc = 2246;
 		rType = 0;
 		vrLen = 77;
 		vrLoc = 0;
@@ -6537,7 +6537,7 @@
 		fRef = 364D1F3E162A201D0002CFC9 /* avm_dev.h */;
 		name = "avm_dev.h: 4";
 		rLen = 0;
-		rLoc = 352;
+		rLoc = 419;
 		rType = 0;
 		vrLen = 940;
 		vrLoc = 0;
@@ -6547,7 +6547,7 @@
 		fRef = 364D1F3E162A201D0002CFC9 /* avm_dev.h */;
 		name = "avm_dev.h: 18";
 		rLen = 0;
-		rLoc = 428;
+		rLoc = 495;
 		rType = 0;
 		vrLen = 942;
 		vrLoc = 0;
@@ -6567,7 +6567,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 53";
 		rLen = 0;
-		rLoc = 1579;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1165;
 		vrLoc = 502;
@@ -6577,7 +6577,7 @@
 		fRef = 364D1F3E162A201D0002CFC9 /* avm_dev.h */;
 		name = "avm_dev.h: 25";
 		rLen = 0;
-		rLoc = 480;
+		rLoc = 577;
 		rType = 0;
 		vrLen = 929;
 		vrLoc = 0;
@@ -6587,7 +6587,7 @@
 		fRef = 364D1F3E162A201D0002CFC9 /* avm_dev.h */;
 		name = "avm_dev.h: 56";
 		rLen = 0;
-		rLoc = 990;
+		rLoc = 1087;
 		rType = 0;
 		vrLen = 1004;
 		vrLoc = 318;
@@ -6607,7 +6607,7 @@
 		fRef = 364D1F3E162A201D0002CFC9 /* avm_dev.h */;
 		name = "avm_dev.h: 56";
 		rLen = 0;
-		rLoc = 990;
+		rLoc = 1087;
 		rType = 0;
 		vrLen = 1004;
 		vrLoc = 318;
@@ -6657,7 +6657,7 @@
 		fRef = 364D1F3E162A201D0002CFC9 /* avm_dev.h */;
 		name = "avm_dev.h: 45";
 		rLen = 0;
-		rLoc = 833;
+		rLoc = 930;
 		rType = 0;
 		vrLen = 929;
 		vrLoc = 0;
@@ -6667,7 +6667,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 53";
 		rLen = 0;
-		rLoc = 1579;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1165;
 		vrLoc = 502;
@@ -6677,7 +6677,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 49";
 		rLen = 0;
-		rLoc = 1553;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1329;
 		vrLoc = 0;
@@ -6697,7 +6697,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 49";
 		rLen = 0;
-		rLoc = 1553;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1329;
 		vrLoc = 0;
@@ -6707,7 +6707,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 3";
 		rLen = 0;
-		rLoc = 108;
+		rLoc = 130;
 		rType = 0;
 		vrLen = 54;
 		vrLoc = 0;
@@ -6717,7 +6717,7 @@
 		fRef = 364D1F3E162A201D0002CFC9 /* avm_dev.h */;
 		name = "avm_dev.h: 45";
 		rLen = 0;
-		rLoc = 833;
+		rLoc = 930;
 		rType = 0;
 		vrLen = 929;
 		vrLoc = 0;
@@ -6727,7 +6727,7 @@
 		fRef = 364D1F3E162A201D0002CFC9 /* avm_dev.h */;
 		name = "avm_dev.h: 13";
 		rLen = 0;
-		rLoc = 352;
+		rLoc = 419;
 		rType = 0;
 		vrLen = 895;
 		vrLoc = 0;
@@ -6747,7 +6747,7 @@
 		fRef = 364D1F3E162A201D0002CFC9 /* avm_dev.h */;
 		name = "avm_dev.h: 13";
 		rLen = 0;
-		rLoc = 352;
+		rLoc = 419;
 		rType = 0;
 		vrLen = 1004;
 		vrLoc = 342;
@@ -6757,7 +6757,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 49";
 		rLen = 0;
-		rLoc = 1553;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1301;
 		vrLoc = 0;
@@ -6767,7 +6767,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 97";
 		rLen = 0;
-		rLoc = 2648;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1331;
 		vrLoc = 1488;
@@ -6787,7 +6787,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 97";
 		rLen = 0;
-		rLoc = 2648;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1364;
 		vrLoc = 1455;
@@ -7327,7 +7327,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 37";
 		rLen = 25;
-		rLoc = 3373;
+		rLoc = 2248;
 		rType = 0;
 		vrLen = 639;
 		vrLoc = 0;
@@ -7337,7 +7337,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 112";
 		rLen = 0;
-		rLoc = 2955;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1303;
 		vrLoc = 1534;
@@ -7347,7 +7347,7 @@
 		fRef = 364D1F3E162A201D0002CFC9 /* avm_dev.h */;
 		name = "avm_dev.h: 26";
 		rLen = 0;
-		rLoc = 480;
+		rLoc = 577;
 		rType = 0;
 		vrLen = 859;
 		vrLoc = 0;
@@ -7397,7 +7397,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 37";
 		rLen = 25;
-		rLoc = 3373;
+		rLoc = 2248;
 		rType = 0;
 		vrLen = 639;
 		vrLoc = 0;
@@ -7407,7 +7407,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 16";
 		rLen = 0;
-		rLoc = 460;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 651;
 		vrLoc = 0;
@@ -7427,7 +7427,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 38";
 		rLen = 0;
-		rLoc = 3792;
+		rLoc = 2852;
 		rType = 0;
 		vrLen = 651;
 		vrLoc = 0;
@@ -7447,7 +7447,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 38";
 		rLen = 0;
-		rLoc = 3792;
+		rLoc = 2852;
 		rType = 0;
 		vrLen = 651;
 		vrLoc = 0;
@@ -7537,7 +7537,7 @@
 		fRef = 364D1F3E162A201D0002CFC9 /* avm_dev.h */;
 		name = "avm_dev.h: 27";
 		rLen = 0;
-		rLoc = 480;
+		rLoc = 577;
 		rType = 0;
 		vrLen = 945;
 		vrLoc = 0;
@@ -7547,7 +7547,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 112";
 		rLen = 0;
-		rLoc = 2955;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1349;
 		vrLoc = 1488;
@@ -7556,8 +7556,8 @@
 		isa = PBXTextBookmark;
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 9";
-		rLen = 21;
-		rLoc = 213;
+		rLen = 0;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 659;
 		vrLoc = 0;
@@ -7743,8 +7743,8 @@
 		isa = PBXTextBookmark;
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 9";
-		rLen = 21;
-		rLoc = 213;
+		rLen = 0;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 659;
 		vrLoc = 0;
@@ -7864,7 +7864,7 @@
 		fRef = 364D1F3E162A201D0002CFC9 /* avm_dev.h */;
 		name = "avm_dev.h: 27";
 		rLen = 0;
-		rLoc = 480;
+		rLoc = 577;
 		rType = 0;
 		vrLen = 945;
 		vrLoc = 0;
@@ -7884,7 +7884,7 @@
 		fRef = 364D1F3E162A201D0002CFC9 /* avm_dev.h */;
 		name = "avm_dev.h: 27";
 		rLen = 0;
-		rLoc = 480;
+		rLoc = 577;
 		rType = 0;
 		vrLen = 945;
 		vrLoc = 0;
@@ -7904,7 +7904,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 36";
 		rLen = 0;
-		rLoc = 3371;
+		rLoc = 2246;
 		rType = 0;
 		vrLen = 940;
 		vrLoc = 0;
@@ -8051,7 +8051,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 36";
 		rLen = 0;
-		rLoc = 3371;
+		rLoc = 2246;
 		rType = 0;
 		vrLen = 940;
 		vrLoc = 0;
@@ -8061,7 +8061,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 22";
 		rLen = 0;
-		rLoc = 574;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 958;
 		vrLoc = 0;
@@ -8081,7 +8081,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 22";
 		rLen = 0;
-		rLoc = 574;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 958;
 		vrLoc = 0;
@@ -8101,7 +8101,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 22";
 		rLen = 0;
-		rLoc = 574;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 958;
 		vrLoc = 0;
@@ -8191,7 +8191,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 22";
 		rLen = 0;
-		rLoc = 574;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 958;
 		vrLoc = 0;
@@ -8231,7 +8231,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 39";
 		rLen = 0;
-		rLoc = 1558;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 992;
 		vrLoc = 0;
@@ -8461,7 +8461,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 29";
 		rLen = 0;
-		rLoc = 732;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 992;
 		vrLoc = 0;
@@ -8518,7 +8518,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 112";
 		rLen = 0;
-		rLoc = 2955;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1349;
 		vrLoc = 1488;
@@ -8528,7 +8528,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 27";
 		rLen = 0;
-		rLoc = 716;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1171;
 		vrLoc = 412;
@@ -8578,7 +8578,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 27";
 		rLen = 0;
-		rLoc = 716;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1171;
 		vrLoc = 412;
@@ -8588,7 +8588,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 58";
 		rLen = 0;
-		rLoc = 732;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1169;
 		vrLoc = 412;
@@ -8608,7 +8608,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 29";
 		rLen = 0;
-		rLoc = 732;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1073;
 		vrLoc = 763;
@@ -8628,7 +8628,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 75";
 		rLen = 0;
-		rLoc = 1534;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1074;
 		vrLoc = 763;
@@ -8648,7 +8648,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 70";
 		rLen = 0;
-		rLoc = 732;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1074;
 		vrLoc = 763;
@@ -8768,7 +8768,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 70";
 		rLen = 0;
-		rLoc = 732;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1074;
 		vrLoc = 763;
@@ -8778,7 +8778,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 61";
 		rLen = 0;
-		rLoc = 732;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1204;
 		vrLoc = 417;
@@ -8798,7 +8798,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 76";
 		rLen = 0;
-		rLoc = 732;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1083;
 		vrLoc = 587;
@@ -8818,7 +8818,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 53";
 		rLen = 0;
-		rLoc = 732;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1225;
 		vrLoc = 417;
@@ -8838,7 +8838,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 67";
 		rLen = 0;
-		rLoc = 732;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1225;
 		vrLoc = 417;
@@ -8965,7 +8965,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 67";
 		rLen = 0;
-		rLoc = 732;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1225;
 		vrLoc = 417;
@@ -8975,7 +8975,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 56";
 		rLen = 0;
-		rLoc = 732;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1228;
 		vrLoc = 460;
@@ -8995,7 +8995,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 57";
 		rLen = 0;
-		rLoc = 732;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1227;
 		vrLoc = 460;
@@ -9015,7 +9015,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 57";
 		rLen = 0;
-		rLoc = 732;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1227;
 		vrLoc = 460;
@@ -9055,7 +9055,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 22";
 		rLen = 0;
-		rLoc = 563;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1304;
 		vrLoc = 0;
@@ -9145,7 +9145,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 8";
 		rLen = 0;
-		rLoc = 208;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1304;
 		vrLoc = 0;
@@ -9155,7 +9155,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 4";
 		rLen = 0;
-		rLoc = 33;
+		rLoc = 55;
 		rType = 0;
 		vrLen = 1277;
 		vrLoc = 0;
@@ -9175,7 +9175,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 4";
 		rLen = 0;
-		rLoc = 33;
+		rLoc = 55;
 		rType = 0;
 		vrLen = 1277;
 		vrLoc = 0;
@@ -9185,7 +9185,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 4";
 		rLen = 0;
-		rLoc = 33;
+		rLoc = 55;
 		rType = 0;
 		vrLen = 1285;
 		vrLoc = 0;
@@ -9195,7 +9195,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 4";
 		rLen = 0;
-		rLoc = 79;
+		rLoc = 101;
 		rType = 0;
 		vrLen = 1295;
 		vrLoc = 0;
@@ -9205,7 +9205,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 4";
 		rLen = 0;
-		rLoc = 33;
+		rLoc = 55;
 		rType = 0;
 		vrLen = 1280;
 		vrLoc = 0;
@@ -9348,7 +9348,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 4";
 		rLen = 0;
-		rLoc = 33;
+		rLoc = 55;
 		rType = 0;
 		vrLen = 1280;
 		vrLoc = 0;
@@ -9358,7 +9358,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 4";
 		rLen = 0;
-		rLoc = 79;
+		rLoc = 101;
 		rType = 0;
 		vrLen = 1280;
 		vrLoc = 0;
@@ -9382,7 +9382,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 7";
 		rLen = 0;
-		rLoc = 80;
+		rLoc = 102;
 		rType = 0;
 		vrLen = 1270;
 		vrLoc = 0;
@@ -9416,7 +9416,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 7";
 		rLen = 0;
-		rLoc = 80;
+		rLoc = 102;
 		rType = 0;
 		vrLen = 1270;
 		vrLoc = 0;
@@ -9456,7 +9456,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 112";
 		rLen = 0;
-		rLoc = 2955;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1303;
 		vrLoc = 1534;
@@ -9466,7 +9466,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 7";
 		rLen = 0;
-		rLoc = 80;
+		rLoc = 102;
 		rType = 0;
 		vrLen = 1270;
 		vrLoc = 0;
@@ -9476,7 +9476,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 81";
 		rLen = 0;
-		rLoc = 3371;
+		rLoc = 2246;
 		rType = 0;
 		vrLen = 1270;
 		vrLoc = 732;
@@ -9506,7 +9506,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 79";
 		rLen = 0;
-		rLoc = 3371;
+		rLoc = 2246;
 		rType = 0;
 		vrLen = 1268;
 		vrLoc = 732;
@@ -9536,7 +9536,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 77";
 		rLen = 0;
-		rLoc = 3371;
+		rLoc = 2246;
 		rType = 0;
 		vrLen = 1266;
 		vrLoc = 732;
@@ -9566,7 +9566,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 27";
 		rLen = 0;
-		rLoc = 563;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1272;
 		vrLoc = 0;
@@ -9596,7 +9596,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 77";
 		rLen = 0;
-		rLoc = 3371;
+		rLoc = 2246;
 		rType = 0;
 		vrLen = 1181;
 		vrLoc = 896;
@@ -9626,7 +9626,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 94";
 		rLen = 0;
-		rLoc = 3776;
+		rLoc = 2836;
 		rType = 0;
 		vrLen = 1155;
 		vrLoc = 940;
@@ -9686,7 +9686,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 94";
 		rLen = 0;
-		rLoc = 3776;
+		rLoc = 2836;
 		rType = 0;
 		vrLen = 1155;
 		vrLoc = 940;
@@ -9696,7 +9696,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 80";
 		rLen = 0;
-		rLoc = 3371;
+		rLoc = 2246;
 		rType = 0;
 		vrLen = 1365;
 		vrLoc = 1253;
@@ -9726,7 +9726,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 6";
 		rLen = 0;
-		rLoc = 64;
+		rLoc = 86;
 		rType = 0;
 		vrLen = 1289;
 		vrLoc = 0;
@@ -9803,7 +9803,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 6";
 		rLen = 0;
-		rLoc = 64;
+		rLoc = 86;
 		rType = 0;
 		vrLen = 1289;
 		vrLoc = 0;
@@ -10093,7 +10093,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 6";
 		rLen = 0;
-		rLoc = 64;
+		rLoc = 86;
 		rType = 0;
 		vrLen = 1289;
 		vrLoc = 0;
@@ -10103,7 +10103,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 105";
 		rLen = 0;
-		rLoc = 3371;
+		rLoc = 2246;
 		rType = 0;
 		vrLen = 1368;
 		vrLoc = 1369;
@@ -10197,7 +10197,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 82";
 		rLen = 14;
-		rLoc = 2220;
+		rLoc = 1099;
 		rType = 0;
 		vrLen = 1282;
 		vrLoc = 1516;
@@ -10207,7 +10207,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 92";
 		rLen = 0;
-		rLoc = 2764;
+		rLoc = 1643;
 		rType = 0;
 		vrLen = 1243;
 		vrLoc = 1516;
@@ -10257,7 +10257,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 92";
 		rLen = 0;
-		rLoc = 2764;
+		rLoc = 1643;
 		rType = 0;
 		vrLen = 1243;
 		vrLoc = 1516;
@@ -10267,7 +10267,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 93";
 		rLen = 0;
-		rLoc = 2405;
+		rLoc = 1284;
 		rType = 0;
 		vrLen = 1281;
 		vrLoc = 1516;
@@ -10297,7 +10297,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 100";
 		rLen = 0;
-		rLoc = 2764;
+		rLoc = 1643;
 		rType = 0;
 		vrLen = 1235;
 		vrLoc = 1272;
@@ -10327,7 +10327,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 100";
 		rLen = 0;
-		rLoc = 2681;
+		rLoc = 1560;
 		rType = 0;
 		vrLen = 1244;
 		vrLoc = 1272;
@@ -10357,7 +10357,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 107";
 		rLen = 0;
-		rLoc = 2951;
+		rLoc = 1830;
 		rType = 0;
 		vrLen = 1385;
 		vrLoc = 1697;
@@ -10387,7 +10387,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 108";
 		rLen = 0;
-		rLoc = 2983;
+		rLoc = 1862;
 		rType = 0;
 		vrLen = 1390;
 		vrLoc = 1697;
@@ -10417,7 +10417,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 82";
 		rLen = 0;
-		rLoc = 2250;
+		rLoc = 1129;
 		rType = 0;
 		vrLen = 1399;
 		vrLoc = 1697;
@@ -10477,7 +10477,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 82";
 		rLen = 0;
-		rLoc = 2250;
+		rLoc = 1129;
 		rType = 0;
 		vrLen = 1399;
 		vrLoc = 1697;
@@ -10487,7 +10487,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 119";
 		rLen = 0;
-		rLoc = 3362;
+		rLoc = 2241;
 		rType = 0;
 		vrLen = 1399;
 		vrLoc = 1697;
@@ -10517,7 +10517,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 82";
 		rLen = 36;
-		rLoc = 2215;
+		rLoc = 1094;
 		rType = 0;
 		vrLen = 1399;
 		vrLoc = 1697;
@@ -10567,7 +10567,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 131";
 		rLen = 0;
-		rLoc = 3371;
+		rLoc = 2246;
 		rType = 0;
 		vrLen = 1448;
 		vrLoc = 1505;
@@ -10617,7 +10617,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 112";
 		rLen = 0;
-		rLoc = 2955;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1303;
 		vrLoc = 1534;
@@ -10647,7 +10647,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 90";
 		rLen = 0;
-		rLoc = 2376;
+		rLoc = 1255;
 		rType = 0;
 		vrLen = 1342;
 		vrLoc = 1684;
@@ -10657,7 +10657,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 129";
 		rLen = 0;
-		rLoc = 3371;
+		rLoc = 2246;
 		rType = 0;
 		vrLen = 1399;
 		vrLoc = 2826;
@@ -10687,7 +10687,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 78";
 		rLen = 0;
-		rLoc = 2105;
+		rLoc = 984;
 		rType = 0;
 		vrLen = 1318;
 		vrLoc = 1085;
@@ -10727,7 +10727,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 78";
 		rLen = 0;
-		rLoc = 2105;
+		rLoc = 984;
 		rType = 0;
 		vrLen = 1318;
 		vrLoc = 1085;
@@ -10737,7 +10737,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 113";
 		rLen = 0;
-		rLoc = 3284;
+		rLoc = 2163;
 		rType = 0;
 		vrLen = 1396;
 		vrLoc = 1703;
@@ -10767,7 +10767,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 91";
 		rLen = 0;
-		rLoc = 2100;
+		rLoc = 979;
 		rType = 0;
 		vrLen = 1247;
 		vrLoc = 1386;
@@ -10797,7 +10797,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 91";
 		rLen = 0;
-		rLoc = 2100;
+		rLoc = 979;
 		rType = 0;
 		vrLen = 1247;
 		vrLoc = 1386;
@@ -10827,7 +10827,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 89";
 		rLen = 0;
-		rLoc = 2066;
+		rLoc = 945;
 		rType = 0;
 		vrLen = 1244;
 		vrLoc = 1386;
@@ -10857,7 +10857,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 85";
 		rLen = 0;
-		rLoc = 1838;
+		rLoc = 717;
 		rType = 0;
 		vrLen = 1242;
 		vrLoc = 1386;
@@ -10887,7 +10887,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 92";
 		rLen = 0;
-		rLoc = 2100;
+		rLoc = 979;
 		rType = 0;
 		vrLen = 1257;
 		vrLoc = 1386;
@@ -10927,7 +10927,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 112";
 		rLen = 0;
-		rLoc = 2955;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1303;
 		vrLoc = 1534;
@@ -10937,7 +10937,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 79";
 		rLen = 0;
-		rLoc = 1582;
+		rLoc = 405;
 		rType = 0;
 		vrLen = 1299;
 		vrLoc = 0;
@@ -10947,7 +10947,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 149";
 		rLen = 0;
-		rLoc = 3371;
+		rLoc = 2246;
 		rType = 0;
 		vrLen = 1420;
 		vrLoc = 2351;
@@ -10977,7 +10977,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 149";
 		rLen = 0;
-		rLoc = 3371;
+		rLoc = 2246;
 		rType = 0;
 		vrLen = 1420;
 		vrLoc = 2351;
@@ -11007,7 +11007,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 149";
 		rLen = 0;
-		rLoc = 3371;
+		rLoc = 2246;
 		rType = 0;
 		vrLen = 1420;
 		vrLoc = 2351;
@@ -11036,7 +11036,7 @@
 		isa = PBXTextBookmark;
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 1";
-		rLen = 3795;
+		rLen = 2855;
 		rLoc = 0;
 		rType = 0;
 		vrLen = 1420;
@@ -11066,7 +11066,7 @@
 		isa = PBXTextBookmark;
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 1";
-		rLen = 3795;
+		rLen = 2855;
 		rLoc = 0;
 		rType = 0;
 		vrLen = 1420;
@@ -11097,7 +11097,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 112";
 		rLen = 0;
-		rLoc = 2955;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1303;
 		vrLoc = 1534;
@@ -11107,7 +11107,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 147";
 		rLen = 0;
-		rLoc = 3367;
+		rLoc = 2244;
 		rType = 0;
 		vrLen = 1420;
 		vrLoc = 2351;
@@ -11117,7 +11117,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 138";
 		rLen = 0;
-		rLoc = 3112;
+		rLoc = 1991;
 		rType = 0;
 		vrLen = 1420;
 		vrLoc = 2351;
@@ -11127,7 +11127,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 138";
 		rLen = 0;
-		rLoc = 3112;
+		rLoc = 1991;
 		rType = 0;
 		vrLen = 1420;
 		vrLoc = 2351;
@@ -11137,7 +11137,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 147";
 		rLen = 0;
-		rLoc = 3367;
+		rLoc = 2244;
 		rType = 0;
 		vrLen = 1420;
 		vrLoc = 2351;
@@ -11267,7 +11267,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 147";
 		rLen = 0;
-		rLoc = 3367;
+		rLoc = 2244;
 		rType = 0;
 		vrLen = 1420;
 		vrLoc = 2351;
@@ -11277,7 +11277,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 147";
 		rLen = 0;
-		rLoc = 3367;
+		rLoc = 2244;
 		rType = 0;
 		vrLen = 1420;
 		vrLoc = 2351;
@@ -11287,7 +11287,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 147";
 		rLen = 0;
-		rLoc = 3367;
+		rLoc = 2244;
 		rType = 0;
 		vrLen = 1420;
 		vrLoc = 2351;
@@ -11297,7 +11297,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 147";
 		rLen = 0;
-		rLoc = 3367;
+		rLoc = 2244;
 		rType = 0;
 		vrLen = 1420;
 		vrLoc = 2351;
@@ -11307,7 +11307,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 147";
 		rLen = 0;
-		rLoc = 3367;
+		rLoc = 2244;
 		rType = 0;
 		vrLen = 1420;
 		vrLoc = 2351;
@@ -11317,7 +11317,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 147";
 		rLen = 0;
-		rLoc = 3367;
+		rLoc = 2244;
 		rType = 0;
 		vrLen = 1420;
 		vrLoc = 2351;
@@ -11327,7 +11327,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 147";
 		rLen = 0;
-		rLoc = 3367;
+		rLoc = 2244;
 		rType = 0;
 		vrLen = 1420;
 		vrLoc = 2351;
@@ -11337,7 +11337,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 147";
 		rLen = 0;
-		rLoc = 3367;
+		rLoc = 2244;
 		rType = 0;
 		vrLen = 1420;
 		vrLoc = 2351;
@@ -11347,7 +11347,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 147";
 		rLen = 0;
-		rLoc = 3367;
+		rLoc = 2244;
 		rType = 0;
 		vrLen = 1420;
 		vrLoc = 2351;
@@ -11357,7 +11357,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 147";
 		rLen = 0;
-		rLoc = 3367;
+		rLoc = 2244;
 		rType = 0;
 		vrLen = 1299;
 		vrLoc = 0;
@@ -11367,7 +11367,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 15";
 		rLen = 0;
-		rLoc = 178;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1299;
 		vrLoc = 0;
@@ -11377,7 +11377,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 25";
 		rLen = 0;
-		rLoc = 428;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1213;
 		vrLoc = 1530;
@@ -11387,7 +11387,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 25";
 		rLen = 0;
-		rLoc = 428;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1213;
 		vrLoc = 1530;
@@ -11397,7 +11397,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 25";
 		rLen = 0;
-		rLoc = 428;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1213;
 		vrLoc = 1530;
@@ -11407,7 +11407,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 25";
 		rLen = 0;
-		rLoc = 428;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1213;
 		vrLoc = 1530;
@@ -11417,7 +11417,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 25";
 		rLen = 0;
-		rLoc = 428;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1213;
 		vrLoc = 1530;
@@ -11427,7 +11427,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 25";
 		rLen = 0;
-		rLoc = 428;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1213;
 		vrLoc = 1530;
@@ -11437,7 +11437,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 25";
 		rLen = 0;
-		rLoc = 428;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1213;
 		vrLoc = 1530;
@@ -11447,7 +11447,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 25";
 		rLen = 0;
-		rLoc = 428;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1213;
 		vrLoc = 1530;
@@ -11457,7 +11457,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 25";
 		rLen = 0;
-		rLoc = 428;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1213;
 		vrLoc = 1530;
@@ -11467,7 +11467,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 25";
 		rLen = 0;
-		rLoc = 428;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1213;
 		vrLoc = 1530;
@@ -11477,7 +11477,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 25";
 		rLen = 0;
-		rLoc = 428;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1213;
 		vrLoc = 1530;
@@ -11487,7 +11487,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 25";
 		rLen = 0;
-		rLoc = 428;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1213;
 		vrLoc = 1530;
@@ -11497,7 +11497,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 25";
 		rLen = 0;
-		rLoc = 428;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1213;
 		vrLoc = 1530;
@@ -11507,7 +11507,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 25";
 		rLen = 0;
-		rLoc = 428;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1213;
 		vrLoc = 1530;
@@ -11517,7 +11517,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 25";
 		rLen = 0;
-		rLoc = 428;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1213;
 		vrLoc = 1530;
@@ -11527,7 +11527,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 25";
 		rLen = 0;
-		rLoc = 428;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1213;
 		vrLoc = 1530;
@@ -11537,7 +11537,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 25";
 		rLen = 0;
-		rLoc = 428;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1213;
 		vrLoc = 1530;
@@ -11547,7 +11547,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 25";
 		rLen = 0;
-		rLoc = 428;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1213;
 		vrLoc = 1530;
@@ -11557,7 +11557,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 25";
 		rLen = 0;
-		rLoc = 428;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1375;
 		vrLoc = 2187;
@@ -11567,7 +11567,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 25";
 		rLen = 0;
-		rLoc = 428;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1375;
 		vrLoc = 2187;
@@ -11577,7 +11577,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 25";
 		rLen = 0;
-		rLoc = 428;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1375;
 		vrLoc = 2187;
@@ -11587,7 +11587,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 25";
 		rLen = 0;
-		rLoc = 428;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1375;
 		vrLoc = 2187;
@@ -11597,7 +11597,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 25";
 		rLen = 0;
-		rLoc = 428;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1375;
 		vrLoc = 2187;
@@ -11607,7 +11607,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 25";
 		rLen = 0;
-		rLoc = 428;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1375;
 		vrLoc = 2187;
@@ -11617,7 +11617,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 25";
 		rLen = 0;
-		rLoc = 428;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1375;
 		vrLoc = 2187;
@@ -11627,7 +11627,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 25";
 		rLen = 0;
-		rLoc = 428;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1375;
 		vrLoc = 2187;
@@ -11637,7 +11637,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 25";
 		rLen = 0;
-		rLoc = 428;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1375;
 		vrLoc = 2187;
@@ -11647,7 +11647,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 25";
 		rLen = 0;
-		rLoc = 428;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1375;
 		vrLoc = 2187;
@@ -11657,7 +11657,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 25";
 		rLen = 0;
-		rLoc = 428;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1375;
 		vrLoc = 2187;
@@ -11667,7 +11667,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 25";
 		rLen = 0;
-		rLoc = 428;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1375;
 		vrLoc = 2187;
@@ -11677,7 +11677,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 25";
 		rLen = 0;
-		rLoc = 428;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1375;
 		vrLoc = 2187;
@@ -11687,7 +11687,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 25";
 		rLen = 0;
-		rLoc = 428;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1375;
 		vrLoc = 2187;
@@ -11697,7 +11697,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 25";
 		rLen = 0;
-		rLoc = 428;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1375;
 		vrLoc = 2187;
@@ -11707,7 +11707,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 25";
 		rLen = 0;
-		rLoc = 428;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1375;
 		vrLoc = 2187;
@@ -11717,7 +11717,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 25";
 		rLen = 0;
-		rLoc = 428;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1375;
 		vrLoc = 2187;
@@ -11727,7 +11727,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 25";
 		rLen = 0;
-		rLoc = 428;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1375;
 		vrLoc = 2187;
@@ -11737,7 +11737,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 25";
 		rLen = 0;
-		rLoc = 428;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1375;
 		vrLoc = 2187;
@@ -11747,7 +11747,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 25";
 		rLen = 0;
-		rLoc = 428;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1375;
 		vrLoc = 2187;
@@ -11757,7 +11757,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 25";
 		rLen = 0;
-		rLoc = 428;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1375;
 		vrLoc = 2187;
@@ -11767,7 +11767,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 25";
 		rLen = 0;
-		rLoc = 428;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1375;
 		vrLoc = 2187;
@@ -11777,7 +11777,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 25";
 		rLen = 0;
-		rLoc = 428;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1422;
 		vrLoc = 2349;
@@ -11787,7 +11787,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 25";
 		rLen = 0;
-		rLoc = 428;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1422;
 		vrLoc = 2349;
@@ -11797,7 +11797,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 25";
 		rLen = 0;
-		rLoc = 428;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1422;
 		vrLoc = 2349;
@@ -11807,7 +11807,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 25";
 		rLen = 0;
-		rLoc = 428;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1422;
 		vrLoc = 2349;
@@ -11817,7 +11817,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 25";
 		rLen = 0;
-		rLoc = 428;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1422;
 		vrLoc = 2349;
@@ -11827,7 +11827,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 25";
 		rLen = 0;
-		rLoc = 428;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1422;
 		vrLoc = 2349;
@@ -11837,7 +11837,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 25";
 		rLen = 0;
-		rLoc = 428;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1422;
 		vrLoc = 2349;
@@ -11847,7 +11847,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 25";
 		rLen = 0;
-		rLoc = 428;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1422;
 		vrLoc = 2349;
@@ -11857,7 +11857,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 25";
 		rLen = 0;
-		rLoc = 428;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1422;
 		vrLoc = 2349;
@@ -11867,7 +11867,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 25";
 		rLen = 0;
-		rLoc = 428;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1422;
 		vrLoc = 2349;
@@ -11877,7 +11877,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 25";
 		rLen = 0;
-		rLoc = 428;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1422;
 		vrLoc = 2349;
@@ -11887,7 +11887,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 25";
 		rLen = 0;
-		rLoc = 428;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1422;
 		vrLoc = 2349;
@@ -11897,7 +11897,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 25";
 		rLen = 0;
-		rLoc = 428;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1422;
 		vrLoc = 2349;
@@ -11907,7 +11907,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 25";
 		rLen = 0;
-		rLoc = 428;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1422;
 		vrLoc = 2349;
@@ -11917,7 +11917,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 25";
 		rLen = 0;
-		rLoc = 428;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1422;
 		vrLoc = 2349;
@@ -11927,7 +11927,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 25";
 		rLen = 0;
-		rLoc = 428;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1422;
 		vrLoc = 2349;
@@ -11937,7 +11937,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 25";
 		rLen = 0;
-		rLoc = 428;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1422;
 		vrLoc = 2349;
@@ -11947,7 +11947,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 25";
 		rLen = 0;
-		rLoc = 428;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1422;
 		vrLoc = 2349;
@@ -11957,7 +11957,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 25";
 		rLen = 0;
-		rLoc = 428;
+		rLoc = 387;
 		rType = 0;
 		vrLen = 1422;
 		vrLoc = 2349;
@@ -11967,7 +11967,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 97";
 		rLen = 4;
-		rLoc = 2032;
+		rLoc = 911;
 		rType = 0;
 		vrLen = 1385;
 		vrLoc = 1717;
@@ -12235,7 +12235,7 @@
 		fRef = 364D1F3E162A201D0002CFC9 /* avm_dev.h */;
 		name = "avm_dev.h: 18";
 		rLen = 0;
-		rLoc = 344;
+		rLoc = 411;
 		rType = 0;
 		vrLen = 1062;
 		vrLoc = 0;
@@ -12274,8 +12274,8 @@
 		isa = PBXTextBookmark;
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 62";
-		rLen = 5;
-		rLoc = 1398;
+		rLen = 0;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1228;
 		vrLoc = 805;
@@ -12285,7 +12285,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 66";
 		rLen = 0;
-		rLoc = 1525;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1198;
 		vrLoc = 805;
@@ -12295,7 +12295,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 66";
 		rLen = 0;
-		rLoc = 1525;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1198;
 		vrLoc = 805;
@@ -12305,7 +12305,7 @@
 		fRef = 364D1F3E162A201D0002CFC9 /* avm_dev.h */;
 		name = "avm_dev.h: 18";
 		rLen = 0;
-		rLoc = 344;
+		rLoc = 411;
 		rType = 0;
 		vrLen = 1062;
 		vrLoc = 0;
@@ -12315,7 +12315,7 @@
 		fRef = 364D1F3E162A201D0002CFC9 /* avm_dev.h */;
 		name = "avm_dev.h: 30";
 		rLen = 0;
-		rLoc = 480;
+		rLoc = 577;
 		rType = 0;
 		vrLen = 902;
 		vrLoc = 0;
@@ -12325,7 +12325,7 @@
 		fRef = 364D1F3E162A201D0002CFC9 /* avm_dev.h */;
 		name = "avm_dev.h: 30";
 		rLen = 0;
-		rLoc = 480;
+		rLoc = 577;
 		rType = 0;
 		vrLen = 902;
 		vrLoc = 0;
@@ -12335,7 +12335,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 66";
 		rLen = 0;
-		rLoc = 1525;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1198;
 		vrLoc = 805;
@@ -12345,7 +12345,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 62";
 		rLen = 0;
-		rLoc = 1414;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1248;
 		vrLoc = 805;
@@ -12355,7 +12355,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 62";
 		rLen = 0;
-		rLoc = 1414;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1248;
 		vrLoc = 805;
@@ -12445,7 +12445,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 97";
 		rLen = 4;
-		rLoc = 2032;
+		rLoc = 911;
 		rType = 0;
 		vrLen = 1418;
 		vrLoc = 1691;
@@ -12455,7 +12455,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 109";
 		rLen = 0;
-		rLoc = 2210;
+		rLoc = 1089;
 		rType = 0;
 		vrLen = 1379;
 		vrLoc = 1664;
@@ -12465,7 +12465,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 109";
 		rLen = 0;
-		rLoc = 2210;
+		rLoc = 1089;
 		rType = 0;
 		vrLen = 1379;
 		vrLoc = 1664;
@@ -12505,7 +12505,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 67";
 		rLen = 0;
-		rLoc = 1533;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1248;
 		vrLoc = 805;
@@ -12515,7 +12515,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 109";
 		rLen = 0;
-		rLoc = 2210;
+		rLoc = 1089;
 		rType = 0;
 		vrLen = 1379;
 		vrLoc = 1664;
@@ -12525,7 +12525,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 109";
 		rLen = 0;
-		rLoc = 2210;
+		rLoc = 1089;
 		rType = 0;
 		vrLen = 1388;
 		vrLoc = 1664;
@@ -12535,7 +12535,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 88";
 		rLen = 0;
-		rLoc = 1775;
+		rLoc = 654;
 		rType = 0;
 		vrLen = 1390;
 		vrLoc = 1664;
@@ -12545,7 +12545,7 @@
 		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
 		name = "audio.cpp: 88";
 		rLen = 0;
-		rLoc = 1775;
+		rLoc = 654;
 		rType = 0;
 		vrLen = 1390;
 		vrLoc = 1664;
@@ -12555,7 +12555,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 67";
 		rLen = 0;
-		rLoc = 1533;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1248;
 		vrLoc = 805;
@@ -12565,7 +12565,7 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 124";
 		rLen = 0;
-		rLoc = 2863;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1309;
 		vrLoc = 1814;
@@ -12575,10 +12575,270 @@
 		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
 		name = "avm.cpp: 124";
 		rLen = 0;
-		rLoc = 2863;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 1309;
 		vrLoc = 1814;
+	};
+	364D2261162A99B90002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D1F3E162A201D0002CFC9 /* avm_dev.h */;
+		name = "avm_dev.h: 56";
+		rLen = 0;
+		rLoc = 959;
+		rType = 0;
+		vrLen = 946;
+		vrLoc = 517;
+	};
+	364D2262162A99B90002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
+		name = "audio.cpp: 16";
+		rLen = 0;
+		rLoc = 252;
+		rType = 0;
+		vrLen = 1316;
+		vrLoc = 0;
+	};
+	364D2263162A99B90002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
+		name = "avm.cpp: 19";
+		rLen = 47;
+		rLoc = 360;
+		rType = 0;
+		vrLen = 1282;
+		vrLoc = 0;
+	};
+	364D2264162A99B90002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
+		name = "avm.cpp: 54";
+		rLen = 0;
+		rLoc = 1241;
+		rType = 0;
+		vrLen = 1241;
+		vrLoc = 888;
+	};
+	364D2265162A99CF0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
+		name = "avm.cpp: 1";
+		rLen = 22;
+		rLoc = 20;
+		rType = 0;
+		vrLen = 1246;
+		vrLoc = 0;
+	};
+	364D2266162A99CF0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
+		name = "audio.cpp: 16";
+		rLen = 0;
+		rLoc = 236;
+		rType = 0;
+		vrLen = 1271;
+		vrLoc = 0;
+	};
+	364D2267162A99CF0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
+		name = "audio.cpp: 3";
+		rLen = 0;
+		rLoc = 43;
+		rType = 0;
+		vrLen = 1257;
+		vrLoc = 0;
+	};
+	364D2268162A9A7B0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3684D42E161CF373001E34EA /* alive.cpp */;
+		name = "alive.cpp: 174";
+		rLen = 23;
+		rLoc = 4214;
+		rType = 0;
+		vrLen = 1339;
+		vrLoc = 3288;
+	};
+	364D2269162A9A7B0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
+		name = "avm.cpp: 1";
+		rLen = 22;
+		rLoc = 20;
+		rType = 0;
+		vrLen = 1205;
+		vrLoc = 1518;
+	};
+	364D226A162A9A7B0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
+		name = "audio.cpp: 19";
+		rLen = 0;
+		rLoc = 350;
+		rType = 0;
+		vrLen = 955;
+		vrLoc = 1593;
+	};
+	364D226B162A9A7B0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
+		name = "audio.cpp: 97";
+		rLen = 0;
+		rLoc = 616;
+		rType = 0;
+		vrLen = 979;
+		vrLoc = 1593;
+	};
+	364D226C162A9A850002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
+		name = "audio.cpp: 174";
+		rLen = 0;
+		rLoc = 2538;
+		rType = 0;
+		vrLen = 1436;
+		vrLoc = 2722;
+	};
+	364D226D162A9A950002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
+		name = "audio.cpp: 17";
+		rLen = 7;
+		rLoc = 229;
+		rType = 0;
+		vrLen = 1174;
+		vrLoc = 0;
+	};
+	364D226E162A9A950002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
+		name = "avm.cpp: 1";
+		rLen = 22;
+		rLoc = 20;
+		rType = 0;
+		vrLen = 1241;
+		vrLoc = 1505;
+	};
+	364D226F162A9A950002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
+		name = "avm.cpp: 20";
+		rLen = 0;
+		rLoc = 395;
+		rType = 0;
+		vrLen = 1285;
+		vrLoc = 0;
+	};
+	364D2270162A9A9A0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
+		name = "avm.cpp: 22";
+		rLen = 0;
+		rLoc = 450;
+		rType = 0;
+		vrLen = 1292;
+		vrLoc = 0;
+	};
+	364D2271162A9A9D0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
+		name = "avm.cpp: 22";
+		rLen = 0;
+		rLoc = 450;
+		rType = 0;
+		vrLen = 1292;
+		vrLoc = 0;
+	};
+	364D2272162A9AB40002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
+		name = "avm.cpp: 20";
+		rLen = 56;
+		rLoc = 412;
+		rType = 0;
+		vrLen = 1292;
+		vrLoc = 0;
+	};
+	364D2273162A9AB40002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
+		name = "audio.cpp: 17";
+		rLen = 7;
+		rLoc = 229;
+		rType = 0;
+		vrLen = 1174;
+		vrLoc = 0;
+	};
+	364D2274162A9AB40002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
+		name = "audio.cpp: 18";
+		rLen = 0;
+		rLoc = 266;
+		rType = 0;
+		vrLen = 1185;
+		vrLoc = 0;
+	};
+	364D2275162A9AC70002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
+		name = "audio.cpp: 18";
+		rLen = 0;
+		rLoc = 266;
+		rType = 0;
+		vrLen = 1185;
+		vrLoc = 0;
+	};
+	364D2276162A9ACD0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
+		name = "audio.cpp: 24";
+		rLen = 0;
+		rLoc = 386;
+		rType = 0;
+		vrLen = 1436;
+		vrLoc = 2786;
+	};
+	364D2277162A9B2B0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 361C598B162685E000E08BE8 /* avm.cpp */;
+		name = "avm.cpp: 89";
+		rLen = 25;
+		rLoc = 1839;
+		rType = 0;
+		vrLen = 1275;
+		vrLoc = 1825;
+	};
+	364D2278162A9B2B0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D1F3E162A201D0002CFC9 /* avm_dev.h */;
+		name = "avm_dev.h: 33";
+		rLen = 11;
+		rLoc = 563;
+		rType = 0;
+		vrLen = 929;
+		vrLoc = 341;
+	};
+	364D2279162A9B2B0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
+		name = "audio.cpp: 19";
+		rLen = 0;
+		rLoc = 310;
+		rType = 0;
+		vrLen = 1068;
+		vrLoc = 22;
+	};
+	364D227A162A9B2B0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D1F51162A228B0002CFC9 /* audio.cpp */;
+		name = "audio.cpp: 107";
+		rLen = 0;
+		rLoc = 2385;
+		rType = 0;
+		vrLen = 1570;
+		vrLoc = 1283;
 	};
 	3657520A161277BC009D11CC /* Project object */ = {
 		activeArchitecturePreference = i386;
@@ -13873,6 +14133,32 @@
 			364D225E162A98EF0002CFC9 /* PBXTextBookmark */ = 364D225E162A98EF0002CFC9 /* PBXTextBookmark */;
 			364D225F162A98EF0002CFC9 /* PBXTextBookmark */ = 364D225F162A98EF0002CFC9 /* PBXTextBookmark */;
 			364D2260162A98F90002CFC9 /* PBXTextBookmark */ = 364D2260162A98F90002CFC9 /* PBXTextBookmark */;
+			364D2261162A99B90002CFC9 /* PBXTextBookmark */ = 364D2261162A99B90002CFC9 /* PBXTextBookmark */;
+			364D2262162A99B90002CFC9 /* PBXTextBookmark */ = 364D2262162A99B90002CFC9 /* PBXTextBookmark */;
+			364D2263162A99B90002CFC9 /* PBXTextBookmark */ = 364D2263162A99B90002CFC9 /* PBXTextBookmark */;
+			364D2264162A99B90002CFC9 /* PBXTextBookmark */ = 364D2264162A99B90002CFC9 /* PBXTextBookmark */;
+			364D2265162A99CF0002CFC9 /* PBXTextBookmark */ = 364D2265162A99CF0002CFC9 /* PBXTextBookmark */;
+			364D2266162A99CF0002CFC9 /* PBXTextBookmark */ = 364D2266162A99CF0002CFC9 /* PBXTextBookmark */;
+			364D2267162A99CF0002CFC9 /* PBXTextBookmark */ = 364D2267162A99CF0002CFC9 /* PBXTextBookmark */;
+			364D2268162A9A7B0002CFC9 /* PBXTextBookmark */ = 364D2268162A9A7B0002CFC9 /* PBXTextBookmark */;
+			364D2269162A9A7B0002CFC9 /* PBXTextBookmark */ = 364D2269162A9A7B0002CFC9 /* PBXTextBookmark */;
+			364D226A162A9A7B0002CFC9 /* PBXTextBookmark */ = 364D226A162A9A7B0002CFC9 /* PBXTextBookmark */;
+			364D226B162A9A7B0002CFC9 /* PBXTextBookmark */ = 364D226B162A9A7B0002CFC9 /* PBXTextBookmark */;
+			364D226C162A9A850002CFC9 /* PBXTextBookmark */ = 364D226C162A9A850002CFC9 /* PBXTextBookmark */;
+			364D226D162A9A950002CFC9 /* PBXTextBookmark */ = 364D226D162A9A950002CFC9 /* PBXTextBookmark */;
+			364D226E162A9A950002CFC9 /* PBXTextBookmark */ = 364D226E162A9A950002CFC9 /* PBXTextBookmark */;
+			364D226F162A9A950002CFC9 /* PBXTextBookmark */ = 364D226F162A9A950002CFC9 /* PBXTextBookmark */;
+			364D2270162A9A9A0002CFC9 /* PBXTextBookmark */ = 364D2270162A9A9A0002CFC9 /* PBXTextBookmark */;
+			364D2271162A9A9D0002CFC9 /* PBXTextBookmark */ = 364D2271162A9A9D0002CFC9 /* PBXTextBookmark */;
+			364D2272162A9AB40002CFC9 /* PBXTextBookmark */ = 364D2272162A9AB40002CFC9 /* PBXTextBookmark */;
+			364D2273162A9AB40002CFC9 /* PBXTextBookmark */ = 364D2273162A9AB40002CFC9 /* PBXTextBookmark */;
+			364D2274162A9AB40002CFC9 /* PBXTextBookmark */ = 364D2274162A9AB40002CFC9 /* PBXTextBookmark */;
+			364D2275162A9AC70002CFC9 /* PBXTextBookmark */ = 364D2275162A9AC70002CFC9 /* PBXTextBookmark */;
+			364D2276162A9ACD0002CFC9 /* PBXTextBookmark */ = 364D2276162A9ACD0002CFC9 /* PBXTextBookmark */;
+			364D2277162A9B2B0002CFC9 /* PBXTextBookmark */ = 364D2277162A9B2B0002CFC9 /* PBXTextBookmark */;
+			364D2278162A9B2B0002CFC9 /* PBXTextBookmark */ = 364D2278162A9B2B0002CFC9 /* PBXTextBookmark */;
+			364D2279162A9B2B0002CFC9 /* PBXTextBookmark */ = 364D2279162A9B2B0002CFC9 /* PBXTextBookmark */;
+			364D227A162A9B2B0002CFC9 /* PBXTextBookmark */ = 364D227A162A9B2B0002CFC9 /* PBXTextBookmark */;
 			36575F2B1612A950009D11CC = 36575F2B1612A950009D11CC /* PBXTextBookmark */;
 			36575F321612A950009D11CC = 36575F321612A950009D11CC /* PBXTextBookmark */;
 			36575F341612A950009D11CC = 36575F341612A950009D11CC /* PBXTextBookmark */;
@@ -14091,9 +14377,9 @@
 	};
 	3684D42E161CF373001E34EA /* alive.cpp */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {612, 3341}}";
-			sepNavSelRange = "{1330, 816}";
-			sepNavVisRange = "{278, 1426}";
+			sepNavIntBoundsRect = "{{0, 0}, {548, 3497}}";
+			sepNavSelRange = "{4214, 23}";
+			sepNavVisRange = "{3288, 1339}";
 		};
 	};
 	3684D45F161CF91F001E34EA /* al_ffi.cpp */ = {

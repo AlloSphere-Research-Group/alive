@@ -17,9 +17,9 @@ char workpath[PATH_MAX];
 char apppath[PATH_MAX];
 
 // the main-thread UV loop:
-uv_loop_t * mainloop;
+static uv_loop_t * loop;
 // the main-thread Lua state:
-lua_State * L = 0;
+static lua_State * L = 0;
 
 void getpaths(int argc, char ** argv) {
 	char wd[PATH_MAX];
@@ -68,7 +68,7 @@ void av_sleep(double seconds) {
 }
 
 void av_tick() {
-	uv_run_once(mainloop);
+	uv_run_once(loop);
 }
 
 int main_idle(int status) {
@@ -86,7 +86,7 @@ int main_modified(const char * filename) {
 	return 1;
 }
 
-lua_State * initLua(const char * apppath) {
+lua_State * av_init_lua() {
 	// initialize Lua:
 	lua_State * L = lua_open();
 	luaL_openlibs(L);
@@ -113,13 +113,13 @@ int main(int argc, char * argv[]) {
 	chdir("./");
 	
 	// initialize UV:
-	mainloop = uv_default_loop();
+	loop = uv_default_loop();
 	
 	// initialize Lua:
-	L = initLua(apppath);
+	L = av_init_lua();
 	
 	// add an idler to prevent uv loop blocking:
-	new Idler(mainloop, main_idle);
+	new Idler(loop, main_idle);
 	
 	// initialize window:
 	//av_Window * win = 
@@ -131,7 +131,7 @@ int main(int argc, char * argv[]) {
 	
 	// start watching:
 	const char * main_filename = "main.lua";
-	new FileWatcher(mainloop, main_filename, main_modified);
+	new FileWatcher(loop, main_filename, main_modified);
 	
 	glutMainLoop();
 	return 0;
