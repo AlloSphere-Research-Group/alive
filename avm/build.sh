@@ -36,7 +36,7 @@ function generate_ffi_header {
 
 function build {
 	
-	SOURCES="*.cpp"
+	SOURCES="*.cpp rtaudio-4.0.11/RtAudio.cpp"
 	
 	echo Building
 	if [[ $PLATFORM == 'Darwin' ]]; then
@@ -53,12 +53,12 @@ function build {
 		
 	elif [[ $PLATFORM == 'Linux' ]]; then
 	
-		INCLUDEPATHS="-I/usr/local/include/luajit-2.0 -I/usr/include/luajit-2.0 -I../externs/libuv/include"
+		INCLUDEPATHS="-I/usr/local/include/luajit-2.0 -I/usr/include/luajit-2.0 -I../externs/libuv/include -Irtaudio-4.0.11"
 		LINKERPATHS="-L/usr/local/lib -L/usr/lib"
 		LIBRARIES="-lluajit-5.1 -lGLEW -lGLU -lGL -lglut -lportaudio -lasound ../externs/libuv/libuv.a -lrt -lpthread"
 		LINKERFLAGS="-w -rdynamic"
 
-		g++ -c -O3 -Wall -fPIC -ffast-math -Wno-unknown-pragmas -MMD -DAPR_FAST_COMPAT -DAPR_STRICT -D_GNU_SOURCE -DEV_MULTIPLICITY=1 $INCLUDEPATHS $SOURCES
+		g++ -c -O3 -Wall -fPIC -ffast-math -Wno-unknown-pragmas -MMD -DAPR_FAST_COMPAT -DAPR_STRICT -D_GNU_SOURCE -DEV_MULTIPLICITY=1 -DHAVE_GETTIMEOFDAY -D__LINUX_ALSA__ $INCLUDEPATHS $SOURCES
 
 		g++ $LINKERFLAGS $LINKERPATHS -Wl,-whole-archive *.o -Wl,-no-whole-archive $LIBRARIES -o $PRODUCT_NAME
 

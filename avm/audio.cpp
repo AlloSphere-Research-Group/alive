@@ -1,11 +1,15 @@
 
 #include "avm_dev.h"
+#include "RtAudio.h"
+#include "math.h"
 
-av_Audio audio;
+static av_Audio audio;
 
+static RtAudio rta;
 
 unsigned long framecount;
 
+/*
 int av_portaudio_callback(	const void *input, 
 							void *output,
 							unsigned long frameCount,
@@ -64,19 +68,91 @@ void * av_audio_open(int inchannels, int outchannels, double samplerate,int bloc
 	*errptr = err;
 	return stream;
 }
+*/
 
-void av_audio_init() {
-	static bool initialized = 0;
-	if (initialized) return;
+float p;
+int av_rtaudio_callback(void * outputBuffer,
+						void * inputBuffer,
+						unsigned int frames,
+						double streamTime,
+						RtAudioStreamStatus status,
+						void * data) {
+	float * input = (float *)inputBuffer;
+	float * output = (float *)outputBuffer;
 	
-	audio.samplerate = 44100;
-	audio.time = 0;
+	double newtime = audio.time + frames / audio.samplerate;
 	
-	audio.callback = 0;
+	float * out0 = output;
+	float * out1 = output + frames;
 	
-	initialized = 1;
+	for (int i=0; i<frames; i++) {
+		p = p + 440 * M_PI * 2.0/audio.samplerate;
+		out0[i] = sin(p);
+	}
+	
+	if (audio.callback) {
+		//(audio.callback)(&audio, newtime);
+	}	
+	
+	audio.time = newtime;
+}
+
+
+void av_audio_start(av_Audio * self) {
+	unsigned int devices = rta.getDeviceCount();
+	if (devices < 1) {
+		printf("no audio devices found\n");
+		return;
+	}
+	
+	RtAudio::DeviceInfo info;
+	
+	info = rta.getDeviceInfo(self->indevice);
+	printf("input %d: %dx%d (%d) %s\n", self->indevice, info.inputChannels, info.outputChannels, info.duplexChannels, info.name.c_str());
+	
+	info = rta.getDeviceInfo(self->outdevice);
+	printf("output %d: %dx%d (%d) %s\n", self->outdevice, info.inputChannels, info.outputChannels, info.duplexChannels, info.name.c_str());
+	
+	RtAudio::StreamParameters iParams, oParams;
+	
+	iParams.deviceId = self->indevice;
+	iParams.nChannels = self->inchannels;
+	iParams.firstChannel = 0;
+	
+	oParams.deviceId = self->outdevice;
+	oParams.nChannels = self->outchannels;
+	oParams.firstChannel = 0;
+	
+	RtAudio::StreamOptions options;
+	options.flags |= RTAUDIO_NONINTERLEAVED;
+	options.streamName = "av";
+	
+	try {
+		rta.openStream(&oParams, &iParams, RTAUDIO_FLOAT32, self->samplerate, &self->blocksize, &av_rtaudio_callback, NULL, &options );
+		rta.startStream();
+	} catch (RtError& e) {
+		fprintf(stderr, "%s\n", e.getMessage().c_str());
+	}
+	
 }
 
 av_Audio * av_audio_get() {
+	static bool initialized = false;
+		if (!initialized) {
+		
+		rta.showWarnings( true );
+	
+		// set defaults
+		audio.samplerate = 44100;
+		audio.blocksize = 1024;
+		audio.inchannels = 2;
+		audio.outchannels = 2;
+		audio.time = 0;
+		audio.callback = 0;
+		audio.indevice = rta.getDefaultInputDevice();
+		audio.outdevice = rta.getDefaultOutputDevice();
+	
+		initialized = 1;
+	}
 	return &audio;
 }

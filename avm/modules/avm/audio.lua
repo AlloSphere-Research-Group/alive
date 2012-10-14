@@ -27,7 +27,7 @@ local pa = setmetatable({}, {
 	__index = resolve_symbol,
 }) 
 
-local version_num = pa.GetVersion()
+--local version_num = pa.GetVersion()
 -- assert on version here, if necessary
 
 local function check(err)
@@ -117,7 +117,7 @@ end
 
 setmetatable(Audio, {
 	__index = function(self, k)
-		Audio[k] = C["av_audio_" .. k]
+		Audio[k] = lib["av_audio_" .. k]
 		return Audio[k]
 	end,
 })
@@ -152,11 +152,6 @@ function Audio:open(inchannels, outchannels, samplerate, blocksize, indevname, o
 	local errptr = ffi.new("PaError[1]")
 	stream = lib.av_audio_open(inchannels, outchannels, samplerate, blocksize, indev, outdev, errptr)
 	check(errptr[0])
-end
-
-function Audio:start()
-	local err = pa.StartStream(stream)
-	check(err)
 end
 
 ffi.metatype("av_Audio", Audio)
