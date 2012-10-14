@@ -40,7 +40,7 @@ typedef struct av_Audio {
 
 av_Audio * av_audio_get();
 
-void * av_audio_open(int inchannels, int outchannels, double samplerate,int blocksize, int * err);
+void * av_audio_open(int inchannels, int outchannels, double samplerate,int blocksize, int indev, int outdev, int * err);
 
 #ifdef __cplusplus
 }

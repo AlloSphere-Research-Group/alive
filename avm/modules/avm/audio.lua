@@ -38,16 +38,15 @@ end
 
 check( pa.Initialize() )
 
--- search for a device by name:
-function pa.find(name)
+-- search for a device by name(s):
+function pa.find(a)
 	local devices = pa.GetDeviceCount()
 	for i = 0, devices-1 do
 		local info = pa.GetDeviceInfo(i)
-		if ffi.string(info.name) == name then
+		if ffi.string(info.name) == a then
 			return i
 		end
 	end
-	error("could not find audio device "..name)
 end
 
 local function dump()
@@ -125,9 +124,25 @@ setmetatable(Audio, {
 
 local stream = ffi.new("PaStream *")
 
-function Audio:open(inchannels, outchannels, samplerate, blocksize)
+function Audio:open(inchannels, outchannels, samplerate, blocksize, indevname, outdevname)
+	local inchannels = inchannels or 2
+	local outchannels = outchannels or 2
+	
+	local samplerate = samplerate or 44100
+	local blocksize = blocksize or 256
+	
+	local indev = pa.GetDefaultInputDevice()
+	if indevname then
+		indev = pa.find(indevname) or indev
+	end
+	
+	local outdev = pa.GetDefaultInputDevice()
+	if outdevname then
+		outdev = pa.find(outdevname) or outdev
+	end
+	
 	local errptr = ffi.new("PaError[1]")
-	stream = lib.av_audio_open(inchannels, outchannels, samplerate, blocksize, errptr)
+	stream = lib.av_audio_open(inchannels, outchannels, samplerate, blocksize, indev, outdev, errptr)
 	check(errptr[0])
 end
 

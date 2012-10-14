@@ -24,18 +24,52 @@ int av_portaudio_callback(	const void *input,
 	audio.time = newtime;
 }
 
-void * av_audio_open(int inchannels, int outchannels, double samplerate,int blocksize, int * err) {
-	PaStream * stream;
-	*err = Pa_OpenDefaultStream(
-		&stream,
-		inchannels,
-		outchannels,
-		paFloat32 | paNonInterleaved,
+void * av_audio_open(int inchannels, int outchannels, double samplerate,int blocksize, int indev, int outdev, int * err) {
+	PaStream * stream = 0;
+	
+//	*err = Pa_OpenDefaultStream(
+//		&stream,
+//		inchannels,
+//		outchannels,
+//		paFloat32 | paNonInterleaved,
+//		samplerate,
+//		(unsigned long)blocksize,
+//		av_portaudio_callback,
+//		0
+//	);
+	
+	PaStreamParameters inputparams;
+	inputparams.device = indev;
+	inputparams.channelCount = inchannels;
+	inputparams.sampleFormat = paFloat32 | paNonInterleaved;
+	inputparams.suggestedLatency = 0;
+	inputparams.hostApiSpecificStreamInfo = 0;
+	
+	PaStreamParameters outputparams;
+	outputparams.device = outdev;
+	outputparams.channelCount = outchannels;
+	outputparams.sampleFormat = paFloat32 | paNonInterleaved;
+	outputparams.suggestedLatency = 0;
+	outputparams.hostApiSpecificStreamInfo = 0;
+	
+	*err = Pa_IsFormatSupported(
+		&inputparams,
+		&outputparams,
 		samplerate,
-		(unsigned long)blocksize,
-		av_portaudio_callback,
-		0
-	);
+		);
+		
+	if (*err == paNoError) {
+		*err = Pa_OpenStream( 
+			&stream,
+			&inputparams,
+			&outputparams,
+			samplerate,
+			blocksize,
+			paNoFlag,
+			av_portaudio_callback,
+			0
+		); 	
+	}
 	return stream;
 }
 
