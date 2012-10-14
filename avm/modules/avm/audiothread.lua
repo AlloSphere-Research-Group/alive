@@ -55,9 +55,9 @@ function audio:callback(time, inputs, outputs, frames)
 	
 	-- play voices
 	for i = 0, frames-1 do
-		p = p + 440 * math.pi * 2/audio.samplerate
-		out0[i] = math.sin(p)
-		out1[i] = 0 --math.random()
+		--p = p + 440 * math.pi * 2/audio.samplerate
+		--out0[i] = math.sin(p)
+		--out1[i] = 0 --math.random()
 	end
 	
 	-- TODO: tune this

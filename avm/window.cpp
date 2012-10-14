@@ -5,6 +5,7 @@
 av_Window win;
 
 static bool initialized = 0;
+static bool reload = true;
 
 void timerfunc(int id) {
 
@@ -12,6 +13,10 @@ void timerfunc(int id) {
 	av_tick();
 	
 	// update window:
+	if (reload && win.create) {
+		(win.create)(&win);
+		reload = false;
+	}
 	if (win.draw) {
 		(win.draw)(&win);
 	}	
@@ -26,6 +31,7 @@ void av_window_settitle(av_Window * self, const char * name) {
 }
 
 void av_window_setfullscreen(av_Window * self, int b) {
+	reload = true;
 	win.is_fullscreen = b;
 	if (b) {
 		glutFullScreen();

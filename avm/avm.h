@@ -18,6 +18,7 @@ typedef struct av_Window {
 	double fps;
 	
 	void (*draw)(struct av_Window * self);
+	void (*create)(struct av_Window * self);
 	void (*resize)(struct av_Window * self, int w, int h);
 	
 	void (*onkey)(struct av_Window * self, int event, int key);

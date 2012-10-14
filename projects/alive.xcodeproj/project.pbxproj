@@ -3457,6 +3457,8 @@
 		364D210E162A825B0002CFC9 /* teststops.dsp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = teststops.dsp; sourceTree = "<group>"; };
 		364D2141162A85AC0002CFC9 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
 		364D22EE162AA5C60002CFC9 /* audiothread.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = audiothread.lua; sourceTree = "<group>"; };
+		364D23B2162B2C980002CFC9 /* vec.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = vec.lua; sourceTree = "<group>"; };
+		364D240E162B45CB0002CFC9 /* nav.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = nav.lua; sourceTree = "<group>"; };
 		36575226161277FD009D11CC /* corner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = corner.png; sourceTree = "<group>"; };
 		36575227161277FD009D11CC /* folder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = folder.png; sourceTree = "<group>"; };
 		36575228161277FD009D11CC /* index.htm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.htm; sourceTree = "<group>"; };
@@ -14119,6 +14121,8 @@
 				364D1E7E162A10440002CFC9 /* avm.lua */,
 				364D1E77162A0A0D0002CFC9 /* avm */,
 				364D1E79162A0A0D0002CFC9 /* gl.lua */,
+				364D240E162B45CB0002CFC9 /* nav.lua */,
+				364D23B2162B2C980002CFC9 /* vec.lua */,
 			);
 			path = modules;
 			sourceTree = "<group>";

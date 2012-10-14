@@ -43,9 +43,9 @@
 	};
 	361C59811626859F00E08BE8 /* build.sh */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {548, 923}}";
-			sepNavSelRange = "{676, 0}";
-			sepNavVisRange = "{148, 1575}";
+			sepNavIntBoundsRect = "{{0, 0}, {548, 1001}}";
+			sepNavSelRange = "{1765, 0}";
+			sepNavVisRange = "{272, 1493}";
 		};
 	};
 	361C5982162685C900E08BE8 /* PBXTextBookmark */ = {
@@ -70,9 +70,9 @@
 	};
 	361C598A162685E000E08BE8 /* avm.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {548, 1287}}";
-			sepNavSelRange = "{1589, 0}";
-			sepNavVisRange = "{859, 1098}";
+			sepNavIntBoundsRect = "{{0, 0}, {548, 1248}}";
+			sepNavSelRange = "{316, 0}";
+			sepNavVisRange = "{0, 1235}";
 		};
 	};
 	361C598B162685E000E08BE8 /* avm.cpp */ = {
@@ -167,7 +167,7 @@
 		fRef = 361C598A162685E000E08BE8 /* avm.h */;
 		name = "avm.h: 12";
 		rLen = 0;
-		rLoc = 1962;
+		rLoc = 2004;
 		rType = 0;
 		vrLen = 178;
 		vrLoc = 0;
@@ -3080,9 +3080,9 @@
 	};
 	364D1E1C1628E4480002CFC9 /* main.lua */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {548, 717}}";
-			sepNavSelRange = "{153, 0}";
-			sepNavVisRange = "{0, 655}";
+			sepNavIntBoundsRect = "{{0, 0}, {548, 1040}}";
+			sepNavSelRange = "{729, 0}";
+			sepNavVisRange = "{415, 1008}";
 		};
 	};
 	364D1E1D1628E4590002CFC9 /* uv_utils.h */ = {
@@ -3247,7 +3247,7 @@
 		fRef = 361C598A162685E000E08BE8 /* avm.h */;
 		name = "avm.h: 20";
 		rLen = 0;
-		rLoc = 1962;
+		rLoc = 2004;
 		rType = 0;
 		vrLen = 299;
 		vrLoc = 0;
@@ -3374,9 +3374,9 @@
 	};
 	364D1E3B1628E7260002CFC9 /* window.cpp */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {548, 1950}}";
-			sepNavSelRange = "{1756, 0}";
-			sepNavVisRange = "{1, 1041}";
+			sepNavIntBoundsRect = "{{0, 0}, {548, 2041}}";
+			sepNavSelRange = "{630, 0}";
+			sepNavVisRange = "{0, 1043}";
 		};
 	};
 	364D1E3C1628E74B0002CFC9 /* PBXTextBookmark */ = {
@@ -3408,7 +3408,7 @@
 		fRef = 364D1E3B1628E7260002CFC9 /* window.cpp */;
 		name = "window.cpp: 3";
 		rLen = 0;
-		rLoc = 331;
+		rLoc = 430;
 		rType = 0;
 		vrLen = 18;
 		vrLoc = 0;
@@ -3418,7 +3418,7 @@
 		fRef = 364D1E3B1628E7260002CFC9 /* window.cpp */;
 		name = "window.cpp: 3";
 		rLen = 0;
-		rLoc = 331;
+		rLoc = 430;
 		rType = 0;
 		vrLen = 18;
 		vrLoc = 0;
@@ -3859,7 +3859,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 23";
 		rLen = 0;
-		rLoc = 629;
+		rLoc = 1500;
 		rType = 0;
 		vrLen = 346;
 		vrLoc = 0;
@@ -4010,7 +4010,7 @@
 	};
 	364D1E7E162A10440002CFC9 /* avm.lua */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {548, 717}}";
+			sepNavIntBoundsRect = "{{0, 0}, {548, 740}}";
 			sepNavSelRange = "{115, 0}";
 			sepNavVisRange = "{0, 128}";
 		};
@@ -4050,7 +4050,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 23";
 		rLen = 0;
-		rLoc = 629;
+		rLoc = 1500;
 		rType = 0;
 		vrLen = 346;
 		vrLoc = 0;
@@ -4060,7 +4060,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 6";
 		rLen = 0;
-		rLoc = 75;
+		rLoc = 413;
 		rType = 0;
 		vrLen = 332;
 		vrLoc = 0;
@@ -4070,7 +4070,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 6";
 		rLen = 0;
-		rLoc = 75;
+		rLoc = 413;
 		rType = 0;
 		vrLen = 332;
 		vrLoc = 0;
@@ -4080,7 +4080,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 23";
 		rLen = 0;
-		rLoc = 629;
+		rLoc = 1500;
 		rType = 0;
 		vrLen = 332;
 		vrLoc = 0;
@@ -4110,7 +4110,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 10";
 		rLen = 0;
-		rLoc = 154;
+		rLoc = 791;
 		rType = 0;
 		vrLen = 325;
 		vrLoc = 0;
@@ -4120,7 +4120,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 6";
 		rLen = 0;
-		rLoc = 106;
+		rLoc = 444;
 		rType = 0;
 		vrLen = 313;
 		vrLoc = 0;
@@ -4130,7 +4130,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 6";
 		rLen = 0;
-		rLoc = 106;
+		rLoc = 444;
 		rType = 0;
 		vrLen = 313;
 		vrLoc = 0;
@@ -4140,7 +4140,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 24";
 		rLen = 0;
-		rLoc = 629;
+		rLoc = 1500;
 		rType = 0;
 		vrLen = 313;
 		vrLoc = 0;
@@ -4180,7 +4180,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 11";
 		rLen = 0;
-		rLoc = 450;
+		rLoc = 976;
 		rType = 0;
 		vrLen = 363;
 		vrLoc = 0;
@@ -4190,7 +4190,7 @@
 		fRef = 361C598A162685E000E08BE8 /* avm.h */;
 		name = "avm.h: 16";
 		rLen = 0;
-		rLoc = 400;
+		rLoc = 442;
 		rType = 0;
 		vrLen = 346;
 		vrLoc = 0;
@@ -4300,7 +4300,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 11";
 		rLen = 0;
-		rLoc = 450;
+		rLoc = 976;
 		rType = 0;
 		vrLen = 363;
 		vrLoc = 0;
@@ -4310,7 +4310,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 14";
 		rLen = 0;
-		rLoc = 473;
+		rLoc = 1273;
 		rType = 0;
 		vrLen = 360;
 		vrLoc = 0;
@@ -4330,7 +4330,7 @@
 		fRef = 361C598A162685E000E08BE8 /* avm.h */;
 		name = "avm.h: 25";
 		rLen = 0;
-		rLoc = 1964;
+		rLoc = 2006;
 		rType = 0;
 		vrLen = 352;
 		vrLoc = 0;
@@ -4360,7 +4360,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 10";
 		rLen = 0;
-		rLoc = 288;
+		rLoc = 814;
 		rType = 0;
 		vrLen = 358;
 		vrLoc = 0;
@@ -4370,7 +4370,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 10";
 		rLen = 0;
-		rLoc = 274;
+		rLoc = 805;
 		rType = 0;
 		vrLen = 375;
 		vrLoc = 0;
@@ -4380,7 +4380,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 10";
 		rLen = 0;
-		rLoc = 274;
+		rLoc = 805;
 		rType = 0;
 		vrLen = 375;
 		vrLoc = 0;
@@ -4420,7 +4420,7 @@
 		fRef = 361C598A162685E000E08BE8 /* avm.h */;
 		name = "avm.h: 16";
 		rLen = 0;
-		rLoc = 403;
+		rLoc = 445;
 		rType = 0;
 		vrLen = 352;
 		vrLoc = 0;
@@ -4460,7 +4460,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 10";
 		rLen = 0;
-		rLoc = 274;
+		rLoc = 805;
 		rType = 0;
 		vrLen = 375;
 		vrLoc = 0;
@@ -4510,7 +4510,7 @@
 		fRef = 361C598A162685E000E08BE8 /* avm.h */;
 		name = "avm.h: 19";
 		rLen = 6;
-		rLoc = 539;
+		rLoc = 581;
 		rType = 0;
 		vrLen = 352;
 		vrLoc = 0;
@@ -4520,7 +4520,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 10";
 		rLen = 0;
-		rLoc = 274;
+		rLoc = 805;
 		rType = 0;
 		vrLen = 372;
 		vrLoc = 0;
@@ -4530,7 +4530,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 10";
 		rLen = 0;
-		rLoc = 274;
+		rLoc = 805;
 		rType = 0;
 		vrLen = 371;
 		vrLoc = 0;
@@ -4540,7 +4540,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 10";
 		rLen = 0;
-		rLoc = 274;
+		rLoc = 805;
 		rType = 0;
 		vrLen = 371;
 		vrLoc = 0;
@@ -4570,7 +4570,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 15";
 		rLen = 0;
-		rLoc = 454;
+		rLoc = 980;
 		rType = 0;
 		vrLen = 371;
 		vrLoc = 0;
@@ -4580,7 +4580,7 @@
 		fRef = 361C598A162685E000E08BE8 /* avm.h */;
 		name = "avm.h: 16";
 		rLen = 4;
-		rLoc = 394;
+		rLoc = 436;
 		rType = 0;
 		vrLen = 352;
 		vrLoc = 0;
@@ -4697,7 +4697,7 @@
 		fRef = 361C598A162685E000E08BE8 /* avm.h */;
 		name = "avm.h: 21";
 		rLen = 54;
-		rLoc = 550;
+		rLoc = 592;
 		rType = 0;
 		vrLen = 408;
 		vrLoc = 0;
@@ -4757,7 +4757,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 15";
 		rLen = 0;
-		rLoc = 454;
+		rLoc = 980;
 		rType = 0;
 		vrLen = 371;
 		vrLoc = 0;
@@ -4767,7 +4767,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 12";
 		rLen = 0;
-		rLoc = 274;
+		rLoc = 805;
 		rType = 0;
 		vrLen = 390;
 		vrLoc = 0;
@@ -4777,7 +4777,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 12";
 		rLen = 0;
-		rLoc = 274;
+		rLoc = 805;
 		rType = 0;
 		vrLen = 390;
 		vrLoc = 0;
@@ -4787,7 +4787,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 12";
 		rLen = 0;
-		rLoc = 274;
+		rLoc = 805;
 		rType = 0;
 		vrLen = 390;
 		vrLoc = 0;
@@ -4867,7 +4867,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 19";
 		rLen = 0;
-		rLoc = 376;
+		rLoc = 902;
 		rType = 0;
 		vrLen = 481;
 		vrLoc = 0;
@@ -4877,7 +4877,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 19";
 		rLen = 0;
-		rLoc = 376;
+		rLoc = 902;
 		rType = 0;
 		vrLen = 481;
 		vrLoc = 0;
@@ -4887,7 +4887,7 @@
 		fRef = 364D1E3B1628E7260002CFC9 /* window.cpp */;
 		name = "window.cpp: 3";
 		rLen = 0;
-		rLoc = 331;
+		rLoc = 430;
 		rType = 0;
 		vrLen = 21;
 		vrLoc = 0;
@@ -4927,7 +4927,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 19";
 		rLen = 0;
-		rLoc = 376;
+		rLoc = 902;
 		rType = 0;
 		vrLen = 481;
 		vrLoc = 0;
@@ -4937,7 +4937,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 17";
 		rLen = 0;
-		rLoc = 347;
+		rLoc = 873;
 		rType = 0;
 		vrLen = 499;
 		vrLoc = 0;
@@ -4947,7 +4947,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 18";
 		rLen = 0;
-		rLoc = 347;
+		rLoc = 873;
 		rType = 0;
 		vrLen = 534;
 		vrLoc = 0;
@@ -4957,7 +4957,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 18";
 		rLen = 0;
-		rLoc = 347;
+		rLoc = 873;
 		rType = 0;
 		vrLen = 534;
 		vrLoc = 0;
@@ -4997,7 +4997,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 10";
 		rLen = 0;
-		rLoc = 217;
+		rLoc = 805;
 		rType = 0;
 		vrLen = 531;
 		vrLoc = 0;
@@ -5067,7 +5067,7 @@
 		fRef = 364D1E3B1628E7260002CFC9 /* window.cpp */;
 		name = "window.cpp: 3";
 		rLen = 0;
-		rLoc = 331;
+		rLoc = 430;
 		rType = 0;
 		vrLen = 21;
 		vrLoc = 0;
@@ -5077,7 +5077,7 @@
 		fRef = 364D1E3B1628E7260002CFC9 /* window.cpp */;
 		name = "window.cpp: 3";
 		rLen = 0;
-		rLoc = 331;
+		rLoc = 430;
 		rType = 0;
 		vrLen = 21;
 		vrLoc = 0;
@@ -5087,7 +5087,7 @@
 		fRef = 364D1E3B1628E7260002CFC9 /* window.cpp */;
 		name = "window.cpp: 3";
 		rLen = 0;
-		rLoc = 331;
+		rLoc = 430;
 		rType = 0;
 		vrLen = 21;
 		vrLoc = 0;
@@ -5127,7 +5127,7 @@
 		fRef = 361C598A162685E000E08BE8 /* avm.h */;
 		name = "avm.h: 18";
 		rLen = 0;
-		rLoc = 502;
+		rLoc = 544;
 		rType = 0;
 		vrLen = 456;
 		vrLoc = 0;
@@ -5157,7 +5157,7 @@
 		fRef = 361C598A162685E000E08BE8 /* avm.h */;
 		name = "avm.h: 18";
 		rLen = 0;
-		rLoc = 422;
+		rLoc = 464;
 		rType = 0;
 		vrLen = 469;
 		vrLoc = 0;
@@ -5167,7 +5167,7 @@
 		fRef = 361C598A162685E000E08BE8 /* avm.h */;
 		name = "avm.h: 18";
 		rLen = 0;
-		rLoc = 484;
+		rLoc = 526;
 		rType = 0;
 		vrLen = 477;
 		vrLoc = 0;
@@ -5177,7 +5177,7 @@
 		fRef = 361C598A162685E000E08BE8 /* avm.h */;
 		name = "avm.h: 18";
 		rLen = 2;
-		rLoc = 429;
+		rLoc = 471;
 		rType = 0;
 		vrLen = 495;
 		vrLoc = 0;
@@ -5187,7 +5187,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 10";
 		rLen = 0;
-		rLoc = 217;
+		rLoc = 805;
 		rType = 0;
 		vrLen = 531;
 		vrLoc = 0;
@@ -5197,7 +5197,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 12";
 		rLen = 0;
-		rLoc = 269;
+		rLoc = 805;
 		rType = 0;
 		vrLen = 586;
 		vrLoc = 0;
@@ -5207,7 +5207,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 11";
 		rLen = 0;
-		rLoc = 231;
+		rLoc = 805;
 		rType = 0;
 		vrLen = 584;
 		vrLoc = 0;
@@ -5257,7 +5257,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 11";
 		rLen = 0;
-		rLoc = 231;
+		rLoc = 805;
 		rType = 0;
 		vrLen = 584;
 		vrLoc = 0;
@@ -5267,7 +5267,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 9";
 		rLen = 0;
-		rLoc = 184;
+		rLoc = 805;
 		rType = 0;
 		vrLen = 604;
 		vrLoc = 0;
@@ -5287,7 +5287,7 @@
 		fRef = 361C598A162685E000E08BE8 /* avm.h */;
 		name = "avm.h: 16";
 		rLen = 6;
-		rLoc = 310;
+		rLoc = 352;
 		rType = 0;
 		vrLen = 551;
 		vrLoc = 0;
@@ -5307,7 +5307,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 11";
 		rLen = 0;
-		rLoc = 216;
+		rLoc = 805;
 		rType = 0;
 		vrLen = 614;
 		vrLoc = 0;
@@ -5317,7 +5317,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 10";
 		rLen = 0;
-		rLoc = 212;
+		rLoc = 805;
 		rType = 0;
 		vrLen = 636;
 		vrLoc = 0;
@@ -5327,7 +5327,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 10";
 		rLen = 0;
-		rLoc = 212;
+		rLoc = 805;
 		rType = 0;
 		vrLen = 636;
 		vrLoc = 0;
@@ -5347,7 +5347,7 @@
 		fRef = 364D1E3B1628E7260002CFC9 /* window.cpp */;
 		name = "window.cpp: 3";
 		rLen = 0;
-		rLoc = 331;
+		rLoc = 430;
 		rType = 0;
 		vrLen = 21;
 		vrLoc = 0;
@@ -5397,7 +5397,7 @@
 		fRef = 364D1E3B1628E7260002CFC9 /* window.cpp */;
 		name = "window.cpp: 3";
 		rLen = 0;
-		rLoc = 331;
+		rLoc = 430;
 		rType = 0;
 		vrLen = 21;
 		vrLoc = 0;
@@ -5437,7 +5437,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 10";
 		rLen = 0;
-		rLoc = 212;
+		rLoc = 805;
 		rType = 0;
 		vrLen = 636;
 		vrLoc = 0;
@@ -5447,7 +5447,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 10";
 		rLen = 0;
-		rLoc = 212;
+		rLoc = 805;
 		rType = 0;
 		vrLen = 636;
 		vrLoc = 0;
@@ -5457,7 +5457,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 20";
 		rLen = 0;
-		rLoc = 342;
+		rLoc = 868;
 		rType = 0;
 		vrLen = 636;
 		vrLoc = 0;
@@ -5567,7 +5567,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 20";
 		rLen = 0;
-		rLoc = 342;
+		rLoc = 868;
 		rType = 0;
 		vrLen = 636;
 		vrLoc = 0;
@@ -5577,7 +5577,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 14";
 		rLen = 0;
-		rLoc = 252;
+		rLoc = 805;
 		rType = 0;
 		vrLen = 638;
 		vrLoc = 0;
@@ -5587,7 +5587,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 14";
 		rLen = 0;
-		rLoc = 252;
+		rLoc = 805;
 		rType = 0;
 		vrLen = 638;
 		vrLoc = 0;
@@ -5617,7 +5617,7 @@
 		fRef = 361C598A162685E000E08BE8 /* avm.h */;
 		name = "avm.h: 24";
 		rLen = 0;
-		rLoc = 545;
+		rLoc = 587;
 		rType = 0;
 		vrLen = 567;
 		vrLoc = 0;
@@ -5627,7 +5627,7 @@
 		fRef = 364D1E3B1628E7260002CFC9 /* window.cpp */;
 		name = "window.cpp: 3";
 		rLen = 0;
-		rLoc = 331;
+		rLoc = 430;
 		rType = 0;
 		vrLen = 21;
 		vrLoc = 0;
@@ -5667,7 +5667,7 @@
 		fRef = 364D1E3B1628E7260002CFC9 /* window.cpp */;
 		name = "window.cpp: 3";
 		rLen = 0;
-		rLoc = 331;
+		rLoc = 430;
 		rType = 0;
 		vrLen = 21;
 		vrLoc = 0;
@@ -5744,7 +5744,7 @@
 		fRef = 361C598A162685E000E08BE8 /* avm.h */;
 		name = "avm.h: 25";
 		rLen = 0;
-		rLoc = 546;
+		rLoc = 588;
 		rType = 0;
 		vrLen = 590;
 		vrLoc = 0;
@@ -5754,7 +5754,7 @@
 		fRef = 361C598A162685E000E08BE8 /* avm.h */;
 		name = "avm.h: 25";
 		rLen = 0;
-		rLoc = 546;
+		rLoc = 588;
 		rType = 0;
 		vrLen = 590;
 		vrLoc = 0;
@@ -5764,7 +5764,7 @@
 		fRef = 361C598A162685E000E08BE8 /* avm.h */;
 		name = "avm.h: 28";
 		rLen = 61;
-		rLoc = 605;
+		rLoc = 647;
 		rType = 0;
 		vrLen = 652;
 		vrLoc = 0;
@@ -5814,7 +5814,7 @@
 		fRef = 361C598A162685E000E08BE8 /* avm.h */;
 		name = "avm.h: 29";
 		rLen = 1261;
-		rLoc = 667;
+		rLoc = 709;
 		rType = 0;
 		vrLen = 707;
 		vrLoc = 0;
@@ -5824,7 +5824,7 @@
 		fRef = 364D1E3B1628E7260002CFC9 /* window.cpp */;
 		name = "window.cpp: 3";
 		rLen = 0;
-		rLoc = 331;
+		rLoc = 430;
 		rType = 0;
 		vrLen = 21;
 		vrLoc = 0;
@@ -5884,7 +5884,7 @@
 		fRef = 364D1E3B1628E7260002CFC9 /* window.cpp */;
 		name = "window.cpp: 145";
 		rLen = 0;
-		rLoc = 2820;
+		rLoc = 2935;
 		rType = 0;
 		vrLen = 1021;
 		vrLoc = 838;
@@ -5894,7 +5894,7 @@
 		fRef = 361C598A162685E000E08BE8 /* avm.h */;
 		name = "avm.h: 25";
 		rLen = 31;
-		rLoc = 517;
+		rLoc = 559;
 		rType = 0;
 		vrLen = 707;
 		vrLoc = 0;
@@ -5930,7 +5930,7 @@
 		isa = PBXTextBookmark;
 		fRef = 361C598A162685E000E08BE8 /* avm.h */;
 		name = "avm.h: 1";
-		rLen = 1965;
+		rLen = 2007;
 		rLoc = 0;
 		rType = 0;
 		vrLen = 707;
@@ -5961,7 +5961,7 @@
 		fRef = 364D1E3B1628E7260002CFC9 /* window.cpp */;
 		name = "window.cpp: 145";
 		rLen = 0;
-		rLoc = 2820;
+		rLoc = 2935;
 		rType = 0;
 		vrLen = 1020;
 		vrLoc = 839;
@@ -5991,7 +5991,7 @@
 		fRef = 361C598A162685E000E08BE8 /* avm.h */;
 		name = "avm.h: 31";
 		rLen = 0;
-		rLoc = 1927;
+		rLoc = 1969;
 		rType = 0;
 		vrLen = 709;
 		vrLoc = 0;
@@ -6011,7 +6011,7 @@
 		fRef = 364D1E3B1628E7260002CFC9 /* window.cpp */;
 		name = "window.cpp: 142";
 		rLen = 18;
-		rLoc = 2768;
+		rLoc = 2883;
 		rType = 0;
 		vrLen = 1230;
 		vrLoc = 1605;
@@ -6051,7 +6051,7 @@
 		fRef = 364D1E3B1628E7260002CFC9 /* window.cpp */;
 		name = "window.cpp: 142";
 		rLen = 18;
-		rLoc = 2768;
+		rLoc = 2883;
 		rType = 0;
 		vrLen = 1228;
 		vrLoc = 1607;
@@ -6061,7 +6061,7 @@
 		fRef = 364D1E3B1628E7260002CFC9 /* window.cpp */;
 		name = "window.cpp: 77";
 		rLen = 0;
-		rLoc = 1415;
+		rLoc = 1530;
 		rType = 0;
 		vrLen = 1166;
 		vrLoc = 1118;
@@ -6071,7 +6071,7 @@
 		fRef = 364D1E3B1628E7260002CFC9 /* window.cpp */;
 		name = "window.cpp: 86";
 		rLen = 0;
-		rLoc = 1589;
+		rLoc = 1704;
 		rType = 0;
 		vrLen = 1166;
 		vrLoc = 1118;
@@ -6081,7 +6081,7 @@
 		fRef = 364D1E3B1628E7260002CFC9 /* window.cpp */;
 		name = "window.cpp: 96";
 		rLen = 0;
-		rLoc = 1756;
+		rLoc = 1871;
 		rType = 0;
 		vrLen = 1166;
 		vrLoc = 1118;
@@ -6091,16 +6091,16 @@
 		fRef = 364D1E3B1628E7260002CFC9 /* window.cpp */;
 		name = "window.cpp: 96";
 		rLen = 0;
-		rLoc = 1756;
+		rLoc = 1871;
 		rType = 0;
 		vrLen = 1166;
 		vrLoc = 1118;
 	};
 	364D1F50162A227C0002CFC9 /* audio.lua */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {548, 754}}";
-			sepNavSelRange = "{63, 0}";
-			sepNavVisRange = "{37, 888}";
+			sepNavIntBoundsRect = "{{0, 0}, {548, 767}}";
+			sepNavSelRange = "{642, 0}";
+			sepNavVisRange = "{0, 901}";
 			sepNavWindowFrame = "{{15, 0}, {665, 878}}";
 		};
 	};
@@ -6116,7 +6116,7 @@
 		fRef = 364D1E3B1628E7260002CFC9 /* window.cpp */;
 		name = "window.cpp: 96";
 		rLen = 0;
-		rLoc = 1756;
+		rLoc = 1871;
 		rType = 0;
 		vrLen = 1166;
 		vrLoc = 1118;
@@ -6146,7 +6146,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 36";
 		rLen = 0;
-		rLoc = 624;
+		rLoc = 1379;
 		rType = 0;
 		vrLen = 634;
 		vrLoc = 0;
@@ -6166,7 +6166,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 1";
 		rLen = 0;
-		rLoc = 867;
+		rLoc = 934;
 		rType = 0;
 		vrLen = 0;
 		vrLoc = 0;
@@ -6266,7 +6266,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 28";
 		rLen = 0;
-		rLoc = 442;
+		rLoc = 968;
 		rType = 0;
 		vrLen = 694;
 		vrLoc = 0;
@@ -6478,7 +6478,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 1";
 		rLen = 0;
-		rLoc = 867;
+		rLoc = 934;
 		rType = 0;
 		vrLen = 0;
 		vrLoc = 0;
@@ -6508,7 +6508,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 9";
 		rLen = 0;
-		rLoc = 867;
+		rLoc = 934;
 		rType = 0;
 		vrLen = 69;
 		vrLoc = 0;
@@ -6528,7 +6528,7 @@
 		fRef = 361C598A162685E000E08BE8 /* avm.h */;
 		name = "avm.h: 31";
 		rLen = 0;
-		rLoc = 1927;
+		rLoc = 1969;
 		rType = 0;
 		vrLen = 709;
 		vrLoc = 0;
@@ -7318,7 +7318,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 127";
 		rLen = 0;
-		rLoc = 867;
+		rLoc = 934;
 		rType = 0;
 		vrLen = 1358;
 		vrLoc = 1883;
@@ -7358,7 +7358,7 @@
 		fRef = 361C598A162685E000E08BE8 /* avm.h */;
 		name = "avm.h: 40";
 		rLen = 14;
-		rLoc = 1680;
+		rLoc = 1722;
 		rType = 0;
 		vrLen = 880;
 		vrLoc = 0;
@@ -7368,7 +7368,7 @@
 		fRef = 361C598A162685E000E08BE8 /* avm.h */;
 		name = "avm.h: 35";
 		rLen = 0;
-		rLoc = 765;
+		rLoc = 807;
 		rType = 0;
 		vrLen = 911;
 		vrLoc = 0;
@@ -7388,7 +7388,7 @@
 		fRef = 361C598A162685E000E08BE8 /* avm.h */;
 		name = "avm.h: 22";
 		rLen = 0;
-		rLoc = 367;
+		rLoc = 409;
 		rType = 0;
 		vrLen = 911;
 		vrLoc = 0;
@@ -7468,7 +7468,7 @@
 		fRef = 361C598A162685E000E08BE8 /* avm.h */;
 		name = "avm.h: 22";
 		rLen = 0;
-		rLoc = 367;
+		rLoc = 409;
 		rType = 0;
 		vrLen = 911;
 		vrLoc = 0;
@@ -7478,7 +7478,7 @@
 		fRef = 361C598A162685E000E08BE8 /* avm.h */;
 		name = "avm.h: 39";
 		rLen = 0;
-		rLoc = 1137;
+		rLoc = 1179;
 		rType = 0;
 		vrLen = 920;
 		vrLoc = 0;
@@ -7498,7 +7498,7 @@
 		fRef = 361C598A162685E000E08BE8 /* avm.h */;
 		name = "avm.h: 39";
 		rLen = 0;
-		rLoc = 1137;
+		rLoc = 1179;
 		rType = 0;
 		vrLen = 920;
 		vrLoc = 0;
@@ -7625,7 +7625,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 133";
 		rLen = 0;
-		rLoc = 867;
+		rLoc = 934;
 		rType = 0;
 		vrLen = 986;
 		vrLoc = 2018;
@@ -7635,7 +7635,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 28";
 		rLen = 0;
-		rLoc = 442;
+		rLoc = 968;
 		rType = 0;
 		vrLen = 694;
 		vrLoc = 0;
@@ -7645,7 +7645,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 10";
 		rLen = 0;
-		rLoc = 154;
+		rLoc = 791;
 		rType = 0;
 		vrLen = 708;
 		vrLoc = 0;
@@ -7665,7 +7665,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 10";
 		rLen = 0;
-		rLoc = 154;
+		rLoc = 791;
 		rType = 0;
 		vrLen = 708;
 		vrLoc = 0;
@@ -7715,7 +7715,7 @@
 		fRef = 361C598A162685E000E08BE8 /* avm.h */;
 		name = "avm.h: 41";
 		rLen = 12;
-		rLoc = 1680;
+		rLoc = 1722;
 		rType = 0;
 		vrLen = 920;
 		vrLoc = 0;
@@ -7735,7 +7735,7 @@
 		fRef = 361C598A162685E000E08BE8 /* avm.h */;
 		name = "avm.h: 41";
 		rLen = 12;
-		rLoc = 1680;
+		rLoc = 1722;
 		rType = 0;
 		vrLen = 920;
 		vrLoc = 0;
@@ -7755,7 +7755,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 133";
 		rLen = 0;
-		rLoc = 867;
+		rLoc = 934;
 		rType = 0;
 		vrLen = 1103;
 		vrLoc = 0;
@@ -7815,7 +7815,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 133";
 		rLen = 0;
-		rLoc = 867;
+		rLoc = 934;
 		rType = 0;
 		vrLen = 1103;
 		vrLoc = 0;
@@ -7825,7 +7825,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 130";
 		rLen = 0;
-		rLoc = 867;
+		rLoc = 934;
 		rType = 0;
 		vrLen = 988;
 		vrLoc = 2018;
@@ -7845,7 +7845,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 130";
 		rLen = 0;
-		rLoc = 867;
+		rLoc = 934;
 		rType = 0;
 		vrLen = 988;
 		vrLoc = 2018;
@@ -7855,7 +7855,7 @@
 		fRef = 361C598A162685E000E08BE8 /* avm.h */;
 		name = "avm.h: 41";
 		rLen = 12;
-		rLoc = 1680;
+		rLoc = 1722;
 		rType = 0;
 		vrLen = 920;
 		vrLoc = 0;
@@ -7895,7 +7895,7 @@
 		fRef = 361C598A162685E000E08BE8 /* avm.h */;
 		name = "avm.h: 43";
 		rLen = 0;
-		rLoc = 1927;
+		rLoc = 1969;
 		rType = 0;
 		vrLen = 1021;
 		vrLoc = 0;
@@ -7915,7 +7915,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 126";
 		rLen = 0;
-		rLoc = 867;
+		rLoc = 934;
 		rType = 0;
 		vrLen = 1192;
 		vrLoc = 1833;
@@ -7925,7 +7925,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 10";
 		rLen = 0;
-		rLoc = 154;
+		rLoc = 791;
 		rType = 0;
 		vrLen = 708;
 		vrLoc = 0;
@@ -7935,7 +7935,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 10";
 		rLen = 0;
-		rLoc = 154;
+		rLoc = 791;
 		rType = 0;
 		vrLen = 724;
 		vrLoc = 0;
@@ -7962,7 +7962,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 28";
 		rLen = 0;
-		rLoc = 395;
+		rLoc = 921;
 		rType = 0;
 		vrLen = 724;
 		vrLoc = 0;
@@ -7972,7 +7972,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 126";
 		rLen = 0;
-		rLoc = 867;
+		rLoc = 934;
 		rType = 0;
 		vrLen = 1192;
 		vrLoc = 1833;
@@ -7982,7 +7982,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 122";
 		rLen = 0;
-		rLoc = 867;
+		rLoc = 934;
 		rType = 0;
 		vrLen = 1191;
 		vrLoc = 1833;
@@ -8022,7 +8022,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 127";
 		rLen = 0;
-		rLoc = 867;
+		rLoc = 934;
 		rType = 0;
 		vrLen = 1197;
 		vrLoc = 1833;
@@ -8042,7 +8042,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 125";
 		rLen = 0;
-		rLoc = 867;
+		rLoc = 934;
 		rType = 0;
 		vrLen = 1244;
 		vrLoc = 1781;
@@ -8112,7 +8112,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 125";
 		rLen = 0;
-		rLoc = 867;
+		rLoc = 934;
 		rType = 0;
 		vrLen = 1244;
 		vrLoc = 1781;
@@ -8122,7 +8122,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 128";
 		rLen = 0;
-		rLoc = 867;
+		rLoc = 934;
 		rType = 0;
 		vrLen = 1255;
 		vrLoc = 1781;
@@ -8142,7 +8142,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 128";
 		rLen = 0;
-		rLoc = 867;
+		rLoc = 934;
 		rType = 0;
 		vrLen = 1255;
 		vrLoc = 1781;
@@ -8152,7 +8152,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 28";
 		rLen = 0;
-		rLoc = 395;
+		rLoc = 921;
 		rType = 0;
 		vrLen = 724;
 		vrLoc = 0;
@@ -8162,7 +8162,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 11";
 		rLen = 0;
-		rLoc = 154;
+		rLoc = 791;
 		rType = 0;
 		vrLen = 738;
 		vrLoc = 0;
@@ -8182,7 +8182,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 11";
 		rLen = 0;
-		rLoc = 154;
+		rLoc = 791;
 		rType = 0;
 		vrLen = 738;
 		vrLoc = 0;
@@ -8202,7 +8202,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 125";
 		rLen = 0;
-		rLoc = 867;
+		rLoc = 934;
 		rType = 0;
 		vrLen = 1189;
 		vrLoc = 1901;
@@ -8222,7 +8222,7 @@
 		fRef = 361C598A162685E000E08BE8 /* avm.h */;
 		name = "avm.h: 43";
 		rLen = 0;
-		rLoc = 1927;
+		rLoc = 1969;
 		rType = 0;
 		vrLen = 1020;
 		vrLoc = 0;
@@ -8242,7 +8242,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 120";
 		rLen = 0;
-		rLoc = 867;
+		rLoc = 934;
 		rType = 0;
 		vrLen = 1214;
 		vrLoc = 1876;
@@ -8252,7 +8252,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 125";
 		rLen = 0;
-		rLoc = 867;
+		rLoc = 934;
 		rType = 0;
 		vrLen = 1171;
 		vrLoc = 1983;
@@ -8272,7 +8272,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 126";
 		rLen = 0;
-		rLoc = 867;
+		rLoc = 934;
 		rType = 0;
 		vrLen = 1167;
 		vrLoc = 1983;
@@ -8292,7 +8292,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 130";
 		rLen = 0;
-		rLoc = 867;
+		rLoc = 934;
 		rType = 0;
 		vrLen = 1199;
 		vrLoc = 1939;
@@ -8312,7 +8312,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 130";
 		rLen = 0;
-		rLoc = 867;
+		rLoc = 934;
 		rType = 0;
 		vrLen = 1199;
 		vrLoc = 1939;
@@ -8509,7 +8509,7 @@
 		fRef = 361C598A162685E000E08BE8 /* avm.h */;
 		name = "avm.h: 43";
 		rLen = 0;
-		rLoc = 1927;
+		rLoc = 1969;
 		rType = 0;
 		vrLen = 1043;
 		vrLoc = 0;
@@ -8549,7 +8549,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 142";
 		rLen = 0;
-		rLoc = 867;
+		rLoc = 934;
 		rType = 0;
 		vrLen = 1084;
 		vrLoc = 2469;
@@ -8569,7 +8569,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 142";
 		rLen = 0;
-		rLoc = 867;
+		rLoc = 934;
 		rType = 0;
 		vrLen = 1084;
 		vrLoc = 2469;
@@ -8659,7 +8659,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 142";
 		rLen = 0;
-		rLoc = 867;
+		rLoc = 934;
 		rType = 0;
 		vrLen = 1101;
 		vrLoc = 2452;
@@ -8669,7 +8669,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 144";
 		rLen = 0;
-		rLoc = 867;
+		rLoc = 934;
 		rType = 0;
 		vrLen = 1146;
 		vrLoc = 2452;
@@ -8689,7 +8689,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 145";
 		rLen = 0;
-		rLoc = 867;
+		rLoc = 934;
 		rType = 0;
 		vrLen = 1147;
 		vrLoc = 2452;
@@ -8709,7 +8709,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 151";
 		rLen = 0;
-		rLoc = 867;
+		rLoc = 934;
 		rType = 0;
 		vrLen = 1150;
 		vrLoc = 2452;
@@ -8729,7 +8729,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 149";
 		rLen = 0;
-		rLoc = 867;
+		rLoc = 934;
 		rType = 0;
 		vrLen = 1132;
 		vrLoc = 2452;
@@ -8749,7 +8749,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 148";
 		rLen = 0;
-		rLoc = 867;
+		rLoc = 934;
 		rType = 0;
 		vrLen = 1132;
 		vrLoc = 2452;
@@ -8759,7 +8759,7 @@
 		fRef = 361C598A162685E000E08BE8 /* avm.h */;
 		name = "avm.h: 43";
 		rLen = 0;
-		rLoc = 1927;
+		rLoc = 1969;
 		rType = 0;
 		vrLen = 1044;
 		vrLoc = 0;
@@ -8906,7 +8906,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 148";
 		rLen = 0;
-		rLoc = 867;
+		rLoc = 934;
 		rType = 0;
 		vrLen = 1132;
 		vrLoc = 2452;
@@ -9036,7 +9036,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 139";
 		rLen = 0;
-		rLoc = 867;
+		rLoc = 934;
 		rType = 0;
 		vrLen = 1117;
 		vrLoc = 2579;
@@ -9066,7 +9066,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 148";
 		rLen = 0;
-		rLoc = 867;
+		rLoc = 934;
 		rType = 0;
 		vrLen = 1104;
 		vrLoc = 2482;
@@ -9076,7 +9076,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 144";
 		rLen = 0;
-		rLoc = 867;
+		rLoc = 934;
 		rType = 0;
 		vrLen = 1085;
 		vrLoc = 2481;
@@ -9096,7 +9096,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 144";
 		rLen = 0;
-		rLoc = 867;
+		rLoc = 934;
 		rType = 0;
 		vrLen = 1085;
 		vrLoc = 2481;
@@ -9116,7 +9116,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 165";
 		rLen = 0;
-		rLoc = 925;
+		rLoc = 992;
 		rType = 0;
 		vrLen = 1111;
 		vrLoc = 2279;
@@ -9468,7 +9468,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 10";
 		rLen = 0;
-		rLoc = 154;
+		rLoc = 791;
 		rType = 0;
 		vrLen = 738;
 		vrLoc = 0;
@@ -10179,7 +10179,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 13";
 		rLen = 0;
-		rLoc = 168;
+		rLoc = 805;
 		rType = 0;
 		vrLen = 757;
 		vrLoc = 0;
@@ -10199,7 +10199,7 @@
 		fRef = 361C598A162685E000E08BE8 /* avm.h */;
 		name = "avm.h: 43";
 		rLen = 14;
-		rLoc = 1732;
+		rLoc = 1774;
 		rType = 0;
 		vrLen = 1173;
 		vrLoc = 0;
@@ -10209,7 +10209,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 161";
 		rLen = 0;
-		rLoc = 867;
+		rLoc = 934;
 		rType = 0;
 		vrLen = 1157;
 		vrLoc = 2622;
@@ -10459,7 +10459,7 @@
 		fRef = 361C598A162685E000E08BE8 /* avm.h */;
 		name = "avm.h: 43";
 		rLen = 0;
-		rLoc = 1747;
+		rLoc = 1789;
 		rType = 0;
 		vrLen = 1182;
 		vrLoc = 0;
@@ -10489,7 +10489,7 @@
 		fRef = 361C598A162685E000E08BE8 /* avm.h */;
 		name = "avm.h: 43";
 		rLen = 0;
-		rLoc = 1747;
+		rLoc = 1789;
 		rType = 0;
 		vrLen = 1182;
 		vrLoc = 0;
@@ -10549,7 +10549,7 @@
 		fRef = 361C598A162685E000E08BE8 /* avm.h */;
 		name = "avm.h: 43";
 		rLen = 0;
-		rLoc = 1747;
+		rLoc = 1789;
 		rType = 0;
 		vrLen = 1182;
 		vrLoc = 0;
@@ -10559,7 +10559,7 @@
 		fRef = 361C598A162685E000E08BE8 /* avm.h */;
 		name = "avm.h: 43";
 		rLen = 0;
-		rLoc = 1927;
+		rLoc = 1969;
 		rType = 0;
 		vrLen = 1159;
 		vrLoc = 0;
@@ -10599,7 +10599,7 @@
 		fRef = 361C598A162685E000E08BE8 /* avm.h */;
 		name = "avm.h: 28";
 		rLen = 0;
-		rLoc = 549;
+		rLoc = 591;
 		rType = 0;
 		vrLen = 1159;
 		vrLoc = 0;
@@ -10609,7 +10609,7 @@
 		fRef = 361C598A162685E000E08BE8 /* avm.h */;
 		name = "avm.h: 39";
 		rLen = 0;
-		rLoc = 996;
+		rLoc = 1038;
 		rType = 0;
 		vrLen = 1214;
 		vrLoc = 0;
@@ -10649,7 +10649,7 @@
 		fRef = 361C598A162685E000E08BE8 /* avm.h */;
 		name = "avm.h: 46";
 		rLen = 0;
-		rLoc = 1747;
+		rLoc = 1789;
 		rType = 0;
 		vrLen = 1162;
 		vrLoc = 20;
@@ -10659,7 +10659,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 161";
 		rLen = 0;
-		rLoc = 867;
+		rLoc = 934;
 		rType = 0;
 		vrLen = 1138;
 		vrLoc = 2623;
@@ -10939,7 +10939,7 @@
 		fRef = 361C598A162685E000E08BE8 /* avm.h */;
 		name = "avm.h: 46";
 		rLen = 0;
-		rLoc = 1927;
+		rLoc = 1969;
 		rType = 0;
 		vrLen = 1058;
 		vrLoc = 0;
@@ -11229,7 +11229,7 @@
 		fRef = 361C598A162685E000E08BE8 /* avm.h */;
 		name = "avm.h: 46";
 		rLen = 0;
-		rLoc = 1927;
+		rLoc = 1969;
 		rType = 0;
 		vrLen = 1058;
 		vrLoc = 0;
@@ -11239,7 +11239,7 @@
 		fRef = 361C598A162685E000E08BE8 /* avm.h */;
 		name = "avm.h: 46";
 		rLen = 0;
-		rLoc = 1927;
+		rLoc = 1969;
 		rType = 0;
 		vrLen = 1058;
 		vrLoc = 0;
@@ -11249,7 +11249,7 @@
 		fRef = 361C598A162685E000E08BE8 /* avm.h */;
 		name = "avm.h: 46";
 		rLen = 0;
-		rLoc = 1927;
+		rLoc = 1969;
 		rType = 0;
 		vrLen = 1058;
 		vrLoc = 0;
@@ -11259,7 +11259,7 @@
 		fRef = 361C598A162685E000E08BE8 /* avm.h */;
 		name = "avm.h: 46";
 		rLen = 0;
-		rLoc = 1927;
+		rLoc = 1969;
 		rType = 0;
 		vrLen = 1058;
 		vrLoc = 0;
@@ -11269,7 +11269,7 @@
 		fRef = 361C598A162685E000E08BE8 /* avm.h */;
 		name = "avm.h: 46";
 		rLen = 0;
-		rLoc = 1927;
+		rLoc = 1969;
 		rType = 0;
 		vrLen = 1058;
 		vrLoc = 0;
@@ -11279,7 +11279,7 @@
 		fRef = 361C598A162685E000E08BE8 /* avm.h */;
 		name = "avm.h: 46";
 		rLen = 0;
-		rLoc = 1927;
+		rLoc = 1969;
 		rType = 0;
 		vrLen = 1058;
 		vrLoc = 0;
@@ -12047,7 +12047,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 161";
 		rLen = 0;
-		rLoc = 867;
+		rLoc = 934;
 		rType = 0;
 		vrLen = 1139;
 		vrLoc = 2622;
@@ -12057,7 +12057,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 147";
 		rLen = 0;
-		rLoc = 867;
+		rLoc = 934;
 		rType = 0;
 		vrLen = 1138;
 		vrLoc = 2623;
@@ -12067,7 +12067,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 147";
 		rLen = 0;
-		rLoc = 867;
+		rLoc = 934;
 		rType = 0;
 		vrLen = 1138;
 		vrLoc = 2623;
@@ -12077,7 +12077,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 147";
 		rLen = 0;
-		rLoc = 867;
+		rLoc = 934;
 		rType = 0;
 		vrLen = 1138;
 		vrLoc = 2623;
@@ -12087,7 +12087,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 147";
 		rLen = 0;
-		rLoc = 867;
+		rLoc = 934;
 		rType = 0;
 		vrLen = 1138;
 		vrLoc = 2623;
@@ -12097,7 +12097,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 143";
 		rLen = 0;
-		rLoc = 867;
+		rLoc = 934;
 		rType = 0;
 		vrLen = 1138;
 		vrLoc = 2623;
@@ -12107,7 +12107,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 143";
 		rLen = 0;
-		rLoc = 867;
+		rLoc = 934;
 		rType = 0;
 		vrLen = 1130;
 		vrLoc = 2462;
@@ -12207,7 +12207,7 @@
 		fRef = 364D1E3B1628E7260002CFC9 /* window.cpp */;
 		name = "window.cpp: 96";
 		rLen = 0;
-		rLoc = 1756;
+		rLoc = 1871;
 		rType = 0;
 		vrLen = 1119;
 		vrLoc = 1165;
@@ -12247,7 +12247,7 @@
 		fRef = 361C598A162685E000E08BE8 /* avm.h */;
 		name = "avm.h: 46";
 		rLen = 0;
-		rLoc = 1927;
+		rLoc = 1969;
 		rType = 0;
 		vrLen = 1058;
 		vrLoc = 0;
@@ -12427,7 +12427,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 42";
 		rLen = 0;
-		rLoc = 630;
+		rLoc = 1501;
 		rType = 0;
 		vrLen = 713;
 		vrLoc = 0;
@@ -12887,7 +12887,7 @@
 		fRef = 364D1E3B1628E7260002CFC9 /* window.cpp */;
 		name = "window.cpp: 96";
 		rLen = 0;
-		rLoc = 1756;
+		rLoc = 1871;
 		rType = 0;
 		vrLen = 1042;
 		vrLoc = 0;
@@ -12897,7 +12897,7 @@
 		fRef = 361C598A162685E000E08BE8 /* avm.h */;
 		name = "avm.h: 46";
 		rLen = 0;
-		rLoc = 1927;
+		rLoc = 1969;
 		rType = 0;
 		vrLen = 1058;
 		vrLoc = 0;
@@ -12967,7 +12967,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 22";
 		rLen = 0;
-		rLoc = 347;
+		rLoc = 873;
 		rType = 0;
 		vrLen = 639;
 		vrLoc = 0;
@@ -12977,7 +12977,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 8";
 		rLen = 0;
-		rLoc = 154;
+		rLoc = 791;
 		rType = 0;
 		vrLen = 639;
 		vrLoc = 0;
@@ -13037,7 +13037,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 38";
 		rLen = 0;
-		rLoc = 925;
+		rLoc = 992;
 		rType = 0;
 		vrLen = 532;
 		vrLoc = 0;
@@ -13077,7 +13077,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 36";
 		rLen = 0;
-		rLoc = 925;
+		rLoc = 992;
 		rType = 0;
 		vrLen = 534;
 		vrLoc = 0;
@@ -13087,7 +13087,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 36";
 		rLen = 0;
-		rLoc = 925;
+		rLoc = 992;
 		rType = 0;
 		vrLen = 534;
 		vrLoc = 0;
@@ -13147,7 +13147,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 39";
 		rLen = 0;
-		rLoc = 925;
+		rLoc = 992;
 		rType = 0;
 		vrLen = 577;
 		vrLoc = 0;
@@ -13187,7 +13187,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 39";
 		rLen = 0;
-		rLoc = 925;
+		rLoc = 992;
 		rType = 0;
 		vrLen = 577;
 		vrLoc = 0;
@@ -13197,7 +13197,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 39";
 		rLen = 0;
-		rLoc = 925;
+		rLoc = 992;
 		rType = 0;
 		vrLen = 578;
 		vrLoc = 0;
@@ -13207,7 +13207,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 39";
 		rLen = 0;
-		rLoc = 925;
+		rLoc = 992;
 		rType = 0;
 		vrLen = 578;
 		vrLoc = 0;
@@ -13277,7 +13277,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 39";
 		rLen = 0;
-		rLoc = 925;
+		rLoc = 992;
 		rType = 0;
 		vrLen = 580;
 		vrLoc = 0;
@@ -13307,7 +13307,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 34";
 		rLen = 0;
-		rLoc = 925;
+		rLoc = 992;
 		rType = 0;
 		vrLen = 579;
 		vrLoc = 0;
@@ -13317,7 +13317,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 34";
 		rLen = 0;
-		rLoc = 925;
+		rLoc = 992;
 		rType = 0;
 		vrLen = 579;
 		vrLoc = 0;
@@ -13327,7 +13327,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 34";
 		rLen = 0;
-		rLoc = 925;
+		rLoc = 992;
 		rType = 0;
 		vrLen = 579;
 		vrLoc = 0;
@@ -13387,7 +13387,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 39";
 		rLen = 0;
-		rLoc = 925;
+		rLoc = 992;
 		rType = 0;
 		vrLen = 579;
 		vrLoc = 0;
@@ -13407,7 +13407,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 8";
 		rLen = 0;
-		rLoc = 154;
+		rLoc = 791;
 		rType = 0;
 		vrLen = 639;
 		vrLoc = 0;
@@ -13417,7 +13417,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 7";
 		rLen = 0;
-		rLoc = 154;
+		rLoc = 791;
 		rType = 0;
 		vrLen = 643;
 		vrLoc = 0;
@@ -13427,7 +13427,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 7";
 		rLen = 0;
-		rLoc = 154;
+		rLoc = 791;
 		rType = 0;
 		vrLen = 643;
 		vrLoc = 0;
@@ -13447,7 +13447,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 39";
 		rLen = 0;
-		rLoc = 925;
+		rLoc = 992;
 		rType = 0;
 		vrLen = 579;
 		vrLoc = 0;
@@ -13457,7 +13457,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 39";
 		rLen = 0;
-		rLoc = 925;
+		rLoc = 992;
 		rType = 0;
 		vrLen = 579;
 		vrLoc = 0;
@@ -13467,7 +13467,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 42";
 		rLen = 0;
-		rLoc = 925;
+		rLoc = 992;
 		rType = 0;
 		vrLen = 629;
 		vrLoc = 0;
@@ -13487,7 +13487,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 42";
 		rLen = 0;
-		rLoc = 925;
+		rLoc = 992;
 		rType = 0;
 		vrLen = 629;
 		vrLoc = 0;
@@ -13497,7 +13497,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 37";
 		rLen = 0;
-		rLoc = 925;
+		rLoc = 992;
 		rType = 0;
 		vrLen = 666;
 		vrLoc = 0;
@@ -13507,7 +13507,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 37";
 		rLen = 0;
-		rLoc = 925;
+		rLoc = 992;
 		rType = 0;
 		vrLen = 666;
 		vrLoc = 0;
@@ -13517,7 +13517,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 37";
 		rLen = 0;
-		rLoc = 925;
+		rLoc = 992;
 		rType = 0;
 		vrLen = 666;
 		vrLoc = 0;
@@ -13567,7 +13567,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 45";
 		rLen = 0;
-		rLoc = 925;
+		rLoc = 992;
 		rType = 0;
 		vrLen = 650;
 		vrLoc = 0;
@@ -13607,7 +13607,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 45";
 		rLen = 0;
-		rLoc = 925;
+		rLoc = 992;
 		rType = 0;
 		vrLen = 650;
 		vrLoc = 0;
@@ -13617,7 +13617,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 44";
 		rLen = 0;
-		rLoc = 925;
+		rLoc = 992;
 		rType = 0;
 		vrLen = 670;
 		vrLoc = 0;
@@ -13627,7 +13627,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 48";
 		rLen = 0;
-		rLoc = 925;
+		rLoc = 992;
 		rType = 0;
 		vrLen = 686;
 		vrLoc = 0;
@@ -13677,7 +13677,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 48";
 		rLen = 0;
-		rLoc = 925;
+		rLoc = 992;
 		rType = 0;
 		vrLen = 686;
 		vrLoc = 0;
@@ -13687,7 +13687,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 35";
 		rLen = 0;
-		rLoc = 925;
+		rLoc = 992;
 		rType = 0;
 		vrLen = 679;
 		vrLoc = 0;
@@ -13697,7 +13697,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 35";
 		rLen = 0;
-		rLoc = 925;
+		rLoc = 992;
 		rType = 0;
 		vrLen = 679;
 		vrLoc = 0;
@@ -13707,7 +13707,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 35";
 		rLen = 0;
-		rLoc = 925;
+		rLoc = 992;
 		rType = 0;
 		vrLen = 679;
 		vrLoc = 0;
@@ -13717,7 +13717,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 48";
 		rLen = 0;
-		rLoc = 925;
+		rLoc = 992;
 		rType = 0;
 		vrLen = 693;
 		vrLoc = 0;
@@ -13727,7 +13727,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 37";
 		rLen = 0;
-		rLoc = 925;
+		rLoc = 992;
 		rType = 0;
 		vrLen = 701;
 		vrLoc = 0;
@@ -13737,7 +13737,7 @@
 		fRef = 361C598A162685E000E08BE8 /* avm.h */;
 		name = "avm.h: 46";
 		rLen = 0;
-		rLoc = 1747;
+		rLoc = 1789;
 		rType = 0;
 		vrLen = 1043;
 		vrLoc = 0;
@@ -13767,7 +13767,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 37";
 		rLen = 0;
-		rLoc = 925;
+		rLoc = 992;
 		rType = 0;
 		vrLen = 576;
 		vrLoc = 0;
@@ -13777,7 +13777,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 24";
 		rLen = 0;
-		rLoc = 925;
+		rLoc = 992;
 		rType = 0;
 		vrLen = 576;
 		vrLoc = 0;
@@ -13787,7 +13787,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 24";
 		rLen = 0;
-		rLoc = 925;
+		rLoc = 992;
 		rType = 0;
 		vrLen = 576;
 		vrLoc = 0;
@@ -13797,7 +13797,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 24";
 		rLen = 0;
-		rLoc = 925;
+		rLoc = 992;
 		rType = 0;
 		vrLen = 576;
 		vrLoc = 0;
@@ -13847,7 +13847,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 24";
 		rLen = 0;
-		rLoc = 925;
+		rLoc = 992;
 		rType = 0;
 		vrLen = 576;
 		vrLoc = 0;
@@ -13857,7 +13857,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 24";
 		rLen = 0;
-		rLoc = 925;
+		rLoc = 992;
 		rType = 0;
 		vrLen = 576;
 		vrLoc = 0;
@@ -13867,7 +13867,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 26";
 		rLen = 0;
-		rLoc = 925;
+		rLoc = 992;
 		rType = 0;
 		vrLen = 578;
 		vrLoc = 0;
@@ -13877,7 +13877,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 26";
 		rLen = 0;
-		rLoc = 925;
+		rLoc = 992;
 		rType = 0;
 		vrLen = 578;
 		vrLoc = 0;
@@ -13887,7 +13887,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 26";
 		rLen = 0;
-		rLoc = 925;
+		rLoc = 992;
 		rType = 0;
 		vrLen = 578;
 		vrLoc = 0;
@@ -13897,7 +13897,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 25";
 		rLen = 0;
-		rLoc = 925;
+		rLoc = 992;
 		rType = 0;
 		vrLen = 584;
 		vrLoc = 0;
@@ -13907,7 +13907,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 25";
 		rLen = 0;
-		rLoc = 925;
+		rLoc = 992;
 		rType = 0;
 		vrLen = 584;
 		vrLoc = 0;
@@ -13947,7 +13947,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 9";
 		rLen = 0;
-		rLoc = 161;
+		rLoc = 798;
 		rType = 0;
 		vrLen = 643;
 		vrLoc = 0;
@@ -13957,7 +13957,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 9";
 		rLen = 0;
-		rLoc = 161;
+		rLoc = 798;
 		rType = 0;
 		vrLen = 643;
 		vrLoc = 0;
@@ -13967,7 +13967,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 25";
 		rLen = 0;
-		rLoc = 925;
+		rLoc = 992;
 		rType = 0;
 		vrLen = 584;
 		vrLoc = 0;
@@ -13977,7 +13977,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 28";
 		rLen = 0;
-		rLoc = 925;
+		rLoc = 992;
 		rType = 0;
 		vrLen = 693;
 		vrLoc = 0;
@@ -13987,7 +13987,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 39";
 		rLen = 0;
-		rLoc = 925;
+		rLoc = 992;
 		rType = 0;
 		vrLen = 690;
 		vrLoc = 0;
@@ -13997,7 +13997,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 28";
 		rLen = 0;
-		rLoc = 925;
+		rLoc = 992;
 		rType = 0;
 		vrLen = 699;
 		vrLoc = 0;
@@ -14005,7 +14005,7 @@
 	364D22EE162AA5C60002CFC9 /* audiothread.lua */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {548, 845}}";
-			sepNavSelRange = "{798, 0}";
+			sepNavSelRange = "{856, 0}";
 			sepNavVisRange = "{0, 1069}";
 		};
 	};
@@ -14014,7 +14014,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 35";
 		rLen = 0;
-		rLoc = 925;
+		rLoc = 992;
 		rType = 0;
 		vrLen = 540;
 		vrLoc = 0;
@@ -14094,7 +14094,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 35";
 		rLen = 0;
-		rLoc = 925;
+		rLoc = 992;
 		rType = 0;
 		vrLen = 512;
 		vrLoc = 0;
@@ -14114,7 +14114,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 8";
 		rLen = 0;
-		rLoc = 155;
+		rLoc = 792;
 		rType = 0;
 		vrLen = 619;
 		vrLoc = 0;
@@ -14184,7 +14184,7 @@
 		fRef = 364D22EE162AA5C60002CFC9 /* audiothread.lua */;
 		name = "audiothread.lua: 13";
 		rLen = 0;
-		rLoc = 1241;
+		rLoc = 1247;
 		rType = 0;
 		vrLen = 163;
 		vrLoc = 0;
@@ -14194,7 +14194,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 35";
 		rLen = 0;
-		rLoc = 925;
+		rLoc = 992;
 		rType = 0;
 		vrLen = 512;
 		vrLoc = 0;
@@ -14204,7 +14204,7 @@
 		fRef = 364D22EE162AA5C60002CFC9 /* audiothread.lua */;
 		name = "audiothread.lua: 13";
 		rLen = 0;
-		rLoc = 1241;
+		rLoc = 1247;
 		rType = 0;
 		vrLen = 163;
 		vrLoc = 0;
@@ -14344,7 +14344,7 @@
 		fRef = 361C598A162685E000E08BE8 /* avm.h */;
 		name = "avm.h: 43";
 		rLen = 0;
-		rLoc = 996;
+		rLoc = 1038;
 		rType = 0;
 		vrLen = 1135;
 		vrLoc = 0;
@@ -14404,7 +14404,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 35";
 		rLen = 0;
-		rLoc = 925;
+		rLoc = 992;
 		rType = 0;
 		vrLen = 512;
 		vrLoc = 0;
@@ -14424,7 +14424,7 @@
 		fRef = 361C598A162685E000E08BE8 /* avm.h */;
 		name = "avm.h: 44";
 		rLen = 0;
-		rLoc = 1019;
+		rLoc = 1061;
 		rType = 0;
 		vrLen = 1156;
 		vrLoc = 0;
@@ -14464,7 +14464,7 @@
 		fRef = 364D22EE162AA5C60002CFC9 /* audiothread.lua */;
 		name = "audiothread.lua: 16";
 		rLen = 0;
-		rLoc = 1191;
+		rLoc = 1197;
 		rType = 0;
 		vrLen = 315;
 		vrLoc = 0;
@@ -14474,7 +14474,7 @@
 		fRef = 364D22EE162AA5C60002CFC9 /* audiothread.lua */;
 		name = "audiothread.lua: 16";
 		rLen = 0;
-		rLoc = 1147;
+		rLoc = 1151;
 		rType = 0;
 		vrLen = 318;
 		vrLoc = 0;
@@ -14484,7 +14484,7 @@
 		fRef = 364D22EE162AA5C60002CFC9 /* audiothread.lua */;
 		name = "audiothread.lua: 17";
 		rLen = 0;
-		rLoc = 1168;
+		rLoc = 1174;
 		rType = 0;
 		vrLen = 344;
 		vrLoc = 0;
@@ -14494,7 +14494,7 @@
 		fRef = 364D22EE162AA5C60002CFC9 /* audiothread.lua */;
 		name = "audiothread.lua: 17";
 		rLen = 0;
-		rLoc = 1161;
+		rLoc = 1165;
 		rType = 0;
 		vrLen = 387;
 		vrLoc = 0;
@@ -14504,7 +14504,7 @@
 		fRef = 364D22EE162AA5C60002CFC9 /* audiothread.lua */;
 		name = "audiothread.lua: 16";
 		rLen = 0;
-		rLoc = 1103;
+		rLoc = 1105;
 		rType = 0;
 		vrLen = 387;
 		vrLoc = 0;
@@ -14514,7 +14514,7 @@
 		fRef = 364D22EE162AA5C60002CFC9 /* audiothread.lua */;
 		name = "audiothread.lua: 18";
 		rLen = 0;
-		rLoc = 1178;
+		rLoc = 1184;
 		rType = 0;
 		vrLen = 391;
 		vrLoc = 0;
@@ -14524,7 +14524,7 @@
 		fRef = 361C598A162685E000E08BE8 /* avm.h */;
 		name = "avm.h: 45";
 		rLen = 0;
-		rLoc = 1114;
+		rLoc = 1156;
 		rType = 0;
 		vrLen = 1194;
 		vrLoc = 0;
@@ -14604,7 +14604,7 @@
 		fRef = 364D22EE162AA5C60002CFC9 /* audiothread.lua */;
 		name = "audiothread.lua: 13";
 		rLen = 0;
-		rLoc = 1106;
+		rLoc = 1108;
 		rType = 0;
 		vrLen = 358;
 		vrLoc = 0;
@@ -14614,7 +14614,7 @@
 		fRef = 364D22EE162AA5C60002CFC9 /* audiothread.lua */;
 		name = "audiothread.lua: 13";
 		rLen = 0;
-		rLoc = 1106;
+		rLoc = 1108;
 		rType = 0;
 		vrLen = 358;
 		vrLoc = 0;
@@ -14684,7 +14684,7 @@
 		fRef = 364D22EE162AA5C60002CFC9 /* audiothread.lua */;
 		name = "audiothread.lua: 21";
 		rLen = 0;
-		rLoc = 1241;
+		rLoc = 1247;
 		rType = 0;
 		vrLen = 378;
 		vrLoc = 0;
@@ -14734,7 +14734,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 39";
 		rLen = 0;
-		rLoc = 648;
+		rLoc = 1553;
 		rType = 0;
 		vrLen = 619;
 		vrLoc = 0;
@@ -14784,7 +14784,7 @@
 		fRef = 361C598A162685E000E08BE8 /* avm.h */;
 		name = "avm.h: 88";
 		rLen = 0;
-		rLoc = 1900;
+		rLoc = 1942;
 		rType = 0;
 		vrLen = 1076;
 		vrLoc = 779;
@@ -15000,7 +15000,7 @@
 		fRef = 361C598A162685E000E08BE8 /* avm.h */;
 		name = "avm.h: 88";
 		rLen = 0;
-		rLoc = 1900;
+		rLoc = 1942;
 		rType = 0;
 		vrLen = 1076;
 		vrLoc = 779;
@@ -15010,7 +15010,7 @@
 		fRef = 361C598A162685E000E08BE8 /* avm.h */;
 		name = "avm.h: 88";
 		rLen = 0;
-		rLoc = 1900;
+		rLoc = 1942;
 		rType = 0;
 		vrLen = 990;
 		vrLoc = 880;
@@ -15100,7 +15100,7 @@
 		fRef = 361C598A162685E000E08BE8 /* avm.h */;
 		name = "avm.h: 42";
 		rLen = 0;
-		rLoc = 926;
+		rLoc = 968;
 		rType = 0;
 		vrLen = 1139;
 		vrLoc = 549;
@@ -15110,7 +15110,7 @@
 		fRef = 361C598A162685E000E08BE8 /* avm.h */;
 		name = "avm.h: 42";
 		rLen = 3;
-		rLoc = 908;
+		rLoc = 950;
 		rType = 0;
 		vrLen = 1139;
 		vrLoc = 549;
@@ -15120,7 +15120,7 @@
 		fRef = 361C598A162685E000E08BE8 /* avm.h */;
 		name = "avm.h: 42";
 		rLen = 3;
-		rLoc = 908;
+		rLoc = 950;
 		rType = 0;
 		vrLen = 1139;
 		vrLoc = 549;
@@ -15130,7 +15130,7 @@
 		fRef = 364D1E3B1628E7260002CFC9 /* window.cpp */;
 		name = "window.cpp: 96";
 		rLen = 0;
-		rLoc = 1756;
+		rLoc = 1871;
 		rType = 0;
 		vrLen = 1041;
 		vrLoc = 1;
@@ -15210,7 +15210,7 @@
 		fRef = 361C598A162685E000E08BE8 /* avm.h */;
 		name = "avm.h: 85";
 		rLen = 0;
-		rLoc = 1780;
+		rLoc = 1822;
 		rType = 0;
 		vrLen = 1050;
 		vrLoc = 859;
@@ -15310,7 +15310,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 35";
 		rLen = 0;
-		rLoc = 925;
+		rLoc = 992;
 		rType = 0;
 		vrLen = 512;
 		vrLoc = 0;
@@ -15350,7 +15350,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 35";
 		rLen = 0;
-		rLoc = 925;
+		rLoc = 992;
 		rType = 0;
 		vrLen = 512;
 		vrLoc = 0;
@@ -15390,7 +15390,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 35";
 		rLen = 0;
-		rLoc = 925;
+		rLoc = 992;
 		rType = 0;
 		vrLen = 512;
 		vrLoc = 0;
@@ -15440,7 +15440,7 @@
 		fRef = 364D1E3B1628E7260002CFC9 /* window.cpp */;
 		name = "window.cpp: 96";
 		rLen = 0;
-		rLoc = 1756;
+		rLoc = 1871;
 		rType = 0;
 		vrLen = 1041;
 		vrLoc = 1;
@@ -15470,7 +15470,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 33";
 		rLen = 0;
-		rLoc = 479;
+		rLoc = 601;
 		rType = 0;
 		vrLen = 896;
 		vrLoc = 0;
@@ -15490,7 +15490,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 38";
 		rLen = 0;
-		rLoc = 648;
+		rLoc = 1553;
 		rType = 0;
 		vrLen = 628;
 		vrLoc = 0;
@@ -15500,7 +15500,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 38";
 		rLen = 0;
-		rLoc = 647;
+		rLoc = 1524;
 		rType = 0;
 		vrLen = 635;
 		vrLoc = 0;
@@ -15510,7 +15510,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 38";
 		rLen = 0;
-		rLoc = 647;
+		rLoc = 1524;
 		rType = 0;
 		vrLen = 635;
 		vrLoc = 0;
@@ -15530,7 +15530,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 52";
 		rLen = 0;
-		rLoc = 850;
+		rLoc = 917;
 		rType = 0;
 		vrLen = 878;
 		vrLoc = 37;
@@ -15540,7 +15540,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 52";
 		rLen = 0;
-		rLoc = 850;
+		rLoc = 917;
 		rType = 0;
 		vrLen = 878;
 		vrLoc = 37;
@@ -15550,7 +15550,7 @@
 		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
 		name = "audio.lua: 52";
 		rLen = 0;
-		rLoc = 850;
+		rLoc = 917;
 		rType = 0;
 		vrLen = 878;
 		vrLoc = 37;
@@ -15560,7 +15560,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 7";
 		rLen = 0;
-		rLoc = 153;
+		rLoc = 791;
 		rType = 0;
 		vrLen = 655;
 		vrLoc = 0;
@@ -15570,7 +15570,7 @@
 		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
 		name = "main.lua: 7";
 		rLen = 0;
-		rLoc = 153;
+		rLoc = 791;
 		rType = 0;
 		vrLen = 655;
 		vrLoc = 0;
@@ -15590,7 +15590,7 @@
 		fRef = 361C598A162685E000E08BE8 /* avm.h */;
 		name = "avm.h: 85";
 		rLen = 0;
-		rLoc = 1780;
+		rLoc = 1822;
 		rType = 0;
 		vrLen = 1050;
 		vrLoc = 859;
@@ -15600,7 +15600,7 @@
 		fRef = 361C598A162685E000E08BE8 /* avm.h */;
 		name = "avm.h: 56";
 		rLen = 0;
-		rLoc = 1228;
+		rLoc = 1270;
 		rType = 0;
 		vrLen = 1074;
 		vrLoc = 859;
@@ -15610,7 +15610,7 @@
 		fRef = 361C598A162685E000E08BE8 /* avm.h */;
 		name = "avm.h: 56";
 		rLen = 0;
-		rLoc = 1228;
+		rLoc = 1270;
 		rType = 0;
 		vrLen = 1074;
 		vrLoc = 859;
@@ -15700,7 +15700,7 @@
 		fRef = 361C598A162685E000E08BE8 /* avm.h */;
 		name = "avm.h: 90";
 		rLen = 0;
-		rLoc = 1886;
+		rLoc = 1928;
 		rType = 0;
 		vrLen = 1095;
 		vrLoc = 859;
@@ -15750,7 +15750,7 @@
 		fRef = 361C598A162685E000E08BE8 /* avm.h */;
 		name = "avm.h: 90";
 		rLen = 0;
-		rLoc = 1886;
+		rLoc = 1928;
 		rType = 0;
 		vrLen = 1095;
 		vrLoc = 859;
@@ -15760,7 +15760,7 @@
 		fRef = 361C598A162685E000E08BE8 /* avm.h */;
 		name = "avm.h: 76";
 		rLen = 0;
-		rLoc = 1589;
+		rLoc = 1631;
 		rType = 0;
 		vrLen = 1098;
 		vrLoc = 859;
@@ -15770,7 +15770,7 @@
 		fRef = 361C598A162685E000E08BE8 /* avm.h */;
 		name = "avm.h: 76";
 		rLen = 0;
-		rLoc = 1589;
+		rLoc = 1631;
 		rType = 0;
 		vrLen = 1098;
 		vrLoc = 859;
@@ -15814,6 +15814,1464 @@
 		rType = 0;
 		vrLen = 1575;
 		vrLoc = 148;
+	};
+	364D23A5162B2BA40002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 361C59811626859F00E08BE8 /* build.sh */;
+		name = "build.sh: 67";
+		rLen = 0;
+		rLoc = 1765;
+		rType = 0;
+		vrLen = 1493;
+		vrLoc = 272;
+	};
+	364D23A6162B2BA40002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 36E5023B1616812300A85578 /* alivetestaudio.lua */;
+		name = "alivetestaudio.lua: 31";
+		rLen = 0;
+		rLoc = 886;
+		rType = 0;
+		vrLen = 1170;
+		vrLoc = 5100;
+	};
+	364D23A7162B2BA40002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
+		name = "audio.lua: 4";
+		rLen = 0;
+		rLoc = 63;
+		rType = 0;
+		vrLen = 853;
+		vrLoc = 0;
+	};
+	364D23A8162B2BA40002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 36E5014A161659AA00A85578 /* alivetest.lua */;
+		name = "alivetest.lua: 720";
+		rLen = 22;
+		rLoc = 17445;
+		rType = 0;
+		vrLen = 1482;
+		vrLoc = 17279;
+	};
+	364D23A9162B2BA40002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 361C598A162685E000E08BE8 /* avm.h */;
+		name = "avm.h: 21";
+		rLen = 0;
+		rLoc = 316;
+		rType = 0;
+		vrLen = 1235;
+		vrLoc = 0;
+	};
+	364D23AA162B2BA40002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D1E3B1628E7260002CFC9 /* window.cpp */;
+		name = "window.cpp: 48";
+		rLen = 0;
+		rLoc = 886;
+		rType = 0;
+		vrLen = 1062;
+		vrLoc = 110;
+	};
+	364D23AB162B2BA40002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D1EBA162A15D10002CFC9 /* window.lua */;
+		name = "window.lua: 68";
+		rLen = 0;
+		rLoc = 1110;
+		rType = 0;
+		vrLen = 904;
+		vrLoc = 215;
+	};
+	364D23AC162B2BA40002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
+		name = "main.lua: 11";
+		rLen = 0;
+		rLoc = 413;
+		rType = 0;
+		vrLen = 903;
+		vrLoc = 0;
+	};
+	364D23AD162B2BA40002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
+		name = "main.lua: 41";
+		rLen = 0;
+		rLoc = 1043;
+		rType = 0;
+		vrLen = 964;
+		vrLoc = 0;
+	};
+	364D23AE162B2BCF0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
+		name = "main.lua: 41";
+		rLen = 0;
+		rLoc = 1043;
+		rType = 0;
+		vrLen = 964;
+		vrLoc = 0;
+	};
+	364D23AF162B2BCF0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D1E3B1628E7260002CFC9 /* window.cpp */;
+		name = "window.cpp: 48";
+		rLen = 0;
+		rLoc = 886;
+		rType = 0;
+		vrLen = 1061;
+		vrLoc = 110;
+	};
+	364D23B0162B2BCF0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D1E3B1628E7260002CFC9 /* window.cpp */;
+		name = "window.cpp: 18";
+		rLen = 0;
+		rLoc = 284;
+		rType = 0;
+		vrLen = 1043;
+		vrLoc = 0;
+	};
+	364D23B1162B2BEE0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D1E3B1628E7260002CFC9 /* window.cpp */;
+		name = "window.cpp: 17";
+		rLen = 0;
+		rLoc = 266;
+		rType = 0;
+		vrLen = 1043;
+		vrLoc = 0;
+	};
+	364D23B2162B2C980002CFC9 /* vec.lua */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {548, 12207}}";
+			sepNavSelRange = "{6846, 4}";
+			sepNavVisRange = "{6044, 1196}";
+		};
+	};
+	364D23B3162B2E0E0002CFC9 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 3684D47B161CF9E4001E34EA /* al.lua */;
+	};
+	364D23B4162B2E570002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D1E3B1628E7260002CFC9 /* window.cpp */;
+		name = "window.cpp: 36";
+		rLen = 0;
+		rLoc = 630;
+		rType = 0;
+		vrLen = 1043;
+		vrLoc = 0;
+	};
+	364D23B5162B2E570002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 36E5014A161659AA00A85578 /* alivetest.lua */;
+		name = "alivetest.lua: 253";
+		rLen = 210;
+		rLoc = 6927;
+		rType = 0;
+		vrLen = 989;
+		vrLoc = 6778;
+	};
+	364D23B6162B2E570002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D1E7E162A10440002CFC9 /* avm.lua */;
+		name = "avm.lua: 6";
+		rLen = 0;
+		rLoc = 115;
+		rType = 0;
+		vrLen = 128;
+		vrLoc = 0;
+	};
+	364D23B7162B2E570002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3684D49F161CFBDB001E34EA /* alive.lua */;
+		name = "alive.lua: 12";
+		rLen = 0;
+		rLoc = 195;
+		rType = 0;
+		vrLen = 670;
+		vrLoc = 0;
+	};
+	364D23B8162B2E570002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3684D47C161CF9E4001E34EA /* compiler.lua */;
+		name = "compiler.lua: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1509;
+		vrLoc = 0;
+	};
+	364D23B9162B2E570002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3684D47B161CF9E4001E34EA /* al.lua */;
+		name = "al.lua: 88";
+		rLen = 25;
+		rLoc = 1979;
+		rType = 0;
+		vrLen = 1395;
+		vrLoc = 1884;
+	};
+	364D23BA162B2E570002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D23B2162B2C980002CFC9 /* vec.lua */;
+		name = "vec.lua: 29";
+		rLen = 0;
+		rLoc = 7926;
+		rType = 0;
+		vrLen = 877;
+		vrLoc = 0;
+	};
+	364D23BB162B2E570002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
+		name = "main.lua: 36";
+		rLen = 0;
+		rLoc = 882;
+		rType = 0;
+		vrLen = 1107;
+		vrLoc = 0;
+	};
+	364D23BC162B2E570002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
+		name = "main.lua: 57";
+		rLen = 0;
+		rLoc = 1170;
+		rType = 0;
+		vrLen = 923;
+		vrLoc = 466;
+	};
+	364D23BF162B2E570002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3684D47B161CF9E4001E34EA /* al.lua */;
+		name = "al.lua: 98";
+		rLen = 0;
+		rLoc = 2181;
+		rType = 0;
+		vrLen = 1570;
+		vrLoc = 3148;
+	};
+	364D23C0162B2E5C0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
+		name = "main.lua: 57";
+		rLen = 0;
+		rLoc = 1170;
+		rType = 0;
+		vrLen = 947;
+		vrLoc = 442;
+	};
+	364D23C1162B2E5C0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D22EE162AA5C60002CFC9 /* audiothread.lua */;
+		name = "audiothread.lua: 41";
+		rLen = 0;
+		rLoc = 798;
+		rType = 0;
+		vrLen = 1111;
+		vrLoc = 130;
+	};
+	364D23C2162B2E5C0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3684D47B161CF9E4001E34EA /* al.lua */;
+		name = "al.lua: 98";
+		rLen = 0;
+		rLoc = 2181;
+		rType = 0;
+		vrLen = 1570;
+		vrLoc = 3148;
+	};
+	364D23C3162B2E640002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D22EE162AA5C60002CFC9 /* audiothread.lua */;
+		name = "audiothread.lua: 58";
+		rLen = 0;
+		rLoc = 1097;
+		rType = 0;
+		vrLen = 1069;
+		vrLoc = 0;
+	};
+	364D23C4162B2E640002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3684D47B161CF9E4001E34EA /* al.lua */;
+		name = "al.lua: 98";
+		rLen = 0;
+		rLoc = 2181;
+		rType = 0;
+		vrLen = 1570;
+		vrLoc = 3148;
+	};
+	364D23C5162B2E680002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D22EE162AA5C60002CFC9 /* audiothread.lua */;
+		name = "audiothread.lua: 43";
+		rLen = 0;
+		rLoc = 856;
+		rType = 0;
+		vrLen = 1069;
+		vrLoc = 0;
+	};
+	364D23C6162B2E680002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3684D47B161CF9E4001E34EA /* al.lua */;
+		name = "al.lua: 98";
+		rLen = 0;
+		rLoc = 2181;
+		rType = 0;
+		vrLen = 1570;
+		vrLoc = 3148;
+	};
+	364D23C7162B2E7B0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D22EE162AA5C60002CFC9 /* audiothread.lua */;
+		name = "audiothread.lua: 43";
+		rLen = 0;
+		rLoc = 856;
+		rType = 0;
+		vrLen = 1069;
+		vrLoc = 0;
+	};
+	364D23C8162B2E7B0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
+		name = "main.lua: 57";
+		rLen = 0;
+		rLoc = 1170;
+		rType = 0;
+		vrLen = 947;
+		vrLoc = 442;
+	};
+	364D23C9162B2E7B0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
+		name = "main.lua: 34";
+		rLen = 0;
+		rLoc = 805;
+		rType = 0;
+		vrLen = 959;
+		vrLoc = 442;
+	};
+	364D23CA162B2E7B0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3684D47B161CF9E4001E34EA /* al.lua */;
+		name = "al.lua: 98";
+		rLen = 0;
+		rLoc = 2181;
+		rType = 0;
+		vrLen = 1570;
+		vrLoc = 3148;
+	};
+	364D23CB162B2E860002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
+		name = "main.lua: 34";
+		rLen = 0;
+		rLoc = 805;
+		rType = 0;
+		vrLen = 1010;
+		vrLoc = 0;
+	};
+	364D23CC162B2E860002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3684D47B161CF9E4001E34EA /* al.lua */;
+		name = "al.lua: 98";
+		rLen = 0;
+		rLoc = 2181;
+		rType = 0;
+		vrLen = 1570;
+		vrLoc = 3148;
+	};
+	364D23CD162B2E930002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
+		name = "main.lua: 34";
+		rLen = 0;
+		rLoc = 805;
+		rType = 0;
+		vrLen = 1010;
+		vrLoc = 0;
+	};
+	364D23CE162B2E930002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D23B2162B2C980002CFC9 /* vec.lua */;
+		name = "vec.lua: 29";
+		rLen = 0;
+		rLoc = 7926;
+		rType = 0;
+		vrLen = 877;
+		vrLoc = 0;
+	};
+	364D23CF162B2E930002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D23B2162B2C980002CFC9 /* vec.lua */;
+		name = "vec.lua: 37";
+		rLen = 0;
+		rLoc = 19365;
+		rType = 0;
+		vrLen = 891;
+		vrLoc = 0;
+	};
+	364D23D0162B2E930002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3684D47B161CF9E4001E34EA /* al.lua */;
+		name = "al.lua: 98";
+		rLen = 0;
+		rLoc = 2181;
+		rType = 0;
+		vrLen = 1570;
+		vrLoc = 3148;
+	};
+	364D23D1162B2EC10002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D23B2162B2C980002CFC9 /* vec.lua */;
+		name = "vec.lua: 22";
+		rLen = 0;
+		rLoc = 867;
+		rType = 0;
+		vrLen = 950;
+		vrLoc = 0;
+	};
+	364D23D2162B2EC10002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
+		name = "main.lua: 34";
+		rLen = 0;
+		rLoc = 805;
+		rType = 0;
+		vrLen = 1010;
+		vrLoc = 0;
+	};
+	364D23D3162B2EC10002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
+		name = "main.lua: 35";
+		rLen = 0;
+		rLoc = 805;
+		rType = 0;
+		vrLen = 1030;
+		vrLoc = 0;
+	};
+	364D23D4162B2EC10002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3684D47B161CF9E4001E34EA /* al.lua */;
+		name = "al.lua: 98";
+		rLen = 0;
+		rLoc = 2181;
+		rType = 0;
+		vrLen = 1570;
+		vrLoc = 3148;
+	};
+	364D23D5162B2EFA0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
+		name = "main.lua: 35";
+		rLen = 0;
+		rLoc = 805;
+		rType = 0;
+		vrLen = 1030;
+		vrLoc = 0;
+	};
+	364D23D6162B2EFA0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D23B2162B2C980002CFC9 /* vec.lua */;
+		name = "vec.lua: 22";
+		rLen = 0;
+		rLoc = 867;
+		rType = 0;
+		vrLen = 950;
+		vrLoc = 0;
+	};
+	364D23D7162B2EFA0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D23B2162B2C980002CFC9 /* vec.lua */;
+		name = "vec.lua: 31";
+		rLen = 0;
+		rLoc = 7747;
+		rType = 0;
+		vrLen = 1035;
+		vrLoc = 0;
+	};
+	364D23D8162B2EFA0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3684D47B161CF9E4001E34EA /* al.lua */;
+		name = "al.lua: 98";
+		rLen = 0;
+		rLoc = 2181;
+		rType = 0;
+		vrLen = 1570;
+		vrLoc = 3148;
+	};
+	364D23D9162B2F080002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D23B2162B2C980002CFC9 /* vec.lua */;
+		name = "vec.lua: 33";
+		rLen = 0;
+		rLoc = 7756;
+		rType = 0;
+		vrLen = 1035;
+		vrLoc = 0;
+	};
+	364D23DA162B2F080002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3684D47B161CF9E4001E34EA /* al.lua */;
+		name = "al.lua: 98";
+		rLen = 0;
+		rLoc = 2181;
+		rType = 0;
+		vrLen = 1570;
+		vrLoc = 3148;
+	};
+	364D23DB162B2F0E0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D23B2162B2C980002CFC9 /* vec.lua */;
+		name = "vec.lua: 29";
+		rLen = 0;
+		rLoc = 7298;
+		rType = 0;
+		vrLen = 1036;
+		vrLoc = 0;
+	};
+	364D23DC162B2F0E0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3684D47B161CF9E4001E34EA /* al.lua */;
+		name = "al.lua: 98";
+		rLen = 0;
+		rLoc = 2181;
+		rType = 0;
+		vrLen = 1570;
+		vrLoc = 3148;
+	};
+	364D23DD162B2F160002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D23B2162B2C980002CFC9 /* vec.lua */;
+		name = "vec.lua: 31";
+		rLen = 0;
+		rLoc = 7747;
+		rType = 0;
+		vrLen = 1036;
+		vrLoc = 0;
+	};
+	364D23DE162B2F160002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3684D47B161CF9E4001E34EA /* al.lua */;
+		name = "al.lua: 98";
+		rLen = 0;
+		rLoc = 2181;
+		rType = 0;
+		vrLen = 1570;
+		vrLoc = 3148;
+	};
+	364D23DF162B2F250002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D23B2162B2C980002CFC9 /* vec.lua */;
+		name = "vec.lua: 32";
+		rLen = 0;
+		rLoc = 7747;
+		rType = 0;
+		vrLen = 1066;
+		vrLoc = 0;
+	};
+	364D23E0162B2F250002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3684D47B161CF9E4001E34EA /* al.lua */;
+		name = "al.lua: 98";
+		rLen = 0;
+		rLoc = 2181;
+		rType = 0;
+		vrLen = 1570;
+		vrLoc = 3148;
+	};
+	364D23E1162B2F2B0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D23B2162B2C980002CFC9 /* vec.lua */;
+		name = "vec.lua: 32";
+		rLen = 0;
+		rLoc = 7747;
+		rType = 0;
+		vrLen = 1066;
+		vrLoc = 0;
+	};
+	364D23E2162B2F2B0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3684D47B161CF9E4001E34EA /* al.lua */;
+		name = "al.lua: 98";
+		rLen = 0;
+		rLoc = 2181;
+		rType = 0;
+		vrLen = 1570;
+		vrLoc = 3148;
+	};
+	364D23E3162B2F360002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D23B2162B2C980002CFC9 /* vec.lua */;
+		name = "vec.lua: 32";
+		rLen = 0;
+		rLoc = 7747;
+		rType = 0;
+		vrLen = 1068;
+		vrLoc = 0;
+	};
+	364D23E4162B2F360002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3684D47B161CF9E4001E34EA /* al.lua */;
+		name = "al.lua: 98";
+		rLen = 0;
+		rLoc = 2181;
+		rType = 0;
+		vrLen = 1570;
+		vrLoc = 3148;
+	};
+	364D23E5162B2F4C0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D23B2162B2C980002CFC9 /* vec.lua */;
+		name = "vec.lua: 31";
+		rLen = 0;
+		rLoc = 7747;
+		rType = 0;
+		vrLen = 1044;
+		vrLoc = 0;
+	};
+	364D23E6162B2F4C0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3684D47B161CF9E4001E34EA /* al.lua */;
+		name = "al.lua: 98";
+		rLen = 0;
+		rLoc = 2181;
+		rType = 0;
+		vrLen = 1570;
+		vrLoc = 3148;
+	};
+	364D23E7162B2F510002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D23B2162B2C980002CFC9 /* vec.lua */;
+		name = "vec.lua: 32";
+		rLen = 0;
+		rLoc = 7749;
+		rType = 0;
+		vrLen = 1046;
+		vrLoc = 0;
+	};
+	364D23E8162B2F510002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3684D47B161CF9E4001E34EA /* al.lua */;
+		name = "al.lua: 98";
+		rLen = 0;
+		rLoc = 2181;
+		rType = 0;
+		vrLen = 1570;
+		vrLoc = 3148;
+	};
+	364D23E9162B2FCB0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D23B2162B2C980002CFC9 /* vec.lua */;
+		name = "vec.lua: 32";
+		rLen = 0;
+		rLoc = 7745;
+		rType = 0;
+		vrLen = 1203;
+		vrLoc = 0;
+	};
+	364D23EA162B2FCB0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
+		name = "main.lua: 35";
+		rLen = 0;
+		rLoc = 805;
+		rType = 0;
+		vrLen = 1030;
+		vrLoc = 0;
+	};
+	364D23EB162B2FCB0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
+		name = "main.lua: 39";
+		rLen = 0;
+		rLoc = 805;
+		rType = 0;
+		vrLen = 1029;
+		vrLoc = 0;
+	};
+	364D23EC162B2FCB0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3684D47B161CF9E4001E34EA /* al.lua */;
+		name = "al.lua: 98";
+		rLen = 0;
+		rLoc = 2181;
+		rType = 0;
+		vrLen = 1570;
+		vrLoc = 3148;
+	};
+	364D23ED162B2FDF0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
+		name = "main.lua: 39";
+		rLen = 0;
+		rLoc = 805;
+		rType = 0;
+		vrLen = 1029;
+		vrLoc = 0;
+	};
+	364D23EE162B2FDF0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D23B2162B2C980002CFC9 /* vec.lua */;
+		name = "vec.lua: 31";
+		rLen = 0;
+		rLoc = 7745;
+		rType = 0;
+		vrLen = 1220;
+		vrLoc = 0;
+	};
+	364D23EF162B2FDF0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3684D47B161CF9E4001E34EA /* al.lua */;
+		name = "al.lua: 98";
+		rLen = 0;
+		rLoc = 2181;
+		rType = 0;
+		vrLen = 1570;
+		vrLoc = 3148;
+	};
+	364D23F0162B309D0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D23B2162B2C980002CFC9 /* vec.lua */;
+		name = "vec.lua: 37";
+		rLen = 0;
+		rLoc = 7563;
+		rType = 0;
+		vrLen = 1303;
+		vrLoc = 0;
+	};
+	364D23F1162B309D0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3684D47B161CF9E4001E34EA /* al.lua */;
+		name = "al.lua: 98";
+		rLen = 0;
+		rLoc = 2181;
+		rType = 0;
+		vrLen = 1570;
+		vrLoc = 3148;
+	};
+	364D23F2162B30B20002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D23B2162B2C980002CFC9 /* vec.lua */;
+		name = "vec.lua: 44";
+		rLen = 0;
+		rLoc = 7747;
+		rType = 0;
+		vrLen = 1334;
+		vrLoc = 0;
+	};
+	364D23F3162B30B20002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3684D47B161CF9E4001E34EA /* al.lua */;
+		name = "al.lua: 98";
+		rLen = 0;
+		rLoc = 2181;
+		rType = 0;
+		vrLen = 1570;
+		vrLoc = 3148;
+	};
+	364D23F4162B31490002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D23B2162B2C980002CFC9 /* vec.lua */;
+		name = "vec.lua: 30";
+		rLen = 0;
+		rLoc = 1160;
+		rType = 0;
+		vrLen = 1283;
+		vrLoc = 0;
+	};
+	364D23F5162B31490002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
+		name = "main.lua: 39";
+		rLen = 0;
+		rLoc = 805;
+		rType = 0;
+		vrLen = 1029;
+		vrLoc = 0;
+	};
+	364D23F6162B31490002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
+		name = "main.lua: 43";
+		rLen = 0;
+		rLoc = 805;
+		rType = 0;
+		vrLen = 1016;
+		vrLoc = 0;
+	};
+	364D23F7162B31490002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3684D47B161CF9E4001E34EA /* al.lua */;
+		name = "al.lua: 150";
+		rLen = 226;
+		rLoc = 3696;
+		rType = 0;
+		vrLen = 1570;
+		vrLoc = 3148;
+	};
+	364D23F8162B32630002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
+		name = "main.lua: 43";
+		rLen = 0;
+		rLoc = 805;
+		rType = 0;
+		vrLen = 1016;
+		vrLoc = 0;
+	};
+	364D23F9162B32630002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D23B2162B2C980002CFC9 /* vec.lua */;
+		name = "vec.lua: 30";
+		rLen = 0;
+		rLoc = 1160;
+		rType = 0;
+		vrLen = 1283;
+		vrLoc = 0;
+	};
+	364D23FA162B32630002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D23B2162B2C980002CFC9 /* vec.lua */;
+		name = "vec.lua: 87";
+		rLen = 0;
+		rLoc = 2016;
+		rType = 0;
+		vrLen = 1054;
+		vrLoc = 1654;
+	};
+	364D23FB162B32630002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3684D47B161CF9E4001E34EA /* al.lua */;
+		name = "al.lua: 198";
+		rLen = 258;
+		rLoc = 4916;
+		rType = 0;
+		vrLen = 1383;
+		vrLoc = 4636;
+	};
+	364D23FC162B427C0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3657550D16127877009D11CC /* install_dependencies.sh */;
+		name = "install_dependencies.sh: 31";
+		rLen = 0;
+		rLoc = 533;
+		rType = 0;
+		vrLen = 746;
+		vrLoc = 0;
+	};
+	364D23FD162B427C0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
+		name = "main.lua: 43";
+		rLen = 0;
+		rLoc = 805;
+		rType = 0;
+		vrLen = 1016;
+		vrLoc = 0;
+	};
+	364D23FE162B427C0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 36E5023B1616812300A85578 /* alivetestaudio.lua */;
+		name = "alivetestaudio.lua: 17";
+		rLen = 931;
+		rLoc = 395;
+		rType = 0;
+		vrLen = 1535;
+		vrLoc = 0;
+	};
+	364D23FF162B427C0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D23B2162B2C980002CFC9 /* vec.lua */;
+		name = "vec.lua: 729";
+		rLen = 0;
+		rLoc = 16625;
+		rType = 0;
+		vrLen = 1271;
+		vrLoc = 14363;
+	};
+	364D2400162B427C0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D23B2162B2C980002CFC9 /* vec.lua */;
+		name = "vec.lua: 764";
+		rLen = 0;
+		rLoc = 17652;
+		rType = 0;
+		vrLen = 1557;
+		vrLoc = 15075;
+	};
+	364D2401162B427C0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3684D47B161CF9E4001E34EA /* al.lua */;
+		name = "al.lua: 686";
+		rLen = 826;
+		rLoc = 18215;
+		rType = 0;
+		vrLen = 1480;
+		vrLoc = 18595;
+	};
+	364D2402162B42A20002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D23B2162B2C980002CFC9 /* vec.lua */;
+		name = "vec.lua: 490";
+		rLen = 0;
+		rLoc = 9353;
+		rType = 0;
+		vrLen = 1109;
+		vrLoc = 9046;
+	};
+	364D2403162B42A20002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3684D47B161CF9E4001E34EA /* al.lua */;
+		name = "al.lua: 739";
+		rLen = 952;
+		rLoc = 19599;
+		rType = 0;
+		vrLen = 1396;
+		vrLoc = 19242;
+	};
+	364D2404162B43C50002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D23B2162B2C980002CFC9 /* vec.lua */;
+		name = "vec.lua: 809";
+		rLen = 0;
+		rLoc = 17951;
+		rType = 0;
+		vrLen = 1168;
+		vrLoc = 16430;
+	};
+	364D2405162B43C50002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3684D47B161CF9E4001E34EA /* al.lua */;
+		name = "al.lua: 739";
+		rLen = 952;
+		rLoc = 19599;
+		rType = 0;
+		vrLen = 1396;
+		vrLoc = 19242;
+	};
+	364D2406162B44D50002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D23B2162B2C980002CFC9 /* vec.lua */;
+		name = "vec.lua: 523";
+		rLen = 0;
+		rLoc = 9962;
+		rType = 0;
+		vrLen = 1131;
+		vrLoc = 9370;
+	};
+	364D2407162B44D50002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3684D47B161CF9E4001E34EA /* al.lua */;
+		name = "al.lua: 739";
+		rLen = 952;
+		rLoc = 19599;
+		rType = 0;
+		vrLen = 1396;
+		vrLoc = 19242;
+	};
+	364D2408162B458B0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D23B2162B2C980002CFC9 /* vec.lua */;
+		name = "vec.lua: 572";
+		rLen = 27;
+		rLoc = 10897;
+		rType = 0;
+		vrLen = 992;
+		vrLoc = 10280;
+	};
+	364D2409162B458B0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D23B2162B2C980002CFC9 /* vec.lua */;
+		name = "vec.lua: 858";
+		rLen = 0;
+		rLoc = 18387;
+		rType = 0;
+		vrLen = 1563;
+		vrLoc = 17234;
+	};
+	364D240A162B458B0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 3684D47B161CF9E4001E34EA /* al.lua */;
+		name = "al.lua: 782";
+		rLen = 861;
+		rLoc = 20562;
+		rType = 0;
+		vrLen = 1469;
+		vrLoc = 20342;
+	};
+	364D240B162B459B0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D23B2162B2C980002CFC9 /* vec.lua */;
+		name = "vec.lua: 858";
+		rLen = 0;
+		rLoc = 18387;
+		rType = 0;
+		vrLen = 1563;
+		vrLoc = 17234;
+	};
+	364D240C162B45A40002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D23B2162B2C980002CFC9 /* vec.lua */;
+		name = "vec.lua: 858";
+		rLen = 0;
+		rLoc = 18387;
+		rType = 0;
+		vrLen = 1563;
+		vrLoc = 17234;
+	};
+	364D240D162B45A40002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D23B2162B2C980002CFC9 /* vec.lua */;
+		name = "vec.lua: 37";
+		rLen = 0;
+		rLoc = 858;
+		rType = 0;
+		vrLen = 1160;
+		vrLoc = 556;
+	};
+	364D240E162B45CB0002CFC9 /* nav.lua */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {548, 740}}";
+			sepNavSelRange = "{140, 0}";
+			sepNavVisRange = "{0, 612}";
+		};
+	};
+	364D240F162B45EF0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D23B2162B2C980002CFC9 /* vec.lua */;
+		name = "vec.lua: 214";
+		rLen = 0;
+		rLoc = 4122;
+		rType = 0;
+		vrLen = 950;
+		vrLoc = 3672;
+	};
+	364D2410162B45EF0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
+		name = "main.lua: 24";
+		rLen = 0;
+		rLoc = 625;
+		rType = 0;
+		vrLen = 1056;
+		vrLoc = 0;
+	};
+	364D2411162B45EF0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D1E7E162A10440002CFC9 /* avm.lua */;
+		name = "avm.lua: 6";
+		rLen = 0;
+		rLoc = 115;
+		rType = 0;
+		vrLen = 128;
+		vrLoc = 0;
+	};
+	364D2412162B45EF0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D240E162B45CB0002CFC9 /* nav.lua */;
+		name = "nav.lua: 1";
+		rLen = 0;
+		rLoc = 612;
+		rType = 0;
+		vrLen = 0;
+		vrLoc = 0;
+	};
+	364D2413162B45EF0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 36E5014A161659AA00A85578 /* alivetest.lua */;
+		name = "alivetest.lua: 237";
+		rLen = 246;
+		rLoc = 6679;
+		rType = 0;
+		vrLen = 1311;
+		vrLoc = 5992;
+	};
+	364D2414162B46D70002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 36E5014A161659AA00A85578 /* alivetest.lua */;
+		name = "alivetest.lua: 237";
+		rLen = 246;
+		rLoc = 6679;
+		rType = 0;
+		vrLen = 1311;
+		vrLoc = 5992;
+	};
+	364D2415162B46D70002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D23B2162B2C980002CFC9 /* vec.lua */;
+		name = "vec.lua: 878";
+		rLen = 0;
+		rLoc = 18866;
+		rType = 0;
+		vrLen = 1315;
+		vrLoc = 18052;
+	};
+	364D2416162B46D70002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D240E162B45CB0002CFC9 /* nav.lua */;
+		name = "nav.lua: 20";
+		rLen = 0;
+		rLoc = 612;
+		rType = 0;
+		vrLen = 306;
+		vrLoc = 0;
+	};
+	364D2417162B46D70002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
+		name = "main.lua: 6";
+		rLen = 3;
+		rLoc = 146;
+		rType = 0;
+		vrLen = 1061;
+		vrLoc = 0;
+	};
+	364D2418162B46D70002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
+		name = "main.lua: 22";
+		rLen = 0;
+		rLoc = 539;
+		rType = 0;
+		vrLen = 1059;
+		vrLoc = 0;
+	};
+	364D2419162B47110002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
+		name = "main.lua: 22";
+		rLen = 0;
+		rLoc = 539;
+		rType = 0;
+		vrLen = 1059;
+		vrLoc = 0;
+	};
+	364D241A162B47110002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D23B2162B2C980002CFC9 /* vec.lua */;
+		name = "vec.lua: 878";
+		rLen = 0;
+		rLoc = 18866;
+		rType = 0;
+		vrLen = 1354;
+		vrLoc = 18013;
+	};
+	364D241B162B47110002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D23B2162B2C980002CFC9 /* vec.lua */;
+		name = "vec.lua: 387";
+		rLen = 0;
+		rLoc = 7415;
+		rType = 0;
+		vrLen = 1102;
+		vrLoc = 6952;
+	};
+	364D241C162B471C0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D23B2162B2C980002CFC9 /* vec.lua */;
+		name = "vec.lua: 399";
+		rLen = 0;
+		rLoc = 7720;
+		rType = 0;
+		vrLen = 1107;
+		vrLoc = 6952;
+	};
+	364D241D162B47490002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D23B2162B2C980002CFC9 /* vec.lua */;
+		name = "vec.lua: 883";
+		rLen = 0;
+		rLoc = 18918;
+		rType = 0;
+		vrLen = 1343;
+		vrLoc = 18036;
+	};
+	364D241E162B475F0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D23B2162B2C980002CFC9 /* vec.lua */;
+		name = "vec.lua: 877";
+		rLen = 0;
+		rLoc = 18810;
+		rType = 0;
+		vrLen = 1343;
+		vrLoc = 18036;
+	};
+	364D241F162B475F0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
+		name = "main.lua: 22";
+		rLen = 0;
+		rLoc = 539;
+		rType = 0;
+		vrLen = 1059;
+		vrLoc = 0;
+	};
+	364D2420162B475F0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
+		name = "main.lua: 73";
+		rLen = 0;
+		rLoc = 1283;
+		rType = 0;
+		vrLen = 859;
+		vrLoc = 625;
+	};
+	364D2421162B478F0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D240E162B45CB0002CFC9 /* nav.lua */;
+		name = "nav.lua: 18";
+		rLen = 0;
+		rLoc = 600;
+		rType = 0;
+		vrLen = 306;
+		vrLoc = 0;
+	};
+	364D2422162B478F0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 36E5014A161659AA00A85578 /* alivetest.lua */;
+		name = "alivetest.lua: 263";
+		rLen = 45;
+		rLoc = 7137;
+		rType = 0;
+		vrLen = 1072;
+		vrLoc = 6576;
+	};
+	364D2423162B478F0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
+		name = "main.lua: 31";
+		rLen = 0;
+		rLoc = 805;
+		rType = 0;
+		vrLen = 1162;
+		vrLoc = 0;
+	};
+	364D2424162B478F0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
+		name = "main.lua: 33";
+		rLen = 0;
+		rLoc = 791;
+		rType = 0;
+		vrLen = 1077;
+		vrLoc = 0;
+	};
+	364D2425162B48EE0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D240E162B45CB0002CFC9 /* nav.lua */;
+		name = "nav.lua: 8";
+		rLen = 0;
+		rLoc = 140;
+		rType = 0;
+		vrLen = 612;
+		vrLoc = 0;
+	};
+	364D2426162B48EE0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
+		name = "audio.lua: 42";
+		rLen = 0;
+		rLoc = 681;
+		rType = 0;
+		vrLen = 962;
+		vrLoc = 0;
+	};
+	364D2427162B48EE0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 36E5014A161659AA00A85578 /* alivetest.lua */;
+		name = "alivetest.lua: 777";
+		rLen = 111;
+		rLoc = 19315;
+		rType = 0;
+		vrLen = 1509;
+		vrLoc = 18547;
+	};
+	364D2428162B48EE0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
+		name = "main.lua: 72";
+		rLen = 0;
+		rLoc = 1537;
+		rType = 0;
+		vrLen = 922;
+		vrLoc = 492;
+	};
+	364D2429162B48EE0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
+		name = "main.lua: 72";
+		rLen = 0;
+		rLoc = 1492;
+		rType = 0;
+		vrLen = 987;
+		vrLoc = 538;
+	};
+	364D242A162B48F80002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
+		name = "main.lua: 72";
+		rLen = 0;
+		rLoc = 1492;
+		rType = 0;
+		vrLen = 987;
+		vrLoc = 538;
+	};
+	364D242B162B49060002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
+		name = "main.lua: 72";
+		rLen = 0;
+		rLoc = 1492;
+		rType = 0;
+		vrLen = 987;
+		vrLoc = 538;
+	};
+	364D242C162B49060002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D23B2162B2C980002CFC9 /* vec.lua */;
+		name = "vec.lua: 877";
+		rLen = 0;
+		rLoc = 18810;
+		rType = 0;
+		vrLen = 1418;
+		vrLoc = 17960;
+	};
+	364D242D162B49060002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D23B2162B2C980002CFC9 /* vec.lua */;
+		name = "vec.lua: 779";
+		rLen = 0;
+		rLoc = 16069;
+		rType = 0;
+		vrLen = 1395;
+		vrLoc = 15103;
+	};
+	364D242E162B49150002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D23B2162B2C980002CFC9 /* vec.lua */;
+		name = "vec.lua: 550";
+		rLen = 0;
+		rLoc = 10510;
+		rType = 0;
+		vrLen = 1126;
+		vrLoc = 9719;
+	};
+	364D242F162B49420002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D23B2162B2C980002CFC9 /* vec.lua */;
+		name = "vec.lua: 550";
+		rLen = 0;
+		rLoc = 10510;
+		rType = 0;
+		vrLen = 1126;
+		vrLoc = 9719;
+	};
+	364D2430162B49420002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
+		name = "main.lua: 72";
+		rLen = 0;
+		rLoc = 1492;
+		rType = 0;
+		vrLen = 1012;
+		vrLoc = 513;
+	};
+	364D2431162B49420002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
+		name = "main.lua: 73";
+		rLen = 0;
+		rLoc = 1426;
+		rType = 0;
+		vrLen = 1003;
+		vrLoc = 538;
+	};
+	364D2432162B496A0002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
+		name = "main.lua: 75";
+		rLen = 0;
+		rLoc = 1498;
+		rType = 0;
+		vrLen = 1008;
+		vrLoc = 552;
+	};
+	364D2433162B49A10002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D1E1C1628E4480002CFC9 /* main.lua */;
+		name = "main.lua: 32";
+		rLen = 0;
+		rLoc = 729;
+		rType = 0;
+		vrLen = 1008;
+		vrLoc = 415;
+	};
+	364D2434162B49A10002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D23B2162B2C980002CFC9 /* vec.lua */;
+		name = "vec.lua: 550";
+		rLen = 0;
+		rLoc = 10510;
+		rType = 0;
+		vrLen = 1121;
+		vrLoc = 9724;
+	};
+	364D2435162B49A10002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D23B2162B2C980002CFC9 /* vec.lua */;
+		name = "vec.lua: 360";
+		rLen = 4;
+		rLoc = 6846;
+		rType = 0;
+		vrLen = 1196;
+		vrLoc = 6044;
+	};
+	364D2436162B49C40002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D23B2162B2C980002CFC9 /* vec.lua */;
+		name = "vec.lua: 360";
+		rLen = 4;
+		rLoc = 6846;
+		rType = 0;
+		vrLen = 1196;
+		vrLoc = 6044;
+	};
+	364D2437162B49C40002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
+		name = "audio.lua: 42";
+		rLen = 0;
+		rLoc = 681;
+		rType = 0;
+		vrLen = 962;
+		vrLoc = 0;
+	};
+	364D2438162B49C40002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
+		name = "audio.lua: 38";
+		rLen = 0;
+		rLoc = 642;
+		rType = 0;
+		vrLen = 901;
+		vrLoc = 0;
+	};
+	364D2439162B49D20002CFC9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 364D1F50162A227C0002CFC9 /* audio.lua */;
+		name = "audio.lua: 38";
+		rLen = 0;
+		rLoc = 642;
+		rType = 0;
+		vrLen = 901;
+		vrLoc = 0;
 	};
 	3657520A161277BC009D11CC /* Project object */ = {
 		activeArchitecturePreference = i386;
@@ -17428,6 +18886,151 @@
 			364D23A2162B26BB0002CFC9 /* PBXTextBookmark */ = 364D23A2162B26BB0002CFC9 /* PBXTextBookmark */;
 			364D23A3162B26D10002CFC9 /* PBXTextBookmark */ = 364D23A3162B26D10002CFC9 /* PBXTextBookmark */;
 			364D23A4162B26DE0002CFC9 /* PBXTextBookmark */ = 364D23A4162B26DE0002CFC9 /* PBXTextBookmark */;
+			364D23A5162B2BA40002CFC9 /* PBXTextBookmark */ = 364D23A5162B2BA40002CFC9 /* PBXTextBookmark */;
+			364D23A6162B2BA40002CFC9 /* PBXTextBookmark */ = 364D23A6162B2BA40002CFC9 /* PBXTextBookmark */;
+			364D23A7162B2BA40002CFC9 /* PBXTextBookmark */ = 364D23A7162B2BA40002CFC9 /* PBXTextBookmark */;
+			364D23A8162B2BA40002CFC9 /* PBXTextBookmark */ = 364D23A8162B2BA40002CFC9 /* PBXTextBookmark */;
+			364D23A9162B2BA40002CFC9 /* PBXTextBookmark */ = 364D23A9162B2BA40002CFC9 /* PBXTextBookmark */;
+			364D23AA162B2BA40002CFC9 /* PBXTextBookmark */ = 364D23AA162B2BA40002CFC9 /* PBXTextBookmark */;
+			364D23AB162B2BA40002CFC9 /* PBXTextBookmark */ = 364D23AB162B2BA40002CFC9 /* PBXTextBookmark */;
+			364D23AC162B2BA40002CFC9 /* PBXTextBookmark */ = 364D23AC162B2BA40002CFC9 /* PBXTextBookmark */;
+			364D23AD162B2BA40002CFC9 /* PBXTextBookmark */ = 364D23AD162B2BA40002CFC9 /* PBXTextBookmark */;
+			364D23AE162B2BCF0002CFC9 /* PBXTextBookmark */ = 364D23AE162B2BCF0002CFC9 /* PBXTextBookmark */;
+			364D23AF162B2BCF0002CFC9 /* PBXTextBookmark */ = 364D23AF162B2BCF0002CFC9 /* PBXTextBookmark */;
+			364D23B0162B2BCF0002CFC9 /* PBXTextBookmark */ = 364D23B0162B2BCF0002CFC9 /* PBXTextBookmark */;
+			364D23B1162B2BEE0002CFC9 /* PBXTextBookmark */ = 364D23B1162B2BEE0002CFC9 /* PBXTextBookmark */;
+			364D23B3162B2E0E0002CFC9 /* PBXBookmark */ = 364D23B3162B2E0E0002CFC9 /* PBXBookmark */;
+			364D23B4162B2E570002CFC9 /* PBXTextBookmark */ = 364D23B4162B2E570002CFC9 /* PBXTextBookmark */;
+			364D23B5162B2E570002CFC9 /* PBXTextBookmark */ = 364D23B5162B2E570002CFC9 /* PBXTextBookmark */;
+			364D23B6162B2E570002CFC9 /* PBXTextBookmark */ = 364D23B6162B2E570002CFC9 /* PBXTextBookmark */;
+			364D23B7162B2E570002CFC9 /* PBXTextBookmark */ = 364D23B7162B2E570002CFC9 /* PBXTextBookmark */;
+			364D23B8162B2E570002CFC9 /* PBXTextBookmark */ = 364D23B8162B2E570002CFC9 /* PBXTextBookmark */;
+			364D23B9162B2E570002CFC9 /* PBXTextBookmark */ = 364D23B9162B2E570002CFC9 /* PBXTextBookmark */;
+			364D23BA162B2E570002CFC9 /* PBXTextBookmark */ = 364D23BA162B2E570002CFC9 /* PBXTextBookmark */;
+			364D23BB162B2E570002CFC9 /* PBXTextBookmark */ = 364D23BB162B2E570002CFC9 /* PBXTextBookmark */;
+			364D23BC162B2E570002CFC9 /* PBXTextBookmark */ = 364D23BC162B2E570002CFC9 /* PBXTextBookmark */;
+			364D23BF162B2E570002CFC9 /* PBXTextBookmark */ = 364D23BF162B2E570002CFC9 /* PBXTextBookmark */;
+			364D23C0162B2E5C0002CFC9 /* PBXTextBookmark */ = 364D23C0162B2E5C0002CFC9 /* PBXTextBookmark */;
+			364D23C1162B2E5C0002CFC9 /* PBXTextBookmark */ = 364D23C1162B2E5C0002CFC9 /* PBXTextBookmark */;
+			364D23C2162B2E5C0002CFC9 /* PBXTextBookmark */ = 364D23C2162B2E5C0002CFC9 /* PBXTextBookmark */;
+			364D23C3162B2E640002CFC9 /* PBXTextBookmark */ = 364D23C3162B2E640002CFC9 /* PBXTextBookmark */;
+			364D23C4162B2E640002CFC9 /* PBXTextBookmark */ = 364D23C4162B2E640002CFC9 /* PBXTextBookmark */;
+			364D23C5162B2E680002CFC9 /* PBXTextBookmark */ = 364D23C5162B2E680002CFC9 /* PBXTextBookmark */;
+			364D23C6162B2E680002CFC9 /* PBXTextBookmark */ = 364D23C6162B2E680002CFC9 /* PBXTextBookmark */;
+			364D23C7162B2E7B0002CFC9 /* PBXTextBookmark */ = 364D23C7162B2E7B0002CFC9 /* PBXTextBookmark */;
+			364D23C8162B2E7B0002CFC9 /* PBXTextBookmark */ = 364D23C8162B2E7B0002CFC9 /* PBXTextBookmark */;
+			364D23C9162B2E7B0002CFC9 /* PBXTextBookmark */ = 364D23C9162B2E7B0002CFC9 /* PBXTextBookmark */;
+			364D23CA162B2E7B0002CFC9 /* PBXTextBookmark */ = 364D23CA162B2E7B0002CFC9 /* PBXTextBookmark */;
+			364D23CB162B2E860002CFC9 /* PBXTextBookmark */ = 364D23CB162B2E860002CFC9 /* PBXTextBookmark */;
+			364D23CC162B2E860002CFC9 /* PBXTextBookmark */ = 364D23CC162B2E860002CFC9 /* PBXTextBookmark */;
+			364D23CD162B2E930002CFC9 /* PBXTextBookmark */ = 364D23CD162B2E930002CFC9 /* PBXTextBookmark */;
+			364D23CE162B2E930002CFC9 /* PBXTextBookmark */ = 364D23CE162B2E930002CFC9 /* PBXTextBookmark */;
+			364D23CF162B2E930002CFC9 /* PBXTextBookmark */ = 364D23CF162B2E930002CFC9 /* PBXTextBookmark */;
+			364D23D0162B2E930002CFC9 /* PBXTextBookmark */ = 364D23D0162B2E930002CFC9 /* PBXTextBookmark */;
+			364D23D1162B2EC10002CFC9 /* PBXTextBookmark */ = 364D23D1162B2EC10002CFC9 /* PBXTextBookmark */;
+			364D23D2162B2EC10002CFC9 /* PBXTextBookmark */ = 364D23D2162B2EC10002CFC9 /* PBXTextBookmark */;
+			364D23D3162B2EC10002CFC9 /* PBXTextBookmark */ = 364D23D3162B2EC10002CFC9 /* PBXTextBookmark */;
+			364D23D4162B2EC10002CFC9 /* PBXTextBookmark */ = 364D23D4162B2EC10002CFC9 /* PBXTextBookmark */;
+			364D23D5162B2EFA0002CFC9 /* PBXTextBookmark */ = 364D23D5162B2EFA0002CFC9 /* PBXTextBookmark */;
+			364D23D6162B2EFA0002CFC9 /* PBXTextBookmark */ = 364D23D6162B2EFA0002CFC9 /* PBXTextBookmark */;
+			364D23D7162B2EFA0002CFC9 /* PBXTextBookmark */ = 364D23D7162B2EFA0002CFC9 /* PBXTextBookmark */;
+			364D23D8162B2EFA0002CFC9 /* PBXTextBookmark */ = 364D23D8162B2EFA0002CFC9 /* PBXTextBookmark */;
+			364D23D9162B2F080002CFC9 /* PBXTextBookmark */ = 364D23D9162B2F080002CFC9 /* PBXTextBookmark */;
+			364D23DA162B2F080002CFC9 /* PBXTextBookmark */ = 364D23DA162B2F080002CFC9 /* PBXTextBookmark */;
+			364D23DB162B2F0E0002CFC9 /* PBXTextBookmark */ = 364D23DB162B2F0E0002CFC9 /* PBXTextBookmark */;
+			364D23DC162B2F0E0002CFC9 /* PBXTextBookmark */ = 364D23DC162B2F0E0002CFC9 /* PBXTextBookmark */;
+			364D23DD162B2F160002CFC9 /* PBXTextBookmark */ = 364D23DD162B2F160002CFC9 /* PBXTextBookmark */;
+			364D23DE162B2F160002CFC9 /* PBXTextBookmark */ = 364D23DE162B2F160002CFC9 /* PBXTextBookmark */;
+			364D23DF162B2F250002CFC9 /* PBXTextBookmark */ = 364D23DF162B2F250002CFC9 /* PBXTextBookmark */;
+			364D23E0162B2F250002CFC9 /* PBXTextBookmark */ = 364D23E0162B2F250002CFC9 /* PBXTextBookmark */;
+			364D23E1162B2F2B0002CFC9 /* PBXTextBookmark */ = 364D23E1162B2F2B0002CFC9 /* PBXTextBookmark */;
+			364D23E2162B2F2B0002CFC9 /* PBXTextBookmark */ = 364D23E2162B2F2B0002CFC9 /* PBXTextBookmark */;
+			364D23E3162B2F360002CFC9 /* PBXTextBookmark */ = 364D23E3162B2F360002CFC9 /* PBXTextBookmark */;
+			364D23E4162B2F360002CFC9 /* PBXTextBookmark */ = 364D23E4162B2F360002CFC9 /* PBXTextBookmark */;
+			364D23E5162B2F4C0002CFC9 /* PBXTextBookmark */ = 364D23E5162B2F4C0002CFC9 /* PBXTextBookmark */;
+			364D23E6162B2F4C0002CFC9 /* PBXTextBookmark */ = 364D23E6162B2F4C0002CFC9 /* PBXTextBookmark */;
+			364D23E7162B2F510002CFC9 /* PBXTextBookmark */ = 364D23E7162B2F510002CFC9 /* PBXTextBookmark */;
+			364D23E8162B2F510002CFC9 /* PBXTextBookmark */ = 364D23E8162B2F510002CFC9 /* PBXTextBookmark */;
+			364D23E9162B2FCB0002CFC9 /* PBXTextBookmark */ = 364D23E9162B2FCB0002CFC9 /* PBXTextBookmark */;
+			364D23EA162B2FCB0002CFC9 /* PBXTextBookmark */ = 364D23EA162B2FCB0002CFC9 /* PBXTextBookmark */;
+			364D23EB162B2FCB0002CFC9 /* PBXTextBookmark */ = 364D23EB162B2FCB0002CFC9 /* PBXTextBookmark */;
+			364D23EC162B2FCB0002CFC9 /* PBXTextBookmark */ = 364D23EC162B2FCB0002CFC9 /* PBXTextBookmark */;
+			364D23ED162B2FDF0002CFC9 /* PBXTextBookmark */ = 364D23ED162B2FDF0002CFC9 /* PBXTextBookmark */;
+			364D23EE162B2FDF0002CFC9 /* PBXTextBookmark */ = 364D23EE162B2FDF0002CFC9 /* PBXTextBookmark */;
+			364D23EF162B2FDF0002CFC9 /* PBXTextBookmark */ = 364D23EF162B2FDF0002CFC9 /* PBXTextBookmark */;
+			364D23F0162B309D0002CFC9 /* PBXTextBookmark */ = 364D23F0162B309D0002CFC9 /* PBXTextBookmark */;
+			364D23F1162B309D0002CFC9 /* PBXTextBookmark */ = 364D23F1162B309D0002CFC9 /* PBXTextBookmark */;
+			364D23F2162B30B20002CFC9 /* PBXTextBookmark */ = 364D23F2162B30B20002CFC9 /* PBXTextBookmark */;
+			364D23F3162B30B20002CFC9 /* PBXTextBookmark */ = 364D23F3162B30B20002CFC9 /* PBXTextBookmark */;
+			364D23F4162B31490002CFC9 /* PBXTextBookmark */ = 364D23F4162B31490002CFC9 /* PBXTextBookmark */;
+			364D23F5162B31490002CFC9 /* PBXTextBookmark */ = 364D23F5162B31490002CFC9 /* PBXTextBookmark */;
+			364D23F6162B31490002CFC9 /* PBXTextBookmark */ = 364D23F6162B31490002CFC9 /* PBXTextBookmark */;
+			364D23F7162B31490002CFC9 /* PBXTextBookmark */ = 364D23F7162B31490002CFC9 /* PBXTextBookmark */;
+			364D23F8162B32630002CFC9 /* PBXTextBookmark */ = 364D23F8162B32630002CFC9 /* PBXTextBookmark */;
+			364D23F9162B32630002CFC9 /* PBXTextBookmark */ = 364D23F9162B32630002CFC9 /* PBXTextBookmark */;
+			364D23FA162B32630002CFC9 /* PBXTextBookmark */ = 364D23FA162B32630002CFC9 /* PBXTextBookmark */;
+			364D23FB162B32630002CFC9 /* PBXTextBookmark */ = 364D23FB162B32630002CFC9 /* PBXTextBookmark */;
+			364D23FC162B427C0002CFC9 /* PBXTextBookmark */ = 364D23FC162B427C0002CFC9 /* PBXTextBookmark */;
+			364D23FD162B427C0002CFC9 /* PBXTextBookmark */ = 364D23FD162B427C0002CFC9 /* PBXTextBookmark */;
+			364D23FE162B427C0002CFC9 /* PBXTextBookmark */ = 364D23FE162B427C0002CFC9 /* PBXTextBookmark */;
+			364D23FF162B427C0002CFC9 /* PBXTextBookmark */ = 364D23FF162B427C0002CFC9 /* PBXTextBookmark */;
+			364D2400162B427C0002CFC9 /* PBXTextBookmark */ = 364D2400162B427C0002CFC9 /* PBXTextBookmark */;
+			364D2401162B427C0002CFC9 /* PBXTextBookmark */ = 364D2401162B427C0002CFC9 /* PBXTextBookmark */;
+			364D2402162B42A20002CFC9 /* PBXTextBookmark */ = 364D2402162B42A20002CFC9 /* PBXTextBookmark */;
+			364D2403162B42A20002CFC9 /* PBXTextBookmark */ = 364D2403162B42A20002CFC9 /* PBXTextBookmark */;
+			364D2404162B43C50002CFC9 /* PBXTextBookmark */ = 364D2404162B43C50002CFC9 /* PBXTextBookmark */;
+			364D2405162B43C50002CFC9 /* PBXTextBookmark */ = 364D2405162B43C50002CFC9 /* PBXTextBookmark */;
+			364D2406162B44D50002CFC9 /* PBXTextBookmark */ = 364D2406162B44D50002CFC9 /* PBXTextBookmark */;
+			364D2407162B44D50002CFC9 /* PBXTextBookmark */ = 364D2407162B44D50002CFC9 /* PBXTextBookmark */;
+			364D2408162B458B0002CFC9 /* PBXTextBookmark */ = 364D2408162B458B0002CFC9 /* PBXTextBookmark */;
+			364D2409162B458B0002CFC9 /* PBXTextBookmark */ = 364D2409162B458B0002CFC9 /* PBXTextBookmark */;
+			364D240A162B458B0002CFC9 /* PBXTextBookmark */ = 364D240A162B458B0002CFC9 /* PBXTextBookmark */;
+			364D240B162B459B0002CFC9 /* PBXTextBookmark */ = 364D240B162B459B0002CFC9 /* PBXTextBookmark */;
+			364D240C162B45A40002CFC9 /* PBXTextBookmark */ = 364D240C162B45A40002CFC9 /* PBXTextBookmark */;
+			364D240D162B45A40002CFC9 /* PBXTextBookmark */ = 364D240D162B45A40002CFC9 /* PBXTextBookmark */;
+			364D240F162B45EF0002CFC9 /* PBXTextBookmark */ = 364D240F162B45EF0002CFC9 /* PBXTextBookmark */;
+			364D2410162B45EF0002CFC9 /* PBXTextBookmark */ = 364D2410162B45EF0002CFC9 /* PBXTextBookmark */;
+			364D2411162B45EF0002CFC9 /* PBXTextBookmark */ = 364D2411162B45EF0002CFC9 /* PBXTextBookmark */;
+			364D2412162B45EF0002CFC9 /* PBXTextBookmark */ = 364D2412162B45EF0002CFC9 /* PBXTextBookmark */;
+			364D2413162B45EF0002CFC9 /* PBXTextBookmark */ = 364D2413162B45EF0002CFC9 /* PBXTextBookmark */;
+			364D2414162B46D70002CFC9 /* PBXTextBookmark */ = 364D2414162B46D70002CFC9 /* PBXTextBookmark */;
+			364D2415162B46D70002CFC9 /* PBXTextBookmark */ = 364D2415162B46D70002CFC9 /* PBXTextBookmark */;
+			364D2416162B46D70002CFC9 /* PBXTextBookmark */ = 364D2416162B46D70002CFC9 /* PBXTextBookmark */;
+			364D2417162B46D70002CFC9 /* PBXTextBookmark */ = 364D2417162B46D70002CFC9 /* PBXTextBookmark */;
+			364D2418162B46D70002CFC9 /* PBXTextBookmark */ = 364D2418162B46D70002CFC9 /* PBXTextBookmark */;
+			364D2419162B47110002CFC9 /* PBXTextBookmark */ = 364D2419162B47110002CFC9 /* PBXTextBookmark */;
+			364D241A162B47110002CFC9 /* PBXTextBookmark */ = 364D241A162B47110002CFC9 /* PBXTextBookmark */;
+			364D241B162B47110002CFC9 /* PBXTextBookmark */ = 364D241B162B47110002CFC9 /* PBXTextBookmark */;
+			364D241C162B471C0002CFC9 /* PBXTextBookmark */ = 364D241C162B471C0002CFC9 /* PBXTextBookmark */;
+			364D241D162B47490002CFC9 /* PBXTextBookmark */ = 364D241D162B47490002CFC9 /* PBXTextBookmark */;
+			364D241E162B475F0002CFC9 /* PBXTextBookmark */ = 364D241E162B475F0002CFC9 /* PBXTextBookmark */;
+			364D241F162B475F0002CFC9 /* PBXTextBookmark */ = 364D241F162B475F0002CFC9 /* PBXTextBookmark */;
+			364D2420162B475F0002CFC9 /* PBXTextBookmark */ = 364D2420162B475F0002CFC9 /* PBXTextBookmark */;
+			364D2421162B478F0002CFC9 /* PBXTextBookmark */ = 364D2421162B478F0002CFC9 /* PBXTextBookmark */;
+			364D2422162B478F0002CFC9 /* PBXTextBookmark */ = 364D2422162B478F0002CFC9 /* PBXTextBookmark */;
+			364D2423162B478F0002CFC9 /* PBXTextBookmark */ = 364D2423162B478F0002CFC9 /* PBXTextBookmark */;
+			364D2424162B478F0002CFC9 /* PBXTextBookmark */ = 364D2424162B478F0002CFC9 /* PBXTextBookmark */;
+			364D2425162B48EE0002CFC9 /* PBXTextBookmark */ = 364D2425162B48EE0002CFC9 /* PBXTextBookmark */;
+			364D2426162B48EE0002CFC9 /* PBXTextBookmark */ = 364D2426162B48EE0002CFC9 /* PBXTextBookmark */;
+			364D2427162B48EE0002CFC9 /* PBXTextBookmark */ = 364D2427162B48EE0002CFC9 /* PBXTextBookmark */;
+			364D2428162B48EE0002CFC9 /* PBXTextBookmark */ = 364D2428162B48EE0002CFC9 /* PBXTextBookmark */;
+			364D2429162B48EE0002CFC9 /* PBXTextBookmark */ = 364D2429162B48EE0002CFC9 /* PBXTextBookmark */;
+			364D242A162B48F80002CFC9 /* PBXTextBookmark */ = 364D242A162B48F80002CFC9 /* PBXTextBookmark */;
+			364D242B162B49060002CFC9 /* PBXTextBookmark */ = 364D242B162B49060002CFC9 /* PBXTextBookmark */;
+			364D242C162B49060002CFC9 /* PBXTextBookmark */ = 364D242C162B49060002CFC9 /* PBXTextBookmark */;
+			364D242D162B49060002CFC9 /* PBXTextBookmark */ = 364D242D162B49060002CFC9 /* PBXTextBookmark */;
+			364D242E162B49150002CFC9 /* PBXTextBookmark */ = 364D242E162B49150002CFC9 /* PBXTextBookmark */;
+			364D242F162B49420002CFC9 /* PBXTextBookmark */ = 364D242F162B49420002CFC9 /* PBXTextBookmark */;
+			364D2430162B49420002CFC9 /* PBXTextBookmark */ = 364D2430162B49420002CFC9 /* PBXTextBookmark */;
+			364D2431162B49420002CFC9 /* PBXTextBookmark */ = 364D2431162B49420002CFC9 /* PBXTextBookmark */;
+			364D2432162B496A0002CFC9 /* PBXTextBookmark */ = 364D2432162B496A0002CFC9 /* PBXTextBookmark */;
+			364D2433162B49A10002CFC9 /* PBXTextBookmark */ = 364D2433162B49A10002CFC9 /* PBXTextBookmark */;
+			364D2434162B49A10002CFC9 /* PBXTextBookmark */ = 364D2434162B49A10002CFC9 /* PBXTextBookmark */;
+			364D2435162B49A10002CFC9 /* PBXTextBookmark */ = 364D2435162B49A10002CFC9 /* PBXTextBookmark */;
+			364D2436162B49C40002CFC9 /* PBXTextBookmark */ = 364D2436162B49C40002CFC9 /* PBXTextBookmark */;
+			364D2437162B49C40002CFC9 /* PBXTextBookmark */ = 364D2437162B49C40002CFC9 /* PBXTextBookmark */;
+			364D2438162B49C40002CFC9 /* PBXTextBookmark */ = 364D2438162B49C40002CFC9 /* PBXTextBookmark */;
+			364D2439162B49D20002CFC9 /* PBXTextBookmark */ = 364D2439162B49D20002CFC9 /* PBXTextBookmark */;
 			36575F2B1612A950009D11CC = 36575F2B1612A950009D11CC /* PBXTextBookmark */;
 			36575F321612A950009D11CC = 36575F321612A950009D11CC /* PBXTextBookmark */;
 			36575F341612A950009D11CC = 36575F341612A950009D11CC /* PBXTextBookmark */;
@@ -17570,9 +19173,9 @@
 	};
 	3657550D16127877009D11CC /* install_dependencies.sh */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {612, 740}}";
+			sepNavIntBoundsRect = "{{0, 0}, {548, 717}}";
 			sepNavSelRange = "{533, 0}";
-			sepNavVisRange = "{0, 699}";
+			sepNavVisRange = "{0, 746}";
 		};
 	};
 	36575E8716128C94009D11CC /* .gitignore */ = {
@@ -17694,16 +19297,17 @@
 	};
 	3684D47B161CF9E4001E34EA /* al.lua */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {579, 11518}}";
-			sepNavSelRange = "{5492, 3}";
-			sepNavVisRange = "{5320, 1326}";
+			sepNavIntBoundsRect = "{{0, 0}, {606, 11297}}";
+			sepNavSelRange = "{21531, 0}";
+			sepNavVisRange = "{10524, 1590}";
+			sepNavWindowFrame = "{{15, 0}, {665, 878}}";
 		};
 	};
 	3684D47C161CF9E4001E34EA /* compiler.lua */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {548, 1300}}";
+			sepNavIntBoundsRect = "{{0, 0}, {548, 1248}}";
 			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{0, 1533}";
+			sepNavVisRange = "{0, 1509}";
 		};
 	};
 	3684D47D161CF9E4001E34EA /* Fluid.lua */ = {
@@ -18255,17 +19859,17 @@
 	};
 	36E5014A161659AA00A85578 /* alivetest.lua */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {548, 11232}}";
-			sepNavSelRange = "{19587, 365}";
-			sepNavVisRange = "{17736, 1740}";
+			sepNavIntBoundsRect = "{{0, 0}, {548, 10738}}";
+			sepNavSelRange = "{19315, 111}";
+			sepNavVisRange = "{18547, 1509}";
 			sepNavWindowFrame = "{{15, 0}, {725, 878}}";
 		};
 	};
 	36E5023B1616812300A85578 /* alivetestaudio.lua */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {548, 3367}}";
-			sepNavSelRange = "{4707, 0}";
-			sepNavVisRange = "{0, 1534}";
+			sepNavIntBoundsRect = "{{0, 0}, {548, 3445}}";
+			sepNavSelRange = "{395, 931}";
+			sepNavVisRange = "{0, 1535}";
 		};
 	};
 	36E502971616895400A85578 /* stdio.h */ = {

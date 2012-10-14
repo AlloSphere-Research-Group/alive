@@ -22,25 +22,33 @@ setmetatable(Audio, {
 	end,
 })
 
-function Audio.pos(x, y, z)
+function Audio.clear()
 	local msg = Audio.message()
 	if msg ~= nil then
-		msg.cmd = lib.AV_AUDIO_POS
-		msg.x = x
-		msg.y = y
-		msg.z = z
+		msg.cmd = lib.AV_AUDIO_CLEAR
 		Audio.send()
 	end
 end
 
-function Audio.quat(x, y, z, w)
+function Audio.pos(v)
+	local msg = Audio.message()
+	if msg ~= nil then
+		msg.cmd = lib.AV_AUDIO_POS
+		msg.x = v.x
+		msg.y = v.y
+		msg.z = v.z
+		Audio.send()
+	end
+end
+
+function Audio.quat(q)
 	local msg = Audio.message()
 	if msg ~= nil then
 		msg.cmd = lib.AV_AUDIO_QUAT
-		msg.x = world.nav.quat.x
-		msg.y = world.nav.quat.y
-		msg.z = world.nav.quat.z
-		msg.w = world.nav.quat.w
+		msg.x = q.x
+		msg.y = q.y
+		msg.z = q.z
+		msg.w = q.w
 		Audio.send()
 	end	
 end 
