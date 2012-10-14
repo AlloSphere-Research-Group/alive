@@ -7,7 +7,7 @@ local gl = require "gl"
 local win = avm.window
 local audio = avm.audio
 
-audio:open(2, 2, 44100, 256)
+audio:open(2, 2, 44100, 256, 6, 6)
 audio:start()
 
 function win:resize(w, h)

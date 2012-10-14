@@ -16,10 +16,10 @@ int av_portaudio_callback(	const void *input,
 	double newtime = audio.time + frameCount * audio.samplerate;
 	
 	if (audio.callback) {
-		(audio.callback)(&audio, newtime);
+		//(audio.callback)(&audio, newtime);
 	}
 	
-	//printf(".\n");
+	printf(".\n");
 	
 	audio.time = newtime;
 }

@@ -133,12 +133,20 @@ function Audio:open(inchannels, outchannels, samplerate, blocksize, indevname, o
 	
 	local indev = pa.GetDefaultInputDevice()
 	if indevname then
-		indev = pa.find(indevname) or indev
+		if type(indevname) == "string" then
+			indev = pa.find(indevname) or indev
+		else
+			indev = indevname
+		end
 	end
 	
 	local outdev = pa.GetDefaultOutputDevice()
 	if outdevname then
-		outdev = pa.find(outdevname) or outdev
+		if type(outdevname) == "string" then
+			outdev = pa.find(outdevname) or outdev
+		else
+			outdev = outdevname
+		end
 	end
 	
 	local errptr = ffi.new("PaError[1]")
