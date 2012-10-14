@@ -3,15 +3,20 @@
 
 #include "avm.h"
 
-#ifdef __APPLE__
-#include <OpenGL/OpenGL.h>
-#include <GLUT/glut.h>
-#else
-#include <GL/gl.h>
-#include <GL/glut.h>
-#endif
+#if defined(WIN32) || defined(__WINDOWS_MM__) || defined(WIN64)
+	#define AV_WINDOWS 1
 
-#include "portaudio.h"
+#elif defined( __APPLE__ ) && defined( __MACH__ )
+	#define AV_OSX 1
+	#include <OpenGL/OpenGL.h>
+	#include <GLUT/glut.h>
+
+#else
+	#define AV_LINUX 1
+	#include <GL/gl.h>
+	#include <GL/glut.h>
+	
+#endif
 
 extern "C" {
 	#include "lua.h"
@@ -23,13 +28,6 @@ extern "C" {
 
 extern "C" {
 	void av_tick();
-	
-	int av_portaudio_callback(	const void *input, 
-								void *output,
-								unsigned long frameCount,
-								const PaStreamCallbackTimeInfo* timeInfo,
-								PaStreamCallbackFlags statusFlags,
-								void *userData );
 }
 
 /*

@@ -1,8 +1,15 @@
 #include "avm_dev.h"
 #include "uv_utils.h"
 
+#ifdef AV_WINDOWS
+	#include <windows.h>
+#else
+	#include <sys/time.h>
+	#include <time.h>
+	#include <libgen.h>
+#endif
+
 #include <string.h>
-#include <libgen.h>
 
 // the path from where it was invoked, e.g. user workspace:
 char workpath[PATH_MAX];
@@ -26,11 +33,14 @@ void getpaths(int argc, char ** argv) {
 	
 	// get binary path:
 	char tmppath[PATH_MAX];
-	#ifdef __APPLE__
+	#ifdef AV_OSX
 		if (argc > 0) {
 			realpath(argv[0], tmppath);
 		}
 		snprintf(apppath, PATH_MAX, "%s/", dirname(tmppath));
+	#elif defined(AV_WINDOWS)
+		// Windows only:
+		// GetModuleFileName(NULL, apppath, PATH_MAX)
 	#else
 		// Linux only?
 		int count = readlink("/proc/self/exe", tmppath, PATH_MAX);
@@ -41,18 +51,24 @@ void getpaths(int argc, char ** argv) {
 		}
 		snprintf(apppath, PATH_MAX, "%s/", dirname(tmppath));
 	#endif
-	// Windows only:
-	// GetModuleFileName(NULL, apppath, PATH_MAX)
 	printf("apppath %s\n", apppath);
+}
+
+void av_sleep(double seconds) {
+	#ifdef AV_WINDOWS
+		Sleep((DWORD)(seconds * 1.0e3));
+	#else
+		time_t sec = (time_t)seconds;
+		long long int nsec = 1.0e9 * (seconds - (double)sec);
+		timespec tspec = { sec, nsec };
+		while (nanosleep(&tspec, &tspec) == -1) {
+			continue;
+		}
+	#endif
 }
 
 void av_tick() {
 	uv_run_once(mainloop);
-}
-
-void av_sleep(double seconds) {
-	// there may be better options than this, but it will do for now: 
-	Pa_Sleep(seconds * 1000);
 }
 
 int main_idle(int status) {
@@ -106,10 +122,12 @@ int main(int argc, char * argv[]) {
 	new Idler(mainloop, main_idle);
 	
 	// initialize window:
-	av_Window * win = av_window_create();
+	//av_Window * win = 
+	av_window_create();
 	
 	// initialize audio:
-	av_Audio * audio = av_audio_get();
+	//av_Audio * audio = 
+	av_audio_get();
 	
 	// start watching:
 	const char * main_filename = "main.lua";

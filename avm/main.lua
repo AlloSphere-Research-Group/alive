@@ -7,7 +7,6 @@ local gl = require "gl"
 local win = avm.window
 local audio = avm.audio
 
-audio:open(2, 2, 44100, 256, 6, 6)
 audio:start()
 
 function win:resize(w, h)
@@ -38,6 +37,8 @@ function win:draw()
 	gl.Clear(gl.COLOR_BUFFER_BIT, gl.DEPTH_BUFFER_BIT)
 	
 	gl.Viewport(0, 0, self.width, self.height)
+	
+	
 	
 	
 	

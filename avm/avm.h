@@ -34,13 +34,16 @@ void av_window_setdim(av_Window * self, int x, int y);
 typedef struct av_Audio {
 	double time;		// in seconds
 	double samplerate;
+	unsigned int blocksize;
+	unsigned int indevice, outdevice;
+	unsigned int inchannels, outchannels;
 	
 	void (*callback)(struct av_Audio * self, double sampletime);
 } av_Audio;
 
 av_Audio * av_audio_get();
 
-void * av_audio_open(int inchannels, int outchannels, double samplerate, int blocksize, int indev, int outdev, int * err);
+void av_audio_start(av_Audio * self);
 
 #ifdef __cplusplus
 }
