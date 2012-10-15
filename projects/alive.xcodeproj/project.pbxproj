@@ -3460,6 +3460,7 @@
 		364D23B2162B2C980002CFC9 /* vec.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = vec.lua; sourceTree = "<group>"; };
 		364D240E162B45CB0002CFC9 /* nav.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = nav.lua; sourceTree = "<group>"; };
 		364D2446162B4B5E0002CFC9 /* utils.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = utils.lua; sourceTree = "<group>"; };
+		364D2615162BA9930002CFC9 /* codegen.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = codegen.lua; sourceTree = "<group>"; };
 		36575226161277FD009D11CC /* corner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = corner.png; sourceTree = "<group>"; };
 		36575227161277FD009D11CC /* folder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = folder.png; sourceTree = "<group>"; };
 		36575228161277FD009D11CC /* index.htm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.htm; sourceTree = "<group>"; };
@@ -14125,6 +14126,7 @@
 				364D2445162B4B5E0002CFC9 /* gl */,
 				364D240E162B45CB0002CFC9 /* nav.lua */,
 				364D23B2162B2C980002CFC9 /* vec.lua */,
+				364D2615162BA9930002CFC9 /* codegen.lua */,
 			);
 			path = modules;
 			sourceTree = "<group>";

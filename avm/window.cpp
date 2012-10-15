@@ -67,7 +67,6 @@ void onkeyup(unsigned char k, int x, int y) {
 
 void onspecialkeydown(int key, int x, int y) {
 	getmodifiers();
-	printf("special %d\n", key);
 	
 	#define CS(k) case GLUT_KEY_##k: key = AV_KEY_##k; break;
 	switch(key){
@@ -81,7 +80,6 @@ void onspecialkeydown(int key, int x, int y) {
 	}
 	#undef CS
 	
-	printf("special %d\n", key);
 	if (win.onkey) {
 		(win.onkey)(&win, 1, key);
 	}
@@ -89,7 +87,6 @@ void onspecialkeydown(int key, int x, int y) {
 
 void onspecialkeyup(int key, int x, int y) {
 	getmodifiers();
-	printf("special up %d\n", key);
 	
 	#define CS(k) case GLUT_KEY_##k: key = AV_KEY_##k; break;
 	switch(key){
@@ -103,7 +100,6 @@ void onspecialkeyup(int key, int x, int y) {
 	}
 	#undef CS
 	
-	printf("special up %d\n", key);
 	if (win.onkey) {
 		(win.onkey)(&win, 2, key);
 	}

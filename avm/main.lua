@@ -32,7 +32,7 @@ world = world or {
 	),
 }
 world.dimhalf = world.dim/2
-world.nav.pos = world.nav.pos or world.dimhalf
+world.nav.pos = world.dimhalf
 
 audio.clear()
 audio.start()
@@ -57,7 +57,7 @@ local keydown = {
 	[100] = function() world.nav.turn.z =  nav_turn.z end,
 	
 	[96] = function()
-		world.nav.pos = world.dim / 2
+		world.nav.pos = world.dimhalf
 		world.nav.quat:identity()
 	end,
 	
@@ -117,7 +117,7 @@ end
 
 local points = {}
 for i = 1, 100 do
-	points[i] = vec3(srandom(), srandom(), srandom())
+	points[i] = vec3(srandom(), srandom(), srandom()):add(world.dimhalf)
 end
 
 function win:draw()

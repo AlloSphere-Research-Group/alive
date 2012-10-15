@@ -257,7 +257,7 @@
 						<dict>
 							<key>PBXSmartGroupTreeModuleColumnWidthsKey</key>
 							<array>
-								<real>264</real>
+								<real>232</real>
 							</array>
 							<key>PBXSmartGroupTreeModuleColumnsKey_v4</key>
 							<array>
@@ -287,13 +287,14 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>79</integer>
+									<integer>92</integer>
+									<integer>80</integer>
 									<integer>70</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 1175}, {264, 769}}</string>
+							<string>{{0, 1175}, {232, 769}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -303,19 +304,19 @@
 					<key>GeometryConfiguration</key>
 					<dict>
 						<key>Frame</key>
-						<string>{{0, 0}, {281, 787}}</string>
+						<string>{{0, 0}, {249, 787}}</string>
 						<key>GroupTreeTableConfiguration</key>
 						<array>
 							<string>MainColumn</string>
-							<real>264</real>
+							<real>232</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>328 50 895 828 0 0 1440 878 </string>
+						<string>6 50 895 828 0 0 1440 878 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
 					<key>Proportion</key>
-					<string>281pt</string>
+					<string>249pt</string>
 				</dict>
 				<dict>
 					<key>Dock</key>
@@ -328,7 +329,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>36575212161277BE009D11CC</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>window.cpp</string>
+								<string>codegen.lua</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -336,11 +337,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>36575213161277BE009D11CC</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>window.cpp</string>
+										<string>codegen.lua</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>364D2473162B4EE80002CFC9</string>
+										<string>367FC941162C145E002B96ED</string>
 										<key>history</key>
 										<array>
 											<string>36575F2B1612A950009D11CC</string>
@@ -451,7 +452,6 @@
 											<string>364D234B162B20CA0002CFC9</string>
 											<string>364D2364162B22560002CFC9</string>
 											<string>364D2371162B22C30002CFC9</string>
-											<string>364D239D162B25B60002CFC9</string>
 											<string>364D23A5162B2BA40002CFC9</string>
 											<string>364D23B7162B2E570002CFC9</string>
 											<string>364D23B8162B2E570002CFC9</string>
@@ -469,11 +469,13 @@
 											<string>364D2462162B4E340002CFC9</string>
 											<string>364D2464162B4E340002CFC9</string>
 											<string>364D2465162B4E340002CFC9</string>
-											<string>364D246E162B4EDD0002CFC9</string>
 											<string>364D246F162B4EDD0002CFC9</string>
 											<string>364D2470162B4EDD0002CFC9</string>
 											<string>364D2471162B4EDD0002CFC9</string>
-											<string>364D246A162B4EAA0002CFC9</string>
+											<string>364D2475162B4F850002CFC9</string>
+											<string>364D2476162B4F850002CFC9</string>
+											<string>364D2616162BAA4B0002CFC9</string>
+											<string>364D2797162BEF700002CFC9</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -487,9 +489,9 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {609, 782}}</string>
+								<string>{{0, 0}, {641, 782}}</string>
 								<key>RubberWindowFrame</key>
-								<string>328 50 895 828 0 0 1440 878 </string>
+								<string>6 50 895 828 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -512,9 +514,9 @@
 									<key>GeometryConfiguration</key>
 									<dict>
 										<key>Frame</key>
-										<string>{{10, 27}, {609, -27}}</string>
+										<string>{{10, 27}, {641, -27}}</string>
 										<key>RubberWindowFrame</key>
-										<string>328 50 895 828 0 0 1440 878 </string>
+										<string>6 50 895 828 0 0 1440 878 </string>
 									</dict>
 									<key>Module</key>
 									<string>XCDetailModule</string>
@@ -577,7 +579,7 @@
 						</dict>
 					</array>
 					<key>Proportion</key>
-					<string>609pt</string>
+					<string>641pt</string>
 				</dict>
 			</array>
 			<key>Name</key>
@@ -596,11 +598,11 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>364D19391627BAC80002CFC9</string>
+				<string>367FC939162C1459002B96ED</string>
 				<string>1CA23ED40692098700951B8B</string>
-				<string>364D193A1627BAC80002CFC9</string>
+				<string>367FC93A162C1459002B96ED</string>
 				<string>36575212161277BE009D11CC</string>
-				<string>364D193B1627BAC80002CFC9</string>
+				<string>367FC93B162C1459002B96ED</string>
 				<string>1CA23EDF0692099D00951B8B</string>
 				<string>1CA23EE00692099D00951B8B</string>
 				<string>1CA23EE10692099D00951B8B</string>
@@ -793,7 +795,7 @@
 		<string>/Users/grahamwakefield/code/alive/projects/alive.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>328 50 895 828 0 0 1440 878 </string>
+	<string>6 50 895 828 0 0 1440 878 </string>
 	<key>WindowToolsV3</key>
 	<array>
 		<dict>
