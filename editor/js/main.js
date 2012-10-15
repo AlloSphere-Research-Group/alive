@@ -1,3 +1,5 @@
+var USE_SHARE_JS = false;
+
 window.flashMsg = function(_msg) {
 	var msg = $("<h3>");
 	$(msg).text(_msg);
@@ -118,10 +120,12 @@ $(document).ready( function() {
 				(function() {
 					var name = response.data[i].name;
 					$(a).click(function() {
-						connection = setDoc(name);
-
-						//slaveSocket.emit('cmd', 'read ' + name);
-						//currentFile = name;
+						if(USE_SHARE_JS) {
+							connection = setDoc(name);
+						}else{
+							slaveSocket.emit('cmd', 'read ' + name);
+							currentFile = name;
+						}
 					});
 					$(a).text(name);
                   $(a).css({ display: "block", cursor:"pointer", marginTop:"5px",});
@@ -155,11 +159,13 @@ $(document).ready( function() {
 	
 	slaveSocket.on('read', function (response) {
 		//$("#filename").text(currentFile);
-		console.log("red and attach: "+currentFile)
+		console.log("read and attach: "+currentFile)
 		window.editor.setValue(response.data);
 		//doc.del(0,doc.getLength());
 		//doc.insert(0, response.data);
-		doc.attach_cm(window.editor, true);
+		if(USE_SHARE_JS) {
+			doc.attach_cm(window.editor, true);
+		}
 		//window.editor.refresh();
 	});
 		
@@ -175,36 +181,8 @@ $(document).ready( function() {
 		theme: "vibrant-ink",	
 	});
 	
-    //editor = CodeMirror(document.body, { mode: "coffeescript", tabSize: 2 });
-
-    var connection = setDoc('a.l.i.v.e.');  // Hooking ShareJS and CodeMirror for the first time.
-
-    /*var namefield = document.getElementById('namefield');
-    function fn() {
-        var docName = namefield.value;
-        if (docName) setDoc(docName);
-    }
-
-    if (namefield.addEventListener) {
-        namefield.addEventListener('input', fn, false);
-    } else {
-        namefield.attachEvent('oninput', fn);
-    }*/
-
-	// *** Connection status display
-	var status = document.getElementById('sharejs_status');
-	var register = function(state, klass, text) {
-	connection.on(state, function() {
-	  status.className = 'label ' + klass;
-	  status.innerHTML = text;
-	});
-	};
-
-	register('ok', 'success', 'Online');
-	register('connecting', 'warning', 'Connecting...');
-	register('disconnected', 'important', 'Offline');
-	register('stopped', 'important', 'Error');
-
+    //editor = CodeMirror(document.body, { mode: "coffeescript", tabSize: 2 }); 
+	
 	window.CodeMirror = CodeMirror;	
 	
 	CodeMirror.modeURL = "js/codemirror/mode/%N/%N.js";
@@ -236,6 +214,38 @@ $(document).ready( function() {
 		"Cmd-S": editor_save,
 		"Ctrl-S": editor_save,
 	};
+	
+	var share = function() {
+	    var connection = setDoc('a.l.i.v.e.');  // Hooking ShareJS and CodeMirror for the first time.
+
+	    /*var namefield = document.getElementById('namefield');
+	    function fn() {
+	        var docName = namefield.value;
+	        if (docName) setDoc(docName);
+	    }
+
+	    if (namefield.addEventListener) {
+	        namefield.addEventListener('input', fn, false);
+	    } else {
+	        namefield.attachEvent('oninput', fn);
+	    }*/
+
+		// *** Connection status display
+		var status = document.getElementById('sharejs_status');
+		var register = function(state, klass, text) {
+			connection.on(state, function() {
+			  status.className = 'label ' + klass;
+			  status.innerHTML = text;
+			});
+		};
+
+		register('ok', 'success', 'Online');
+		register('connecting', 'warning', 'Connecting...');
+		register('disconnected', 'important', 'Offline');
+		register('stopped', 'important', 'Error');
+	};
+	
+	// share();
 		
 	window.editor.setOption("keyMap", "alive");
 	
@@ -296,6 +306,5 @@ $(document).ready( function() {
 			//Gibber.codeWidth = $(".CodeMirror").width();
 		});
 	});
-	
-
 });
+
