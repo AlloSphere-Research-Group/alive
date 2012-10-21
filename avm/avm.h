@@ -28,12 +28,10 @@ enum {
 };
 
 typedef struct av_Window {
-	int id;
 	int width, height;
 	int is_fullscreen;
 	int button;
 	int shift, alt, ctrl;
-	
 	double fps;
 	
 	void (*draw)(struct av_Window * self);
@@ -42,6 +40,11 @@ typedef struct av_Window {
 	
 	void (*onkey)(struct av_Window * self, int event, int key);
 	void (*onmouse)(struct av_Window * self, int event, int button, int x, int y);
+	
+	
+	// private fields:
+	int id;
+	int non_fullscreen_width, non_fullscreen_height;
 	
 } av_Window;
 

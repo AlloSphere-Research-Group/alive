@@ -98,17 +98,24 @@ lua_State * av_init_lua() {
 	lua_pushstring(L, apppath);
 	if (lua_pcall(L, 1, 0, 0)) printf("error %s\n", lua_tostring(L, -1));
 	
+	printf("initialized Lua\n");
+	
 	return L;
 }
 
 int main(int argc, char * argv[]) {
-	glutInit(&argc, argv);
 	
 	// initialize paths:
 	getpaths(argc, argv);
 	
 	// execute in the context of wherever this is run from:
 	chdir("./");
+	
+	// initialize window:
+	printf("creating window\n");
+	//av_Window * win = 
+	av_window_create();
+	printf("created window\n");
 	
 	// initialize UV:
 	loop = uv_default_loop();
@@ -118,19 +125,17 @@ int main(int argc, char * argv[]) {
 	
 	// add an idler to prevent uv loop blocking:
 	new Idler(loop, main_idle);
-	
-	// initialize window:
-	//av_Window * win = 
-	av_window_create();
+	printf("created idler\n");
 	
 	// initialize audio:
 	//av_Audio * audio = 
-	av_audio_get();
+	//av_audio_get();
 	
 	// start watching:
 	const char * main_filename = "main.lua";
 	new FileWatcher(loop, main_filename, main_modified);
 	
+	printf("starting\n");
 	glutMainLoop();
 	return 0;
 }

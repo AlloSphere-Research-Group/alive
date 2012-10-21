@@ -6,6 +6,13 @@
 	objectVersion = 42;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		3615A64516348B6400EF802B /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3615A64416348B6400EF802B /* Carbon.framework */; };
+		3615A64716348B6400EF802B /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3615A64616348B6400EF802B /* Cocoa.framework */; };
+		3615A64916348B6400EF802B /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3615A64816348B6400EF802B /* GLUT.framework */; };
+		3615A64B16348B6400EF802B /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3615A64A16348B6400EF802B /* OpenGL.framework */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		362079FB1613F044001D4BEE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -26,6 +33,11 @@
 /* Begin PBXFileReference section */
 		360F39F5161E930400F6E395 /* ALIVE_outline.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ALIVE_outline.txt; sourceTree = "<group>"; };
 		360F39F6161E930400F6E395 /* network.graffle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = network.graffle; sourceTree = "<group>"; };
+		3615A63616348B1F00EF802B /* gluttest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = gluttest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3615A64416348B6400EF802B /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
+		3615A64616348B6400EF802B /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		3615A64816348B6400EF802B /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = /System/Library/Frameworks/GLUT.framework; sourceTree = "<absolute>"; };
+		3615A64A16348B6400EF802B /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = /System/Library/Frameworks/OpenGL.framework; sourceTree = "<absolute>"; };
 		361764631613B55600C2748F /* proxy.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = proxy.js; sourceTree = "<group>"; };
 		361C59801626857B00E08BE8 /* references.bib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = references.bib; sourceTree = "<group>"; };
 		361C59811626859F00E08BE8 /* build.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = build.sh; sourceTree = "<group>"; };
@@ -6278,6 +6290,7 @@
 		36575E8C16128C94009D11CC /* luaopen_osc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = luaopen_osc.cpp; sourceTree = "<group>"; };
 		36575E9016128C94009D11CC /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		36575E9116128C94009D11CC /* test.osc.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = test.osc.lua; sourceTree = "<group>"; };
+		367FCA96162C9825002B96ED /* Shader.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = Shader.lua; sourceTree = "<group>"; };
 		3684D42E161CF373001E34EA /* alive.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = alive.cpp; sourceTree = "<group>"; };
 		3684D45F161CF91F001E34EA /* al_ffi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = al_ffi.cpp; sourceTree = "<group>"; };
 		3684D47B161CF9E4001E34EA /* al.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = al.lua; sourceTree = "<group>"; };
@@ -6322,6 +6335,20 @@
 		36E5FFAE1615541C00A85578 /* uv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uv.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFrameworksBuildPhase section */
+		3615A63416348B1F00EF802B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3615A64516348B6400EF802B /* Carbon.framework in Frameworks */,
+				3615A64716348B6400EF802B /* Cocoa.framework in Frameworks */,
+				3615A64916348B6400EF802B /* GLUT.framework in Frameworks */,
+				3615A64B16348B6400EF802B /* OpenGL.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
 /* Begin PBXGroup section */
 		360F39F4161E930400F6E395 /* misc */ = {
 			isa = PBXGroup;
@@ -6333,6 +6360,14 @@
 			name = misc;
 			path = ../misc;
 			sourceTree = SOURCE_ROOT;
+		};
+		3615A63716348B1F00EF802B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3615A63616348B1F00EF802B /* gluttest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
 		};
 		361C597E1626857100E08BE8 /* avm */ = {
 			isa = PBXGroup;
@@ -14358,6 +14393,7 @@
 			isa = PBXGroup;
 			children = (
 				364D2446162B4B5E0002CFC9 /* utils.lua */,
+				367FCA96162C9825002B96ED /* Shader.lua */,
 			);
 			path = gl;
 			sourceTree = "<group>";
@@ -14374,6 +14410,11 @@
 				365754F1161277FE009D11CC /* projects */,
 				361C597E1626857100E08BE8 /* avm */,
 				3657550A161277FE009D11CC /* vm */,
+				3615A63716348B1F00EF802B /* Products */,
+				3615A64416348B6400EF802B /* Carbon.framework */,
+				3615A64616348B6400EF802B /* Cocoa.framework */,
+				3615A64816348B6400EF802B /* GLUT.framework */,
+				3615A64A16348B6400EF802B /* OpenGL.framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -19338,6 +19379,25 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXNativeTarget section */
+		3615A63516348B1F00EF802B /* gluttest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3615A63B16348B2000EF802B /* Build configuration list for PBXNativeTarget "gluttest" */;
+			buildPhases = (
+				3615A63316348B1F00EF802B /* Sources */,
+				3615A63416348B1F00EF802B /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = gluttest;
+			productName = gluttest;
+			productReference = 3615A63616348B1F00EF802B /* gluttest */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
 /* Begin PBXProject section */
 		3657520A161277BC009D11CC /* Project object */ = {
 			isa = PBXProject;
@@ -19352,6 +19412,7 @@
 				German,
 			);
 			mainGroup = 36575208161277BC009D11CC;
+			productRefGroup = 3615A63716348B1F00EF802B /* Products */;
 			projectDirPath = "";
 			projectReferences = (
 				{
@@ -19369,6 +19430,7 @@
 			);
 			projectRoot = "";
 			targets = (
+				3615A63516348B1F00EF802B /* gluttest */,
 			);
 		};
 /* End PBXProject section */
@@ -19390,7 +19452,59 @@
 		};
 /* End PBXReferenceProxy section */
 
+/* Begin PBXSourcesBuildPhase section */
+		3615A63316348B1F00EF802B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
 /* Begin XCBuildConfiguration section */
+		3615A63916348B2000EF802B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INSTALL_PATH = /usr/local/bin;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = gluttest;
+			};
+			name = Debug;
+		};
+		3615A63A16348B2000EF802B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INSTALL_PATH = /usr/local/bin;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = gluttest;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 		3657520B161277BC009D11CC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -19408,6 +19522,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		3615A63B16348B2000EF802B /* Build configuration list for PBXNativeTarget "gluttest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3615A63916348B2000EF802B /* Debug */,
+				3615A63A16348B2000EF802B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		3657520D161277BC009D11CC /* Build configuration list for PBXProject "alive" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

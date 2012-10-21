@@ -4,7 +4,6 @@
 // the window
 av_Window win;
 
-static bool initialized = 0;
 static bool reload = true;
 
 void timerfunc(int id) {
@@ -36,7 +35,7 @@ void av_window_setfullscreen(av_Window * self, int b) {
 	if (b) {
 		glutFullScreen();
 	} else {
-		glutReshapeWindow(win.width, win.height);
+		glutReshapeWindow(win.non_fullscreen_width, win.non_fullscreen_height);
 	}
 }
 
@@ -127,21 +126,36 @@ void onpassivemotion(int x, int y) {
 
 void ondisplay() {}
 void onreshape(int w, int h) {
+	win.width = w;
+	win.height = h;
 	if (!win.is_fullscreen) {
-		win.width = w;
-		win.height = h;
+		win.non_fullscreen_width = win.width;
+		win.non_fullscreen_height = win.height;
 	}
 	if (win.resize) {
 		(win.resize)(&win, w, h);
 	}
 }
 
+void terminate() {
+	printf("exit -- bye\n");
+}
+
 void initwindow() {
+	static bool initialized = false;
 	if (initialized) return;
+	
+	int argc = 0;
+	char * argv[] = {
+		NULL
+	};
+	glutInit(&argc, argv);
 
 	// initialize window:
 	win.width = 720;
 	win.height = 480;
+	win.non_fullscreen_width = win.width;
+	win.non_fullscreen_height = win.height;
 	win.button = 0;
 	win.is_fullscreen = false;
 	win.fps = 40.;
@@ -153,10 +167,12 @@ void initwindow() {
 //	screen_width = glutGet(GLUT_SCREEN_WIDTH);
 //	screen_height = glutGet(GLUT_SCREEN_HEIGHT);	
 	
+	glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
+	printf("glutCreateWindow:\n");
+	win.id = glutCreateWindow("");	// << FAIL?
+	printf("initializing window\n");
 	glutInitWindowPosition(0, 0);
 	glutInitWindowSize(win.width, win.height);
-	glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
-	win.id = glutCreateWindow("");
 	glutSetWindow(win.id);
 	
 //	glutIgnoreKeyRepeat(1);
@@ -174,6 +190,8 @@ void initwindow() {
 	glutDisplayFunc(ondisplay);
 	
 	glutTimerFunc((unsigned int)(1000.0/win.fps), timerfunc, 0);
+	
+	atexit(terminate);
 
 	initialized = true;
 }
