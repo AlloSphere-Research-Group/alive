@@ -6,6 +6,9 @@ local floor = math.floor
 local vec = require "vec"
 local vec3, quat = vec.vec3, vec.quat
 
+local random = math.random
+local srandom = function() return random()*2-1 end
+
 local Field = {}
 Field.__index = Field
 

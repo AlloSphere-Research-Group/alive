@@ -3,7 +3,7 @@
 
 struct GLUTWindow : public av_Window {
 	GLUTWindow() {
-		width = 720;
+		width = 960;
 		height = 480;
 		button = 0;
 		is_fullscreen = false;
@@ -184,11 +184,11 @@ void initwindow() {
 //	screen_height = glutGet(GLUT_SCREEN_HEIGHT);	
 	
 	glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
+	glutInitWindowSize(win.width, win.height);
+	glutInitWindowPosition(0, 0);
 	printf("glutCreateWindow:\n");
 	win.id = glutCreateWindow("");	// << FAIL?
 	printf("initializing window\n");
-	glutInitWindowPosition(0, 0);
-	glutInitWindowSize(win.width, win.height);
 	glutSetWindow(win.id);
 	
 //	glutIgnoreKeyRepeat(1);

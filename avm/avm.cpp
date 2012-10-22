@@ -111,7 +111,7 @@ int main_modified(const char * filename) {
 		// remove debug.traceback
 		lua_remove(L, 1); 
 	}
-	return 1;
+	return 0;
 }
 
 lua_State * av_dump_lua(lua_State * L, const char * msg) {

@@ -313,7 +313,7 @@ function gen(t)
 		concat(terms, ", \n\t\t")
 	)
 	-- debug:
-	print(string.rep("-", 80)); print(fst); print(string.rep("-", 80))
+	--print(string.rep("-", 80)); print(fst); print(string.rep("-", 80))
 	-- turn it into a function:
 	local f, err = loadstring(fst)
 	if not f then
@@ -425,3 +425,45 @@ local dict = {
 print(generator(dict))
 
 print(map_separator:match(', _separator="foo"'))
+
+
+
+-- TEST --
+function test(s)
+	local g = gen(s)
+	return function(dict)
+		print(g(dict))
+	end
+end
+
+-- basic substitutions:
+
+test{ "numeric $1 $2 $<3>" } 
+	{ "one", "two", "three" }
+	
+test{ "symbolic $a $b $c $<strange_symbol>" } 
+	{ a="one", b="two", c="three", strange_symbol="nice" }
+
+-- TODO: $params.n
+
+-- rule invocations:
+
+-- apply rule with current context
+test{ "use @foo", foo = { "sub-rule $1" }, } 
+	{ "red" } 
+test{ "use @<foo>", foo = { "sub-rule $1" }, } 
+	{ "red" } 
+test{ "use @.:foo", foo = { "sub-rule $1" }, } 
+	{ "red" } 
+
+-- apply rule with sub-context:
+test{ "use @bar:foo", foo = { "sub-rule $1" }, }
+	{ "red", bar = { "blue" }, }
+
+-- special rules
+
+-- conditional
+
+-- iteration
+
+

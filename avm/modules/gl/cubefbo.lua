@@ -2,49 +2,93 @@ local ffi = require "ffi"
 local gl = require "gl"
 local Shader = require "gl.Shader"
 
+print("reloaded")
+
 local vec = require "vec"
 local vec3, quat = vec.vec3, vec.quat
 
 local vs = [[
 	#version 110
-	varying vec2 T;
+	varying vec2 unit;
+	
 	void main(void) {
 		// pass through the texture coordinate (normalized pixel):
-		T = vec2(gl_MultiTexCoord0);
-		gl_Position = vec4(T*2.-1., 0, 1);
+		unit = vec2(gl_MultiTexCoord0)*2.-1.;
+		gl_Position = vec4(unit, 0, 1);
 	}
 ]]
 
 local fs = [[
 	#version 110
 	uniform samplerCube cubeMap;
+	uniform vec4 view;
 	
-	varying vec2 T;
+	varying vec2 unit;
 	
 	float M_PI = 3.1415926536;
 	
+	//	q must be a normalized quaternion
+	vec3 quat_rotate(vec4 q, vec3 v) {
+		// qv = vec4(v, 0) // 'pure quaternion' derived from vector
+		// return ((q * qv) * q^-1).xyz
+		// reduced to 24 multiplies and 17 additions:
+		vec4 p = vec4(
+			q.w*v.x + q.y*v.z - q.z*v.y,	// x
+			q.w*v.y + q.z*v.x - q.x*v.z,	// y
+			q.w*v.z + q.x*v.y - q.y*v.x,	// z
+			-q.x*v.x - q.y*v.y - q.z*v.z	// w
+		);
+		return vec3(
+			p.x*q.w - p.w*q.x + p.z*q.y - p.y*q.z,	// x
+			p.y*q.w - p.w*q.y + p.x*q.z - p.z*q.x,	// y
+			p.z*q.w - p.w*q.z + p.y*q.x - p.x*q.y	// z
+		);
+	}
+	
+	// equiv. quat_rotate(quat_conj(q), v):
+	// q must be a normalized quaternion
+	vec3 quat_unrotate(in vec4 q, in vec3 v) {
+		// return quat_mul(quat_mul(quat_conj(q), vec4(v, 0)), q).xyz;
+		// reduced:
+		vec4 p = vec4(
+			q.w*v.x - q.y*v.z + q.z*v.y,  // x
+			q.w*v.y - q.z*v.x + q.x*v.z,  // y
+			q.w*v.z - q.x*v.y + q.y*v.x,  // z
+			q.x*v.x + q.y*v.y + q.z*v.z   // w
+		);
+		return vec3(
+			p.w*q.x + p.x*q.w + p.y*q.z - p.z*q.y,  // x
+			p.w*q.y + p.y*q.w + p.z*q.x - p.x*q.z,  // y
+			p.w*q.z + p.z*q.w + p.x*q.y - p.y*q.x   // z
+		);
+	}
+	
 	void main (void){
+		
 		// x runs 0..1, convert to angle -PI..PI:
-		float az = M_PI * (T.x*2.-1.);
+		float az = M_PI * (unit.x);
 		// y runs 0..1, convert to angle -PI_2..PI_2:
-		float el = M_PI * 0.5 * (T.y*2.-1.);
+		float el = M_PI * 0.5 * (unit.y);
 		// convert polar to normal:
 		float x1 = sin(az);
 		float y1 = sin(el);
 		float z1 = cos(az);
-		vec3 v = vec3(x1, y1, z1);
+		
+		// rotate into current view:
+		vec3 v = quat_rotate(view, vec3(x1, y1, z1)); 
 		
 		// index into cubemap:
 		vec3 rgb = textureCube(cubeMap, v).rgb;
 		
-		gl_FragColor = vec4(rgb, 1.);
+		gl_FragColor = mix(vec4(rgb, 1.), 0.5+0.5*vec4(v, 1), 0.5);
 	}
 ]]
 
-local cylinder_shader = Shader(vs, fs)
 
 local m = {}
 m.__index = m
+
+local cylinder_shader = Shader(vs, fs)
 
 local Faces = { 
 	POSITIVE_X, NEGATIVE_X, 
@@ -163,7 +207,7 @@ function m:capture(draw, pos, near, far, clearColor)
 	end
 	
 	-- do we really need to do this?
-	gl.PushAttrib(gl.ALL_ATTRIB_BITS)
+	--gl.PushAttrib(gl.ALL_ATTRIB_BITS)
 	
 		
 	-- a 90' fovy, 1/1 aspect perspective matrix:
@@ -187,13 +231,19 @@ function m:capture(draw, pos, near, far, clearColor)
 	gl.BindFramebuffer(gl.FRAMEBUFFER, self.fbo)
 	for face = 0, 5 do
 		gl.DrawBuffer(gl.COLOR_ATTACHMENT0 + face)
+		
+		gl.Enable(gl.SCISSOR_TEST)
+		gl.Scissor(0, 0, self.dim, self.dim)
 		gl.Viewport(0, 0, self.dim, self.dim)
+		
 		gl.ClearColor(clearColor)
 		gl.Clear(gl.COLOR_BUFFER_BIT, gl.DEPTH_BUFFER_BIT)
 		
 		gl.MatrixMode(gl.PROJECTION)
 		gl.LoadMatrix(projection)
 		gl.MatrixMode(gl.MODELVIEW)
+		
+		local s = 0.2
 		
 		if face == 0 then
 			-- gl.TEXTURE_CUBE_MAP_POSITIVE_X   
@@ -204,6 +254,8 @@ function m:capture(draw, pos, near, far, clearColor)
 				1,		0,		0,		0,
 				-pos.z,	-pos.y,	pos.x,	1,	
 			}			
+			gl.ClearColor(s, 0, 0)
+			gl.Clear(gl.COLOR_BUFFER_BIT, gl.DEPTH_BUFFER_BIT)
 		elseif face == 1 then
 			-- gl.TEXTURE_CUBE_MAP_NEGATIVE_X   
 			--gl.LoadMatrix(lookAt(nz, uy, ux, pos))
@@ -213,6 +265,8 @@ function m:capture(draw, pos, near, far, clearColor)
 				-1,		0,		0,		0,
 				pos.z,	-pos.y,	-pos.x,	1,	
 			}
+			gl.ClearColor(0, s, s)
+			gl.Clear(gl.COLOR_BUFFER_BIT, gl.DEPTH_BUFFER_BIT)
 		elseif face == 2 then
 			-- gl.TEXTURE_CUBE_MAP_POSITIVE_Y   
 			--gl.LoadMatrix(lookAt(ux, nz, uy, pos))
@@ -222,6 +276,8 @@ function m:capture(draw, pos, near, far, clearColor)
 				0,		-1,		0,		0,
 				-pos.x,	pos.z,	-pos.y,	1,	
 			}
+			gl.ClearColor(0, s, 0)
+			gl.Clear(gl.COLOR_BUFFER_BIT, gl.DEPTH_BUFFER_BIT)
 		
 		elseif face == 3 then
 			-- gl.TEXTURE_CUBE_MAP_NEGATIVE_Y   
@@ -232,6 +288,8 @@ function m:capture(draw, pos, near, far, clearColor)
 				0,		1,		0,		0,
 				-pos.x,	-pos.z,	pos.y,	1,	
 			}
+			gl.ClearColor(s, 0, s)
+			gl.Clear(gl.COLOR_BUFFER_BIT, gl.DEPTH_BUFFER_BIT)
 		elseif face == 4 then
 			-- gl.TEXTURE_CUBE_MAP_POSITIVE_Z   
 			--gl.LoadMatrix(lookAt(ux, uy, uz, pos))
@@ -241,6 +299,8 @@ function m:capture(draw, pos, near, far, clearColor)
 				0,		0,		1,		0,
 				-pos.x,	-pos.y,	-pos.z,	1,	
 			}
+			gl.ClearColor(0, 0, s)
+			gl.Clear(gl.COLOR_BUFFER_BIT, gl.DEPTH_BUFFER_BIT)
 		else
 			-- gl.TEXTURE_CUBE_MAP_NEGATIVE_Z   
 			--gl.LoadMatrix(lookAt(nx, uy, nz, pos))
@@ -250,19 +310,23 @@ function m:capture(draw, pos, near, far, clearColor)
 				0,		0,		-1,		0,
 				pos.x,	-pos.y,	pos.z,	1,	
 			}
+			gl.ClearColor(s, s, 0)
+			gl.Clear(gl.COLOR_BUFFER_BIT, gl.DEPTH_BUFFER_BIT)
 		end
 		
 		draw()
 	end
+	gl.DrawBuffer(gl.BACK)
 	gl.BindFramebuffer(gl.FRAMEBUFFER, 0)
 	
-	gl.PopAttrib()
+	--gl.PopAttrib()
 end
 
-function m:draw()
+function m:draw(q)
 	self:bind()
 	cylinder_shader:bind()
 	cylinder_shader:uniform("cubeMap", 0)
+	cylinder_shader:uniform("view", q.x, q.y, q.z, q.w)
 	gl.Begin(gl.QUADS)
 		gl.TexCoord(0, 0)	gl.Vertex(0, 0, 0)
 		gl.TexCoord(1, 0)	gl.Vertex(1, 0, 0)

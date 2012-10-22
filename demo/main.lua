@@ -28,6 +28,11 @@ if updating == nil then
 	updating = true
 end
 
+if usecubefbo == nil then
+	usecubefbo = true
+end
+
+
 world = world or {
 	dim = vec3(32, 32, 32),
 	nav = nav(),
@@ -114,8 +119,12 @@ local keydown = {
 		updating = not updating
 	end,
 	
+	[string.byte("c")] = function()
+		usecubefbo = not usecubefbo
+	end,
+	
 	[string.byte("n")] = function() 
-		sugar:noise(0.000001)
+		sugar:noise(0.5)
 	end,
 }
 
@@ -233,7 +242,7 @@ function update()
 		local nav = agent.nav
 		
 		-- user-defined:
-		if i <= 3 then
+		if i <= 4 then
 			-- write to field:
 			sugar:overdub(nav.pos, 1)
 			
@@ -284,6 +293,8 @@ function draw()
 	gl.PolygonMode(gl.FRONT_AND_BACK, gl.FILL)
 	gl.Enable(gl.CULL_FACE)
 	
+	gl.LineWidth(1)
+	
 	phong:bind()
 	phong:uniform("far", 64)
 	
@@ -325,10 +336,23 @@ function draw()
 	gl.DisableClientState(gl.VERTEX_ARRAY)
 	gl.DisableClientState(gl.NORMAL_ARRAY)
 	
+	gl.LineWidth(8)
+	
+	phong:attribute("translate", world.dimhalf.x, world.dimhalf.y, world.dimhalf.z)
+	phong:attribute("scale", 2, 2, 2)
+	phong:attribute("rotate", 0, 0, 0, 1)
+	
+	
+	gl.Begin(gl.LINES)
+		gl.Color(1, 0, 0) gl.Vertex(0, 0, 0) gl.Vertex(1, 0, 0)
+		gl.Color(0, 1, 0) gl.Vertex(0, 0, 0) gl.Vertex(0, 1, 0)
+		gl.Color(0, 0, 1) gl.Vertex(0, 0, 0) gl.Vertex(0, 0, 1)
+	gl.End()
+	
 	phong:unbind()
 	
 	gl.PolygonMode(gl.FRONT_AND_BACK, gl.FILL)
-	gl.Enable(gl.CULL_FACE)
+	gl.Disable(gl.CULL_FACE)
 end
 
 function win:draw()
@@ -364,22 +388,33 @@ function win:draw()
 	-- capture to cubemap
 	fbo:capture(draw, world.nav.pos, 0.1, 100, {world.ambient_color.x, world.ambient_color.y, world.ambient_color.z})
 	
-	gl.Viewport(0, 0, self.width, self.height)
+	-- draw cubemap as a cylindrical projection
+	gl.Enable(gl.SCISSOR_TEST)
+	gl.Scissor(0, 0, self.width/2, self.height)
+	gl.Viewport(0, 0, self.width/2, self.height)
 	gl.Clear(gl.COLOR_BUFFER_BIT, gl.DEPTH_BUFFER_BIT)
 	gl.MatrixMode(gl.PROJECTION)
 	gl.LoadIdentity()
 	gl.MatrixMode(gl.MODELVIEW)
-	gl.LoadIdentity()
-	
-	-- draw cubemap
+	gl.LoadIdentity()	
 	gl.Disable(gl.DEPTH_TEST)
 	gl.DepthMask(true)
-	fbo:draw()
+	fbo:draw(world.nav.quat)
+	gl.DepthMask(false)
+	
+	-- normal render style:
+	gl.Enable(gl.SCISSOR_TEST)
+	gl.Scissor(self.width/2, 0, self.width/2, self.height)
+	gl.Viewport(self.width/2, 0, self.width/2, self.height)
+	gl.ClearColor(world.ambient_color.x, world.ambient_color.y, world.ambient_color.z)
+	gl.Clear(gl.COLOR_BUFFER_BIT, gl.DEPTH_BUFFER_BIT)
+	
+	gl.Enable(gl.DEPTH_TEST)
 	gl.DepthMask(false)
 	
 	-- ordinary setup:
 	gl.MatrixMode(gl.PROJECTION)
-	gl.LoadMatrix(glutils.perspective(90, self.width/self.height, 0.1, 100))
+	gl.LoadMatrix(glutils.perspective(120, self.width/self.height, 0.1, 100))
 	
 	local q = world.nav.quat
 	gl.MatrixMode(gl.MODELVIEW)
@@ -389,6 +424,7 @@ function win:draw()
 		q:uy()
 	))
 	
+	draw()
 	
-	--draw()
+	gl.Disable(gl.SCISSOR_TEST)
 end
