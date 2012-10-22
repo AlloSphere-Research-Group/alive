@@ -1,8 +1,33 @@
 
 #include "avm_dev.h"
 
+struct GLUTWindow : public av_Window {
+	GLUTWindow() {
+		width = 720;
+		height = 480;
+		button = 0;
+		is_fullscreen = false;
+		fps = 40.;
+		
+		ondraw = 0;
+		oncreate = 0;
+		onresize = 0;
+		onvisible = 0;
+		onkey = 0;
+		onmouse = 0;
+		
+		id = 0;
+		non_fullscreen_width = width;
+		non_fullscreen_height = height;
+	}
+	
+	// private fields:
+	int id;
+	int non_fullscreen_width, non_fullscreen_height;
+};
+
 // the window
-av_Window win;
+GLUTWindow win;
 
 static bool reload = true;
 
@@ -12,12 +37,12 @@ void timerfunc(int id) {
 	av_tick();
 	
 	// update window:
-	if (reload && win.create) {
-		(win.create)(&win);
+	if (reload && win.oncreate) {
+		(win.oncreate)(&win);
 		reload = false;
 	}
-	if (win.draw) {
-		(win.draw)(&win);
+	if (win.ondraw) {
+		(win.ondraw)(&win);
 	}	
 	glutSwapBuffers();
 	
@@ -124,6 +149,10 @@ void onpassivemotion(int x, int y) {
 	}
 }
 
+void onvisibility(int state) {
+	if (win.onvisible) (win.onvisible)(&win, state);
+}
+
 void ondisplay() {}
 void onreshape(int w, int h) {
 	win.width = w;
@@ -132,8 +161,8 @@ void onreshape(int w, int h) {
 		win.non_fullscreen_width = win.width;
 		win.non_fullscreen_height = win.height;
 	}
-	if (win.resize) {
-		(win.resize)(&win, w, h);
+	if (win.onresize) {
+		(win.onresize)(&win, w, h);
 	}
 }
 
@@ -150,19 +179,6 @@ void initwindow() {
 		NULL
 	};
 	glutInit(&argc, argv);
-
-	// initialize window:
-	win.width = 720;
-	win.height = 480;
-	win.non_fullscreen_width = win.width;
-	win.non_fullscreen_height = win.height;
-	win.button = 0;
-	win.is_fullscreen = false;
-	win.fps = 40.;
-	win.draw = 0;
-	win.resize = 0;
-	win.onkey = 0;
-	win.onmouse = 0;
 	
 //	screen_width = glutGet(GLUT_SCREEN_WIDTH);
 //	screen_height = glutGet(GLUT_SCREEN_HEIGHT);	
@@ -185,7 +201,7 @@ void initwindow() {
 	glutPassiveMotionFunc(onpassivemotion);
 	glutSpecialFunc(onspecialkeydown);
 	glutSpecialUpFunc(onspecialkeyup);
-//	glutVisibilityFunc(cbVisibility);
+	glutVisibilityFunc(onvisibility);
 	glutReshapeFunc(onreshape);
 	glutDisplayFunc(ondisplay);
 	

@@ -30,14 +30,26 @@ function Audio.clear()
 	end
 end
 
-function Audio.pos(v)
-	local msg = Audio.message()
-	if msg ~= nil then
-		msg.cmd = lib.AV_AUDIO_POS
-		msg.x = v.x
-		msg.y = v.y
-		msg.z = v.z
-		Audio.send()
+function Audio.pos(v, id)
+	if id then
+		local msg = Audio.message()
+		if msg ~= nil then
+			msg.cmd = lib.AV_AUDIO_VOICE_POS
+			msg.id = id
+			msg.x = v.x
+			msg.y = v.y
+			msg.z = v.z
+			Audio.send()
+		end
+	else
+		local msg = Audio.message()
+		if msg ~= nil then
+			msg.cmd = lib.AV_AUDIO_POS
+			msg.x = v.x
+			msg.y = v.y
+			msg.z = v.z
+			Audio.send()
+		end
 	end
 end
 
@@ -52,6 +64,17 @@ function Audio.quat(q)
 		Audio.send()
 	end	
 end 
+
+function Audio.voice(id)
+	local msg = Audio.message()
+	if msg ~= nil then
+		msg.cmd = lib.AV_AUDIO_VOICE_NEW
+		msg.id = id
+			Audio.send()
+	else
+		error("audio message queue overflow")
+	end
+end
 
 ffi.metatype("av_Audio", Audio)
 

@@ -23,12 +23,38 @@ local mouse_events = {
 function Window:__newindex(k, v)
 	if k == "key" then
 		self.onkey = function(self, e, k)
-			v(self, key_events[e], k)
+			local ok, err = pcall(v, self, key_events[e], k)
+			if not ok then print(debug.traceback(err)) end
+		end
+		
+	elseif k == "draw" then
+		self.ondraw = function(self)
+			local ok, err = pcall(v, self)
+			if not ok then print(debug.traceback(err)) end
+		end
+		
+	elseif k == "create" then
+		self.oncreate = function(self)
+			local ok, err = pcall(v, self)
+			if not ok then print(debug.traceback(err)) end
+		end
+		
+	elseif k == "resize" then
+		self.onresize = function(self, w, h)
+			local ok, err = pcall(v, self, w, h)
+			if not ok then print(debug.traceback(err)) end
+		end
+		
+	elseif k == "visible" then
+		self.ondraw = function(self, s)
+			local ok, err = pcall(v, self, s)
+			if not ok then print(debug.traceback(err)) end
 		end
 		
 	elseif k == "mouse" then
 		self.onmouse = function(self, e, b, x, y)
-			v(self, mouse_events[e], b, x, y)
+			local ok, err = pcall(v, self, mouse_events[e], b, x, y)
+			if not ok then print(debug.traceback(err)) end
 		end
 		
 	elseif k == "fullscreen" then

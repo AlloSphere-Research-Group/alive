@@ -11,6 +11,9 @@
 		3615A64716348B6400EF802B /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3615A64616348B6400EF802B /* Cocoa.framework */; };
 		3615A64916348B6400EF802B /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3615A64816348B6400EF802B /* GLUT.framework */; };
 		3615A64B16348B6400EF802B /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3615A64A16348B6400EF802B /* OpenGL.framework */; };
+		36E9BEA21634AB1400FA57B9 /* field.lua in Sources */ = {isa = PBXBuildFile; fileRef = 36E9BEA11634AB1400FA57B9 /* field.lua */; };
+		36E9BFDA1634CA3F00FA57B9 /* isosurface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 36E9BFD91634CA3F00FA57B9 /* isosurface.cpp */; };
+		36E9BFDD1634CAA700FA57B9 /* isosurface.lua in Sources */ = {isa = PBXBuildFile; fileRef = 36E9BFDC1634CAA700FA57B9 /* isosurface.lua */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -6333,6 +6336,9 @@
 		36E5FFAC1615541C00A85578 /* uv-unix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "uv-unix.h"; sourceTree = "<group>"; };
 		36E5FFAD1615541C00A85578 /* uv-win.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "uv-win.h"; sourceTree = "<group>"; };
 		36E5FFAE1615541C00A85578 /* uv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uv.h; sourceTree = "<group>"; };
+		36E9BEA11634AB1400FA57B9 /* field.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = field.lua; sourceTree = "<group>"; };
+		36E9BFD91634CA3F00FA57B9 /* isosurface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = isosurface.cpp; sourceTree = "<group>"; };
+		36E9BFDC1634CAA700FA57B9 /* isosurface.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = isosurface.lua; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -6381,6 +6387,7 @@
 				361C598B162685E000E08BE8 /* avm.cpp */,
 				364D1F51162A228B0002CFC9 /* audio.cpp */,
 				364D1E3B1628E7260002CFC9 /* window.cpp */,
+				36E9BFD91634CA3F00FA57B9 /* isosurface.cpp */,
 				364D1E76162A0A0C0002CFC9 /* modules */,
 				364D1E1C1628E4480002CFC9 /* main.lua */,
 			);
@@ -14159,9 +14166,11 @@
 				364D1E77162A0A0D0002CFC9 /* avm */,
 				364D1E79162A0A0D0002CFC9 /* gl.lua */,
 				364D2445162B4B5E0002CFC9 /* gl */,
-				364D240E162B45CB0002CFC9 /* nav.lua */,
-				364D23B2162B2C980002CFC9 /* vec.lua */,
 				364D2615162BA9930002CFC9 /* codegen.lua */,
+				36E9BEA11634AB1400FA57B9 /* field.lua */,
+				364D240E162B45CB0002CFC9 /* nav.lua */,
+				36E9BFDC1634CAA700FA57B9 /* isosurface.lua */,
+				364D23B2162B2C980002CFC9 /* vec.lua */,
 			);
 			path = modules;
 			sourceTree = "<group>";
@@ -19457,6 +19466,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36E9BEA21634AB1400FA57B9 /* field.lua in Sources */,
+				36E9BFDA1634CA3F00FA57B9 /* isosurface.cpp in Sources */,
+				36E9BFDD1634CAA700FA57B9 /* isosurface.lua in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

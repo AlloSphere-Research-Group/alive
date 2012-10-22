@@ -31,6 +31,8 @@ extern "C" {
 	void av_tick();
 	
 	lua_State * av_init_lua();
+	
+	lua_State * av_dump_lua(lua_State * L, const char * msg);
 }
 
 /*

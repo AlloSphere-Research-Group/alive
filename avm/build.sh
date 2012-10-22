@@ -25,7 +25,7 @@ function generate_ffi_header {
 function build {
 	
 	CC="g++"
-	SOURCES="avm.cpp window.cpp audio.cpp rtaudio-4.0.11/RtAudio.cpp"
+	SOURCES="*.cpp rtaudio-4.0.11/RtAudio.cpp"
 	
 	echo Building
 	if [[ $PLATFORM == 'Darwin' ]]; then

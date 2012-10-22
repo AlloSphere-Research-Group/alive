@@ -78,16 +78,66 @@ int main_idle(int status) {
 }
 
 int main_modified(const char * filename) {
-	if (luaL_dofile(L, filename)) {
-		printf("error: %s\n", lua_tostring(L, -1));
+	if (luaL_loadfile(L, filename)) {
+		printf("error loading %s: %s\n", filename, lua_tostring(L, -1));
+	} else {
+		// get debug.traceback
+		lua_getfield(L, LUA_REGISTRYINDEX, "debug.traceback");
+		lua_insert(L, 1);
+		
+		if (lua_pcall(L, 0, LUA_MULTRET, 1)) {
+			printf("error running %s: %s\n", filename, lua_tostring(L, -1));
+		}
+		
+		// remove debug.traceback
+		lua_remove(L, 1); 
 	}
 	return 1;
+}
+
+lua_State * av_dump_lua(lua_State * L, const char * msg) {
+	printf("Lua (%p): %s\n", L, msg ? msg : "");
+	int top = lua_gettop(L);
+	for (int i=1; i<=top; i++) {
+		switch(lua_type(L, i)) {
+			case LUA_TNIL:
+				printf("%i (-%i): nil\n", i, top+1-i); break;
+			case LUA_TBOOLEAN:
+				printf("%i (-%i): boolean (%s)\n", i, top+1-i, lua_toboolean(L, i) ? "true" : "false"); break;
+			case LUA_TLIGHTUSERDATA:
+				printf("%i (-%i): lightuserdata (%p)\n", i, top+1-i, lua_topointer(L, i)); break;
+			case LUA_TNUMBER:
+				printf("%i (-%i): number (%f)\n", i, top+1-i, lua_tonumber(L, i)); break;
+			case LUA_TSTRING:
+				printf("%i (-%i): string (%s)\n", i, top+1-i, lua_tostring(L, i)); break;
+			case LUA_TUSERDATA:
+			case 10:	// LuaJIT cdata
+//				printf("%i (-%i): userdata (%p)\n", i, top+1-i, lua_topointer(L, i)); break;
+				lua_getglobal(L, "tostring");
+				lua_pushvalue(L, i);
+				lua_call(L, 1, 1);
+				printf("%i (-%i): %s\n", i, top+1-i, lua_tostring(L, -1));
+				lua_pop(L, 1);
+				break;
+//				printf("%i (-%i): userdata (%p)\n", i, top+1-i, lua_topointer(L, i)); break;
+			default:{
+				printf("%i (-%i): %s (%p)\n", i, top+1-i, lua_typename(L, lua_type(L, i)), lua_topointer(L, i));
+			}
+		}
+	}
+	return L;
 }
 
 lua_State * av_init_lua() {
 	// initialize Lua:
 	lua_State * L = lua_open();
 	luaL_openlibs(L);
+	
+	// cache debug.traceback:
+	lua_getglobal(L, "debug");
+	lua_getfield(L, -1, "traceback");
+	lua_setfield(L, LUA_REGISTRYINDEX, "debug.traceback");
+	lua_pop(L, 1); // debug
 	
 	// set up module search paths:
 	if (luaL_loadstring(L, "package.path = ... .. 'modules/?.lua;' .. ... .. 'modules/?/init.lua;' .. package.path")) printf("error %s\n", lua_tostring(L, -1));
@@ -97,6 +147,8 @@ lua_State * av_init_lua() {
 	if (luaL_loadstring(L, "package.cpath = ... .. 'modules/?.so;' .. package.cpath")) printf("error %s\n", lua_tostring(L, -1));
 	lua_pushstring(L, apppath);
 	if (lua_pcall(L, 1, 0, 0)) printf("error %s\n", lua_tostring(L, -1));
+	
+	
 	
 	printf("initialized Lua\n");
 	

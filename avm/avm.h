@@ -34,17 +34,12 @@ typedef struct av_Window {
 	int shift, alt, ctrl;
 	double fps;
 	
-	void (*draw)(struct av_Window * self);
-	void (*create)(struct av_Window * self);
-	void (*resize)(struct av_Window * self, int w, int h);
-	
+	void (*oncreate)(struct av_Window * self);
+	void (*onresize)(struct av_Window * self, int w, int h);
+	void (*onvisible)(struct av_Window * self, int state);
+	void (*ondraw)(struct av_Window * self);
 	void (*onkey)(struct av_Window * self, int event, int key);
 	void (*onmouse)(struct av_Window * self, int event, int button, int x, int y);
-	
-	
-	// private fields:
-	int id;
-	int non_fullscreen_width, non_fullscreen_height;
 	
 } av_Window;
 
@@ -54,6 +49,22 @@ void av_window_setfullscreen(av_Window * self, int b);
 void av_window_settitle(av_Window * self, const char * name);
 void av_window_setdim(av_Window * self, int x, int y);
 
+
+typedef struct av_Isosurface {
+	
+	int computeNormals;		// whether to compute normals
+	int normalizeNormals;	// whether to normalize face normals
+	float level;			// isosurface level
+	
+} av_Isosurface;
+
+av_Isosurface * av_isosurface_create(int dim);
+av_Isosurface * av_isosurface_free(av_Isosurface * self);
+av_Isosurface * av_isosurface_generate(av_Isosurface * self, float * data, int sx, int sy, int sz);
+float * av_isosurface_vertices(av_Isosurface * self);
+float * av_isosurface_normals(av_Isosurface * self);
+unsigned int * av_isosurface_indices(av_Isosurface * self);
+unsigned int av_isosurface_num_indices(av_Isosurface * self);
 
 typedef struct av_Audio {
 	double time;		// in seconds
@@ -68,7 +79,7 @@ typedef struct av_Audio {
 	float * input;
 	float * output;	
 	unsigned int frames;
-	void (*callback)(struct av_Audio * self, double sampletime, float * inputs, float * outputs, int frames);
+	void (*onframes)(struct av_Audio * self, double sampletime, float * inputs, float * outputs, int frames);
 } av_Audio;
 
 typedef enum {

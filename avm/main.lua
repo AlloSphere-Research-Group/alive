@@ -7,6 +7,8 @@ local Shader = require "gl.Shader"
 local vec = require "vec"
 local vec3, quat = vec.vec3, vec.quat
 local nav = require "nav"
+local field = require "field"
+local isosurface = require "isosurface"
 
 local random = math.random
 local srandom = function() return random()*2-1 end
@@ -19,7 +21,11 @@ local pi = math.pi
 -- currently just one window:
 local win = avm.window
 local audio = avm.audio
+audio.clear()
 
+if updating == nil then
+	updating = true
+end
 
 world = world or {
 	dim = vec3(32, 32, 32),
@@ -33,9 +39,47 @@ world = world or {
 	),
 }
 world.dimhalf = world.dim/2
-world.nav.pos = world.dimhalf
+world.nav.pos = world.dimhalf:clone()
 
-audio.clear()
+sugar = sugar or field(world.dim)
+
+sugariso = sugariso or isosurface(world.dim.x)
+sugariso.level = 0.1
+
+local agents = {}
+for i = 1, 50 do
+	local agent = {
+		id = i,
+		sugar = 0,
+	}
+	agent.nav = nav()
+	agent.nav.color:set( 
+		max(0, sin(pi * 1/3 + i/10 * pi * 2)), 
+		max(0, sin(pi * 2/3 + i/10 * pi * 2)), 
+		max(0, sin(           i/10 * pi * 2))
+	)
+	agent.nav.pos:set( srandom(), srandom(), srandom() )
+	agent.nav.pos:mul(world.dim / 2)
+	agent.nav.pos:add(world.nav.pos)
+
+	local s = 0.1
+	agent.nav.scale:set( 2*s, 2*s, s * 3 )
+	agent.nav.quat:fromEuler(srandom(), srandom(), srandom())
+	
+	-- attach a sound:
+	agent.sound = {
+		id = i
+	}
+	
+	-- tell audio:
+	audio.voice(agent.id)
+	audio.pos(agent.nav.pos, agent.id)
+	
+	-- TODO: install gc hander to send C.AUDIO_VOICE_FREE
+	
+	agents[i] = agent
+end
+
 audio.start()
 
 local t = 0.1
@@ -58,12 +102,16 @@ local keydown = {
 	[100] = function() world.nav.turn.z =  nav_turn.z end,
 	
 	[96] = function()
-		world.nav.pos = world.dimhalf
+		world.nav.pos = world.dimhalf:clone()
 		world.nav.quat:identity()
 	end,
 	
+	[32] = function()
+		updating = not updating
+	end,
+	
 	[string.byte("n")] = function() 
-		--sugar:noise(0.000001)
+		sugar:noise(0.000001)
 	end,
 }
 
@@ -153,7 +201,7 @@ void main() {
 	float dist = gl_Position.z / far;
 	F = 1.-pow(dist, 4.);
 	
-	N = gl_Normal;	// normal
+	N = quat_rotate(rotate, gl_NormalMatrix * gl_Normal);	// normal
 	C = gl_Color;	// color
 }
 ]]
@@ -174,11 +222,45 @@ void main() {
 	
 	vec3 color = ambient + C.rgb*l;
 	
-	gl_FragColor = vec4(color, C.a*F) + vec4(1);
+	gl_FragColor = vec4(color, C.a*F) + vec4(0.5);
 }
 ]]
 
 local phong = Shader(vs, fs)
+
+local vertices = ffi.new("vec3f[?]", 12, { 
+	-- under:
+	{ 0, 0, -1 },
+	{ -0.5, 0, 0.5 },
+	{ 0.5, 0, 0.5 },
+	
+	-- back:
+	{ 0, 0.5, 0.5 },
+	{ 0.5, 0, 0.5 },
+	{ -0.5, 0, 0.5 },
+		
+	-- right:
+	{ 0, 0.5, 0.5 },
+	{ 0, 0, -1 },
+	{ 0.5, 0, 0.5 },
+		
+	-- left:
+	{ -0.5, 0, 0.5 },
+	{ 0, 0, -1 },
+	{ 0, 0.5, 0.5 },
+})
+
+local normals = ffi.new("vec3f[?]", 12)
+-- auto face normals:
+for i = 0, 11, 3 do
+	local n = vertices[i]:normal(
+		vertices[i+1],
+		vertices[i+2]
+	)
+	for v = 0, 2 do
+		normals[i+v] = n
+	end
+end
 
 function win:create()
 	-- create shaders, buffers, textures etc. here
@@ -186,26 +268,111 @@ function win:create()
 	
 	-- create shader:
 	phong:create()
+
+	-- initialize GL settings:
+	gl.PolygonMode(gl.FRONT_AND_BACK, gl.FILL)
+	gl.Enable(gl.CULL_FACE)
+	gl.CullFace(gl.BACK)
+	gl.Enable(gl.DEPTH_TEST)
+	gl.Disable(gl.BLEND)
+
 end
 
-local points = {}
-for i = 1, 100 do
-	points[i] = vec3(srandom(), srandom(), srandom()):add(world.dimhalf)
+function win:visible(state)
+	print("visible", state)
+end
+
+function update()
+
+	-- update field:
+	sugar:decay(0.99)
+	-- diffuse:
+	sugar:diffuse(0.01)
+	-- clip:
+	--sugar:min(2)
+
+	-- update all agents:
+	for i, agent in ipairs(agents) do
+		local nav = agent.nav
+		
+		-- user-defined:
+		if i <= 3 then
+			-- write to field:
+			sugar:overdub(nav.pos, 1)
+			
+			nav.color:set(0, 0.3, 1)
+			nav.move:set(0, 0, 0.02*i)
+			nav.turn:set(0.2*srandom(), 0.2*sin(audio.time * 0.001), 0)
+		else
+		
+			-- read field:
+			local f = sugar:sample(nav.pos)
+			
+			nav.move:set(0, 0, 0.2)
+			
+			local df = f - agent.sugar
+			if df < 0 then
+				local ft = 1
+				nav.turn = nav.turn:lerp(
+					vec3(srandom()*pi*ft, srandom()*pi*ft, srandom()*pi*ft),
+					0.1)
+				nav.color:set(f, 0.1, 0.1)
+			else
+				nav.turn = nav.turn:lerp(
+					vec3(0, 0, 0),
+					0.3)
+			end
+				nav.color:set(0.1+f*f*100, 0.1, 0.1)
+			
+			-- remember:
+			agent.sugar = f --agent.sugar + 0.1*(f - agent.sugar)
+		end
+		
+		-- standard pipeline:
+		nav:step()
+		
+		-- calculate position in 'active' space:
+		nav.apos = world.active_origin + ((nav.pos - world.active_origin) %world.dim)
+		-- wrap into active space:
+		nav.pos = nav.apos
+		-- (else mark as inactive?)
+		
+		-- update audio:
+		audio.pos(nav.pos, agent.id)	
+	end
 end
 
 function win:draw()
-	gl.Clear(gl.COLOR_BUFFER_BIT, gl.DEPTH_BUFFER_BIT)
-	
-	gl.Viewport(0, 0, self.width, self.height)
 	
 	-- update navigation:
 	world.nav:step()
-	
-	world.active_origin = world.nav.pos:clone():map(floor) - world.dimhalf
-		
+	world.active_origin = world.nav.pos:clone():sub(world.dimhalf):map(floor)
+				
 	audio.pos(world.nav.pos)
 	audio.quat(world.nav.quat)
 	
+	sugariso:generate(sugar.data, world.active_origin.x, world.active_origin.y, world.active_origin.z)
+	
+	if updating then
+		update()
+	else
+		for i, agent in ipairs(agents) do
+			local nav = agent.nav
+			-- calculate position in 'active' space:
+			nav.apos = world.active_origin + ((nav.pos - world.active_origin) %world.dim)
+			-- wrap into active space:
+			nav.pos = nav.apos
+			-- (else mark as inactive?)
+			
+			-- update audio:
+			audio.pos(nav.pos, agent.id)
+		end
+	end
+	
+	-- RENDERING --
+	
+	gl.Clear(gl.COLOR_BUFFER_BIT, gl.DEPTH_BUFFER_BIT)
+	gl.Viewport(0, 0, self.width, self.height)
 	
 	gl.MatrixMode(gl.PROJECTION)
 	gl.LoadMatrix(glutils.perspective(90, self.width/self.height, 0.1, 100))
@@ -218,20 +385,46 @@ function win:draw()
 		q:uy()
 	))
 	
+	gl.PolygonMode(gl.FRONT_AND_BACK, gl.FILL)
+	
 	phong:bind()
 	phong:uniform("far", 64)
 	
-	phong:attribute("translate", 0, 0, 0)
-	phong:attribute("rotate", 0, 0, 0, 1)
-	phong:attribute("scale", 1, 1, 1)
+	-- draw agents:
+	gl.EnableClientState(gl.VERTEX_ARRAY)
+	gl.EnableClientState(gl.NORMAL_ARRAY)
+	
+	gl.VertexPointer(3, gl.FLOAT, 0, vertices)
+	gl.NormalPointer(gl.FLOAT, 0, normals)	
+	for i, agent in ipairs(agents) do
+		local nav = agent.nav
 		
-	gl.Begin(gl.LINES)
-	gl.Color(1,1,1)
-	for i, p in ipairs(points) do
-		gl.Vertex(p)
+		phong:attribute("scale", nav.scale.x, nav.scale.y, nav.scale.z)
+		phong:attribute("rotate", nav.quat.x, nav.quat.y, nav.quat.z, nav.quat.w)
+		phong:attribute("translate", nav.pos.x, nav.pos.y, nav.pos.z)
+		
+		gl.Color(nav.color.x, nav.color.y, nav.color.z, 1)
+		
+		gl.DrawArrays(gl.TRIANGLES, 0, 12)
 	end
-	gl.End()
+	
+	phong:attribute("scale", world.dim.x, world.dim.y, world.dim.z)
+	phong:attribute("rotate", 0, 0, 0, 1)
+	phong:attribute("translate", world.active_origin.x, world.active_origin.y, world.active_origin.z)
+	gl.Color(1, 1, 1)
+
+	gl.PolygonMode(gl.FRONT_AND_BACK, gl.LINE)
+	gl.VertexPointer(3, gl.FLOAT, 0, sugariso:vertices())
+	gl.NormalPointer(gl.FLOAT, 0, sugariso:normals())	
+	gl.DrawElements(
+		gl.TRIANGLES, 
+		sugariso:num_indices(), 
+		gl.UNSIGNED_INT, 
+		sugariso:indices()
+	)
+	
+	gl.DisableClientState(gl.VERTEX_ARRAY)
+	gl.DisableClientState(gl.NORMAL_ARRAY)
 	
 	phong:unbind()
-	
 end
