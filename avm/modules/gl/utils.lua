@@ -33,16 +33,16 @@ end
 
 local
 function perspective(fovy, aspect, near, far)
-		local f = 1/math.tan(fovy*M_DEG2RAD/2)
-		local D = far-near	
-		local D2 = far+near
-		local fn2 = far*near*2
-		return {	
-			f/aspect,	0,	0,			0,
-			0,			f,	0,			0,
-			0,			0,	-D2/D,		-1,
-			0,			0,	-fn2/D,		0
-		}
+	local f = 1/math.tan(fovy*M_DEG2RAD/2)
+	local D = far-near	
+	local D2 = far+near
+	local fn2 = far*near*2
+	return {	
+		f/aspect,	0,	0,			0,
+		0,			f,	0,			0,
+		0,			0,	-D2/D,		-1,
+		0,			0,	-fn2/D,		0
+	}
 end
 
 local

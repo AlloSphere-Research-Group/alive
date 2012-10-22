@@ -1015,6 +1015,12 @@ GL_FRAMEBUFFER_COMPLETE           = 0x8CD5,
  GL_DEPTH_ATTACHMENT               = 0x8D00,
  GL_STENCIL_ATTACHMENT             = 0x8D20,
  GL_FRAMEBUFFER                    = 0x8D40,
+ GL_RENDERBUFFER                   = 0x8D41,
+ GL_RENDERBUFFER_WIDTH             = 0x8D42,
+ GL_RENDERBUFFER_HEIGHT            = 0x8D43,
+ GL_RENDERBUFFER_INTERNAL_FORMAT   = 0x8D44,
+ GL_RENDERBUFFER_DEPTH_SIZE        = 0x8D54,
+ GL_FRAMEBUFFER_INCOMPLETE_MULTISAMPLE = 0x8D56,
 };
 typedef unsigned int GLenum;
 typedef unsigned char GLboolean;

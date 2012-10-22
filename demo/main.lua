@@ -3,6 +3,7 @@ local avm = require "avm"
 local gl = require "gl"
 local glutils = require "gl.utils"
 local Shader = require "gl.Shader"
+local cubefbo = require "gl.cubefbo"
 
 local vec = require "vec"
 local vec3, quat = vec.vec3, vec.quat
@@ -45,6 +46,9 @@ sugar = sugar or field(world.dim)
 
 sugariso = sugariso or isosurface(world.dim.x)
 sugariso.level = 0.1
+
+phong = phong or dofile("phong.lua")
+fbo = fbo or cubefbo()
 
 local agents = {}
 for i = 1, 50 do
@@ -157,77 +161,7 @@ function win:resize(w, h)
 	print("resize", w, h)
 end
 
-local vs = [[
-#version 110
-
-//attribute vec3 position;
-//attribute vec3 normal;
-//attribute vec4 color;
-attribute vec4 rotate;
-attribute vec3 translate;
-attribute vec3 scale;
-
-uniform float far;
-
-varying vec4 C;
-varying vec3 N;
-varying float F;
-
-//	q must be a normalized quaternion
-vec3 quat_rotate(vec4 q, vec3 v) {
-	// qv = vec4(v, 0) // 'pure quaternion' derived from vector
-	// return ((q * qv) * q^-1).xyz
-	// reduced to 24 multiplies and 17 additions:
-	vec4 p = vec4(
-		q.w*v.x + q.y*v.z - q.z*v.y,	// x
-		q.w*v.y + q.z*v.x - q.x*v.z,	// y
-		q.w*v.z + q.x*v.y - q.y*v.x,	// z
-		-q.x*v.x - q.y*v.y - q.z*v.z	// w
-	);
-	return vec3(
-		p.x*q.w - p.w*q.x + p.z*q.y - p.y*q.z,	// x
-		p.y*q.w - p.w*q.y + p.x*q.z - p.z*q.x,	// y
-		p.z*q.w - p.w*q.z + p.y*q.x - p.x*q.y	// z
-	);
-}
-
-void main() {
-	vec3 position = gl_Vertex.xyz;
-	vec3 P = translate + quat_rotate(rotate, position * scale);
-
-	gl_Position = gl_ProjectionMatrix * gl_ModelViewMatrix * vec4(P, 1.);
-	
-	// fog effect
-	float dist = gl_Position.z / far;
-	F = 1.-pow(dist, 4.);
-	
-	N = quat_rotate(rotate, gl_NormalMatrix * gl_Normal);	// normal
-	C = gl_Color;	// color
-}
-]]
-
-local fs = [[
-#version 110
-
-uniform vec3 ambient;
-
-varying vec4 C;
-varying vec3 N;
-varying float F;
-
-void main() {
-	
-	vec3 L = vec3(1, 1, -1);
-	float l = max(0., dot(N, L));
-	
-	vec3 color = ambient + C.rgb*l;
-	
-	gl_FragColor = vec4(color, C.a*F) + vec4(0.5);
-}
-]]
-
-local phong = Shader(vs, fs)
-
+-- define some vertices for our agents:
 local vertices = ffi.new("vec3f[?]", 12, { 
 	-- under:
 	{ 0, 0, -1 },
@@ -268,6 +202,9 @@ function win:create()
 	
 	-- create shader:
 	phong:create()
+	
+	-- create cubemap:
+	fbo:create()
 
 	-- initialize GL settings:
 	gl.PolygonMode(gl.FRONT_AND_BACK, gl.FILL)
@@ -301,8 +238,8 @@ function update()
 			sugar:overdub(nav.pos, 1)
 			
 			nav.color:set(0, 0.3, 1)
-			nav.move:set(0, 0, 0.02*i)
-			nav.turn:set(0.2*srandom(), 0.2*sin(audio.time * 0.001), 0)
+			nav.move:set(0, 0, 0.08*i*i)
+			nav.turn:set(0.2/i*srandom(), 0.2/i*sin(audio.time * 0.001), 0)
 		else
 		
 			-- read field:
@@ -342,6 +279,58 @@ function update()
 	end
 end
 
+function draw()
+	
+	gl.PolygonMode(gl.FRONT_AND_BACK, gl.FILL)
+	gl.Enable(gl.CULL_FACE)
+	
+	phong:bind()
+	phong:uniform("far", 64)
+	
+	-- draw agents:
+	gl.EnableClientState(gl.VERTEX_ARRAY)
+	gl.EnableClientState(gl.NORMAL_ARRAY)
+	
+	gl.VertexPointer(3, gl.FLOAT, 0, vertices)
+	gl.NormalPointer(gl.FLOAT, 0, normals)	
+	for i, agent in ipairs(agents) do
+		local nav = agent.nav
+		
+		phong:attribute("scale", nav.scale.x, nav.scale.y, nav.scale.z)
+		phong:attribute("rotate", nav.quat.x, nav.quat.y, nav.quat.z, nav.quat.w)
+		phong:attribute("translate", nav.pos.x, nav.pos.y, nav.pos.z)
+		
+		gl.Color(nav.color.x, nav.color.y, nav.color.z, 1)
+		
+		gl.DrawArrays(gl.TRIANGLES, 0, 12)
+	end
+	
+	phong:attribute("scale", world.dim.x, world.dim.y, world.dim.z)
+	phong:attribute("rotate", 0, 0, 0, 1)
+	phong:attribute("translate", world.active_origin.x, world.active_origin.y, world.active_origin.z)
+	gl.Color(1, 1, 1)
+
+	gl.PolygonMode(gl.FRONT_AND_BACK, gl.LINE)
+	gl.Disable(gl.CULL_FACE)
+	
+	gl.VertexPointer(3, gl.FLOAT, 0, sugariso:vertices())
+	gl.NormalPointer(gl.FLOAT, 0, sugariso:normals())	
+	gl.DrawElements(
+		gl.TRIANGLES, 
+		sugariso:num_indices(), 
+		gl.UNSIGNED_INT, 
+		sugariso:indices()
+	)
+	
+	gl.DisableClientState(gl.VERTEX_ARRAY)
+	gl.DisableClientState(gl.NORMAL_ARRAY)
+	
+	phong:unbind()
+	
+	gl.PolygonMode(gl.FRONT_AND_BACK, gl.FILL)
+	gl.Enable(gl.CULL_FACE)
+end
+
 function win:draw()
 	
 	-- update navigation:
@@ -371,9 +360,24 @@ function win:draw()
 	
 	-- RENDERING --
 	
-	gl.Clear(gl.COLOR_BUFFER_BIT, gl.DEPTH_BUFFER_BIT)
-	gl.Viewport(0, 0, self.width, self.height)
 	
+	-- capture to cubemap
+	fbo:capture(draw, world.nav.pos, 0.1, 100, {world.ambient_color.x, world.ambient_color.y, world.ambient_color.z})
+	
+	gl.Viewport(0, 0, self.width, self.height)
+	gl.Clear(gl.COLOR_BUFFER_BIT, gl.DEPTH_BUFFER_BIT)
+	gl.MatrixMode(gl.PROJECTION)
+	gl.LoadIdentity()
+	gl.MatrixMode(gl.MODELVIEW)
+	gl.LoadIdentity()
+	
+	-- draw cubemap
+	gl.Disable(gl.DEPTH_TEST)
+	gl.DepthMask(true)
+	fbo:draw()
+	gl.DepthMask(false)
+	
+	-- ordinary setup:
 	gl.MatrixMode(gl.PROJECTION)
 	gl.LoadMatrix(glutils.perspective(90, self.width/self.height, 0.1, 100))
 	
@@ -385,46 +389,6 @@ function win:draw()
 		q:uy()
 	))
 	
-	gl.PolygonMode(gl.FRONT_AND_BACK, gl.FILL)
 	
-	phong:bind()
-	phong:uniform("far", 64)
-	
-	-- draw agents:
-	gl.EnableClientState(gl.VERTEX_ARRAY)
-	gl.EnableClientState(gl.NORMAL_ARRAY)
-	
-	gl.VertexPointer(3, gl.FLOAT, 0, vertices)
-	gl.NormalPointer(gl.FLOAT, 0, normals)	
-	for i, agent in ipairs(agents) do
-		local nav = agent.nav
-		
-		phong:attribute("scale", nav.scale.x, nav.scale.y, nav.scale.z)
-		phong:attribute("rotate", nav.quat.x, nav.quat.y, nav.quat.z, nav.quat.w)
-		phong:attribute("translate", nav.pos.x, nav.pos.y, nav.pos.z)
-		
-		gl.Color(nav.color.x, nav.color.y, nav.color.z, 1)
-		
-		gl.DrawArrays(gl.TRIANGLES, 0, 12)
-	end
-	
-	phong:attribute("scale", world.dim.x, world.dim.y, world.dim.z)
-	phong:attribute("rotate", 0, 0, 0, 1)
-	phong:attribute("translate", world.active_origin.x, world.active_origin.y, world.active_origin.z)
-	gl.Color(1, 1, 1)
-
-	gl.PolygonMode(gl.FRONT_AND_BACK, gl.LINE)
-	gl.VertexPointer(3, gl.FLOAT, 0, sugariso:vertices())
-	gl.NormalPointer(gl.FLOAT, 0, sugariso:normals())	
-	gl.DrawElements(
-		gl.TRIANGLES, 
-		sugariso:num_indices(), 
-		gl.UNSIGNED_INT, 
-		sugariso:indices()
-	)
-	
-	gl.DisableClientState(gl.VERTEX_ARRAY)
-	gl.DisableClientState(gl.NORMAL_ARRAY)
-	
-	phong:unbind()
+	--draw()
 end

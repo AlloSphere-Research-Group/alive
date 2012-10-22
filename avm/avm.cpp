@@ -12,10 +12,14 @@
 
 #include <string.h>
 
-// the path from where it was invoked, e.g. user workspace:
-char workpath[PATH_MAX];
-// the path where the binary actually resides, e.g. with resources:
+// the path from where it was invoked:
+char launchpath[PATH_MAX];
+// the path where the binary actually resides, e.g. with modules:
 char apppath[PATH_MAX];
+// the path of the start file, e.g. user script / workspace:
+char workpath[PATH_MAX];
+// filename of the main script:
+char mainfile[PATH_MAX];
 
 // the main-thread UV loop:
 static uv_loop_t * loop;
@@ -28,9 +32,9 @@ void getpaths(int argc, char ** argv) {
 		printf("could not derive working path\n");
 		exit(0);
 	}
-	snprintf(workpath, PATH_MAX, "%s/", wd);
+	snprintf(launchpath, PATH_MAX, "%s/", wd);
 	
-	printf("workpath %s\n", workpath);
+	printf("launchpath %s\n", launchpath);
 	
 	// get binary path:
 	char tmppath[PATH_MAX];
@@ -53,6 +57,21 @@ void getpaths(int argc, char ** argv) {
 		snprintf(apppath, PATH_MAX, "%s/", dirname(tmppath));
 	#endif
 	printf("apppath %s\n", apppath);
+	
+	char apath[PATH_MAX];
+	if (argc > 1) {
+		realpath(argv[1], apath);
+		
+		snprintf(workpath, PATH_MAX, "%s/", dirname(apath));
+		snprintf(mainfile, PATH_MAX, "%s", basename(apath));
+	} else {
+		// just copy the current path:
+		snprintf(workpath, PATH_MAX, "%s", launchpath);
+		snprintf(mainfile, PATH_MAX, "%s", "main.lua");
+	}
+	
+	printf("workpath %s\n", workpath);
+	printf("mainfile %s\n", mainfile);
 }
 
 void av_sleep(double seconds) {
@@ -148,8 +167,6 @@ lua_State * av_init_lua() {
 	lua_pushstring(L, apppath);
 	if (lua_pcall(L, 1, 0, 0)) printf("error %s\n", lua_tostring(L, -1));
 	
-	
-	
 	printf("initialized Lua\n");
 	
 	return L;
@@ -161,7 +178,7 @@ int main(int argc, char * argv[]) {
 	getpaths(argc, argv);
 	
 	// execute in the context of wherever this is run from:
-	chdir("./");
+	chdir(workpath);
 	
 	// initialize window:
 	printf("creating window\n");
@@ -184,8 +201,7 @@ int main(int argc, char * argv[]) {
 	//av_audio_get();
 	
 	// start watching:
-	const char * main_filename = "main.lua";
-	new FileWatcher(loop, main_filename, main_modified);
+	new FileWatcher(loop, mainfile, main_modified);
 	
 	printf("starting\n");
 	glutMainLoop();

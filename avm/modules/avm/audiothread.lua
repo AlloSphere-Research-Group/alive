@@ -195,7 +195,7 @@ function callback(self, time, inputs, outputs, frames)
 	-- play all voices:
 	for id, v in pairs(voices) do
 		local ugen = v.ugen
-		local amp = 0.2
+		local amp = 0.05
 		local pan = 0.5
 		local omni = 0
 		
