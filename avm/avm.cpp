@@ -59,16 +59,19 @@ void getpaths(int argc, char ** argv) {
 	printf("apppath %s\n", apppath);
 	
 	char apath[PATH_MAX];
+	#if defined(AV_WINDOWS)
+	#else
 	if (argc > 1) {
 		realpath(argv[1], apath);
 		
-		snprintf(workpath, PATH_MAX, "%s/", dirname(apath));
 		snprintf(mainfile, PATH_MAX, "%s", basename(apath));
+		snprintf(workpath, PATH_MAX, "%s/", dirname(apath));
 	} else {
 		// just copy the current path:
 		snprintf(workpath, PATH_MAX, "%s", launchpath);
 		snprintf(mainfile, PATH_MAX, "%s", "main.lua");
 	}
+	#endif
 	
 	printf("workpath %s\n", workpath);
 	printf("mainfile %s\n", mainfile);

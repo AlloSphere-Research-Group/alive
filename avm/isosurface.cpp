@@ -9,6 +9,7 @@
 #endif
 #include <map>
 #include <vector>
+#include <math.h>
 
 /*
 	 6 --------  7 
