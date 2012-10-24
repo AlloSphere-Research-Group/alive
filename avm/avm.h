@@ -50,6 +50,15 @@ void av_window_settitle(av_Window * self, const char * name);
 void av_window_setdim(av_Window * self, int x, int y);
 
 
+typedef struct av_Image {
+	int width, height, planes;
+	char * data;
+} av_Image;
+
+av_Image * av_image_load(const char * name);
+void av_image_free(av_Image * self);
+
+
 typedef struct av_Isosurface {
 	
 	int computeNormals;		// whether to compute normals

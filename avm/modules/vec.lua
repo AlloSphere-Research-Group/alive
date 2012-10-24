@@ -18,7 +18,7 @@ ffi.cdef [[
 
 local EPSILON = 0.0000001
 
-function define_vec(T, element_type)
+function define_vec(T, element_type, quat_type)
 
 	local vec = {}
 	vec.__index = vec
@@ -112,7 +112,7 @@ function define_vec(T, element_type)
 	end
 
 	function vec:normalized()
-		local unit = s:dot(s)	-- magSqr
+		local unit = self:dot(self)	-- magSqr
 		if unit < EPSILON then 
 			return ffi.new(T, 0, 0, 1)
 		end
@@ -322,12 +322,12 @@ function define_vec(T, element_type)
 	end
 
 	function vec:magSqr()
-		return s:dot(s)
+		return self:dot(self)
 	end
 	vec.area = vec.magSqr
 
 	function vec:mag()
-		return sqrt(s:dot(s)) 
+		return sqrt(self:dot(self)) 
 	end
 	vec.__len = vec.mag
 
@@ -363,9 +363,8 @@ function define_vec(T, element_type)
 	end
 
 	-- returns a quat:
-	--[[
-	getRotationTo = function(src, dst)
-		local q = ffi.new(quatname, 1, 0, 0, 0)
+	function vec.getRotationTo(src, dst)
+		local q = ffi.new(quat_type, 0, 0, 0, 1)
 		local d = src:dot(dst)
 		if (d >= 1) then
 			--// vectors are the same, return identity:
@@ -374,10 +373,10 @@ function define_vec(T, element_type)
 		if (d < -0.999999999) then
 			--// vectors are nearly opposing
 			--// pick an axis to rotate around
-			local axis = ffi.new(name, 0, 1, 0):cross(src)
+			local axis = ffi.new(T, 0, 1, 0):cross(src)
 			-- if colinear, pick another:
 			if (axis:magSqr() < 0.00000000001) then
-				axis = ffi.new(name, 0, 0, 1):cross(src)
+				axis = ffi.new(T, 0, 0, 1):cross(src)
 			end
 			return q:fromAxisAngle(pi, axis)
 		else
@@ -391,7 +390,6 @@ function define_vec(T, element_type)
 		end
 		return q:normalize()
 	end
-	--]]
 
 	function vec:ptr()
 		return ffi.cast(element_type .." *", self)
@@ -628,6 +626,27 @@ function define_quat(T, element_type, vec_type)
 		return self
 	end
 
+	-- derive quaternion as absolute difference between two unit vectors
+	-- v1 and v2 must be normalized. the order of v1,v2 is not important;
+	-- v1 and v2 define a plane orthogonal to a rotational axis
+	-- the rotation around this axis increases as v1 and v2 diverge
+	-- alternatively expressed as Q = (1+gp(v1, v2))/sqrt(2*(1+dot(b, a)))
+	function quat:fromRotor(v1, v2) 
+		--  get the normal to the plane (i.e. the unit bivector containing the v1 and v2)
+		-- normalize because the cross product can get slightly denormalized
+		local axis = v1:cross(v2)
+		axis:normalize()
+		
+		-- the angle between v1 and v2:
+		local dotmag = v1:dot(v2)
+		-- theta is 0 when colinear, pi/2 when orthogonal, pi when opposing
+		local theta = acos(dotmag)
+		
+		-- now generate as normal from angle-axis representation
+		self:fromAxisAngle(theta, axis)
+		return self
+	end
+
 	function quat:fromEuler(az, el, ba) 
 		--[[
 		//http://vered.rose.utoronto.ca/people/david_dir/GEMS/GEMS.html
@@ -658,26 +677,6 @@ function define_quat(T, element_type, vec_type)
 		self.x = tx*c3 + ty*s3
 		self.y = ty*c3 - tx*s3
 		self.z = tw*s3 + tz*c3
-		return self
-	end
-
-	-- v1 and v2 must be normalized
-	-- alternatively expressed as Q = (1+gp(v1, v2))/sqrt(2*(1+dot(b, a)))
-	function quat:fromRotor(v1, v2) 
-		--  get the normal to the plane (i.e. the unit bivector containing the v1 and v2)
-		local n = v1:cross(v2)
-		n = n:normalize() -- normalize because the cross product can get slightly denormalized
-
-		-- calculate half the angle between v1 and v2
-		local dotmag = v1:dot(v2)
-		local theta = acos(dotmag)*0.5
-
-		-- calculate the scaled actual bivector generaed by v1 and v2
-		local bivec = n*sin(theta)
-		self.w = cos(theta)
-		self.x = bivec.x
-		self.y = bivec.y
-		self.z = bivec.z
 		return self
 	end
 
@@ -888,7 +887,7 @@ function define_quat(T, element_type, vec_type)
 			local theta = abs(amt)*acos(along)
 			return self:clone():fromAxisAngle(theta, axis)
 		else
-			return self.identity()
+			return quat.identity()
 		end
 	end
 
@@ -919,8 +918,8 @@ function define_quat(T, element_type, vec_type)
 	return quat
 end
 
-local vec3 = ffi.metatype("vec3", define_vec("vec3", "double"))
-local vec3f = ffi.metatype("vec3f", define_vec("vec3f", "float"))
+local vec3 = ffi.metatype("vec3", define_vec("vec3", "double", "quat"))
+local vec3f = ffi.metatype("vec3f", define_vec("vec3f", "float", "quatf"))
 
 local quat = ffi.metatype("quat", define_quat("quat", "double", "vec3"))
 local quatf = ffi.metatype("quatf", define_quat("quatf", "float", "vec3f"))

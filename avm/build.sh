@@ -36,7 +36,7 @@ function build {
 		
 		LDFLAGS="-w -rdynamic -pagezero_size 10000 -image_base 100000000 -keep_private_externs"
 		LINKERPATHS="-L$ALLOSYSTEMPATH/build/lib -L/usr/lib"
-		LIBRARIES="-lluajit-5.1 -force_load ../externs/libuv/uv.a"
+		LIBRARIES="-lluajit-5.1 -lfreeimage -force_load ../externs/libuv/uv.a"
 		FRAMEWORKS="-framework Carbon -framework Cocoa -framework OpenGL -framework GLUT -framework CoreAudio"
 		
 		$CC -c $CFLAGS $DEFINES $INCLUDEPATHS $SOURCES
@@ -51,7 +51,7 @@ function build {
 		
 		LDFLAGS="-w -rdynamic"
 		LINKERPATHS="-L/usr/local/lib -L/usr/lib"
-		LIBRARIES="-lluajit-5.1 -lGLEW -lGLU -lGL -lglut -lasound ../externs/libuv/libuv.a -lrt -lpthread"
+		LIBRARIES="-lluajit-5.1 -lfreeimage -lGLEW -lGLU -lGL -lglut -lasound ../externs/libuv/libuv.a -lrt -lpthread"
 		
 		$CC -c $CFLAGS $DEFINES $INCLUDEPATHS $SOURCES
 

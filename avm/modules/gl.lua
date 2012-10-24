@@ -2182,6 +2182,21 @@ function gl.TexParameter(target, pname)
 	end
 end
 
+function gl.GenLists(n)
+	n = n or 1
+	n = lib.glGenLists(n)
+	if n == gl.INVALID_VALUE then error("GL_INVALID_VALUE")
+	elseif n == gl.INVALID_OPERATION then error("GL_INVALID_OPERATION")
+	end
+	return n
+end
+
+function gl.DeleteLists(n, range)
+	assert(n)
+	range = range or 1
+	lib.glDeleteLists(n, range)
+end
+
 function gl.GenFramebuffers(n) 
 	n = n or 1
 	local arr = ffi.new("GLuint[?]", n)

@@ -11,6 +11,11 @@
 		3615A64716348B6400EF802B /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3615A64616348B6400EF802B /* Cocoa.framework */; };
 		3615A64916348B6400EF802B /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3615A64816348B6400EF802B /* GLUT.framework */; };
 		3615A64B16348B6400EF802B /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3615A64A16348B6400EF802B /* OpenGL.framework */; };
+		3615F59F16371E2E0081AFC5 /* fluidspace.lua in Sources */ = {isa = PBXBuildFile; fileRef = 3615F59E16371E2E0081AFC5 /* fluidspace.lua */; };
+		3615F5BC163721140081AFC5 /* Texture.lua in Sources */ = {isa = PBXBuildFile; fileRef = 3615F5BB163721140081AFC5 /* Texture.lua */; };
+		3615F5C01637223A0081AFC5 /* image.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3615F5BF1637223A0081AFC5 /* image.cpp */; };
+		3615F5C3163738960081AFC5 /* image.lua in Sources */ = {isa = PBXBuildFile; fileRef = 3615F5C2163738960081AFC5 /* image.lua */; };
+		3615F6B01637684A0081AFC5 /* pointsprite.lua in Sources */ = {isa = PBXBuildFile; fileRef = 3615F6AF1637684A0081AFC5 /* pointsprite.lua */; };
 		36E9BEA21634AB1400FA57B9 /* field.lua in Sources */ = {isa = PBXBuildFile; fileRef = 36E9BEA11634AB1400FA57B9 /* field.lua */; };
 		36E9BFDA1634CA3F00FA57B9 /* isosurface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 36E9BFD91634CA3F00FA57B9 /* isosurface.cpp */; };
 		36E9BFDD1634CAA700FA57B9 /* isosurface.lua in Sources */ = {isa = PBXBuildFile; fileRef = 36E9BFDC1634CAA700FA57B9 /* isosurface.lua */; };
@@ -43,6 +48,11 @@
 		3615A64616348B6400EF802B /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		3615A64816348B6400EF802B /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = /System/Library/Frameworks/GLUT.framework; sourceTree = "<absolute>"; };
 		3615A64A16348B6400EF802B /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = /System/Library/Frameworks/OpenGL.framework; sourceTree = "<absolute>"; };
+		3615F59E16371E2E0081AFC5 /* fluidspace.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = fluidspace.lua; sourceTree = "<group>"; };
+		3615F5BB163721140081AFC5 /* Texture.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = Texture.lua; sourceTree = "<group>"; };
+		3615F5BF1637223A0081AFC5 /* image.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = image.cpp; sourceTree = "<group>"; };
+		3615F5C2163738960081AFC5 /* image.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = image.lua; sourceTree = "<group>"; };
+		3615F6AF1637684A0081AFC5 /* pointsprite.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = pointsprite.lua; sourceTree = "<group>"; };
 		361764631613B55600C2748F /* proxy.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = proxy.js; sourceTree = "<group>"; };
 		361C59801626857B00E08BE8 /* references.bib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = references.bib; sourceTree = "<group>"; };
 		361C59811626859F00E08BE8 /* build.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = build.sh; sourceTree = "<group>"; };
@@ -6379,6 +6389,7 @@
 				361C598B162685E000E08BE8 /* avm.cpp */,
 				364D1F51162A228B0002CFC9 /* audio.cpp */,
 				364D1E3B1628E7260002CFC9 /* window.cpp */,
+				3615F5BF1637223A0081AFC5 /* image.cpp */,
 				36E9BFD91634CA3F00FA57B9 /* isosurface.cpp */,
 				364D1E76162A0A0C0002CFC9 /* modules */,
 			);
@@ -14172,6 +14183,7 @@
 				364D1E78162A0A0D0002CFC9 /* header.lua */,
 				364D1F50162A227C0002CFC9 /* audio.lua */,
 				364D22EE162AA5C60002CFC9 /* audiothread.lua */,
+				3615F5C2163738960081AFC5 /* image.lua */,
 				364D1EBA162A15D10002CFC9 /* window.lua */,
 			);
 			path = avm;
@@ -14392,9 +14404,10 @@
 		364D2445162B4B5E0002CFC9 /* gl */ = {
 			isa = PBXGroup;
 			children = (
-				364D2446162B4B5E0002CFC9 /* utils.lua */,
-				367FCA96162C9825002B96ED /* Shader.lua */,
 				36E9C43A163509D600FA57B9 /* cubefbo.lua */,
+				367FCA96162C9825002B96ED /* Shader.lua */,
+				3615F5BB163721140081AFC5 /* Texture.lua */,
+				364D2446162B4B5E0002CFC9 /* utils.lua */,
 			);
 			path = gl;
 			sourceTree = "<group>";
@@ -19323,8 +19336,10 @@
 		36E9C404163502BA00FA57B9 /* demo */ = {
 			isa = PBXGroup;
 			children = (
+				3615F59E16371E2E0081AFC5 /* fluidspace.lua */,
 				364D1E1C1628E4480002CFC9 /* main.lua */,
 				36E9C4191635068500FA57B9 /* phong.lua */,
+				3615F6AF1637684A0081AFC5 /* pointsprite.lua */,
 			);
 			name = demo;
 			path = ../demo;
@@ -19411,6 +19426,11 @@
 				36E9BFDD1634CAA700FA57B9 /* isosurface.lua in Sources */,
 				36E9C41A1635068500FA57B9 /* phong.lua in Sources */,
 				36E9C43B163509D600FA57B9 /* cubefbo.lua in Sources */,
+				3615F59F16371E2E0081AFC5 /* fluidspace.lua in Sources */,
+				3615F5BC163721140081AFC5 /* Texture.lua in Sources */,
+				3615F5C01637223A0081AFC5 /* image.cpp in Sources */,
+				3615F5C3163738960081AFC5 /* image.lua in Sources */,
+				3615F6B01637684A0081AFC5 /* pointsprite.lua in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
