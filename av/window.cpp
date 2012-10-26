@@ -1,5 +1,5 @@
 
-#include "avm_dev.h"
+#include "av_dev.h"
 
 struct GLUTWindow : public av_Window {
 	GLUTWindow() {

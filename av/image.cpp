@@ -1,5 +1,5 @@
 
-#include "avm_dev.h"
+#include "av_dev.h"
 #include "FreeImage.h"
 
 #include <string.h>

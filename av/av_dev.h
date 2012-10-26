@@ -1,7 +1,7 @@
-#ifndef ALIVE_AVM_DEV_H
-#define ALIVE_AVM_DEV_H
+#ifndef ALIVE_AV_DEV_H
+#define ALIVE_AV_DEV_H
 
-#include "avm.h"
+#include "av.h"
 
 #if defined(WIN32) || defined(__WINDOWS_MM__) || defined(WIN64)
 	#define AV_WINDOWS 1

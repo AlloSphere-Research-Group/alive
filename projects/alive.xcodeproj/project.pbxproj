@@ -44,8 +44,8 @@
 		361764631613B55600C2748F /* proxy.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = proxy.js; sourceTree = "<group>"; };
 		361C59801626857B00E08BE8 /* references.bib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = references.bib; sourceTree = "<group>"; };
 		361C59811626859F00E08BE8 /* build.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = build.sh; sourceTree = "<group>"; };
-		361C598A162685E000E08BE8 /* avm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = avm.h; sourceTree = "<group>"; };
-		361C598B162685E000E08BE8 /* avm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = avm.cpp; sourceTree = "<group>"; };
+		361C598A162685E000E08BE8 /* av.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = av.h; sourceTree = "<group>"; };
+		361C598B162685E000E08BE8 /* av.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = av.cpp; sourceTree = "<group>"; };
 		361C5C5216276A5500E08BE8 /* share.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = share.js; sourceTree = "<group>"; };
 		361C5C5316276A5500E08BE8 /* cm.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = cm.js; sourceTree = "<group>"; };
 		361C5C5416276A5500E08BE8 /* bcsocket.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = bcsocket.js; sourceTree = "<group>"; };
@@ -3350,7 +3350,7 @@
 		364D1E79162A0A0D0002CFC9 /* gl.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = gl.lua; sourceTree = "<group>"; };
 		364D1E7E162A10440002CFC9 /* avm.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = avm.lua; sourceTree = "<group>"; };
 		364D1EBA162A15D10002CFC9 /* window.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = window.lua; sourceTree = "<group>"; };
-		364D1F3E162A201D0002CFC9 /* avm_dev.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = avm_dev.h; sourceTree = "<group>"; };
+		364D1F3E162A201D0002CFC9 /* av_dev.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = av_dev.h; sourceTree = "<group>"; };
 		364D1F50162A227C0002CFC9 /* audio.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = audio.lua; sourceTree = "<group>"; };
 		364D1F51162A228B0002CFC9 /* audio.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = audio.cpp; sourceTree = "<group>"; };
 		364D1F72162A245F0002CFC9 /* h2ffi.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = h2ffi.lua; sourceTree = "<group>"; };
@@ -6350,7 +6350,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		361C597E1626857100E08BE8 /* avm */ = {
+		361C597E1626857100E08BE8 /* av */ = {
 			isa = PBXGroup;
 			children = (
 				360E7FAC16389194003A4A64 /* install_dependencies.sh */,
@@ -6358,17 +6358,17 @@
 				361C59811626859F00E08BE8 /* build.sh */,
 				364D1F72162A245F0002CFC9 /* h2ffi.lua */,
 				364D1E1D1628E4590002CFC9 /* uv_utils.h */,
-				361C598A162685E000E08BE8 /* avm.h */,
-				364D1F3E162A201D0002CFC9 /* avm_dev.h */,
-				361C598B162685E000E08BE8 /* avm.cpp */,
+				361C598A162685E000E08BE8 /* av.h */,
+				364D1F3E162A201D0002CFC9 /* av_dev.h */,
+				361C598B162685E000E08BE8 /* av.cpp */,
 				364D1F51162A228B0002CFC9 /* audio.cpp */,
 				364D1E3B1628E7260002CFC9 /* window.cpp */,
 				3615F5BF1637223A0081AFC5 /* image.cpp */,
 				36E9BFD91634CA3F00FA57B9 /* isosurface.cpp */,
 				364D1E76162A0A0C0002CFC9 /* modules */,
 			);
-			name = avm;
-			path = ../avm;
+			name = av;
+			path = ../av;
 			sourceTree = SOURCE_ROOT;
 		};
 		361C5C7116276F8A00E08BE8 /* share */ = {
@@ -14400,7 +14400,7 @@
 				36575224161277FD009D11CC /* editor */,
 				3657525E161277FD009D11CC /* master */,
 				36E9C404163502BA00FA57B9 /* demo */,
-				361C597E1626857100E08BE8 /* avm */,
+				361C597E1626857100E08BE8 /* av */,
 				3657550A161277FE009D11CC /* vm */,
 				3615A63716348B1F00EF802B /* Products */,
 				3615A64416348B6400EF802B /* Carbon.framework */,

@@ -3,7 +3,7 @@
 # debugging: 
 # set -x
 
-PRODUCT_NAME="avm"
+PRODUCT_NAME="av"
 ROOT=`pwd`
 PLATFORM=`uname`
 ARCH=`uname -m`
