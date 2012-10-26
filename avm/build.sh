@@ -1,7 +1,7 @@
 #!/bin/bash   
 
 # debugging: 
- set -x
+# set -x
 
 PRODUCT_NAME="avm"
 ROOT=`pwd`
@@ -23,11 +23,11 @@ function generate_ffi_header {
 }
 
 function build {
+	echo Building
 	
 	CC="g++"
 	SOURCES="*.cpp rtaudio-4.0.11/RtAudio.cpp"
 	
-	echo Building
 	if [[ $PLATFORM == 'Darwin' ]]; then
 	
 		CFLAGS="-x c++ -arch $ARCH -O3 -Wall -fno-stack-protector"
@@ -64,10 +64,18 @@ function build {
 	fi
 }
 
+function install {
+	echo Installing
+	
+	# .so libraries go into /usr/local/lib/lua/5.1/
+	# .lua modules go into /usr/local/share/lua/5.1/
+	
+	#echo Creating symlink in /usr/local/bin
+	#sudo ln -svhf $ROOT/$PRODUCT_NAME /usr/local/bin/$PRODUCT_NAME
+}
 
 clean
-generate_ffi_header
-build
+generate_ffi_header && build && install
 
 
 

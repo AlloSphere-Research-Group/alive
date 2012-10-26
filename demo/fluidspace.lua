@@ -71,9 +71,9 @@ function initStalk(s, len)
 		local b = ffi.new("Stalk")
 		numstalks = numstalks + 1
 		b.pos = s.pos:clone():add(
-			srandom() * 4,
-			srandom() * 4,
-			srandom() * 4
+			srandom() * stalk_length,
+			srandom() * stalk_length,
+			srandom() * stalk_length
 		)
 		b.quat = s.quat:clone()
 		-- attach to s:
@@ -162,7 +162,7 @@ if not shared then
 			random() * pi
 		)
 		-- create branches:
-		initStalk(s, 10)
+		initStalk(s, 6)
 	end
 	print(#activestalks, "stalks")
 end

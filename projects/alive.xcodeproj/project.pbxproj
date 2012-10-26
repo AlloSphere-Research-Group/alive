@@ -6,23 +6,6 @@
 	objectVersion = 42;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		3615A64516348B6400EF802B /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3615A64416348B6400EF802B /* Carbon.framework */; };
-		3615A64716348B6400EF802B /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3615A64616348B6400EF802B /* Cocoa.framework */; };
-		3615A64916348B6400EF802B /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3615A64816348B6400EF802B /* GLUT.framework */; };
-		3615A64B16348B6400EF802B /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3615A64A16348B6400EF802B /* OpenGL.framework */; };
-		3615F59F16371E2E0081AFC5 /* fluidspace.lua in Sources */ = {isa = PBXBuildFile; fileRef = 3615F59E16371E2E0081AFC5 /* fluidspace.lua */; };
-		3615F5BC163721140081AFC5 /* Texture.lua in Sources */ = {isa = PBXBuildFile; fileRef = 3615F5BB163721140081AFC5 /* Texture.lua */; };
-		3615F5C01637223A0081AFC5 /* image.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3615F5BF1637223A0081AFC5 /* image.cpp */; };
-		3615F5C3163738960081AFC5 /* image.lua in Sources */ = {isa = PBXBuildFile; fileRef = 3615F5C2163738960081AFC5 /* image.lua */; };
-		3615F6B01637684A0081AFC5 /* pointsprite.lua in Sources */ = {isa = PBXBuildFile; fileRef = 3615F6AF1637684A0081AFC5 /* pointsprite.lua */; };
-		36E9BEA21634AB1400FA57B9 /* field.lua in Sources */ = {isa = PBXBuildFile; fileRef = 36E9BEA11634AB1400FA57B9 /* field.lua */; };
-		36E9BFDA1634CA3F00FA57B9 /* isosurface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 36E9BFD91634CA3F00FA57B9 /* isosurface.cpp */; };
-		36E9BFDD1634CAA700FA57B9 /* isosurface.lua in Sources */ = {isa = PBXBuildFile; fileRef = 36E9BFDC1634CAA700FA57B9 /* isosurface.lua */; };
-		36E9C41A1635068500FA57B9 /* phong.lua in Sources */ = {isa = PBXBuildFile; fileRef = 36E9C4191635068500FA57B9 /* phong.lua */; };
-		36E9C43B163509D600FA57B9 /* cubefbo.lua in Sources */ = {isa = PBXBuildFile; fileRef = 36E9C43A163509D600FA57B9 /* cubefbo.lua */; };
-/* End PBXBuildFile section */
-
 /* Begin PBXContainerItemProxy section */
 		362079FB1613F044001D4BEE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -41,9 +24,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		360E7FAC16389194003A4A64 /* install_dependencies.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = install_dependencies.sh; sourceTree = "<group>"; };
+		360E7FB6163891D2003A4A64 /* libev.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = libev.lua; sourceTree = "<group>"; };
+		360E7FB716389208003A4A64 /* evtest.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = evtest.lua; sourceTree = "<group>"; };
+		360E817116390B7C003A4A64 /* codegen_test.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = codegen_test.lua; sourceTree = "<group>"; };
+		360E839116391CB2003A4A64 /* codegen_test1.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = codegen_test1.lua; sourceTree = "<group>"; };
+		360E839216391CC7003A4A64 /* codegen1.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = codegen1.lua; sourceTree = "<group>"; };
 		360F39F5161E930400F6E395 /* ALIVE_outline.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ALIVE_outline.txt; sourceTree = "<group>"; };
 		360F39F6161E930400F6E395 /* network.graffle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = network.graffle; sourceTree = "<group>"; };
-		3615A63616348B1F00EF802B /* gluttest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = gluttest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3615A64416348B6400EF802B /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
 		3615A64616348B6400EF802B /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		3615A64816348B6400EF802B /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = /System/Library/Frameworks/GLUT.framework; sourceTree = "<absolute>"; };
@@ -6343,20 +6331,6 @@
 		36E9C43A163509D600FA57B9 /* cubefbo.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = cubefbo.lua; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
-/* Begin PBXFrameworksBuildPhase section */
-		3615A63416348B1F00EF802B /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3615A64516348B6400EF802B /* Carbon.framework in Frameworks */,
-				3615A64716348B6400EF802B /* Cocoa.framework in Frameworks */,
-				3615A64916348B6400EF802B /* GLUT.framework in Frameworks */,
-				3615A64B16348B6400EF802B /* OpenGL.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXFrameworksBuildPhase section */
-
 /* Begin PBXGroup section */
 		360F39F4161E930400F6E395 /* misc */ = {
 			isa = PBXGroup;
@@ -6372,7 +6346,6 @@
 		3615A63716348B1F00EF802B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3615A63616348B1F00EF802B /* gluttest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -6380,6 +6353,7 @@
 		361C597E1626857100E08BE8 /* avm */ = {
 			isa = PBXGroup;
 			children = (
+				360E7FAC16389194003A4A64 /* install_dependencies.sh */,
 				364D208F162A825B0002CFC9 /* rtaudio-4.0.11 */,
 				361C59811626859F00E08BE8 /* build.sh */,
 				364D1F72162A245F0002CFC9 /* h2ffi.lua */,
@@ -14169,10 +14143,14 @@
 				364D1E79162A0A0D0002CFC9 /* gl.lua */,
 				364D2445162B4B5E0002CFC9 /* gl */,
 				364D2615162BA9930002CFC9 /* codegen.lua */,
+				360E817116390B7C003A4A64 /* codegen_test.lua */,
+				360E839216391CC7003A4A64 /* codegen1.lua */,
+				360E839116391CB2003A4A64 /* codegen_test1.lua */,
 				36E9BEA11634AB1400FA57B9 /* field.lua */,
 				364D240E162B45CB0002CFC9 /* nav.lua */,
 				36E9BFDC1634CAA700FA57B9 /* isosurface.lua */,
 				364D23B2162B2C980002CFC9 /* vec.lua */,
+				360E7FB6163891D2003A4A64 /* libev.lua */,
 			);
 			path = modules;
 			sourceTree = "<group>";
@@ -19336,6 +19314,7 @@
 		36E9C404163502BA00FA57B9 /* demo */ = {
 			isa = PBXGroup;
 			children = (
+				360E7FB716389208003A4A64 /* evtest.lua */,
 				3615F59E16371E2E0081AFC5 /* fluidspace.lua */,
 				364D1E1C1628E4480002CFC9 /* main.lua */,
 				36E9C4191635068500FA57B9 /* phong.lua */,
@@ -19346,25 +19325,6 @@
 			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
-
-/* Begin PBXNativeTarget section */
-		3615A63516348B1F00EF802B /* gluttest */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3615A63B16348B2000EF802B /* Build configuration list for PBXNativeTarget "gluttest" */;
-			buildPhases = (
-				3615A63316348B1F00EF802B /* Sources */,
-				3615A63416348B1F00EF802B /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = gluttest;
-			productName = gluttest;
-			productReference = 3615A63616348B1F00EF802B /* gluttest */;
-			productType = "com.apple.product-type.tool";
-		};
-/* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		3657520A161277BC009D11CC /* Project object */ = {
@@ -19394,7 +19354,6 @@
 			);
 			projectRoot = "";
 			targets = (
-				3615A63516348B1F00EF802B /* gluttest */,
 			);
 		};
 /* End PBXProject section */
@@ -19416,69 +19375,7 @@
 		};
 /* End PBXReferenceProxy section */
 
-/* Begin PBXSourcesBuildPhase section */
-		3615A63316348B1F00EF802B /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				36E9BEA21634AB1400FA57B9 /* field.lua in Sources */,
-				36E9BFDA1634CA3F00FA57B9 /* isosurface.cpp in Sources */,
-				36E9BFDD1634CAA700FA57B9 /* isosurface.lua in Sources */,
-				36E9C41A1635068500FA57B9 /* phong.lua in Sources */,
-				36E9C43B163509D600FA57B9 /* cubefbo.lua in Sources */,
-				3615F59F16371E2E0081AFC5 /* fluidspace.lua in Sources */,
-				3615F5BC163721140081AFC5 /* Texture.lua in Sources */,
-				3615F5C01637223A0081AFC5 /* image.cpp in Sources */,
-				3615F5C3163738960081AFC5 /* image.lua in Sources */,
-				3615F6B01637684A0081AFC5 /* pointsprite.lua in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXSourcesBuildPhase section */
-
 /* Begin XCBuildConfiguration section */
-		3615A63916348B2000EF802B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_MODEL_TUNING = G5;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
-				INSTALL_PATH = /usr/local/bin;
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					AppKit,
-				);
-				PREBINDING = NO;
-				PRODUCT_NAME = gluttest;
-			};
-			name = Debug;
-		};
-		3615A63A16348B2000EF802B /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_MODEL_TUNING = G5;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
-				INSTALL_PATH = /usr/local/bin;
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					AppKit,
-				);
-				PREBINDING = NO;
-				PRODUCT_NAME = gluttest;
-				ZERO_LINK = NO;
-			};
-			name = Release;
-		};
 		3657520B161277BC009D11CC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -19496,15 +19393,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3615A63B16348B2000EF802B /* Build configuration list for PBXNativeTarget "gluttest" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3615A63916348B2000EF802B /* Debug */,
-				3615A63A16348B2000EF802B /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		3657520D161277BC009D11CC /* Build configuration list for PBXProject "alive" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

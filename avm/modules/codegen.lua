@@ -9,16 +9,36 @@ MIT/BSD/whatever-you-like type license, i.e. use it but don't hold me liable... 
 
 --]]
 
-local lpeg = require "lpeg"
 local concat = table.concat
 local format = string.format
 
+-- util:
+local 
+function tree_dump_helper(t, p)
+	if type(t) == "table" then
+		local terms = { "{" }
+		local p1 = p .. "  "
+		for k, v in pairs(t) do
+			terms[#terms+1] = format("[%q] = %s,", k, tree_dump_helper(v, p1))
+		end
+		return format("%s\n%s}", concat(terms, "\n"..p1), p)
+	else
+		return format("%q", t)
+	end
+end
 
+local 
+function tree_dump(t, p)
+	print(tree_dump_helper(t, ""))
+end
+
+local lpeg = require "lpeg"
 local P = lpeg.P
 local C = lpeg.C
 local Carg = lpeg.Carg
 local Cc = lpeg.Cc
 local Ct = lpeg.Ct
+local Cp = lpeg.Cp
 local V = lpeg.V
 
 local function delimited(patt)
@@ -48,8 +68,6 @@ local literal = delimited(P"'") + delimited(P'"')
 -- typical C-like variable names:
 local name = (alpha + P"_") * (alpha + integer + P"_")^0
 
-local envname = P"." + name
-
 -- inline template syntax:
 local function inlined(patt)
 	return P"{{" * C((patt-P"}}")^0) * P"}}"
@@ -69,21 +87,49 @@ local iterm_action = function(id)
 	return format("env[%d] or ''", id)
 end
 
+local kterm_n_action = function(s)
+	return format("#env[%q]", s)
+end
+
+local 
+function terms_to_string(arg)
+	local ty = type(arg)
+	if ty == "table" then
+		local terms = {}
+		for i, v in ipairs(arg) do
+			terms[i] = terms_to_string(v)
+		end
+		return concat(terms)
+	elseif ty == "number" then
+		return format("[%d]", arg)
+	elseif ty == "string" then
+		return format("[%q]", arg)
+	elseif ty == "nil" then
+		return ""
+	else
+		error("unexpected term type " .. type(v))
+	end
+end
+
 -- $sterm: look up the corresponding dictionary field in the env:
-local kterm_action = function(s)
-	return format("env[%q] or ''", s)
+local kterm_action = function(args)
+	local env = terms_to_string(args)
+	return format("env%s or ''", env)
 end
 
 -- find a rule for a given name:
 local function find_rule(s, g)
+	print("find_rule", s, g)
 	-- find the rule to be invoked:
 	local rule
 	-- is there a local template?
 	local t = g.template[s]
 	if t then
+		print("found template")
 		-- is there a local rule defined?
 		rule = g.rules[s]
 		if not rule then
+			print("generate rule", s)
 			-- a temporary rule to detect recursion:
 			-- TODO: handle this error at gen-time rather than run-time?
 			g.rules[s] = 'error("template would cause an infinite loop")'
@@ -100,16 +146,10 @@ local function find_rule(s, g)
 end
 
 -- if sub is nil or ".", then just use the current env:
-local function apply_action(sub, rule, g)
-	local env 
-	if sub == "." or sub == nil then
-		env = "env"
-	elseif type(sub) == "string" then
-		env = format("env[%q]", sub) 
-	else
-		error("unexpected env")
-	end
-	return format("%s(%s)", find_rule(rule, g), env)
+local function apply_action(start, env, rule, g, finish)
+	print("apply_action", g.src:sub(start, finish))
+	local env = terms_to_string(env)
+	return format("%s(env%s)", find_rule(rule, g), env)
 end
 
 -- ?foo
@@ -145,6 +185,9 @@ end
 -- any non-rule match just returns the quoted string:
 local any = ((P(1) - V"rule")^1) / any_action
 
+local index_item = C(name) + (integer / tonumber)
+local index_chain = Ct(index_item * (P"." * index_item)^0)
+
 -- e.g. $<1>
 -- e.g. $10
 local sub_iterm = (
@@ -152,20 +195,34 @@ local sub_iterm = (
 				   + (P"$" * C(integer))
 				  ) / iterm_action
 
+-- e.g. $params.n
+-- e.g. $<params.n>
+local sub_kterm_n = (
+				     (P"$<" * C(name) * P">")
+				   + (P"$" * C(symbol))
+				  ) * P".n" / kterm_n_action
+
 -- e.g. $abcd (no numbers, underscores etc.)
 -- e.g. $<abc_d1> (underscores, numbers etc. ok)
 local sub_kterm = (
-				     (P"$<" * C(name) * P">")
-				   + (P"$" * C(symbol))
+				     (P"$<" * index_chain * P">")
+				   + (P"$" * index_chain)
 				  ) / kterm_action
+				  
+-- e.g. $foo.bar.baz => env["foo"]["bar"]["baz"]
+-- e.g. $foo.1.thing => env["foo"][1]["thing"]
+-- e.g. $foo.1.n => #env["foo"][1]
+
+--...
 
 -- e.g. bar:foo
 -- e.g. .:foo
 -- e.g. foo   (implicit env == ".")
-local invoke_apply = (
-						(C(envname) * P":" * C(symbol)) 
-					  + (Cc"." * C(symbol))
-					 ) * g / apply_action
+local invoke_apply = (Cp() * (
+						(index_chain * P":" * C(symbol)) 
+					  + (P".:" * Cc(nil) * C(symbol))
+					  + (Cc(nil) * C(symbol))
+					 ) * g * Cp()) / apply_action
 
 -- e.g. @<foo:bar>
 -- e.g. @foo
@@ -192,8 +249,8 @@ local at_cond = P"@if(" * cond * P")<" * cond_body * P">"
 local map_separator = (_ * P"," * _ * P"_separator=" * literal) + Cc""
 local iterable = _ * C(name)
 local at_map = P"@map{" * iterable * map_separator * _ * P"}:" * C(symbol) * g / function(sub, sep, rule, g)
-	print("TODO: use separator", sep)
 	local env = format("env[%q]", sub) 
+	print("looking for rule", rule, env)
 	return format("map(%s, %s, %q)", env, find_rule(rule, g), sep)
 end
 
@@ -208,6 +265,7 @@ local grammar = P{
 	     + at_map
 		 + at_invoke 
 		 + sub_iterm
+		 + sub_kterm_n
 		 + sub_kterm,
 }
 
@@ -255,19 +313,23 @@ end
 
 -- TODO: could this be inlined/merged with find_rule?
 function gen_rule(name, t, g)
-	-- debug: print("generating rule for:", name, t)
+	-- debug: 
+	print("generating rule for:", name, t)
 	local str = t
 	if type(t) == "table" then 
 		-- the first item in the table is the template string:
 		str = t[1] 
+		print(str)
 		-- override the template context
 		g = {
+			src = str,
 			parent = g,					-- for inheritance chain
 			functions = g.functions,	-- i.e. global
 			name = format("%s_%s", g.name, name),
 			template = t,
 			rules = {},
 		}
+		print("changed g context")
 	end
 	-- parsing the template results in a list of actions:
 	local terms = { grammar:match(str, 1, g) }
@@ -283,37 +345,96 @@ function gen_rule(name, t, g)
 	return fullname
 end
 
+--[[
+template["a.b.c"] = "foo" =>
+
+{
+	a = {
+		b = {
+			c = {
+				[1] = "foo"
+			}
+		}
+	}
+}
+
+
+
+--]]
+
+local 
+function insert_template(def, k, v)
+	print("def", def, k, v)
+	if type(k) == "string" then
+		-- is it a dotted rule?
+		local parent_name, rest = k:match("(%a+)%.(.+)")
+		if parent_name then
+			print("parent_name, rest", parent_name, rest)
+			-- create parent rule container lazily:
+			local parent = def[parent_name]
+			if not parent then
+				print("creating sub-rule", parent_name)
+				parent = {}
+				def[parent_name] = parent
+			end
+			insert_template(parent, rest, v)
+			return
+		end
+	end
+	if k == 1 then
+		def[k] = { v }
+	else
+		def[k] = v
+	end
+end
+
 local 
 function gen(t)
+	local def = {}
+	tree_dump(t)
+	
 	-- accept plain strings too:
 	if type(t) == "string" then
-		local t = { t }
-	else
-		-- TODO: pre-process the table to deal with 
+		def = { t }
+	else		
+		-- pre-process the table to deal with 
 		-- template["foo.bar"] = txt ->
 		-- foo = { bar = txt } } etc.
+		for k, v in pairs(t) do 
+			if k == "main" or k == 1 then
+				def[1] = v
+			else
+				insert_template(def, k, v)
+			end
+		end
 	end
+	
+	-- debug:
+	tree_dump(def)
 
-	local str = t[1]
+	local main = assert(def[1], "template has no main rule")
 	local g = {
+		src = main,
 		name = "main",
 		-- functions store the fragments of code that implement subroutines
 		functions = {},
 		-- rules store the fragments of code to invoke a subroutine
 		rules = {},
-		template = t,
+		template = def,
 	}
 	
 	-- parsing the template results in a list of actions:
-	local terms = { grammar:match(str, 1, g) }
+	local terms = { grammar:match(main, 1, g) }
 	-- convert this into Lua code:
 	local fst = format(
 		generator_template, 
 		concat(g.functions, "\n"), 
 		concat(terms, ", \n\t\t")
 	)
+	
 	-- debug:
-	--print(string.rep("-", 80)); print(fst); print(string.rep("-", 80))
+	print(string.rep("-", 80)); print(fst); print(string.rep("-", 80))
+	
 	-- turn it into a function:
 	local f, err = loadstring(fst)
 	if not f then
@@ -323,147 +444,4 @@ function gen(t)
 	return f()
 end
 
---[[
-
-local function map(env, rule)
-	local res = {}
-	for i = 1, #env do
-		res[i] = rule(env[i])
-	end
-	return res
-end
-
-
-
-
-
-
-Scoped template rules
-	Define as template["foo.bar"]  = "bar..."
-		or as template = { foo = { "foo...", bar = "bar...", } } 
-			(requires being able to assume a template defined as { '...' }
-		or both? could normalize either to the other in a pre-process stage.
-
-TODO:
-	$params.n  -- a better syntax? 
-	@args.1:expr
-	@(paramtype)
-	@if(length{.} > "0")<sub>
-	@if(?(rule))<{{@(rule)}}>
-	@map{.}:stat
-	@map{., _separator=" else "}:{{@block}}
-	@map{ name=ins, _separator="," }:{{"$name"}}
-	@map{v=., _separator=" "}:{{$v}}
-	@rest{ input=args, len=length{args}:., cond=args.1:expr }:more
-	Nice indenting.
-		Capture the indent at the @rule invocation?
-		Capture/replace newlines in the 'any' sections?
-	I realize we probably don't need to do nested concat stuff, we can 
-		probably just directly write into global table
-		not sure if it helps any
-		
-	Env inheritance: env["foo"] should be able to pick up env's parent's foo
-		Tricky... env needs to become some kind of proxy object
-	
-	What does it mean to say $params when env.params is a table?
-		(currently an assert())
-	What does it mean to say @map{ params } when params' elements are strings?
-
-KNOWN ISSUES:
-	Do not have child rules with the same name as their immediate parent. 
-	It will think it is a recursive definition and trigger an error.
---]]
-
----- EXAMPLES ----
-
-
-
-local template = {
-	[["@<subject>" says a @.:hello goodbye
-		@if(?(quality))<hello>
-		@if(true)<hello>else<subject>
-		@if(false)<hello>else<{{@subject foo}}>
-		@friend:subject says it too
-		@sub
-		@map{ params }:parameter
-		@ map{ params, _separator=" * " }:{{ thingy $1 }}
-	]],
-	parameter = [[$id... ]],
-	basic = {"$1"},
-	hello = [[$quality]],
-	subject = [[@hello $1-$<1>]],
-		sub = {
-		[[$quality becomes @hello for @subject
-		even more: @more]],
-		-- this should override the parent 'hello' rule:
-		hello = "very $quality",
-		more = {
-			"some @hello @<basic>'s @sub",
-			-- this should override the parent 'hello' rule:
-			hello = "remarkable $quality",
-			sub = "... have no fear",
-		}
-	},
-}
-local generator = gen(template)
-
--- an example env to work from:
-local dict = { 
-	"tom",
-	quality = "peeping",
-	friend = {
-		"jack",
-		quality = "nimble",
-	},	
-	params = { 
-		{ id="one", },
-		{ id="two", },
-		{ id="three", },
-	},
-}
-
-print(generator(dict))
-
-print(map_separator:match(', _separator="foo"'))
-
-
-
--- TEST --
-function test(s)
-	local g = gen(s)
-	return function(dict)
-		print(g(dict))
-	end
-end
-
--- basic substitutions:
-
-test{ "numeric $1 $2 $<3>" } 
-	{ "one", "two", "three" }
-	
-test{ "symbolic $a $b $c $<strange_symbol>" } 
-	{ a="one", b="two", c="three", strange_symbol="nice" }
-
--- TODO: $params.n
-
--- rule invocations:
-
--- apply rule with current context
-test{ "use @foo", foo = { "sub-rule $1" }, } 
-	{ "red" } 
-test{ "use @<foo>", foo = { "sub-rule $1" }, } 
-	{ "red" } 
-test{ "use @.:foo", foo = { "sub-rule $1" }, } 
-	{ "red" } 
-
--- apply rule with sub-context:
-test{ "use @bar:foo", foo = { "sub-rule $1" }, }
-	{ "red", bar = { "blue" }, }
-
--- special rules
-
--- conditional
-
--- iteration
-
-
+return gen
