@@ -11,7 +11,7 @@ sun[2]:
 		explode
 	behaves like:
 		random walks[?]
-			and adds energy[n] to field
+		and adds energy[n] to field
 	looks like:
 	sounds like:
 	
@@ -26,11 +26,13 @@ creature[50]: agent
 			reverse direction
 			scream()
 		and:
+			-- functional
 			change = sign(delta(sense(field)))
 			self.turn = lowpass(if(change > 0, 0, noise()))
 			self.move = 1
 			accum(energy, sense(field))
 
+			-- procedural
 			function() 
 				if change
 					move forward mostly

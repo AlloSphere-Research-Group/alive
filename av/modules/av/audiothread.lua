@@ -1,4 +1,4 @@
-local audio = require "avm.audio"
+local audio = require "av.audio"
 local ffi = require "ffi"
 local C = ffi.C
 

@@ -1,6 +1,12 @@
 
 #include "av_dev.h"
 
+#include <stdio.h>
+#include <signal.h>
+#include <termios.h>
+#include <stdlib.h>
+#include <unistd.h>
+
 struct GLUTWindow : public av_Window {
 	GLUTWindow() {
 		width = 960;
@@ -175,9 +181,7 @@ void initwindow() {
 	if (initialized) return;
 	
 	int argc = 0;
-	char * argv[] = {
-		NULL
-	};
+	char * argv[] = { NULL };
 	glutInit(&argc, argv);
 	
 //	screen_width = glutGet(GLUT_SCREEN_WIDTH);
@@ -208,6 +212,9 @@ void initwindow() {
 	glutTimerFunc((unsigned int)(1000.0/win.fps), timerfunc, 0);
 	
 	atexit(terminate);
+
+	// signal read printf F_GETFL timeval FD_ZERO select
+	// ttyreset
 
 	initialized = true;
 }

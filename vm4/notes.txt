@@ -1,0 +1,16 @@
+
+
+Minimal allosphere live coding app
+
+Useful for it to use a libev handler so we can easily RPC it
+
+Useful to omniapp it so that 
+	a) we can use a bigger screen
+	b) we can preview in fisheye on the desktop
+
+
+
+
+
+
+

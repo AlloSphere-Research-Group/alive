@@ -21,7 +21,7 @@ function texture(w, h)
 		local src = w
 		
 		-- load this file:
-		local image = require "avm.image"
+		local image = require "av.image"
 		local img = image.load(src)
 		print(img)
 		w = img.width

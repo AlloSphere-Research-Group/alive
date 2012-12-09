@@ -115,6 +115,8 @@ void alive_tick() {
 	int res = uv_run_once(loop);
 	//printf("%d\n", res);
 	
+	// 
+	
 	fflush(stdin);
 	fflush(stdout);
 	fflush(stderr);

@@ -1,5 +1,5 @@
 local ffi = require "ffi"
-local avm = require "avm"
+local avm = require "av"
 local gl = require "gl"
 local glutils = require "gl.utils"
 local Shader = require "gl.Shader"
@@ -9,7 +9,7 @@ local vec = require "vec"
 local vec3, quat = vec.vec3, vec.quat
 local nav = require "nav"
 local field = require "field"
-local isosurface = require "isosurface"
+local isosurface = require "av.isosurface"
 
 local random = math.random
 local srandom = function() return random()*2-1 end

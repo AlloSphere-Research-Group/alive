@@ -142,7 +142,7 @@ av_Audio * av_audio_get() {
 		L = av_init_lua();
 		
 		// unique to audio thread:
-		if (luaL_dostring(L, "require 'avm.audiothread'")) {
+		if (luaL_dostring(L, "require 'av.audiothread'")) {
 			printf("error: %s\n", lua_tostring(L, -1));
 		}
 	}
