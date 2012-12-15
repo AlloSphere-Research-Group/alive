@@ -550,7 +550,7 @@
 	363BA36C1674853E00E85175 /* main.lua */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {740, 780}}";
-			sepNavSelRange = "{387, 0}";
+			sepNavSelRange = "{287, 0}";
 			sepNavVisRange = "{0, 1287}";
 		};
 	};
@@ -1232,6 +1232,10 @@
 			36964B1F167BF2230018B2C9 /* PBXTextBookmark */ = 36964B1F167BF2230018B2C9 /* PBXTextBookmark */;
 			36964B20167BF2230018B2C9 /* PBXTextBookmark */ = 36964B20167BF2230018B2C9 /* PBXTextBookmark */;
 			36964B21167BF69E0018B2C9 /* PBXTextBookmark */ = 36964B21167BF69E0018B2C9 /* PBXTextBookmark */;
+			36964B5D167C0D580018B2C9 /* PBXTextBookmark */ = 36964B5D167C0D580018B2C9 /* PBXTextBookmark */;
+			36964B5E167C0D580018B2C9 /* PBXTextBookmark */ = 36964B5E167C0D580018B2C9 /* PBXTextBookmark */;
+			36964B5F167C0D580018B2C9 /* PBXTextBookmark */ = 36964B5F167C0D580018B2C9 /* PBXTextBookmark */;
+			36964B60167C0D580018B2C9 /* PBXTextBookmark */ = 36964B60167C0D580018B2C9 /* PBXTextBookmark */;
 			369FF86E16769DD2005F384F = 369FF86E16769DD2005F384F /* PBXTextBookmark */;
 			369FF88E16769F87005F384F = 369FF88E16769F87005F384F /* PBXBookmark */;
 			369FF8901676A022005F384F = 369FF8901676A022005F384F /* PBXTextBookmark */;
@@ -1494,9 +1498,9 @@
 	};
 	366E3C4A167485E800F3B556 /* build.sh */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {740, 1157}}";
-			sepNavSelRange = "{711, 0}";
-			sepNavVisRange = "{202, 2031}";
+			sepNavIntBoundsRect = "{{0, 0}, {740, 1001}}";
+			sepNavSelRange = "{1866, 0}";
+			sepNavVisRange = "{202, 1976}";
 		};
 	};
 	366E3C4B1674862C00F3B556 /* PBXTextBookmark */ = {
@@ -3983,7 +3987,7 @@
 		fRef = 366E3C4A167485E800F3B556 /* build.sh */;
 		name = "build.sh: 52";
 		rLen = 0;
-		rLoc = 1741;
+		rLoc = 1707;
 		rType = 0;
 		vrLen = 1957;
 		vrLoc = 358;
@@ -3993,7 +3997,7 @@
 		fRef = 366E3C4A167485E800F3B556 /* build.sh */;
 		name = "build.sh: 53";
 		rLen = 0;
-		rLoc = 1802;
+		rLoc = 1768;
 		rType = 0;
 		vrLen = 1991;
 		vrLoc = 334;
@@ -4218,6 +4222,46 @@
 		vrLen = 1287;
 		vrLoc = 0;
 	};
+	36964B5D167C0D580018B2C9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 366E3C8716748C6200F3B556 /* av.lua */;
+		name = "av.lua: 24";
+		rLen = 3;
+		rLoc = 454;
+		rType = 0;
+		vrLen = 711;
+		vrLoc = 0;
+	};
+	36964B5E167C0D580018B2C9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 363BA36C1674853E00E85175 /* main.lua */;
+		name = "main.lua: 14";
+		rLen = 0;
+		rLoc = 287;
+		rType = 0;
+		vrLen = 1287;
+		vrLoc = 0;
+	};
+	36964B5F167C0D580018B2C9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 366E3C4A167485E800F3B556 /* build.sh */;
+		name = "build.sh: 39";
+		rLen = 0;
+		rLoc = 711;
+		rType = 0;
+		vrLen = 2031;
+		vrLoc = 202;
+	};
+	36964B60167C0D580018B2C9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 366E3C4A167485E800F3B556 /* build.sh */;
+		name = "build.sh: 53";
+		rLen = 0;
+		rLoc = 1866;
+		rType = 0;
+		vrLen = 1976;
+		vrLoc = 202;
+	};
 	369FF86E16769DD2005F384F /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 362076491613F042001D4BEE /* al_Quat.hpp */;
@@ -4352,7 +4396,7 @@
 		fRef = 366E3C4A167485E800F3B556 /* build.sh */;
 		name = "build.sh: 52";
 		rLen = 0;
-		rLoc = 1741;
+		rLoc = 1707;
 		rType = 0;
 		vrLen = 1935;
 		vrLoc = 360;
