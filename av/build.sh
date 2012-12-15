@@ -55,7 +55,7 @@ function build {
 		
 		$CC -c $CFLAGS $DEFINES $INCLUDEPATHS $SOURCES
 
-		$CC $LDFLAGS $LINKERPATHS -Wl,-whole-archive *.o -Wl,-no-whole-archive $LIBRARIES -o $PRODUCT_NAME
+		$CC $LDFLAGS $LINKERPATHS $LIBRARIES -Wl,-whole-archive *.o -Wl,-no-whole-archive $LIBRARIES -o $PRODUCT_NAME
 
 	else
 
