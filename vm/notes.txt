@@ -1,0 +1,106 @@
+
+VM
+--
+
+Launched by the proxy.js node as a child process
+	(so that crashes can be accepted, and stdio can be routed)
+
+VM should stay active most of the time though (hopefully avoiding crashes)
+
+VM runs apps from a 'main' file (lua or cpp)
+VM features:
+	- clang run-time compiler
+	- filewatcher, to reload resources (& recompile cpps/glsls etc.)
+	- audio driver
+	- gl windows
+	- etc.
+
+One way to do this is LuaAV style set of modules/libraries
+	mostly implemented in a VM's own script
+
+
+Tube
+----
+
+A fast way to send messages to audio thread (and back)
+Typically strings, numbers, pointers, POD structs etc.
+
+All messages are timestamped
+
+
+LuaAV sent:
+	play (ctx, voice)
+	stop (voice)
+	parameter set (voice, paramidx, value<T>?, offset?, chans?)
+	addsignal (ctx, ptr)
+received:
+	typeddelete (obj)
+
+
+
+
+OLD:
+print("running on", hostname)
+print("argv", unpack(argv))
+
+
+
+
+
+local ffi = require "ffi"
+local bit = require "bit"
+--local clang = require "clang"
+--local osc = require "osc"
+local tube = require "tube"
+
+ffi.cdef [[
+size_t audiotube_writespace();
+size_t audiotube_write(const char * src, size_t sz);
+
+typedef struct tubeheader {
+	size_t size;
+	double t;
+} tubeheader;
+
+tube_t * atube_get() { return &atube; }
+
+typedef float GLclampf;
+void glClearColor(	GLclampf  	red,
+ 	GLclampf  	green,
+ 	GLclampf  	blue,
+ 	GLclampf  	alpha);
+
+double al_time();
+
+]]
+local C = ffi.C
+
+local atube = C.atube_get()
+
+
+-- messages should actually contain:
+	-- timestamp (double)
+	-- size		(uint32)
+	-- type		(uint32)
+	-- data...	(char[?])
+
+math.randomseed(os.time())
+local c = math.random()
+
+function onFrame()
+	--print("onFrame")
+	
+	C.glClearColor(math.abs(math.sin(C.al_time() * math.pi * 0.1)), c, 1-c, 1);
+	
+	-- want something like
+	--audio.send("foo")
+	--audio.send("foo", ugenptr)
+	--audio.send(ugenptr, paramidx, 0.5)
+	-- i.e. strings, ints, doubles, pointers
+	-- etc.
+	
+	local s = string.format("%f", os.time())
+	--assert(tube.write(atube, s, #s), "failed to send")
+	
+	--tube.send(atube, os.time(), math.random())
+end
