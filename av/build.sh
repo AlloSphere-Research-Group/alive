@@ -49,7 +49,7 @@ function build {
 		DEFINES="-DAPR_FAST_COMPAT -DAPR_STRICT -D_GNU_SOURCE -DEV_MULTIPLICITY=1 -DHAVE_GETTIMEOFDAY -D__LINUX_ALSA__"
 		INCLUDEPATHS="-I/usr/local/include/luajit-2.0 -I/usr/include/luajit-2.0 -I../externs/libuv/include -Irtaudio-4.0.11"
 		
-		LDFLAGS="-w -rdynamic"
+		LDFLAGS="-w -rdynamic -Wl,-E "
 		LINKERPATHS="-L/usr/local/lib -L/usr/lib"
 		LIBRARIES="-lluajit-5.1 -lfreeimage -lGLEW -lGLU -lGL -lglut -lasound ../externs/libuv/libuv.a -lrt -lpthread"
 		
