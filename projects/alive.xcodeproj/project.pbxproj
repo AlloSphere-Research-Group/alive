@@ -6307,6 +6307,9 @@
 		3684D48D161CF9E4001E34EA /* Window.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; name = Window.lua; path = ffi/Window.lua; sourceTree = "<group>"; };
 		3684D49F161CFBDB001E34EA /* alive.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = alive.lua; sourceTree = "<group>"; };
 		3684D4AC161D077E001E34EA /* al_ffi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = al_ffi.h; sourceTree = "<group>"; };
+		36964A3C167B17E50018B2C9 /* vec.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = vec.lua; sourceTree = "<group>"; };
+		36964ADA167BEE160018B2C9 /* ev.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = ev.lua; sourceTree = "<group>"; };
+		369FF8BE1676A2A0005F384F /* Q.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Q.hpp; sourceTree = "<group>"; };
 		36B47CD1161FE2110077650E /* test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = test.cpp; sourceTree = "<group>"; };
 		36B47F161621FD400077650E /* h2ffi.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = h2ffi.lua; sourceTree = "<group>"; };
 		36B47F2F1621FF150077650E /* aliveheader.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = aliveheader.lua; sourceTree = "<group>"; };
@@ -13626,11 +13629,14 @@
 				366E3C651674880700F3B556 /* notes.txt */,
 				366E3C4A167485E800F3B556 /* build.sh */,
 				366E3C551674869100F3B556 /* h2ffi.lua */,
+				369FF8BE1676A2A0005F384F /* Q.hpp */,
 				366E3C461674856A00F3B556 /* main.h */,
 				366E3C471674856A00F3B556 /* main.cpp */,
 				366E3C641674875600F3B556 /* header.lua */,
 				366E3C8716748C6200F3B556 /* av.lua */,
 				363BA36C1674853E00E85175 /* main.lua */,
+				36964A3C167B17E50018B2C9 /* vec.lua */,
+				36964ADA167BEE160018B2C9 /* ev.lua */,
 			);
 			name = vm4;
 			path = ../vm4;
