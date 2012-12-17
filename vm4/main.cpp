@@ -77,6 +77,8 @@ public:
 			mOmni.resolution(256);
 		}
 		
+		printf("running on %s\n", hostName().c_str());
+		
 		if (hostName() == "photon") {
 			AudioDevice::printAll();
 			AudioDevice indev("system", AudioDevice::INPUT);
