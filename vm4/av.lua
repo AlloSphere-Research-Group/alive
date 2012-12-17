@@ -13,12 +13,20 @@ local av = {
 	app = app,
 }
 
-local mainmod = 1 + tonumber(io.popen('stat -f "%m" main.lua'):read("*l"))
+local function modified(filename)
+	if ffi.os == "OSX" then
+		return tonumber(io.popen('stat -f "%m" ' .. filename):read("*l"))
+	else
+		return tonumber(io.popen('stat -c %Y ' .. filename):read("*l"))
+	end
+end
+
+local mainmod = 1 + modified("main.lua")
 
 av.timer = ev.Timer(function(loop, handler, event)
 	assert(event == ev.TIMER)
 	--print('one second (ish) timer', loop:now())
-	local mod = tonumber(io.popen('stat -f "%m" main.lua'):read("*l"))
+	local mod = modified("main.lua")
 	if mod > mainmod then
 		print(string.rep("-", 80))
 		dofile("main.lua")
