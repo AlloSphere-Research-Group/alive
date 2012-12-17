@@ -74,13 +74,13 @@ $(document).ready( function() {
 			console.log("opening: " + currentFile)
 			$("#filename").text(currentFile);
 			doc = newDoc;
-			if( doc.getLength() == 0 ){
-				console.log("read: "+currentFile)
-				slaveSocket.emit('cmd', 'read ' + currentFile);
-			}else{
+			//if( doc.getLength() == 0 ){
+			//	console.log("read: "+currentFile)
+			//	slaveSocket.emit('cmd', 'read ' + currentFile);
+			//}else{
 				doc.attach_cm(window.editor);
 				console.log("attach: " + currentFile)
-			}
+			//}
 			
 		});
 	};
