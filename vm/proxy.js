@@ -176,5 +176,5 @@ process.on('exit', function() {
 
 
 
-launch('./alive');
+launch('./../vm4/main');
 
