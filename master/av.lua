@@ -13,7 +13,7 @@ local av = {
 }
 
 av.timer = ev.Timer(function(loop, handler, event)
-	assert(event == ev.TIMER)
+	--assert(event == ev.TIMER)
 	--print('one second (ish) timer', loop:now())
 	
 end, 1, 1)

@@ -39,7 +39,7 @@ function pick(name)
 		local count = #as
 		if count > 0 then
 			-- pick a random one:
-			return as[random(count)]
+			return as[math.random(count)]
 		end
 		-- else tag is empty
 	end
