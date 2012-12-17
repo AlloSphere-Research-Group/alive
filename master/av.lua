@@ -40,6 +40,14 @@ av.stdin = ev.IO(function(loop, handler, event)
 	local str = io.read("*l") --io.read(1)
 	str = str:gsub("\\n", "\n")
 	print('io', str)
+	local ok, f = pcall(loadstring, str)
+	if ok then
+		local ok, err = pcall(f)
+		if not ok then print(err)
+	else
+		print(err)
+	end
+		
 	
 	if str == "q" then os.exit() end	
 end, 0, ev.READ)
