@@ -263,7 +263,7 @@ $(document).ready( function() {
             v = cm.getLine(pos.line);
         }
         flash(cm, pos);
-        Gibber.runScript(v);
+        slaveSocket.emit('execute', {code:v});
     },
 		"Cmd-S": editor_save,
 		"Ctrl-S": editor_save,
