@@ -229,9 +229,42 @@ $(document).ready( function() {
 		slaveSocket.emit('save', {filename:currentFile, data:editor.getValue()} );
 		flashMsg("SAVED");
 	};
+  
+  var flash = function(cm, pos) {
+      if (pos !== null) {
+          v = cm.getLine(pos.line);
+
+          cm.setLineClass(pos.line, null, "highlightLine")
+
+          var cb = (function() {
+              cm.setLineClass(pos.line, null, null);
+          });
+
+          window.setTimeout(cb, 250);
+
+      } else {
+          var sel = cm.markText(cm.getCursor(true), cm.getCursor(false), "highlightLine");
+
+          var cb = (function() {
+              sel.clear();
+          });
+
+          window.setTimeout(cb, 250);
+      }
+  };
 	
 	CodeMirror.keyMap.alive = {
 		fallthrough : "default",
+    "Ctrl-Enter": function(cm) {
+        var v = cm.getSelection();
+        var pos = null;
+        if (v === "") {
+            pos = cm.getCursor();
+            v = cm.getLine(pos.line);
+        }
+        flash(cm, pos);
+        slaveSocket.emit('execute', {code:v});
+    },
 		"Cmd-S": editor_save,
 		"Ctrl-S": editor_save,
 	};
