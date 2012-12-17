@@ -11,12 +11,50 @@ var path 		= require('path');
 var mdns 		= require('mdns');
 var connect 	= require('connect');
 var sharejs 	= require('share').server;
+var path		= require('path');
+var exec		= require('child_process').exec;
+var spawn		= require('child_process').spawn;
 
 var editors_in 	 = require('socket.io').listen(8081);
 var renderers_in = require('socket.io').listen(8082);
 
 var editors = {};
 var renderers = {};
+var auto_relaunch = false;
+var vm = null;
+
+function launch(name) {
+	if (vm !== null) {
+		vm.kill();
+	}
+	
+	vm = spawn(name);
+
+	vm.stdout.on('data', function (text) {
+		process.stdout.write(text);
+		//if (master !== null) {
+		//	master.send("out:" + text);
+		//}
+	});
+  
+	vm.stderr.on('data', function (text) {
+		process.stdout.write('err:' + text);
+		//if (master !== null) {
+		//	master.send("err:" + text);
+		//}
+	});
+
+	vm.on('exit', function (code) {
+		console.log('child process exited with code ' + code);
+		
+		if (auto_relaunch) {
+			launch(name);
+		} else {
+			vm.kill();
+			vm = null;
+		}
+	});
+}
 
 var ad = mdns.createAdvertisement(mdns.tcp('master'), 8082);
 ad.start();
@@ -74,7 +112,8 @@ editors_in.sockets.on('connection', function (socket) {
 	});
   
   editors[socket.addr].on('execute', function(obj) {
-    console.log("CODE", obj.code);
+		console.log("CODE", obj.code);
+		vm.stdin.write("CODE " + obj.code + "\n");
   });
 	
 	editors[socket.addr].on('cmd', function(cmd) {
@@ -293,3 +332,12 @@ var myIP = (function() {
 })();
 
 console.log('Server running at ' + myIP + ' on port ' + port + '');
+
+
+process.on('exit', function() {
+	if (vm !== null) {
+		vm.kill();
+	}
+});
+
+launch('./main');
