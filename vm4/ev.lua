@@ -10,8 +10,12 @@ local ffi = require('ffi')
 local bit = require("bit")
 local band, bor = bit.band, bit.bor
 
---local libev = ffi.load('ev')
-local libev = ffi.C
+local libev 
+if ffi.os == "OSX" then
+	libev = ffi.C
+else
+	libev = ffi.load('ev')
+end
 
 -- extracted from preprocessing <ev.h>
 ffi.cdef[[
