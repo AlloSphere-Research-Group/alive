@@ -32,10 +32,10 @@ end
 -- q must be a normalized quaternion
 function quat_unrotate(q, v)
     -- reduced:
-	px = q.w*v.x - q.y*v.z + q.z*v.y
-    py = q.w*v.y - q.z*v.x + q.x*v.z
-    pz = q.w*v.z - q.x*v.y + q.y*v.x
-	pw = q.x*v.x + q.y*v.y + q.z*v.z
+	local px = q.w*v.x - q.y*v.z + q.z*v.y
+	local py = q.w*v.y - q.z*v.x + q.x*v.z
+    local pz = q.w*v.z - q.x*v.y + q.y*v.x
+	local pw = q.x*v.x + q.y*v.y + q.z*v.z
     return vec3(
         pw*q.x + px*q.w + py*q.z - pz*q.y,  -- x
         pw*q.y + py*q.w + pz*q.x - px*q.z,  -- y
