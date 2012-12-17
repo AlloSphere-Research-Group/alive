@@ -112,8 +112,9 @@ editors_in.sockets.on('connection', function (socket) {
 	});
   
   editors[socket.addr].on('execute', function(obj) {
-		console.log("CODE", obj.code);
-		vm.stdin.write(obj.code.replace("\n", "<n>") + "\n");
+		var code = obj.code.replace("\n", "<n>");
+		console.log("CODE", code);
+		vm.stdin.write(code + "\n");
   });
 	
 	editors[socket.addr].on('cmd', function(cmd) {
