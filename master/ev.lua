@@ -18,7 +18,7 @@ else
 end
 
 -- extracted from preprocessing <ev.h>
-ffi.cdef[[
+ffi.cdef [[
 
 /* eventmask, revents, events... */
 enum {

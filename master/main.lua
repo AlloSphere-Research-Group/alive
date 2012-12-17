@@ -1,14 +1,3 @@
-local av = require "av"
-local vec = require "vec"
-local ev = require "ev"
-
-local app = av.app
-
-local sin, cos = math.sin,math.cos
-local abs, floor = math.abs, math.floor
-local random = math.random
-local srandom = function() return random() * 2 - 1 end
-
 -- tags stores table of all tag names
 local tags = {}
 -- map of agents to tag names:
@@ -16,7 +5,6 @@ local agenttags = {}
 
 -- each tag contains a list (array or hash?) of the nodes (agents) it refers to
 -- probably also want a map of agents to tag names
-
 
 function tag(agent, name)
 	local ats = agenttags[agent]
@@ -58,6 +46,18 @@ function pick(name)
 	-- else tag does not exist
 end
 
+-----------------------------
+
+local av = require "av"
+local vec = require "vec"
+local ev = require "ev"
+local app = av.app
+
+local sin, cos = math.sin,math.cos
+local abs, floor = math.abs, math.floor
+local random = math.random
+local srandom = function() return random() * 2 - 1 end
+
 -- initialize agents in some particular way:
 for i = 0, av.MAX_AGENTS-1 do
 	local a = app.agents[i]
@@ -77,7 +77,6 @@ end
 function app:update(dt)
 	av:events()
 	
-	--[[
 	-- pick a random agent:
 	local a = pick("default")
 	if a then
@@ -85,6 +84,7 @@ function app:update(dt)
 		a.turn.y = 10 * srandom()
 		a.turn.z = 0
 		a.color.g = 0
+		a.freq = 55 * (4+random(10)) + 5*srandom()
 	end
 	
 	local a = pick("default")
@@ -96,6 +96,7 @@ function app:update(dt)
 		a.turn.z = 0
 		a.color.r = random()
 		a.color.g = 0.5
+		a.freq = 55 * (11+random(10)) + 5*srandom()
 	end
 	
 	local a = pick("default")
@@ -108,8 +109,8 @@ function app:update(dt)
 		a.rotate:fromAxisY(cos(i))
 		a.color.r = 0.5
 		a.color.g = 0.5
+		a.freq = 55 * random(5) + 5*srandom()
 	end
-	--]]
 end
 
 print("ok")
