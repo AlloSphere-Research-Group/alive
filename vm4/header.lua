@@ -1,5 +1,5 @@
 local header = [[
-// generated from main.h on Fri Dec 14 17:43:54 2012
+// generated from main.h on Sun Dec 16 00:38:49 2012
 typedef struct vec3 { double x, y, z; } vec3;
 typedef struct vec3f { float x, y, z; } vec3f;
 typedef struct vec4 { double x, y, z, w; } vec4;

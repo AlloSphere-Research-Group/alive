@@ -9,9 +9,54 @@ local abs, floor = math.abs, math.floor
 local random = math.random
 local srandom = function() return random() * 2 - 1 end
 
-print(app.agents, av.MAX_AGENTS)
+-- tags stores table of all tag names
+local tags = {}
+-- map of agents to tag names:
+local agenttags = {}
+
+-- each tag contains a list (array or hash?) of the nodes (agents) it refers to
+-- probably also want a map of agents to tag names
 
 
+function tag(agent, name)
+	local ats = agenttags[agent]
+	if not ats then
+		ats = {}
+		agenttags[agent] = ats
+	end
+	-- tags stored as both list (for order) and hash (for existence tests)
+	-- check to avoid duplicate entries
+	if not ats[name] then
+		-- add tag to agent:
+		ats[name] = true
+		ats[#ats+1] = name
+		-- also add agent to tag:
+		local as = tags[name]
+		-- lazy create:
+		if not as then
+			as = {}
+			tags[name] = as
+		end
+		as[#as+1] = agent
+		-- should the tag behaviors be applied here?
+	end
+	return agent
+end
+
+-- really this should return a 'collection' object
+-- upon which operations can be delivered (messages)
+function pick(name)
+	local as = tags[name]
+	if as then
+		local count = #as
+		if count > 0 then
+			-- pick a random one:
+			return as[random(count)]
+		end
+		-- else tag is empty
+	end
+	-- else tag does not exist
+end
 
 -- initialize agents in some particular way:
 for i = 0, av.MAX_AGENTS-1 do
@@ -24,39 +69,45 @@ for i = 0, av.MAX_AGENTS-1 do
 	
 	a.phase = 0
 	a.freq = 55 * floor(abs(12 * cos(i))) + 5*srandom()
+	
+	-- add to default tag:
+	tag(a, "default")
 end
 
 function app:update(dt)
 	av:events()
 	
 	-- pick a random agent:
-	local i = random(av.MAX_AGENTS)-1
-	local a = app.agents[i]
-	a.turn.x = 0
-	a.turn.y = 10 * srandom()
-	a.turn.z = 0
-	a.color.g = 0
+	local a = pick("default")
+	if a then
+		a.turn.x = 0
+		a.turn.y = 10 * srandom()
+		a.turn.z = 0
+		a.color.g = 0
+	end
 	
-	-- pick a random agent:
-	local i = random(av.MAX_AGENTS)-1
-	local a = app.agents[i]
-	a.move:set(0, 0, 30. * abs(sin(i)))
-	a.turn.x = 2.*cos(i)
-	a.turn.y = 0
-	a.turn.z = 0
-	a.color.r = random()
-	a.color.g = 0.5
+	local a = pick("default")
+	if a then
+		local i = random(150)
+		a.move:set(0, 0, 30. * random())
+		a.turn.x = 2.*cos(i)
+		a.turn.y = 0
+		a.turn.z = 0
+		a.color.r = random()
+		a.color.g = 0.5
+	end
 	
-	-- pick a random agent:
-	local i = random(av.MAX_AGENTS)-1
-	local a = app.agents[i]
-	a.move:set(0, 0, 0)
-	a.position.x = 10. * sin(i * 0.1) + 5.
-	a.position.y = sin(i) + i * 0.01
-	a.position.z = 10. * cos(i * 0.1) - 5.
-	a.rotate:fromAxisY(cos(i))
-	a.color.r = 0.5
-	a.color.g = 0.5
+	local a = pick("default")
+	if a then
+		local i = random(150)
+		a.move:set(0, 0, 0)
+		a.position.x = 10. * sin(i * 0.1) + 5.
+		a.position.y = sin(i) + i * 0.01
+		a.position.z = 10. * cos(i * 0.1) - 5.
+		a.rotate:fromAxisY(cos(i))
+		a.color.r = 0.5
+		a.color.g = 0.5
+	end
 end
 
 print("ok")

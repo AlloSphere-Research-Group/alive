@@ -3031,6 +3031,7 @@
 		362079F41613F043001D4BEE /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		36207BD01614CD9A001D4BEE /* notes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = notes.txt; sourceTree = "<group>"; };
 		363BA36C1674853E00E85175 /* main.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = main.lua; sourceTree = "<group>"; };
+		36472F1E167E86850079FF86 /* query.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = query.lua; sourceTree = "<group>"; };
 		364D1BF41628C0730002CFC9 /* config */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = config; sourceTree = "<group>"; };
 		364D1BF51628C0730002CFC9 /* description */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = description; sourceTree = "<group>"; };
 		364D1BF61628C0730002CFC9 /* HEAD */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HEAD; sourceTree = "<group>"; };
@@ -13637,6 +13638,7 @@
 				363BA36C1674853E00E85175 /* main.lua */,
 				36964A3C167B17E50018B2C9 /* vec.lua */,
 				36964ADA167BEE160018B2C9 /* ev.lua */,
+				36472F1E167E86850079FF86 /* query.lua */,
 			);
 			name = vm4;
 			path = ../vm4;

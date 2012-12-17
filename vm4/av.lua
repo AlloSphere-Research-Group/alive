@@ -13,9 +13,17 @@ local av = {
 	app = app,
 }
 
+local mainmod = 1 + tonumber(io.popen('stat -f "%m" main.lua'):read("*l"))
+
 av.timer = ev.Timer(function(loop, handler, event)
 	assert(event == ev.TIMER)
-	--print('one second (ish) timer' .. loop:now())
+	--print('one second (ish) timer', loop:now())
+	local mod = tonumber(io.popen('stat -f "%m" main.lua'):read("*l"))
+	if mod > mainmod then
+		print(string.rep("-", 80))
+		dofile("main.lua")
+		mainmod = mod
+	end
 end, 1, 1)
 av.timer:start(loop)
 
