@@ -191,6 +191,7 @@ public:
 	}
 	
 	virtual void onDraw(Graphics& gl) {
+		shader().uniform("lighting", 0.5);
 		// draw all active agents
 		int translateAttr = shader().attribute("translate");
 		int rotateAttr = shader().attribute("rotate");
