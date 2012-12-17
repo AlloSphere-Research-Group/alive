@@ -274,6 +274,7 @@
 								<string>362074241613F03D001D4BEE</string>
 								<string>362077E11613F043001D4BEE</string>
 								<string>362077E21613F043001D4BEE</string>
+								<string>362078061613F043001D4BEE</string>
 								<string>36E9C404163502BA00FA57B9</string>
 								<string>361C597E1626857100E08BE8</string>
 								<string>364D1E76162A0A0C0002CFC9</string>
@@ -285,13 +286,15 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>7</integer>
-									<integer>1</integer>
+									<integer>51</integer>
+									<integer>49</integer>
+									<integer>25</integer>
+									<integer>20</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 0}, {198, 769}}</string>
+							<string>{{0, 312}, {198, 769}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -326,7 +329,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>36575212161277BE009D11CC</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>main.cpp</string>
+								<string>al_OmniStereo.cpp</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -334,11 +337,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>36575213161277BE009D11CC</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>main.cpp</string>
+										<string>al_OmniStereo.cpp</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>36473040167ED86B0079FF86</string>
+										<string>36473052167EDA030079FF86</string>
 										<key>history</key>
 										<array>
 											<string>360E7FB81638920C003A4A64</string>
@@ -420,7 +423,6 @@
 											<string>36964AF1167BEF6D0018B2C9</string>
 											<string>36964AF2167BEF6D0018B2C9</string>
 											<string>36964B71167D42C60018B2C9</string>
-											<string>36964C94167D6DDF0018B2C9</string>
 											<string>36472E92167DABA40079FF86</string>
 											<string>36472E93167DABA40079FF86</string>
 											<string>36472EC9167DC0D80079FF86</string>
@@ -433,8 +435,10 @@
 											<string>36473038167ED6130079FF86</string>
 											<string>3647303C167ED86B0079FF86</string>
 											<string>3647303D167ED86B0079FF86</string>
-											<string>3647303E167ED86B0079FF86</string>
-											<string>3647303F167ED86B0079FF86</string>
+											<string>36473041167ED9210079FF86</string>
+											<string>36473047167ED9410079FF86</string>
+											<string>3647304A167ED9A90079FF86</string>
+											<string>3647304B167ED9A90079FF86</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
