@@ -43,7 +43,7 @@ av.stdin = ev.IO(function(loop, handler, event)
 	local ok, f = pcall(loadstring, str)
 	if ok then
 		local ok, err = pcall(f)
-		if not ok then print(err)
+		if not ok then print(err) end
 	else
 		print(err)
 	end
