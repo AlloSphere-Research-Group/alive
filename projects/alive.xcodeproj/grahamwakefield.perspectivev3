@@ -286,15 +286,13 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>51</integer>
-									<integer>49</integer>
-									<integer>25</integer>
-									<integer>20</integer>
+									<integer>7</integer>
+									<integer>1</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 312}, {198, 769}}</string>
+							<string>{{0, 0}, {198, 769}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -329,7 +327,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>36575212161277BE009D11CC</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>al_OmniStereo.cpp</string>
+								<string>main.cpp</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -337,11 +335,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>36575213161277BE009D11CC</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>al_OmniStereo.cpp</string>
+										<string>main.cpp</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>36473052167EDA030079FF86</string>
+										<string>36473059167EDA370079FF86</string>
 										<key>history</key>
 										<array>
 											<string>360E7FB81638920C003A4A64</string>
@@ -429,16 +427,16 @@
 											<string>36472F19167E4DE20079FF86</string>
 											<string>36473024167EAB340079FF86</string>
 											<string>36473028167ED2460079FF86</string>
-											<string>3647302C167ED2B80079FF86</string>
 											<string>3647302D167ED2B80079FF86</string>
 											<string>36473034167ED5240079FF86</string>
 											<string>36473038167ED6130079FF86</string>
 											<string>3647303C167ED86B0079FF86</string>
 											<string>3647303D167ED86B0079FF86</string>
-											<string>36473041167ED9210079FF86</string>
 											<string>36473047167ED9410079FF86</string>
 											<string>3647304A167ED9A90079FF86</string>
-											<string>3647304B167ED9A90079FF86</string>
+											<string>36473054167EDA230079FF86</string>
+											<string>36473057167EDA250079FF86</string>
+											<string>36473041167ED9210079FF86</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
