@@ -78,8 +78,18 @@ public:
 		}
 		
 		if (hostName() == "photon") {
-			initAudio("system", 44100, 1024, 12, 12);
+			AudioDevice::printAll();
+			AudioDevice indev("system", AudioDevice::INPUT);
+			AudioDevice outdev("system", AudioDevice::OUTPUT);
+			//initAudio("system", 44100, 1024, 12, 12);
+			
+			audioIO().deviceIn(indev);
+			audioIO().deviceOut(outdev);
+			audioIO().channelsOut(12);
+			initAudio(44100, 1024);
+			
 			audioIO().print();
+			
 		} else {
 			initAudio(44100, 1024);
 		}
