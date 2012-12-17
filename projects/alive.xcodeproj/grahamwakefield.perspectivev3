@@ -282,7 +282,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>13</integer>
+									<integer>3</integer>
 									<integer>1</integer>
 									<integer>0</integer>
 								</array>
@@ -323,7 +323,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>36575212161277BE009D11CC</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>query.lua</string>
+								<string>build.sh</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -331,11 +331,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>36575213161277BE009D11CC</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>query.lua</string>
+										<string>build.sh</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>36473026167EAB340079FF86</string>
+										<string>3647302E167ED2B80079FF86</string>
 										<key>history</key>
 										<array>
 											<string>360E7FB81638920C003A4A64</string>
@@ -418,20 +418,20 @@
 											<string>36964AE9167BEF200018B2C9</string>
 											<string>36964AF1167BEF6D0018B2C9</string>
 											<string>36964AF2167BEF6D0018B2C9</string>
-											<string>36964B64167C11260018B2C9</string>
 											<string>36964B71167D42C60018B2C9</string>
 											<string>36964C94167D6DDF0018B2C9</string>
 											<string>36472E92167DABA40079FF86</string>
 											<string>36472E93167DABA40079FF86</string>
 											<string>36472EC9167DC0D80079FF86</string>
-											<string>36472EF6167DC2970079FF86</string>
-											<string>36472F10167DC5F40079FF86</string>
 											<string>36472F12167DC5F40079FF86</string>
 											<string>36472F15167DC6670079FF86</string>
 											<string>36472F19167E4DE20079FF86</string>
-											<string>36472F1F167E86D90079FF86</string>
 											<string>36473024167EAB340079FF86</string>
-											<string>36473025167EAB340079FF86</string>
+											<string>36473028167ED2460079FF86</string>
+											<string>36473029167ED2460079FF86</string>
+											<string>3647302C167ED2B80079FF86</string>
+											<string>3647302D167ED2B80079FF86</string>
+											<string>36964B64167C11260018B2C9</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
