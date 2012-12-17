@@ -64,12 +64,20 @@ audiomsg * audioq_next(double maxtime) {
 	return audioq_peek(maxtime);
 }
 
+#pragma mark App
+
 class App : public OmniApp, public Shared {
 public:
 
 	App() {
 		// one-time only:
-		mOmni.resolution(256);
+		if (mOmni.activeStereo()) {
+			mOmni.resolution(2048);
+		} else {
+			mOmni.resolution(256);
+		}
+		
+		
 		initAudio(44100, 1024);
 		audiotime = 0;
 		
@@ -90,9 +98,7 @@ public:
 		audiogain = 0.05;
 		
 		// initialize shared:
-		reset();
-		
-					
+		reset();	
 	}
 	
 	void reset() {
