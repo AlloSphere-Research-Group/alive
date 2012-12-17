@@ -95,6 +95,7 @@ function launch(name) {
 			master.send("out:" + text);
 		}
 	});
+  
 	vm.stderr.on('data', function (text) {
 		process.stdout.write('err:' + text);
 		if (master !== null) {
