@@ -3033,6 +3033,80 @@
 		363BA36C1674853E00E85175 /* main.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = main.lua; sourceTree = "<group>"; };
 		36472F1E167E86850079FF86 /* query.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = query.lua; sourceTree = "<group>"; };
 		36473046167ED9350079FF86 /* al_OmniStereo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = al_OmniStereo.cpp; sourceTree = "<group>"; };
+		36473064167EDADB0079FF86 /* alpha1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alpha1.png; sourceTree = "<group>"; };
+		36473065167EDADB0079FF86 /* alpha10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alpha10.png; sourceTree = "<group>"; };
+		36473066167EDADB0079FF86 /* alpha11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alpha11.png; sourceTree = "<group>"; };
+		36473067167EDADB0079FF86 /* alpha12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alpha12.png; sourceTree = "<group>"; };
+		36473068167EDADB0079FF86 /* alpha2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alpha2.png; sourceTree = "<group>"; };
+		36473069167EDADB0079FF86 /* alpha3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alpha3.png; sourceTree = "<group>"; };
+		3647306A167EDADB0079FF86 /* alpha4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alpha4.png; sourceTree = "<group>"; };
+		3647306B167EDADB0079FF86 /* alpha5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alpha5.png; sourceTree = "<group>"; };
+		3647306C167EDADB0079FF86 /* alpha6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alpha6.png; sourceTree = "<group>"; };
+		3647306D167EDADB0079FF86 /* alpha7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alpha7.png; sourceTree = "<group>"; };
+		3647306E167EDADB0079FF86 /* alpha8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alpha8.png; sourceTree = "<group>"; };
+		3647306F167EDADB0079FF86 /* alpha9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alpha9.png; sourceTree = "<group>"; };
+		36473070167EDADB0079FF86 /* camera1.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = camera1.bin; sourceTree = "<group>"; };
+		36473071167EDADB0079FF86 /* camera2.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = camera2.bin; sourceTree = "<group>"; };
+		36473072167EDADB0079FF86 /* camera3.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = camera3.bin; sourceTree = "<group>"; };
+		36473073167EDADB0079FF86 /* camera4.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = camera4.bin; sourceTree = "<group>"; };
+		36473074167EDADB0079FF86 /* camera5.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = camera5.bin; sourceTree = "<group>"; };
+		36473075167EDADB0079FF86 /* camera6.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = camera6.bin; sourceTree = "<group>"; };
+		36473076167EDADB0079FF86 /* camera7.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = camera7.bin; sourceTree = "<group>"; };
+		36473077167EDADB0079FF86 /* default.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = default.lua; sourceTree = "<group>"; };
+		36473078167EDADB0079FF86 /* map3D1.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = map3D1.bin; sourceTree = "<group>"; };
+		36473079167EDADB0079FF86 /* map3D10.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = map3D10.bin; sourceTree = "<group>"; };
+		3647307A167EDADB0079FF86 /* map3D11.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = map3D11.bin; sourceTree = "<group>"; };
+		3647307B167EDADB0079FF86 /* map3D12.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = map3D12.bin; sourceTree = "<group>"; };
+		3647307C167EDADB0079FF86 /* map3D2.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = map3D2.bin; sourceTree = "<group>"; };
+		3647307D167EDADB0079FF86 /* map3D3.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = map3D3.bin; sourceTree = "<group>"; };
+		3647307E167EDADB0079FF86 /* map3D4.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = map3D4.bin; sourceTree = "<group>"; };
+		3647307F167EDADB0079FF86 /* map3D5.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = map3D5.bin; sourceTree = "<group>"; };
+		36473080167EDADB0079FF86 /* map3D6.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = map3D6.bin; sourceTree = "<group>"; };
+		36473081167EDADB0079FF86 /* map3D7.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = map3D7.bin; sourceTree = "<group>"; };
+		36473082167EDADB0079FF86 /* map3D8.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = map3D8.bin; sourceTree = "<group>"; };
+		36473083167EDADB0079FF86 /* map3D9.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = map3D9.bin; sourceTree = "<group>"; };
+		36473084167EDADB0079FF86 /* ModelViewMatrix1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ModelViewMatrix1.txt; sourceTree = "<group>"; };
+		36473085167EDADB0079FF86 /* ModelViewMatrix10.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ModelViewMatrix10.txt; sourceTree = "<group>"; };
+		36473086167EDADB0079FF86 /* ModelViewMatrix11.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ModelViewMatrix11.txt; sourceTree = "<group>"; };
+		36473087167EDADB0079FF86 /* ModelViewMatrix12.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ModelViewMatrix12.txt; sourceTree = "<group>"; };
+		36473088167EDADB0079FF86 /* ModelViewMatrix2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ModelViewMatrix2.txt; sourceTree = "<group>"; };
+		36473089167EDADB0079FF86 /* ModelViewMatrix3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ModelViewMatrix3.txt; sourceTree = "<group>"; };
+		3647308A167EDADB0079FF86 /* ModelViewMatrix4.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ModelViewMatrix4.txt; sourceTree = "<group>"; };
+		3647308B167EDADB0079FF86 /* ModelViewMatrix5.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ModelViewMatrix5.txt; sourceTree = "<group>"; };
+		3647308C167EDADB0079FF86 /* ModelViewMatrix6.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ModelViewMatrix6.txt; sourceTree = "<group>"; };
+		3647308D167EDADB0079FF86 /* ModelViewMatrix7.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ModelViewMatrix7.txt; sourceTree = "<group>"; };
+		3647308E167EDADB0079FF86 /* ModelViewMatrix8.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ModelViewMatrix8.txt; sourceTree = "<group>"; };
+		3647308F167EDADB0079FF86 /* ModelViewMatrix9.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ModelViewMatrix9.txt; sourceTree = "<group>"; };
+		36473090167EDADB0079FF86 /* PerspectiveMatrix1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PerspectiveMatrix1.txt; sourceTree = "<group>"; };
+		36473091167EDADB0079FF86 /* PerspectiveMatrix10.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PerspectiveMatrix10.txt; sourceTree = "<group>"; };
+		36473092167EDADB0079FF86 /* PerspectiveMatrix11.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PerspectiveMatrix11.txt; sourceTree = "<group>"; };
+		36473093167EDADB0079FF86 /* PerspectiveMatrix12.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PerspectiveMatrix12.txt; sourceTree = "<group>"; };
+		36473094167EDADB0079FF86 /* PerspectiveMatrix2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PerspectiveMatrix2.txt; sourceTree = "<group>"; };
+		36473095167EDADB0079FF86 /* PerspectiveMatrix3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PerspectiveMatrix3.txt; sourceTree = "<group>"; };
+		36473096167EDADB0079FF86 /* PerspectiveMatrix4.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PerspectiveMatrix4.txt; sourceTree = "<group>"; };
+		36473097167EDADB0079FF86 /* PerspectiveMatrix5.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PerspectiveMatrix5.txt; sourceTree = "<group>"; };
+		36473098167EDADB0079FF86 /* PerspectiveMatrix6.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PerspectiveMatrix6.txt; sourceTree = "<group>"; };
+		36473099167EDADB0079FF86 /* PerspectiveMatrix7.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PerspectiveMatrix7.txt; sourceTree = "<group>"; };
+		3647309A167EDADB0079FF86 /* PerspectiveMatrix8.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PerspectiveMatrix8.txt; sourceTree = "<group>"; };
+		3647309B167EDADB0079FF86 /* PerspectiveMatrix9.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PerspectiveMatrix9.txt; sourceTree = "<group>"; };
+		3647309C167EDADB0079FF86 /* photon.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = photon.lua; sourceTree = "<group>"; };
+		3647309D167EDADB0079FF86 /* proj1.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = proj1.bin; sourceTree = "<group>"; };
+		3647309E167EDADB0079FF86 /* proj10.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = proj10.bin; sourceTree = "<group>"; };
+		3647309F167EDADB0079FF86 /* proj11.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = proj11.bin; sourceTree = "<group>"; };
+		364730A0167EDADB0079FF86 /* proj12.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = proj12.bin; sourceTree = "<group>"; };
+		364730A1167EDADB0079FF86 /* proj2.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = proj2.bin; sourceTree = "<group>"; };
+		364730A2167EDADB0079FF86 /* proj3.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = proj3.bin; sourceTree = "<group>"; };
+		364730A3167EDADB0079FF86 /* proj4.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = proj4.bin; sourceTree = "<group>"; };
+		364730A4167EDADB0079FF86 /* proj5.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = proj5.bin; sourceTree = "<group>"; };
+		364730A5167EDADB0079FF86 /* proj6.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = proj6.bin; sourceTree = "<group>"; };
+		364730A6167EDADB0079FF86 /* proj7.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = proj7.bin; sourceTree = "<group>"; };
+		364730A7167EDADB0079FF86 /* proj8.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = proj8.bin; sourceTree = "<group>"; };
+		364730A8167EDADB0079FF86 /* proj9.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = proj9.bin; sourceTree = "<group>"; };
+		364730A9167EDADB0079FF86 /* provenance.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = provenance.txt; sourceTree = "<group>"; };
+		364730AA167EDADB0079FF86 /* spherez03.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = spherez03.lua; sourceTree = "<group>"; };
+		364730AB167EDADB0079FF86 /* spherez04.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = spherez04.lua; sourceTree = "<group>"; };
+		364730AC167EDADB0079FF86 /* spherez05.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = spherez05.lua; sourceTree = "<group>"; };
+		364730AD167EDADB0079FF86 /* spherez06.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = spherez06.lua; sourceTree = "<group>"; };
 		364D1BF41628C0730002CFC9 /* config */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = config; sourceTree = "<group>"; };
 		364D1BF51628C0730002CFC9 /* description */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = description; sourceTree = "<group>"; };
 		364D1BF61628C0730002CFC9 /* HEAD */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HEAD; sourceTree = "<group>"; };
@@ -13646,6 +13720,88 @@
 			path = ../vm4;
 			sourceTree = SOURCE_ROOT;
 		};
+		36473063167EDADB0079FF86 /* calibration-current */ = {
+			isa = PBXGroup;
+			children = (
+				36473064167EDADB0079FF86 /* alpha1.png */,
+				36473065167EDADB0079FF86 /* alpha10.png */,
+				36473066167EDADB0079FF86 /* alpha11.png */,
+				36473067167EDADB0079FF86 /* alpha12.png */,
+				36473068167EDADB0079FF86 /* alpha2.png */,
+				36473069167EDADB0079FF86 /* alpha3.png */,
+				3647306A167EDADB0079FF86 /* alpha4.png */,
+				3647306B167EDADB0079FF86 /* alpha5.png */,
+				3647306C167EDADB0079FF86 /* alpha6.png */,
+				3647306D167EDADB0079FF86 /* alpha7.png */,
+				3647306E167EDADB0079FF86 /* alpha8.png */,
+				3647306F167EDADB0079FF86 /* alpha9.png */,
+				36473070167EDADB0079FF86 /* camera1.bin */,
+				36473071167EDADB0079FF86 /* camera2.bin */,
+				36473072167EDADB0079FF86 /* camera3.bin */,
+				36473073167EDADB0079FF86 /* camera4.bin */,
+				36473074167EDADB0079FF86 /* camera5.bin */,
+				36473075167EDADB0079FF86 /* camera6.bin */,
+				36473076167EDADB0079FF86 /* camera7.bin */,
+				36473077167EDADB0079FF86 /* default.lua */,
+				36473078167EDADB0079FF86 /* map3D1.bin */,
+				36473079167EDADB0079FF86 /* map3D10.bin */,
+				3647307A167EDADB0079FF86 /* map3D11.bin */,
+				3647307B167EDADB0079FF86 /* map3D12.bin */,
+				3647307C167EDADB0079FF86 /* map3D2.bin */,
+				3647307D167EDADB0079FF86 /* map3D3.bin */,
+				3647307E167EDADB0079FF86 /* map3D4.bin */,
+				3647307F167EDADB0079FF86 /* map3D5.bin */,
+				36473080167EDADB0079FF86 /* map3D6.bin */,
+				36473081167EDADB0079FF86 /* map3D7.bin */,
+				36473082167EDADB0079FF86 /* map3D8.bin */,
+				36473083167EDADB0079FF86 /* map3D9.bin */,
+				36473084167EDADB0079FF86 /* ModelViewMatrix1.txt */,
+				36473085167EDADB0079FF86 /* ModelViewMatrix10.txt */,
+				36473086167EDADB0079FF86 /* ModelViewMatrix11.txt */,
+				36473087167EDADB0079FF86 /* ModelViewMatrix12.txt */,
+				36473088167EDADB0079FF86 /* ModelViewMatrix2.txt */,
+				36473089167EDADB0079FF86 /* ModelViewMatrix3.txt */,
+				3647308A167EDADB0079FF86 /* ModelViewMatrix4.txt */,
+				3647308B167EDADB0079FF86 /* ModelViewMatrix5.txt */,
+				3647308C167EDADB0079FF86 /* ModelViewMatrix6.txt */,
+				3647308D167EDADB0079FF86 /* ModelViewMatrix7.txt */,
+				3647308E167EDADB0079FF86 /* ModelViewMatrix8.txt */,
+				3647308F167EDADB0079FF86 /* ModelViewMatrix9.txt */,
+				36473090167EDADB0079FF86 /* PerspectiveMatrix1.txt */,
+				36473091167EDADB0079FF86 /* PerspectiveMatrix10.txt */,
+				36473092167EDADB0079FF86 /* PerspectiveMatrix11.txt */,
+				36473093167EDADB0079FF86 /* PerspectiveMatrix12.txt */,
+				36473094167EDADB0079FF86 /* PerspectiveMatrix2.txt */,
+				36473095167EDADB0079FF86 /* PerspectiveMatrix3.txt */,
+				36473096167EDADB0079FF86 /* PerspectiveMatrix4.txt */,
+				36473097167EDADB0079FF86 /* PerspectiveMatrix5.txt */,
+				36473098167EDADB0079FF86 /* PerspectiveMatrix6.txt */,
+				36473099167EDADB0079FF86 /* PerspectiveMatrix7.txt */,
+				3647309A167EDADB0079FF86 /* PerspectiveMatrix8.txt */,
+				3647309B167EDADB0079FF86 /* PerspectiveMatrix9.txt */,
+				3647309C167EDADB0079FF86 /* photon.lua */,
+				3647309D167EDADB0079FF86 /* proj1.bin */,
+				3647309E167EDADB0079FF86 /* proj10.bin */,
+				3647309F167EDADB0079FF86 /* proj11.bin */,
+				364730A0167EDADB0079FF86 /* proj12.bin */,
+				364730A1167EDADB0079FF86 /* proj2.bin */,
+				364730A2167EDADB0079FF86 /* proj3.bin */,
+				364730A3167EDADB0079FF86 /* proj4.bin */,
+				364730A4167EDADB0079FF86 /* proj5.bin */,
+				364730A5167EDADB0079FF86 /* proj6.bin */,
+				364730A6167EDADB0079FF86 /* proj7.bin */,
+				364730A7167EDADB0079FF86 /* proj8.bin */,
+				364730A8167EDADB0079FF86 /* proj9.bin */,
+				364730A9167EDADB0079FF86 /* provenance.txt */,
+				364730AA167EDADB0079FF86 /* spherez03.lua */,
+				364730AB167EDADB0079FF86 /* spherez04.lua */,
+				364730AC167EDADB0079FF86 /* spherez05.lua */,
+				364730AD167EDADB0079FF86 /* spherez06.lua */,
+			);
+			name = "calibration-current";
+			path = "../../allosphere/calibration-current";
+			sourceTree = SOURCE_ROOT;
+		};
 		364D1BF01628C0730002CFC9 /* externs */ = {
 			isa = PBXGroup;
 			children = (
@@ -14425,6 +14581,7 @@
 		36575208161277BC009D11CC = {
 			isa = PBXGroup;
 			children = (
+				36473063167EDADB0079FF86 /* calibration-current */,
 				363BA36B1674853E00E85175 /* vm4 */,
 				36575504161277FE009D11CC /* README.md */,
 				360F39F4161E930400F6E395 /* misc */,

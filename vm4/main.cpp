@@ -77,7 +77,12 @@ public:
 			mOmni.resolution(256);
 		}
 		
-		
+		if (hostName() == "photon") {
+			initAudio("system", 44100, 1024, 12, 12);
+		} else {
+			initAudio(44100, 1024);
+		}
+
 		initAudio(44100, 1024);
 		audiotime = 0;
 		
