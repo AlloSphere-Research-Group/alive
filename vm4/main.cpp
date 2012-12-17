@@ -79,6 +79,7 @@ public:
 		
 		if (hostName() == "photon") {
 			initAudio("system", 44100, 1024, 12, 12);
+			audioIO().print();
 		} else {
 			initAudio(44100, 1024);
 		}
