@@ -3032,6 +3032,7 @@
 		36207BD01614CD9A001D4BEE /* notes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = notes.txt; sourceTree = "<group>"; };
 		363BA36C1674853E00E85175 /* main.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = main.lua; sourceTree = "<group>"; };
 		36472F1E167E86850079FF86 /* query.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = query.lua; sourceTree = "<group>"; };
+		36473046167ED9350079FF86 /* al_OmniStereo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = al_OmniStereo.cpp; sourceTree = "<group>"; };
 		364D1BF41628C0730002CFC9 /* config */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = config; sourceTree = "<group>"; };
 		364D1BF51628C0730002CFC9 /* description */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = description; sourceTree = "<group>"; };
 		364D1BF61628C0730002CFC9 /* HEAD */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HEAD; sourceTree = "<group>"; };
@@ -12838,6 +12839,7 @@
 			isa = PBXGroup;
 			children = (
 				362078071613F043001D4BEE /* al_FileWatcher.cpp */,
+				36473046167ED9350079FF86 /* al_OmniStereo.cpp */,
 				362078081613F043001D4BEE /* al_ResourceManager.cpp */,
 				362078091613F043001D4BEE /* al_WarpBlend.cpp */,
 			);
