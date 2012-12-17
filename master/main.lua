@@ -77,6 +77,7 @@ end
 function app:update(dt)
 	av:events()
 	
+	--[[
 	-- pick a random agent:
 	local a = pick("default")
 	if a then
@@ -108,6 +109,7 @@ function app:update(dt)
 		a.color.r = 0.5
 		a.color.g = 0.5
 	end
+	--]]
 end
 
 print("ok")

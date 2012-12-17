@@ -38,6 +38,7 @@ av.timer:start(loop)
 av.stdin = ev.IO(function(loop, handler, event)
 	local fd = handler.fd	-- 0
 	local str = io.read("*l") --io.read(1)
+	str = str:gsub("\\n", "\n")
 	print('io', str)
 	
 	if str == "q" then os.exit() end	
