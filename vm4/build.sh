@@ -50,12 +50,12 @@ function build {
 	
 		INCLUDEPATHS="-I$ALLOSYSTEMPATH/build/include -I/usr/local/include/luajit-2.0 -I/usr/include/luajit-2.0 -I/usr/include/apr-1.0/ -I../externs/libuv/include"
 		LINKERPATHS="-L$ALLOSYSTEMPATH/build/lib -L/usr/local/lib -L/usr/lib -L/usr/lib/llvm-3.0/lib/ -L/usr/lib"
-		LIBRARIES="-lalloutil -lallocore -lluajit-5.1 -lev -lGLEW -lGLU -lGL -lglut -lassimp -lportaudio  -lasound -lfreeimage -lfreetype -lapr-1 -laprutil-1 -lrt -lpthread"
+		LIBRARIES="-lalloutil -lallocore -lluajit-5.1 -lGLEW -lGLU -lGL -lglut -lassimp -lportaudio  -lasound -lfreeimage -lfreetype -lapr-1 -laprutil-1 -lrt -lpthread"
 		LINKERFLAGS="-w -rdynamic"
 
 		g++ -c -O3 -Wall -fPIC -ffast-math -Wno-unknown-pragmas -MMD -DAPR_FAST_COMPAT -DAPR_STRICT -D_GNU_SOURCE -DEV_MULTIPLICITY=1 $INCLUDEPATHS $SOURCES
 
-		g++ $LINKERFLAGS $LINKERPATHS -Wl,-whole-archive *.o -Wl,-no-whole-archive $LIBRARIES -o $PRODUCT_NAME
+		g++ $LINKERFLAGS $LINKERPATHS -Wl,-whole-archive -lev *.o -Wl,-no-whole-archive $LIBRARIES -o $PRODUCT_NAME
 
 	else
 
