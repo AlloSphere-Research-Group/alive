@@ -4097,6 +4097,36 @@
 		vrLen = 1316;
 		vrLoc = 94;
 	};
+	3647302C167ED2B80079FF86 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 363BA36C1674853E00E85175 /* main.lua */;
+		name = "main.lua: 10";
+		rLen = 0;
+		rLoc = 251;
+		rType = 0;
+		vrLen = 1316;
+		vrLoc = 94;
+	};
+	3647302D167ED2B80079FF86 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 36472F1E167E86850079FF86 /* query.lua */;
+		name = "query.lua: 139";
+		rLen = 0;
+		rLoc = 2680;
+		rType = 0;
+		vrLen = 1095;
+		vrLoc = 2442;
+	};
+	3647302E167ED2B80079FF86 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 366E3C4A167485E800F3B556 /* build.sh */;
+		name = "build.sh: 72";
+		rLen = 0;
+		rLoc = 2327;
+		rType = 0;
+		vrLen = 1866;
+		vrLoc = 467;
+	};
 	364D1C2B1628C0730002CFC9 /* uv.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {612, 24661}}";
@@ -4861,6 +4891,9 @@
 			36473029167ED2460079FF86 /* PBXTextBookmark */ = 36473029167ED2460079FF86 /* PBXTextBookmark */;
 			3647302A167ED2460079FF86 /* PBXTextBookmark */ = 3647302A167ED2460079FF86 /* PBXTextBookmark */;
 			3647302B167ED25C0079FF86 /* PBXTextBookmark */ = 3647302B167ED25C0079FF86 /* PBXTextBookmark */;
+			3647302C167ED2B80079FF86 /* PBXTextBookmark */ = 3647302C167ED2B80079FF86 /* PBXTextBookmark */;
+			3647302D167ED2B80079FF86 /* PBXTextBookmark */ = 3647302D167ED2B80079FF86 /* PBXTextBookmark */;
+			3647302E167ED2B80079FF86 /* PBXTextBookmark */ = 3647302E167ED2B80079FF86 /* PBXTextBookmark */;
 			366E3C4B1674862C00F3B556 = 366E3C4B1674862C00F3B556 /* PBXTextBookmark */;
 			366E3C4F1674862C00F3B556 = 366E3C4F1674862C00F3B556 /* PBXTextBookmark */;
 			366E3C561674869A00F3B556 = 366E3C561674869A00F3B556 /* PBXTextBookmark */;
@@ -5137,9 +5170,9 @@
 	};
 	366E3C4A167485E800F3B556 /* build.sh */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {740, 1131}}";
-			sepNavSelRange = "{828, 0}";
-			sepNavVisRange = "{360, 1958}";
+			sepNavIntBoundsRect = "{{0, 0}, {600, 1183}}";
+			sepNavSelRange = "{2327, 0}";
+			sepNavVisRange = "{467, 1866}";
 		};
 	};
 	366E3C4B1674862C00F3B556 /* PBXTextBookmark */ = {

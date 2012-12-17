@@ -69,9 +69,6 @@ function run {
 	./$PRODUCT_NAME
 }
 
-clean
-generate_ffi_header
-build
-run
+clean && generate_ffi_header && build && run
 
 
