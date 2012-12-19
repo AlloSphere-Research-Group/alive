@@ -253,18 +253,29 @@ $(document).ready( function() {
       }
   };
 	
+  var executeCode = function(cm) {
+    var v = cm.getSelection();
+    var pos = null;
+    if (v === "") {
+        pos = cm.getCursor();
+        v = cm.getLine(pos.line);
+    }
+    flash(cm, pos);
+    slaveSocket.emit('execute', {code:v});
+  };
+  
+  var clearDoc = function(cm) {
+    console.log("CLEARING DOC");
+    var l = cm.getValue().length;
+    cm.setValue("");
+    doc.del(0, l);
+  };
+  
 	CodeMirror.keyMap.alive = {
 		fallthrough : "default",
-    "Ctrl-Enter": function(cm) {
-        var v = cm.getSelection();
-        var pos = null;
-        if (v === "") {
-            pos = cm.getCursor();
-            v = cm.getLine(pos.line);
-        }
-        flash(cm, pos);
-        slaveSocket.emit('execute', {code:v});
-    },
+    "Ctrl-Enter": executeCode,
+    "Cmd-Enter": executeCode, 
+    "Cmd-Backspace": clearDoc,   
 		"Cmd-S": editor_save,
 		"Ctrl-S": editor_save,
 	};
