@@ -70,7 +70,7 @@ $(document).ready( function() {
 				console.error(error);
 				return;
 			}
-			currentFile = newDoc.name;
+			currentFile = "a.l.i.v.e";//newDoc.name;
 			console.log("opening: " + currentFile)
 			$("#filename").text(currentFile);
 			doc = newDoc;
@@ -78,7 +78,7 @@ $(document).ready( function() {
 			//	console.log("read: "+currentFile)
 			//	slaveSocket.emit('cmd', 'read ' + currentFile);
 			//}else{
-				doc.attach_cm(window.editor);
+				doc.attach_codemirror(window.editor);
 				console.log("attach: " + currentFile)
 			//}
 			
@@ -117,7 +117,7 @@ $(document).ready( function() {
 				(function() {
 					var name = response.data[i].name;
 					$(a).click(function() {
-						connection = setDoc(name);
+						//connection = setDoc(name);
 
 						//slaveSocket.emit('cmd', 'read ' + name);
 						//currentFile = name;
@@ -176,7 +176,7 @@ $(document).ready( function() {
 	
     //editor = CodeMirror(document.body, { mode: "coffeescript", tabSize: 2 });
 
-    var connection = setDoc('a.l.i.v.e.');  // Hooking ShareJS and CodeMirror for the first time.
+    var connection = setDoc('cm');  // Hooking ShareJS and CodeMirror for the first time.
 
     /*var namefield = document.getElementById('namefield');
     function fn() {
@@ -193,10 +193,10 @@ $(document).ready( function() {
 	// *** Connection status display
 	var status = document.getElementById('sharejs_status');
 	var register = function(state, klass, text) {
-	connection.on(state, function() {
-	  status.className = 'label ' + klass;
-	  status.innerHTML = text;
-	});
+  	connection.on(state, function() {
+  	  status.className = 'label ' + klass;
+  	  status.innerHTML = text;
+  	});
 	};
 
 	register('ok', 'success', 'Online');
@@ -208,9 +208,9 @@ $(document).ready( function() {
 	
 	CodeMirror.modeURL = "js/codemirror/mode/%N/%N.js";
 	// this should depend on the type of file being displayed
-	//window.editor.setOption("mode", "javascript");
-	//window.editor.setOption("mode", "clike");
-	window.editor.setOption("mode", "lua");
+	// window.editor.setOption("mode", "javascript");
+	// window.editor.setOption("mode", "clike");
+  window.editor.setOption("mode", "lua");
 	
 	var hlLine = window.editor.setLineClass(0, "activeline");
 	window.editor.setOption("onCursorActivity", function() {
