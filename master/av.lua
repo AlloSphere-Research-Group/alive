@@ -5,6 +5,8 @@ local C = ffi.C
 local vec = require "vec"
 local ev = require "ev"
 local scheduler = require "scheduler"
+local notify = require "notify"
+local notify_trigger = notify.trigger
 
 local loop = ev.default_loop()
 local app = C.app_get()
@@ -12,6 +14,18 @@ local app = C.app_get()
 local main = scheduler()
 -- these are global:
 go, now, wait, event = main.go, main.now, main.wait, main.event
+
+
+
+-- start a tempo routine:
+bpm = 120
+go(function()
+	while true do
+		event("beat")
+		notify_trigger("beat")
+		wait(60/bpm)
+	end
+end)
 
 local av = {
 	app = app,

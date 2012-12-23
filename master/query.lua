@@ -1,9 +1,9 @@
 
 local q = {}
 
-function query(basename, ...)
+function query(base, ...)
 	return setmetatable({
-		basename or "*", ...
+		base, ...
 	}, q)
 end
 
@@ -27,11 +27,11 @@ function q:__index(k)
 	end
 end
 
-function q:pick(fraction)
+function q:pick(n)
 	-- create a sub-query:
 	local q1 = { unpack(self) }
 	q1[#q1+1] = function(item)
-		if math.random() < 0.5 then return item end
+		if math.random() < n then return item end
 	end
 	return setmetatable(q1, q)
 end
@@ -179,3 +179,5 @@ beep:test("foo")
 
 print("done")
 --]]
+
+return query
