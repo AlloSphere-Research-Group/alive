@@ -3,10 +3,56 @@
 -- tag behaviors can be updated, which propagates to all agents using them
 -- tags can also be used to select agents and modify their properties
 -- (akin to JQuery DOM selection & CSS modification)
+-- but world DOM (WOM) is mostly flat, more like many divs with multiple css classes
 
--- world DOM (WOM) is mostly flat, more like many divs with multiple css classes
+--[[ 
+Quick jquery tut:
 
--- heavily event-driven
+selectors:
+$(obj).hide()
+$("element").hide()
+$(".class").hide()
+$(".foo.bar").hide() // both .foo and .bar
+$("#id").show()
+$("*") // all elements
+$("element.class")
+$("element subelement:first") // also :last
+$("element subelement:even") 
+// also :not(pattern), :contains(text), :has(predicate), :visible, :enabled
+$("p1,p2") // matching p1 or p2
+$("[attribute]") all elements with given attribute
+$("element[attribute=value]") all elements of a type with given attribute & value
+// also !=, ~= (similar to), 
+
+event handlers:
+.on(events, [filters], [userdata,] callback)
+.on(event-callback map, [filters], [userdata,])
+$(document).on("ready", function() ...)
+$("button.foo").on("click", function(event, args) )
+// event properties include type, object, time, userdata, args... 
+// jquery allows multiple handlers to be attached. remove with off():
+.off([events], [filters], [callback])
+.one(<same args as on()>) // handler that fires only once, and removes itself
+// some event names can be used as methods instead of .on(name):
+.change .error .ready (or .load .unload) .focus etc., .hover etc.
+// chaining: query is always returned, can can be re-used.
+
+// triggers
+$("button.foo").trigger("click", args)
+// some triggers allow chaining a callback function for when it completes
+$("button.foo").click(args, function)
+
+property manipulation:
+get: .text(), .html(), .val(), .attr(name)
+set: .text(value) or .text(function(index, originalvalue))
+multi: .attr({ ... })
+.append, .prepend, .after, .before might be like our .spawn etc.
+.remove like .die. Supports filters: $("p").remove(".italic")
+(replace?)
+.addClass("name1 name2"), .removeClass, .toggleClass
+.css("propertyname") .css("propertyname", "value")
+--]]
+
 
 for i=1, 20 do
 	Agent(['beeps', 'beeps2'])
