@@ -3,6 +3,8 @@ print("starting main2.lua")
 local av = require "av"
 local app = av.app
 local vec = require "vec"
+local E = require "expr"
+E:globalize()
 local agent = require "agent"
 local Tag = agent.Tag
 local Agent = agent.Agent
@@ -18,6 +20,13 @@ math.randomseed(os.time())
 --------------------------------------------------------------------------------
 -- DEMO
 --------------------------------------------------------------------------------
+
+a = 10
+A = Random(2) ^ (Sin(1)):abs() - E"a"
+
+print(A)
+print(A())
+
 
 local all = Tag("*")
 local reds = Tag("red")
