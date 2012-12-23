@@ -96,7 +96,7 @@ editors_in.sockets.on('connection', function (socket) {
 	editors[socket.addr].on('execute', function(obj) {
 		var code = obj.code.replace(/(\r\n|\n|\r)/gm, "<n>") + "\n";
 		//console.log("CODE", code);
-		vm.stdin.write(code);
+		//vm.stdin.write(code);
 	});
 	
 	/*
