@@ -62,7 +62,7 @@ typedef struct SpeakerConfig {
 static const int MAX_SPEAKERS = 4;
 static const int MAX_AGENTS = 150;
 
-static const int WORLD_DIM = 64;	// power of 2
+static const int WORLD_DIM = 32;	// power of 2
 
 // Audio interface:
 typedef struct Voice {

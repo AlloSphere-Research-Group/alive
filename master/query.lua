@@ -3,7 +3,7 @@ local q = {}
 
 function query(basename, ...)
 	return setmetatable({
-		basename or "all", ...
+		basename or "*", ...
 	}, q)
 end
 
@@ -158,7 +158,7 @@ function add(name, obj)
 end
 
 ------------------ TEST ------------------
-
+--[[
 local beep = maketag("beep")
 
 function test(self, k)
@@ -178,3 +178,4 @@ beep.foo = 10
 beep:test("foo")
 
 print("done")
+--]]

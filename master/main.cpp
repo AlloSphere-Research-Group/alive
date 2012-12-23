@@ -71,7 +71,7 @@ class App : public OmniApp, public Shared {
 public:
 
 	App() 
-	:	space(6, MAX_AGENTS),
+	:	space(5, MAX_AGENTS),
 		qnearest(6)
 	{
 		// one-time only:
@@ -81,12 +81,9 @@ public:
 			mOmni.resolution(256);
 		}
 		
-		nav().pos(WORLD_DIM/2, 4, WORLD_DIM/2);
-		nav().quat().fromAxisX(-M_PI/2);
+		printf("running on %s\n", hostName().c_str());
 		
 		updating = true;
-		
-		printf("running on %s\n", hostName().c_str());
 		
 		if (hostName() == "photon") {
 			AudioDevice::printAll();
@@ -122,7 +119,7 @@ public:
 			s.weights.z = -cos(angle);
 		}
 		
-		audiogain = 0.05;
+		audiogain = 0.5;
 		
 		// initialize shared:
 		reset();	
@@ -140,9 +137,9 @@ public:
 			a.enable = 0;
 			a.visible = 1;
 			
-			a.position.x = 10. * rnd::global().uniform();
-			a.position.y = 10. * rnd::global().uniform();
-			a.position.z = 10. * rnd::global().uniform();
+			a.position.x = WORLD_DIM * rnd::global().uniform();
+			a.position.y = WORLD_DIM * rnd::global().uniform();
+			a.position.z = WORLD_DIM * rnd::global().uniform();
 			
 			a.scale.set(0.5, 0.25, 1);
 			a.color.set(0.5);
@@ -246,7 +243,7 @@ public:
 			}
 		}
 		
-		gl.color(1);
+		gl.color(0.2);
 		shader().attribute(rotateAttr, 0, 0, 0, 1);
 		shader().attribute(translateAttr, 0, 0, 0);
 		shader().attribute(scaleAttr, 1, 1, 1);
@@ -380,7 +377,7 @@ public:
 			// unit rel:
 			vec3 direction = rel * (1./d);			
 			// amplitude scale by distance:
-			double atten = attenuate(d2, 0.2, 1/10.);
+			double atten = attenuate(d2, 0.2, 1/24.);
 			// omni mix is also distance-dependent. 
 			// at near distances, the signal should be omnidirectional
 			// the minimum really depends on the radii of the listener/emitter

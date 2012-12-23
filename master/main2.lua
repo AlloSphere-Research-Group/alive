@@ -56,9 +56,62 @@ function Agent:freq(f)
 	return self
 end
 
+
+local events = {}
+local
+function register(k, v)
+	-- get or create map:
+	local e = events[k]
+	if not e then 
+		e = {} 
+		events[k] = e
+	end
+	-- add to map:
+	e[v] = true
+end
+
+local 
+function unregister(k, v)
+	local e = events[k]
+	e[v] = nil
+end
+
+local 
+function trigger(k, ...)
+	local e = events[k]
+	if e then
+		for o in pairs(e) do
+			o:notify(k, ...)
+		end
+	end
+end
+
+function Agent:notify(k, ...)
+	local handler = self._handlers[k]
+	if handler then
+		handler(self, k, ...)
+	else
+		-- if this happens, probably shoudl unregister it:
+		unregister(k, self)
+	end
+end
+
 function Agent:die()
 	self.enable = 0
+	-- unregister notifications:
+	for k in pairs(self._handlers) do
+		unregister(k, self)
+		self._handlers[k] = nil
+	end
 	Agent.pool[#Agent.pool+1] = self.id
+end
+
+
+function Agent:on(event, handler)
+	-- 1. store the handler for this event
+	self._handlers[event] = handler
+	-- 2. register for notification of this event
+	register(event, self)
 end
 
 setmetatable(Agent, {
@@ -78,6 +131,8 @@ for i = 0, av.MAX_AGENTS-1 do
 		id = i,
 		_object = app.agents[i],
 		_voice = app.voices[i],
+		
+		_handlers = {},
 	}
 	-- store in all-agent list:
 	Agent.agents[i] = setmetatable(o, Agent)
@@ -90,21 +145,30 @@ end
 --------------------------------------------------------------------------------
 
 
-local a = Agent()
-print(a)
-a:enable()
-a:halt()
-a:home()
-a:move(0.5)
-a:turn(0.5, 0, 0)
-a:freq(110)
+go(function()
+	while true do
+		trigger("beat")
+		wait(0.5)
+	end
+end)
 
-for i = 1, 150 do
-	local b = Agent()
-	b:home()
-	b:enable()
-	b:move(random()*4)
-	b:turn(srandom(), 0, 0)
-	b:freq(random() + 55 * random(10))
-end
+
+go(function()
+	while true do
+		local b = Agent()
+		b:enable()
+		b:freq(random() + 55 * random(10))
+		
+		-- insert a beat-based handler:
+		b:on("beat", function()
+			b:turn(srandom()*3, srandom()*3, srandom()*3)
+			b:move(random()*10*random()*10)
+		end)
+		
+		wait(1)
+	end
+end)
+
+
+
 print("ok")

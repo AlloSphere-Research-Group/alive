@@ -4,9 +4,14 @@ local ffi = require "ffi"
 local C = ffi.C
 local vec = require "vec"
 local ev = require "ev"
+local scheduler = require "scheduler"
 
 local loop = ev.default_loop()
 local app = C.app_get()
+
+local main = scheduler()
+-- these are global:
+go, now, wait, event = main.go, main.now, main.wait, main.event
 
 local av = {
 	app = app,
@@ -37,6 +42,13 @@ av.stdin:start(loop)
 
 function av:events()
 	loop:run(ev.RUN_NOWAIT) 
+end
+
+-- entry point from application:
+function av.app:update(dt)
+	loop:run(ev.RUN_NOWAIT) 
+	-- or main.update(now)?
+	main.advance(dt)
 end
 
 setmetatable(av, {

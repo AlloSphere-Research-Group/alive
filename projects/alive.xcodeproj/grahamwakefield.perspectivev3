@@ -294,7 +294,7 @@
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 116}, {198, 769}}</string>
+							<string>{{0, 0}, {198, 769}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -341,7 +341,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>36C79F5716869E2000F09C97</string>
+										<string>36C79FB31686CC0500F09C97</string>
 										<key>history</key>
 										<array>
 											<string>36DE520A163B4545004F736A</string>
@@ -380,20 +380,21 @@
 											<string>364731AE167F20600079FF86</string>
 											<string>36380EF7168184F30037531F</string>
 											<string>36C79E0A1686854B00F09C97</string>
-											<string>36C79E16168687B000F09C97</string>
-											<string>36C79E3616868BF600F09C97</string>
-											<string>36C79E5016868F3C00F09C97</string>
-											<string>36C79E87168693AE00F09C97</string>
 											<string>36C79EA21686979900F09C97</string>
 											<string>36C79EA31686979900F09C97</string>
 											<string>36C79EA41686979900F09C97</string>
-											<string>36C79EBB16869AB600F09C97</string>
 											<string>36C79F4516869CD000F09C97</string>
 											<string>36C79F4616869CD000F09C97</string>
 											<string>36C79F4E16869DBF00F09C97</string>
 											<string>36C79F4F16869DBF00F09C97</string>
-											<string>36C79F5216869E1A00F09C97</string>
-											<string>36C79F5316869E1A00F09C97</string>
+											<string>36C79F6F1686A55800F09C97</string>
+											<string>36C79F721686A70E00F09C97</string>
+											<string>36C79F8B1686C87500F09C97</string>
+											<string>36C79F911686C8B300F09C97</string>
+											<string>36C79F931686C8C100F09C97</string>
+											<string>36C79F971686C96200F09C97</string>
+											<string>36C79FAB1686CBB100F09C97</string>
+											<string>36C79FAC1686CBB100F09C97</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
