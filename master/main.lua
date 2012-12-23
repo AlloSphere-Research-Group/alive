@@ -1,3 +1,4 @@
+
 -- tags stores table of all tag names
 local tags = {}
 -- map of agents to tag names:
@@ -67,8 +68,8 @@ for i = 0, av.MAX_AGENTS-1 do
 	a.rotate:fromAxisY(cos(i))
 	a.scale:set(0.5, 0.2, 1)
 	
-	a.phase = 0
-	a.freq = 55 * floor(abs(12 * cos(i))) + 5*srandom()
+	a.voice.phase = 0
+	a.voice.freq = 55 * floor(abs(12 * cos(i))) + 5*srandom()
 	
 	-- add to default tag:
 	tag(a, "default")
@@ -84,7 +85,7 @@ function app:update(dt)
 		a.turn.y = 10 * srandom()
 		a.turn.z = 0
 		a.color.g = 0
-		a.freq = 55 * (4+random(10)) + 5*srandom()
+		a.voice.freq = 55 * (4+random(10)) + 5*srandom()
 	end
 	
 	local a = pick("default")
@@ -96,7 +97,7 @@ function app:update(dt)
 		a.turn.z = 0
 		a.color.r = random()
 		a.color.g = 0.5
-		a.freq = 55 * (11+random(10)) + 5*srandom()
+		a.voice.freq = 55 * (11+random(10)) + 5*srandom()
 	end
 	
 	local a = pick("default")
@@ -109,7 +110,7 @@ function app:update(dt)
 		a.rotate:fromAxisY(cos(i))
 		a.color.r = 0.5
 		a.color.g = 0.5
-		a.freq = 55 * random(5) + 5*srandom()
+		a.voice.freq = 55 * random(5) + 5*srandom()
 	end
 end
 

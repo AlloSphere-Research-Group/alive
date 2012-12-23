@@ -1,6 +1,7 @@
 #include "main.h"
 #include "Q.hpp"
 
+#include "allocore/spatial/al_HashSpace.hpp"
 #include "alloutil/al_OmniApp.hpp"
 #include "alloutil/al_Lua.hpp"
 
@@ -9,7 +10,7 @@
 
 using namespace al;
 
-void default_synthesize_func(struct Agent& self, int frames, double samplerate, float * out) {
+void default_synthesize_func(struct Voice& self, int frames, double samplerate, float * out) {
 	double pincr = self.freq / samplerate;
 	for (int i=0; i<frames; i++) {
 		out[i] = sin(M_PI * 2. * self.phase);
@@ -69,13 +70,21 @@ audiomsg * audioq_next(double maxtime) {
 class App : public OmniApp, public Shared {
 public:
 
-	App() {
+	App() 
+	:	space(6, MAX_AGENTS),
+		qnearest(6)
+	{
 		// one-time only:
 		if (mOmni.activeStereo()) {
 			mOmni.resolution(2048);
 		} else {
 			mOmni.resolution(256);
 		}
+		
+		nav().pos(WORLD_DIM/2, 4, WORLD_DIM/2);
+		nav().quat().fromAxisX(-M_PI/2);
+		
+		updating = true;
 		
 		printf("running on %s\n", hostName().c_str());
 		
@@ -122,12 +131,20 @@ public:
 	void reset() {
 		for (int i=0; i<MAX_AGENTS; i++) {
 			Agent& a = agents[i];
+			Voice& v = voices[i];
+			a.voice = &v;
+			
+			a.id = i;
+			a.nearest = i;
+			
+			a.enable = 0;
+			a.visible = 1;
 			
 			a.position.x = 10. * rnd::global().uniform();
 			a.position.y = 10. * rnd::global().uniform();
 			a.position.z = 10. * rnd::global().uniform();
 			
-			a.scale.set(1, 1, 1);
+			a.scale.set(0.5, 0.25, 1);
 			a.color.set(0.5);
 			
 			// init unit vectors:
@@ -135,9 +152,10 @@ public:
 			a.rotate.toVectorY(a.uy);
 			a.rotate.toVectorZ(a.uz);
 			
-			a.synthesize = default_synthesize_func;
-			a.encode.set(0, 0, 0, 0);
-			a.phase = 0;
+			v.synthesize = default_synthesize_func;
+			v.amp = 0.1;
+			v.encode.set(0, 0, 0, 0);
+			v.phase = 0;
 		}
 	}
 	
@@ -209,48 +227,97 @@ public:
 	}
 	
 	virtual void onDraw(Graphics& gl) {
-		shader().uniform("lighting", 0.5);
+		shader().uniform("lighting", 0.2);
+		
+		gl.polygonMode(gl.LINE);
+		
 		// draw all active agents
 		int translateAttr = shader().attribute("translate");
 		int rotateAttr = shader().attribute("rotate");
 		int scaleAttr = shader().attribute("scale");
 		for (int i=0; i<MAX_AGENTS; i++) {
 			Agent& a = agents[i];
-			shader().attribute(rotateAttr, a.rotate.x, a.rotate.y, a.rotate.z, a.rotate.w);
-			shader().attribute(translateAttr, a.position.x, a.position.y, a.position.z);
-			shader().attribute(scaleAttr, a.scale.x, a.scale.y, a.scale.z);
-			gl.color(a.color.r, a.color.g, a.color.b, a.color.a);
-			gl.draw(cube);
+			if (a.enable && a.visible) {
+				shader().attribute(rotateAttr, a.rotate.x, a.rotate.y, a.rotate.z, a.rotate.w);
+				shader().attribute(translateAttr, a.position.x, a.position.y, a.position.z);
+				shader().attribute(scaleAttr, a.scale.x, a.scale.y, a.scale.z);
+				gl.color(a.color.r, a.color.g, a.color.b, a.color.a);
+				gl.draw(cube);
+			}
 		}
+		
+		gl.color(1);
+		shader().attribute(rotateAttr, 0, 0, 0, 1);
+		shader().attribute(translateAttr, 0, 0, 0);
+		shader().attribute(scaleAttr, 1, 1, 1);
+		gl.begin(gl.LINES);
+		for (int i=0; i<MAX_AGENTS; i++) {
+			Agent& a = agents[i];
+			if (a.enable && a.visible) {
+				Agent& b = agents[a.nearest];
+				gl.vertex(a.position);
+				gl.vertex(b.position);
+			}
+		}
+		gl.end();
 	}
 	
 	void simulate(al_sec dt) {
 		for (int i=0; i<MAX_AGENTS; i++) {
 			Agent& a = agents[i];
+			if (a.enable) {
+				
+				// accumulate velocity:
+				vec3 vel = a.uz * -a.velocity;
+				a.position += vel * dt;
+				
+				// wrap location:
+				for (int j=0; j<3; j++) {
+					double p = a.position[j];
+					p -= active_origin[j];
+					p = al::wrap(p, (double)WORLD_DIM);
+					p += active_origin[j];
+					a.position[j] = p;
+				}
+				
+				// update hashspace:
+				space.move(i, 
+					a.position.x,
+					a.position.y,
+					a.position.z
+				);
+				
+				// accumulate rotation:
+				vec3 turn = a.turn * dt;
+				quat r = quat().fromEuler(turn.y, turn.x, turn.z);
+				
+				// apply rotation:
+				a.rotate = a.rotate * r;
+				a.rotate.normalize();
+				
+				// update unit vectors:
+				a.rotate.toVectorX(a.ux);
+				a.rotate.toVectorY(a.uy);
+				a.rotate.toVectorZ(a.uz);
+
+				HashSpace::Object& o =  space.object(i);
+				HashSpace::Object * n = qnearest.nearest(space, &o);
+				if (n) {
+					a.nearest = n->id;	
+				} else {
+					a.nearest = a.id;
+				}
+
 			
-			// accumulate velocity:
-			vec3 vel = a.uz * -a.move.z;
-			a.position += vel * dt;
-			
-			// accumulate rotation:
-			vec3 turn = a.turn * dt;
-			quat r = quat().fromEuler(turn.y, turn.x, turn.z);
-			// apply:
-			a.rotate = a.rotate * r;
-			a.rotate.normalize();
-			
-			// update unit vectors:
-			a.rotate.toVectorX(a.ux);
-			a.rotate.toVectorY(a.uy);
-			a.rotate.toVectorZ(a.uz);
+			}
 		}
 		
+		// call back into LuaJIT:
 		if (update) update(*this, dt);
 	}
 	
 	virtual void onAnimate(al_sec dt) {
-		simulate(dt);
-		
+		// on create:
 		if (frame == 1) {
 			// allocate GPU resources:
 			cube.primitive(gl.QUADS);
@@ -260,7 +327,13 @@ public:
 			shader().uniform("lighting", 0.8);
 			shader().end();
 		}
-		// call back into Lua
+		
+		// nav updated:
+		for (int j=0; j<3; j++) {
+			active_origin[j] = floor(nav().pos()[j] - WORLD_DIM/2);
+		}
+		
+		if (updating) simulate(dt);
 	}
 	
 	virtual void onSound(AudioIOData& io) {
@@ -286,6 +359,17 @@ public:
 		// play all agents:
 		for (int i=0; i<MAX_AGENTS; i++) {
 			Agent& a = agents[i];
+			Voice& v = voices[i];
+			
+			/*
+				Uses:
+				a.position
+				a.synthesize
+				Writes:
+				a.encode
+				a.distance
+				a.direciton
+			*/
 			
 			// get position in 'view space':
 			vec3 rel = quat_unrotate(view.quat(), a.position - view.pos());
@@ -311,12 +395,12 @@ public:
 			);
 			
 			// render:
-			(a.synthesize)(a, frames, samplerate, bus);
+			(v.synthesize)(v, frames, samplerate, bus);
 			
 			// decode:
 			double invframes = 1./frames;
 			for (int j=0; j<frames; j++) { 
-				float s = bus[j] * audiogain;
+				float s = bus[j] * v.amp * audiogain;
 				
 				if (j==0) {
 					//printf("agent %d: d2 %f atten %f spatial %f w %f\n", i, d2, atten, spatial, w0.w);
@@ -324,7 +408,7 @@ public:
 				
 				// linear interpolated encoding matrix:
 				double alpha = j * invframes;
-				vec4 enc = ipl::linear(alpha, a.encode, encode);
+				vec4 enc = ipl::linear(alpha, v.encode, encode);
 								
 				// decode:
 				out0[j] = out0[j] + s * (
@@ -343,12 +427,23 @@ public:
 			}
 			
 			// update cached:
-			a.direction = direction;
-			a.distance = d;
-			a.encode = encode;
+			v.direction = direction;
+			v.distance = d;
+			v.encode = encode;
 		}
 		
 		audiotime = nexttime;	
+	}
+	
+	virtual bool onKeyDown(const Keyboard& k) {
+		switch (k.key()) {
+			case 32:
+				updating = !updating;
+				break;
+			default:
+				break;
+		}
+		return 1;
 	}
 	
 	virtual void onMessage(osc::Message& m) {
@@ -357,9 +452,14 @@ public:
 	}
 	
 	Lua L;
+	HashSpace space;
+	// this query will consider 6 matches and return the best.
+	HashSpace::Query qnearest;
 	
 	Graphics gl;
 	Mesh cube;
+	
+	bool updating;
 };
 
 App * app;
@@ -372,7 +472,7 @@ int main(int argc, char * argv[]) {
 	app = new App;
 
 	// run main script:
-	app->L.dofile("main.lua");
+	app->L.dofile("main2.lua");
 	
 	app->start();
 	printf("done\n");

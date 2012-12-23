@@ -9,6 +9,7 @@ typedef al::Vec4f vec4f;
 typedef al::Vec4d vec4;
 typedef al::Quatf quatf;
 typedef al::Quatd quat;
+typedef al::Pose Pose;
 typedef al::Color Color;
 extern "C" {
 #else
@@ -20,6 +21,7 @@ typedef struct vec4f { float x, y, z, w; } vec4f;
 typedef struct quat { double x, y, z, w; } quat;
 typedef struct quatf { float x, y, z, w; } quatf;
 typedef struct Color { float r, g, b, a; } Color;
+typedef struct Pose { vec3 position; quat rotate; } Pose;
 #endif
 
 typedef enum {
@@ -60,6 +62,21 @@ typedef struct SpeakerConfig {
 static const int MAX_SPEAKERS = 4;
 static const int MAX_AGENTS = 150;
 
+static const int WORLD_DIM = 64;	// power of 2
+
+// Audio interface:
+typedef struct Voice {
+		
+	// audio:
+	void (*synthesize)(struct Voice&, int, double, float *);
+	vec4 encode; // the previous frame's encoding matrix
+	vec3 direction;	// from camera
+	double distance;	
+	
+	double amp, freq, phase;
+
+} Voice;
+
 // C-friendly state amenable to FFI in Lua and serialization to disk, network etc.
 
 typedef struct Agent {
@@ -71,23 +88,28 @@ typedef struct Agent {
 	vec3 scale;
 	
 	// controls:
-	vec3 turn, move;
+	int32_t enable, visible;
+	
+	double velocity; 
+	vec3 turn;
+	
+	int32_t id, nearest;
 	 
 	// cached for simulation:
 	vec3 ux, uy, uz;
-	vec3 direction;	// from camera
-	double distance;	
-		
-	// audio:
-	void (*synthesize)(struct Agent&, int, double, float *);
-	vec4 encode; // the previous frame's encoding matrix
-	double freq, phase;
+	
+	Voice * voice;
 	
 } Agent;
+
 
 typedef struct Shared {
 	
 	Agent agents[MAX_AGENTS];
+	Voice voices[MAX_AGENTS];
+	
+	Pose view;
+	vec3 active_origin;
 	
 	SpeakerConfig speakers[MAX_SPEAKERS];
 	int numActiveSpeakers;
