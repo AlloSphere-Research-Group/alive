@@ -42,7 +42,7 @@ av.stdin = ev.IO(function(loop, handler, event)
 	local fd = handler.fd
 	local str = io.read("*l")
 	str = str:gsub("<n>", "\n")
-	--print('io', str)
+	print('io', os.time(), str)
 	local ok, f = pcall(loadstring, str)
 	if ok then
 		local ok, err = pcall(f)
@@ -63,6 +63,8 @@ function av.app:update(dt)
 	loop:run(ev.RUN_NOWAIT) 
 	-- or main.update(now)?
 	main.advance(dt)
+	-- make sure prints print
+	io.flush()
 end
 
 setmetatable(av, {

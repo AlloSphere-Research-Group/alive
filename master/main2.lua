@@ -34,6 +34,7 @@ local greens = Tag("green")
 
 go(function()
 	while true do
+		print("change")
 		all:pick(0.1):move(random()*10*random()*10)
 		reds:pick(0.1):turn(srandom()*3, srandom()*3, srandom()*3)
 		reds:pick(0.1):freq(random() + 55 * random(10))

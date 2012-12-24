@@ -6,7 +6,6 @@ var dns			= require('dns');
 var os			= require('os');
 var net			= require('net');
 var util		= require('util');
-var exec 		= require('child_process').exec;
 var path 		= require('path');
 var mdns 		= require('mdns');
 var connect 	= require('connect');
@@ -33,14 +32,16 @@ function launch(name) {
 	vm = spawn(name);
 
 	vm.stdout.on('data', function (text) {
-		process.stdout.write(text);
+		//process.stdout.write(text);
+		console.log(text);
 		//if (master !== null) {
 		//	master.send("out:" + text);
 		//}
 	});
   
 	vm.stderr.on('data', function (text) {
-		process.stdout.write('err:' + text);
+		//process.stdout.write('err:' + text);
+		console.log('err:' + text);
 		//if (master !== null) {
 		//	master.send("err:" + text);
 		//}
@@ -94,9 +95,9 @@ editors_in.sockets.on('connection', function (socket) {
 	editors[socket.addr].emit("handshake", { "data" : "Handshake received from " + editors[socket.addr].addr } );
   
 	editors[socket.addr].on('execute', function(obj) {
-		var code = obj.code.replace(/(\r\n|\n|\r)/gm, "<n>") + "\n";
-		//console.log("CODE", code);
-		//vm.stdin.write(code);
+		var code = obj.code.replace(/(\r\n|\n|\r)/gm, "<n>") + "\r\n";
+		console.log("CODE", code);
+		console.log("sent", vm.stdin.write(code));
 	});
 	
 	/*
@@ -239,7 +240,7 @@ var port = 8080;
 console.log("serving from " + root);
 
 var connectServer = connect(
-	connect.logger(),
+	//connect.logger(),			// shut up!!
 	function(req, res, next){
 		req.uri = url.parse(req.url);
 		var pathname = req.uri.pathname;
