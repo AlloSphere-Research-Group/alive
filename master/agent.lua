@@ -22,7 +22,7 @@ tag.__index = tag
 function tag:remove(o)
 	for i = 1, #self do
 		if self[i] == o then 
-			table_remove(tag, i)
+			table_remove(self, i)
 			return
 		end
 	end
@@ -172,6 +172,7 @@ setmetatable(Agent, {
 			agent = self.agents[id]
 			-- reset this agent:
 			self.agents[id]:reset()
+			
 		end
 		agent:enable()
 		agent:tag("*", ...)
@@ -195,6 +196,26 @@ for i = 0, av.MAX_AGENTS-1 do
 	-- add ID to pool:
 	Agent.pool[i] = i
 end
+
+function Agent:update(dt)
+	--print("update", self, dt)
+	
+	-- this is where all the per-agent processes would be invoked.
+	
+end
+
+go(function()
+	while true do
+		local dt = wait("update")
+		for i = 0, av.MAX_AGENTS-1 do
+			local a = Agent.agents[i]
+			if a and a._object.enable ~= 0 then
+				-- run the per-agent update:
+				a:update(dt)
+			end
+		end
+	end
+end)
 
 return {
 	Agent = Agent,

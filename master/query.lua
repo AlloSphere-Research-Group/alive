@@ -68,6 +68,12 @@ function q:__newindex(k, value)
 	end
 end
 
+-- the the number of elements in the query:
+function q:size()
+	local base = rawget(self, "base")
+	return #base
+end
+
 -- set multiple properties at once:
 function q:attr(t)
 	local base = rawget(self, "base")

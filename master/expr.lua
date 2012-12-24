@@ -17,48 +17,49 @@ end
 local e = {}
 e.__index = e
 
--- pretty-print an expression (as probably almost-valid Lua code)
-function e:__tostring()
-	return self.tostring and self:tostring() or format("%s(%s)", self.op, concats(self, ","))
-end
-
--- calling an expr object evaluates it
--- (maybe want to pass in & propagate an env for vars?)
-function e:__call()
-	local args = {}
-	for i, v in ipairs(self) do
-		if type(v) == "table" then
-			args[i] = v()
-		else
-			args[i] = v
-		end
-	end
-	return self.impl(unpack(args))
-end
-
--- standard constructor for a constant-expression-object:
-function e.number(v)
-	return setmetatable({ op="number", impl=tonumber, v }, e)
-end
-
--- standard constructor for a variable-expression-object:
-function e.var(name)
-	return setmetatable({ op="var", impl=function(name) return _G[name] end, name }, e)
-end
-
 -- returns true if v is an expression-object:
 local
 function isexpr(v)
 	return type(v) == "table" and getmetatable(v) == e
 end	
 
+-- pretty-print an expression (as probably almost-valid Lua code)
+function e:__tostring()
+	return self.tostring and self:tostring() or format("%s(%s)", self.op, concats(self, ","))
+end
+
+-- calling an expr object evaluates it
+function e:__call(env)
+	env = env or _G
+	local args = {}
+	for i, v in ipairs(self) do
+		if isexpr(v) or type(v) == "function" then
+			args[i] = v(env)
+		else
+			args[i] = v
+		end
+	end
+	return self.impl(env, unpack(args))
+end
+
+-- standard constructor for a constant-expression-object:
+function e.number(v)
+	return setmetatable({ op="number", impl=function(env, n) return tonumber(n) end, v }, e)
+end
+
+-- standard constructor for a variable-expression-object:
+function e.var(name)
+	return setmetatable({ op="var", impl=function(env, name) return env[name] end, name }, e)
+end
+
 -- evaluate an expr:
 local 
-function eval(v)
+function eval(v, env)
+	env = env or _G
 	if isexpr(v) then
-		return v()
+		return v(env)
 	elseif type(v) == "function" then
-		return v()
+		return v(env)
 	else
 		return v
 	end
@@ -91,7 +92,8 @@ function unop(op, impl)
 	end
 	return function(a, b)
 		return setmetatable({ 
-			op=op, impl=impl, 
+			op=op, 
+			impl=impl, 
 			tostring = unop_tostring,
 			expr(a),
 		}, e)
@@ -119,13 +121,13 @@ function binop(op, impl)
 end
 
 -- define all metamethod operators:
-e.__unm = unop("-", function(a) return -a end)
-e.__add = binop("+", function(a, b) return a + b end)
-e.__sub = binop("-", function(a, b) return a - b end)
-e.__mul = binop("*", function(a, b) return a * b end)
-e.__div = binop("/", function(a, b) return a / b end)
-e.__pow = binop("^", function(a, b) return a ^ b end)
-e.__mod = binop("%", function(a, b) return a % b end)
+e.__unm = unop("-", function(env, a) return -a end)
+e.__add = binop("+", function(env, a, b) return a + b end)
+e.__sub = binop("-", function(env, a, b) return a - b end)
+e.__mul = binop("*", function(env, a, b) return a * b end)
+e.__div = binop("/", function(env, a, b) return a / b end)
+e.__pow = binop("^", function(env, a, b) return a ^ b end)
+e.__mod = binop("%", function(env, a, b) return a % b end)
 
 -- define a new operator (using function call syntax)
 -- if op is a table, then all key-value pairs are defined (recursive)
@@ -139,8 +141,9 @@ function define(op, impl)
 	else
 		-- install a single operator:
 		if type(impl) == "table" then impl = impl[op] end
+		local eimpl = function(env, ...) return impl(...) end
 		local expr_constructor = function(...)
-			return setmetatable({ op=op, impl=impl, ... }, e)
+			return setmetatable({ op=op, impl=eimpl, ... }, e)
 		end
 		-- this new expr-constructor is stored in expr itself
 		-- (that also means it can be used as a method)
@@ -179,29 +182,29 @@ define_from_mathlib("tan")
 define_from_mathlib("tanh")
 
 -- boolean operations:
-define("bool", function(a) return a ~= 0 and 1 or 0 end)
-define("not", function(a) return a ~= 0 and 0 or 1 end)
-define("eq", function(a, b) return a == b end)
-define("neq", function(a, b) return a ~= b end)
-define("gt", function(a, b) return a > b end)
-define("gte", function(a, b) return a >= b end)
-define("lt", function(a, b) return a < b end)
-define("lte", function(a, b) return a <= b end)
+define("bool", function(env, a) return a ~= 0 and 1 or 0 end)
+define("not", function(env, a) return a ~= 0 and 0 or 1 end)
+define("eq", function(env, a, b) return a == b end)
+define("neq", function(env, a, b) return a ~= b end)
+define("gt", function(env, a, b) return a > b end)
+define("gte", function(env, a, b) return a >= b end)
+define("lt", function(env, a, b) return a < b end)
+define("lte", function(env, a, b) return a <= b end)
 
 -- some extended math:
-define("sign", function(a) 
+define("sign", function(env, a) 
 	return a > 0 and 1 or (a < 0 and -1 or 0) 
 end)
-define("mean", function(...) 
+define("mean", function(env, ...) 
 	local n = select('#', ...)
 	local sum = 0
 	for i = 1, n do sum = sum + select(i, ...) end
 	return sum/n
 end)
-define("clip", function(a, min, max) 
+define("clip", function(env, a, min, max) 
 	return a < min and min or (a > max and max or a) 
 end)
-define("mix", function(a, b, t) 
+define("mix", function(env, a, b, t) 
 	return a + t * (b-a) 
 end)
 
