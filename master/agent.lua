@@ -4,6 +4,8 @@ local query = require "query"
 local notify = require "notify"
 local notify_register = notify.register
 local notify_unregister = notify.unregister
+local E = require "expr"
+local eval = E.eval
 local app = av.app
 
 local sin, cos = math.sin,math.cos
@@ -20,7 +22,7 @@ tag.__index = tag
 function tag:remove(o)
 	for i = 1, #self do
 		if self[i] == o then 
-			table_remove(tag, i)
+			table_remove(self, i)
 			return
 		end
 	end
@@ -98,24 +100,24 @@ function Agent:home()
 end
 
 function Agent:move(z)
-	self._object.velocity = z
+	self._object.velocity = eval(z)
 	return self
 end
 
 function Agent:color(r, g, b)
-	self._object.color.r = r
-	self._object.color.g = g
-	self._object.color.b = b
+	self._object.color.r = eval(r)
+	self._object.color.g = eval(g)
+	self._object.color.b = eval(b)
 end
 
 function Agent:turn(a, e, b)
-	self._object.turn:set(e, a, b)
+	self._object.turn:set(eval(e), eval(a), eval(b))
 	return self
 end
 
 -- audio properties:
 function Agent:freq(f)
-	self._voice.freq = f
+	self._voice.freq = eval(f)
 	return self
 end
 
@@ -170,6 +172,7 @@ setmetatable(Agent, {
 			agent = self.agents[id]
 			-- reset this agent:
 			self.agents[id]:reset()
+			
 		end
 		agent:enable()
 		agent:tag("*", ...)
@@ -193,6 +196,26 @@ for i = 0, av.MAX_AGENTS-1 do
 	-- add ID to pool:
 	Agent.pool[i] = i
 end
+
+function Agent:update(dt)
+	--print("update", self, dt)
+	
+	-- this is where all the per-agent processes would be invoked.
+	
+end
+
+go(function()
+	while true do
+		local dt = wait("update")
+		for i = 0, av.MAX_AGENTS-1 do
+			local a = Agent.agents[i]
+			if a and a._object.enable ~= 0 then
+				-- run the per-agent update:
+				a:update(dt)
+			end
+		end
+	end
+end)
 
 return {
 	Agent = Agent,

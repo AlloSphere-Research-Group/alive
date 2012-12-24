@@ -38,7 +38,7 @@ local
 function resume(C, ...)
 	local status = costatus(C)
 	if status == "suspended" then
-		local ok,err = coresume(C, ...)
+		local ok, err = coresume(C, ...)
 		if not ok then print(traceback(C, err)) end
 	end
 end
@@ -55,7 +55,7 @@ return function()
 		elseif type(e) == "string" then
 			table.insert(eventq_find(e), C)
 		end
-		coyield()
+		return coyield()
 	end
 	self.event = function(e, ...)
 		local q = eventq_find(e)

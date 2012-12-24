@@ -1,21 +1,21 @@
 
-local header = require "header"
 local ffi = require "ffi"
+local header = require "header"
 local C = ffi.C
-local vec = require "vec"
+local app = C.app_get()
+
 local ev = require "ev"
+local loop = ev.default_loop()
+
+local vec = require "vec"
 local scheduler = require "scheduler"
 local notify = require "notify"
 local notify_trigger = notify.trigger
 
-local loop = ev.default_loop()
-local app = C.app_get()
 
 local main = scheduler()
 -- these are global:
 go, now, wait, event = main.go, main.now, main.wait, main.event
-
-
 
 -- start a tempo routine:
 bpm = 120
@@ -60,9 +60,11 @@ end
 
 -- entry point from application:
 function av.app:update(dt)
-	loop:run(ev.RUN_NOWAIT) 
+	loop:run(ev.RUN_NOWAIT)
+	-- trigger scheduler: 
 	-- or main.update(now)?
 	main.advance(dt)
+	event("update", dt)
 	-- make sure prints print
 	io.flush()
 end

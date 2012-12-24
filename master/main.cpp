@@ -10,12 +10,37 @@
 
 using namespace al;
 
-void default_synthesize_func(struct Voice& self, int frames, double samplerate, float * out) {
-	double pincr = self.freq / samplerate;
-	for (int i=0; i<frames; i++) {
-		out[i] = sin(M_PI * 2. * self.phase);
-		self.phase += pincr;
+// audio globals:
+double samplerate = 44100;
+double invsamplerate = 1./samplerate;
+const uint32_t WAVEBITS = 10;
+const uint32_t WAVESIZE = 1 << WAVEBITS;
+const uint32_t FRACBITS = 32 - WAVEBITS;
+const uint32_t FRACMASK = ( 1 << FRACBITS ) - 1;
+const double FRACSCALE = 1.0 / ( 1 << FRACBITS );
+
+// extra sample for linear interp:
+double sine_wavetable [ WAVESIZE + 1 ];
+
+void init_wavetables() {
+	for (uint32_t i=0; i<=WAVESIZE+1; i++) {
+		double p = double(i) / WAVESIZE;
+		sine_wavetable[i] = sin(M_PI * 2. * p);
 	}
+}
+
+void default_synthesize_func(struct Voice& self, int frames, float * out) {
+	const uint32_t om = uint32_t(self.freq * invsamplerate * 4294967296.0); // 2^32
+	uint32_t p = self.iphase;
+	for (int i=0; i<frames; i++) {
+		const uint32_t idx = p >> FRACBITS;
+		const double s0 = sine_wavetable[idx];
+		const double s1 = sine_wavetable[idx+1];
+		const double a = (p & FRACMASK) * FRACSCALE;
+		out[i] = s0 + a*(s1 - s0);
+		p += om;
+	}
+	self.iphase = p;
 }
 
 inline vec3 quat_unrotate(const quat& q, const vec3& v) {
@@ -331,11 +356,14 @@ public:
 		}
 		
 		if (updating) simulate(dt);
+		
+		//printf("audio cpu %f\n", audioIO().cpu());
 	}
 	
 	virtual void onSound(AudioIOData& io) {
 		int frames = io.framesPerBuffer();
-		double samplerate = io.framesPerSecond();
+		samplerate = io.framesPerSecond();
+		invsamplerate = 1./samplerate;
 		
 		if (audiotime == 0) {
 			printf("audio started %d samples, %f Hz, %dx%d + %d\n", frames, samplerate, io.channelsIn(), io.channelsOut(), io.channelsBus());
@@ -392,7 +420,7 @@ public:
 			);
 			
 			// render:
-			(v.synthesize)(v, frames, samplerate, bus);
+			(v.synthesize)(v, frames, bus);
 			
 			// decode:
 			double invframes = 1./frames;
@@ -466,6 +494,9 @@ Shared * app_get() {
 }
 
 int main(int argc, char * argv[]) {
+	
+	init_wavetables();
+
 	app = new App;
 
 	// run main script:

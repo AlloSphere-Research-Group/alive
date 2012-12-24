@@ -5,16 +5,9 @@ local format = string.format
 
 local E = require "expr"
 local isexpr = E.isexpr
+local eval = E.eval
 
-local function coerce(v)
-	if isexpr(v) then
-		return v()
-	elseif type(v) == "function" then
-		return v()
-	else
-		return v
-	end
-end
+
 
 -- query examples:
 --[[
@@ -49,8 +42,6 @@ function q:size()
 	return #self 
 end
 
-local empty_query = setmetatable({}, q)
-
 function query(base)
 	if base and type(base) == "table" then
 		return setmetatable({
@@ -60,6 +51,8 @@ function query(base)
 		return empty_query
 	end
 end
+
+local empty_query = query{}
 
 function q:__tostring()
 	return format("query(%d)", #rawget(self, "base"))
@@ -71,8 +64,14 @@ function q:__newindex(k, value)
 	local base = rawget(self, "base")
 	for i, v in ipairs(base) do
 		-- coerce
-		v[k] = coerce(value)
+		v[k] = eval(value)
 	end
+end
+
+-- the the number of elements in the query:
+function q:size()
+	local base = rawget(self, "base")
+	return #base
 end
 
 -- set multiple properties at once:
@@ -80,7 +79,7 @@ function q:attr(t)
 	local base = rawget(self, "base")
 	for i, v in ipairs(base) do
 		for k, value in pairs(t) do
-			v[k] = coerce(value)
+			v[k] = eval(value)
 		end
 	end
 end
@@ -93,7 +92,7 @@ end
 
 function p:__call(o, ...)
 	local parent = rawget(self, "query")
-	local base = rawget(self, "base")
+	local base = rawget(parent, "base")
 	local key = rawget(self, "key")
 	for i, v in ipairs(base) do
 		-- TODO: should args be coerced? or is that the property setter's job?
@@ -121,17 +120,6 @@ function q:__index(k)
 			key = k,
 		}, p)
 	end
-end
-
--- TEST:
-local foo = {}
-for i = 1, 6 do
-	foo[i] = {
-		magic = i,
-		test = function(self, ...)
-			print("test", self.magic, ...)
-		end,
-	}
 end
 
 -- sub-selections
@@ -213,7 +201,7 @@ function q:has(key, value)
 		if v.key ~= nil then
 			if value then
 				-- checking property value:
-				if v.key == coerce(value) then
+				if v.key == eval(value) then
 					list[#list+1] = v
 				end
 			else
