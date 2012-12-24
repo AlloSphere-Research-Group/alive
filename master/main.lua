@@ -21,12 +21,6 @@ math.randomseed(os.time())
 -- DEMO
 --------------------------------------------------------------------------------
 
-a = 10
-A = Random(2) ^ (Sin(1)):abs() - E"a"
-
-print(A)
-print(A())
-
 local all = Tag("*")
 local reds = Tag("red")
 local greens = Tag("green")
@@ -34,9 +28,11 @@ local greens = Tag("green")
 
 go(function()
 	while true do
+		
+		print("all", all, all:pick(0.1))
 		all:pick(0.1):move(random()*10*random()*10)
 		reds:pick(0.1):turn(srandom()*3, srandom()*3, srandom()*3)
-		reds:pick(0.1):freq(random() + 55 * random(10))
+						:freq(random() + 55 * random(10))
 		wait("beat")
 	end
 end)

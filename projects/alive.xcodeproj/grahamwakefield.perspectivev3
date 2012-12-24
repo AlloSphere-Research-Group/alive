@@ -197,48 +197,7 @@
 	<key>Notifications</key>
 	<array/>
 	<key>OpenEditors</key>
-	<array>
-		<dict>
-			<key>Content</key>
-			<dict>
-				<key>PBXProjectModuleGUID</key>
-				<string>3690239B1687FDB400B1AE20</string>
-				<key>PBXProjectModuleLabel</key>
-				<string>thoughts_on_tags.lua</string>
-				<key>PBXSplitModuleInNavigatorKey</key>
-				<dict>
-					<key>Split0</key>
-					<dict>
-						<key>PBXProjectModuleGUID</key>
-						<string>3690239C1687FDB400B1AE20</string>
-						<key>PBXProjectModuleLabel</key>
-						<string>thoughts_on_tags.lua</string>
-						<key>_historyCapacity</key>
-						<integer>0</integer>
-						<key>bookmark</key>
-						<string>369023AF1687FED700B1AE20</string>
-						<key>history</key>
-						<array>
-							<string>369023991687FC7200B1AE20</string>
-						</array>
-					</dict>
-					<key>SplitCount</key>
-					<string>1</string>
-				</dict>
-				<key>StatusBarVisibility</key>
-				<true/>
-			</dict>
-			<key>Geometry</key>
-			<dict>
-				<key>Frame</key>
-				<string>{{0, 20}, {749, 734}}</string>
-				<key>PBXModuleWindowStatusBarHidden2</key>
-				<false/>
-				<key>RubberWindowFrame</key>
-				<string>15 98 749 775 0 0 1440 878 </string>
-			</dict>
-		</dict>
-	</array>
+	<array/>
 	<key>PerspectiveWidths</key>
 	<array>
 		<integer>-1</integer>
@@ -332,8 +291,9 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>43</integer>
-									<integer>42</integer>
+									<integer>18</integer>
+									<integer>11</integer>
+									<integer>5</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -373,7 +333,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>36575212161277BE009D11CC</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>query.lua</string>
+								<string>main.lua</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -381,11 +341,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>36575213161277BE009D11CC</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>query.lua</string>
+										<string>main.lua</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>369023AE1687FED700B1AE20</string>
+										<string>369023DF1688CAC200B1AE20</string>
 										<key>history</key>
 										<array>
 											<string>36DE520A163B4545004F736A</string>
@@ -414,7 +374,6 @@
 											<string>36472F19167E4DE20079FF86</string>
 											<string>364730AE167EDBC80079FF86</string>
 											<string>36473151167EE1420079FF86</string>
-											<string>3647317E167F199A0079FF86</string>
 											<string>3647319D167F1D7B0079FF86</string>
 											<string>364731AE167F20600079FF86</string>
 											<string>36380EF7168184F30037531F</string>
@@ -440,8 +399,9 @@
 											<string>36A61E231687ED1B00E1A440</string>
 											<string>36A61E241687ED1B00E1A440</string>
 											<string>36A61E251687ED1B00E1A440</string>
-											<string>369023491687F5F000B1AE20</string>
-											<string>3690234A1687F5F000B1AE20</string>
+											<string>369023D21688CA9500B1AE20</string>
+											<string>369023D81688CAAF00B1AE20</string>
+											<string>369023D91688CAAF00B1AE20</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -758,7 +718,6 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>3690239B1687FDB400B1AE20</string>
 		<string>/Users/grahamwakefield/code/alive/projects/alive.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
