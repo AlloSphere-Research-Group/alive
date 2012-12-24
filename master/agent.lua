@@ -4,6 +4,8 @@ local query = require "query"
 local notify = require "notify"
 local notify_register = notify.register
 local notify_unregister = notify.unregister
+local E = require "expr"
+local eval = E.eval
 local app = av.app
 
 local sin, cos = math.sin,math.cos
@@ -98,24 +100,24 @@ function Agent:home()
 end
 
 function Agent:move(z)
-	self._object.velocity = z
+	self._object.velocity = eval(z)
 	return self
 end
 
 function Agent:color(r, g, b)
-	self._object.color.r = r
-	self._object.color.g = g
-	self._object.color.b = b
+	self._object.color.r = eval(r)
+	self._object.color.g = eval(g)
+	self._object.color.b = eval(b)
 end
 
 function Agent:turn(a, e, b)
-	self._object.turn:set(e, a, b)
+	self._object.turn:set(eval(e), eval(a), eval(b))
 	return self
 end
 
 -- audio properties:
 function Agent:freq(f)
-	self._voice.freq = f
+	self._voice.freq = eval(f)
 	return self
 end
 

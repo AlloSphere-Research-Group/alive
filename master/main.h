@@ -68,12 +68,13 @@ static const int WORLD_DIM = 32;	// power of 2
 typedef struct Voice {
 		
 	// audio:
-	void (*synthesize)(struct Voice&, int, double, float *);
+	void (*synthesize)(struct Voice&, int frames, float * out);
 	vec4 encode; // the previous frame's encoding matrix
 	vec3 direction;	// from camera
 	double distance;	
 	
 	double amp, freq, phase;
+	uint32_t iphase;
 
 } Voice;
 

@@ -29,10 +29,10 @@ local greens = Tag("green")
 go(function()
 	while true do
 		
-		print("all", all, all:pick(0.1))
 		all:pick(0.1):move(random()*10*random()*10)
-		reds:pick(0.1):turn(srandom()*3, srandom()*3, srandom()*3)
-						:freq(random() + 55 * random(10))
+		reds:pick(0.5):turn(srandom()*3, srandom()*3, srandom()*3)
+						:move(random()*10*random()*10)
+						:freq(Random() + 55 * Random(10))
 		wait("beat")
 	end
 end)
@@ -45,11 +45,11 @@ go(function()
 		a:freq(random() + 55 * random(10))
 		wait(1)
 		
-		for i = 1, 4 do
+		for i = 1, 10 do
 			local a = Agent("red")
 			a:color(1, 0.5, 0.5)
 			a:freq(random() + 55 * random(10))
-			wait(1)
+			--wait(1)
 		end
 	end
 end)

@@ -52,6 +52,18 @@ function isexpr(v)
 	return type(v) == "table" and getmetatable(v) == e
 end	
 
+-- evaluate an expr:
+local 
+function eval(v)
+	if isexpr(v) then
+		return v()
+	elseif type(v) == "function" then
+		return v()
+	else
+		return v
+	end
+end
+
 -- coercing constructor, turns Lua numbers/strings into constants/vars, 
 -- passes existing expressions through
 -- errors on anything else
@@ -254,6 +266,7 @@ return setmetatable({
 	define = define,
 	constantfold = constantfold,
 	isexpr = isexpr,
+	eval = eval,
 },{
 	__call = function(mod, v) return expr(v) end,
 })

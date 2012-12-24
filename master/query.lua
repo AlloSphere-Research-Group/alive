@@ -5,16 +5,9 @@ local format = string.format
 
 local E = require "expr"
 local isexpr = E.isexpr
+local eval = E.eval
 
-local function coerce(v)
-	if isexpr(v) then
-		return v()
-	elseif type(v) == "function" then
-		return v()
-	else
-		return v
-	end
-end
+
 
 -- query examples:
 --[[
@@ -71,7 +64,7 @@ function q:__newindex(k, value)
 	local base = rawget(self, "base")
 	for i, v in ipairs(base) do
 		-- coerce
-		v[k] = coerce(value)
+		v[k] = eval(value)
 	end
 end
 
@@ -80,7 +73,7 @@ function q:attr(t)
 	local base = rawget(self, "base")
 	for i, v in ipairs(base) do
 		for k, value in pairs(t) do
-			v[k] = coerce(value)
+			v[k] = eval(value)
 		end
 	end
 end
@@ -202,7 +195,7 @@ function q:has(key, value)
 		if v.key ~= nil then
 			if value then
 				-- checking property value:
-				if v.key == coerce(value) then
+				if v.key == eval(value) then
 					list[#list+1] = v
 				end
 			else
