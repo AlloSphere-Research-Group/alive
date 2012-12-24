@@ -31,6 +31,7 @@ local all = Tag("*")
 local reds = Tag("red")
 local greens = Tag("green")
 
+
 go(function()
 	while true do
 		all:pick(0.1):move(random()*10*random()*10)

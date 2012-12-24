@@ -1,183 +1,228 @@
+local table_remove = table.remove
+local random = math.random
+local min, max = math.min, math.max
+local format = string.format
+
+local E = require "expr"
+local isexpr = E.isexpr
+
+local function coerce(v)
+	if isexpr(v) then
+		return v()
+	elseif type(v) == "function" then
+		return v()
+	else
+		return v
+	end
+end
+
+-- query examples:
+--[[
+
+red = q("red")		-- a basic query object
+
+-- filters:
+:pick()
+:odd()
+:first, :last, :has, etc...
+
+__newindex:
+red:pick(0.5).foo = value | expr | func
+	for i, v ...
+		v.foo = ...
+
+__index + __call:
+red:pick(0.5):method(value | expr | func)
+	
+
+red:pick(0.5):attr{ k, v pairs }
+
+agent = red:spawn()
+	Agent("red") ...
+
+--]]
+
 
 local q = {}
 
-function query(base, ...)
-	return setmetatable({
-		base, ...
-	}, q)
+function q:size() 
+	return #self 
+end
+
+local empty_query = setmetatable({}, q)
+
+function query(base)
+	if base and type(base) == "table" then
+		return setmetatable({
+			base = base,
+		}, q)
+	else
+		return empty_query
+	end
 end
 
 function q:__tostring()
-	local args = {}
-	for i = 1, #self do args[i] = tostring(rawget(self, i)) end
-	return string.format("query(%s)", 
-		table.concat(args, ".")
-	)
+	return format("query(%d)", #rawget(self, "base"))
 end
 
+-- set a property:
+-- e.g. red:pick(0.5).foo = value | expr | func
+function q:__newindex(k, value)
+	local base = rawget(self, "base")
+	for i, v in ipairs(base) do
+		-- coerce
+		v[k] = coerce(value)
+	end
+end
+
+-- set multiple properties at once:
+function q:attr(t)
+	local base = rawget(self, "base")
+	for i, v in ipairs(base) do
+		for k, value in pairs(t) do
+			v[k] = coerce(value)
+		end
+	end
+end
+
+-- metatable for properties / methods:
+local p = {}
+function p:__tostring()
+	return format("query[%s](%d)", rawget(self, "key"), #rawget(self, "base"))
+end
+
+function p:__call(o, ...)
+	local parent = rawget(self, "query")
+	local base = rawget(self, "base")
+	local key = rawget(self, "key")
+	for i, v in ipairs(base) do
+		-- TODO: should args be coerced? or is that the property setter's job?
+		if o == parent then
+			-- method call
+			v[key](v, ...)
+		else
+			v[key](o, ...)
+		end
+	end	
+	-- return parent query to allow chaining:
+	return parent
+end
+
+-- get a property / method:
 function q:__index(k)
 	local meta = rawget(q, k)
 	if meta then 
 		return meta 
 	else
-		-- create a sub-query:
-		local q1 = { unpack(self) }
-		q1[#q1+1] = k
-		return setmetatable(q1, q)
+		local base = rawget(self, "base")
+		return setmetatable({
+			query = self,
+			base = base,
+			key = k,
+		}, p)
 	end
 end
 
+-- TEST:
+local foo = {}
+for i = 1, 6 do
+	foo[i] = {
+		magic = i,
+		test = function(self, ...)
+			print("test", self.magic, ...)
+		end,
+	}
+end
+
+-- sub-selections
+function q:first()
+	local base = rawget(self, "base")
+	if #base == 0 then return empty_query end
+	return query{ base[1] }
+end
+function q:last()
+	local base = rawget(self, "base")
+	if #base == 0 then return empty_query end
+	return query{ base[#base] }
+end
+
+-- sub-selects only the odd-numbered items:
+function q:odd()
+	local base = rawget(self, "base")
+	if #base == 0 then return empty_query end
+	local list = {}
+	for i = 1, #base, 2 do
+		list[#list+1] = base[i]
+	end
+	return query(list)
+end
+
+-- sub-selects only the even-numbered items:
+function q:even()
+	local base = rawget(self, "base")
+	if #base == 0 then return empty_query end
+	local list = {}
+	for i = 2, #base, 2 do
+		list[#list+1] = base[i]
+	end
+	return query(list)
+end
+
+-- sub-selects random items
+-- if n == nil, it returns one item
+-- if n < 1, it is interpreted as a probability
+-- else it returns n items (or less if there are less to pick from)
 function q:pick(n)
-	-- create a sub-query:
-	local q1 = { unpack(self) }
-	q1[#q1+1] = function(item)
-		if math.random() < n then return item end
-	end
-	return setmetatable(q1, q)
-end
-
-function q:__newindex(k, v)
-	--print("newindex", self, k, v)
-	local base = rawget(self, 1)
-	for i = 1, #base do
-		local item = base[i]
-		local j = 2
-		while item and j <= #self do
-			local term = rawget(self, j)
-			if type(term) == "function" then
-				item = term(item)
-			else
-				item = item[term]
-			end
-			j = j + 1
-		end
-		--print("item.newindex", i, item, k, v)
-		if item then
-			if item[k] then
-				-- replacing an existing item...
-			end
-			if type(v) == "function" then
-				item[k] = v()	-- what args to this function?
-			else
-				item[k] = v
-			end
-		end
-	end
-end
-
-function q:__call(path, ...)
-	--print("call", self, path, ...)
-	local base = rawget(self, 1)
-	
-	-- we could detect method calls here, by comparing self & path
-	-- if self is an immediate child of path...
-	local methodcall = true
-	if getmetatable(path) == q and getmetatable(self) == q then
-		if #self == #path + 1 then
-			for i = 1, #path do
-				if rawget(self, i) ~= rawget(path, i) then
-					methodcall = false
-					break
+	local base = rawget(self, "base")
+	if #base == 0 then return empty_query end
+	if n then
+		if n < 1 then
+			-- pick with a probability:
+			local list = {}
+			for i = 1, #base do
+				if random() < n then
+					list[#list+1] = base[i]
 				end
 			end
+			return query(list)
 		else
-			methodcall = false
+			-- pick n items:
+			-- (not more than what exist)
+			n = min(#base, n)
+			-- (don't pick the same one multiple times)
+			local bag = { unpack(base) }
+			local list = {}
+			for i = 1, n do
+				list[i] = table_remove(bag, random(#bag))
+			end
+			return query(list)
 		end
 	else
-		methodcall = false
+		-- just pick one item:
+		return query{ base[random(#base)] }
 	end
-	
-	for i = 1, #base do
-		local item = base[i]
-		--print("item", i, item)
-		local j = 2
-		while item and j <= #self do
-			local term = rawget(self, j)
-			if j == #self then
-				-- apply behavior here:
-				local f = item[term]
-				--print("apply", i, item, term, f)
-				if type(f) == "function" then
-					-- how did we know it was a method call?
-					if methodcall then
-						f(item, ...)
-					else
-						f(path, ...)
-					end
-				elseif f then
-					print('attempt to call non-function', f)
+end
+
+-- sub-selects only if the object in question has a certain property name
+-- value is optional, will also require equal property value
+function q:has(key, value)
+	local base = rawget(self, "base")
+	if #base == 0 then return empty_query end
+	local list = {}
+	for i, v in ipairs(base) do
+		if v.key ~= nil then
+			if value then
+				-- checking property value:
+				if v.key == coerce(value) then
+					list[#list+1] = v
 				end
 			else
-				if type(term) == "function" then
-					item = term(item)
-				else
-					item = item[term]
-				end
-				--print("term", term, i, j, item)
+				-- just checking property existence:
+				list[#list+1] = v
 			end
-			j = j + 1
 		end
 	end
+	return query(list)
 end
-
-local alltags = {}
-
-local t = {}
-
-function maketag(name)
-	local obj = setmetatable({ name=name }, t)
-	
-	alltags[name] = obj
-	
-	-- return as query:
-	return query(obj)
-end	
-
-function t:__tostring()
-	return string.format("tag('%s', %d)", self.name, #self)
-end
-
-function t:__index(k)
-	return rawget(t, k) or query(self, k)
-end
-
-function t:__newindex(k, v)
-	query(self)[k] = v
-end
-
--- tag(obj) inserts the object into the tag
-function t:__call(obj)
-	-- maybe want to make sure it isn't already inserted?
-	rawset(self, #self+1, obj)
-end
-t.attach = t.__call
-
-function add(name, obj)
-	local tag = alltags[name]
-	tag:attach(obj)
-end
-
------------------- TEST ------------------
---[[
-local beep = maketag("beep")
-
-function test(self, k)
-	print("test", self[k])
-end
-
-add("beep", { foo = { bar = { finger = "a", test=test } }, test=test })
-add("beep", { foo = {  } })
-add("beep", { foo = { bar = { finger = "c", test=test } }, test=test })
-
--- make some changes:
-beep.foo.bar:test("finger")
-beep.foo.bar.finger = 10
-beep.foo.bar:test("finger")
-beep.foo.bar.test({ finger=8 }, "finger")
-beep.foo = 10
-beep:test("foo")
-
-print("done")
---]]
 
 return query

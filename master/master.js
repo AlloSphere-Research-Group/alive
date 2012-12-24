@@ -279,6 +279,7 @@ var connectServer = connect(
 //var connectServer = connect.createServer();
 //connectServer.use(server);
 var options = {db: {type: 'none'}}; // See docs for options. {type: 'redis'} to enable persistance.
+//var options = {db: {type: 'redis'}};
 //server.listen(8080);
 // Attach the sharejs REST and Socket.io interfaces to the server
 sharejs.attach(connectServer, options);
