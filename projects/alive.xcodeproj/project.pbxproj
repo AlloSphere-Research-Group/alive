@@ -6819,7 +6819,6 @@
 		36A61D1016877CCD00E1A440 /* notify.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = notify.lua; sourceTree = "<group>"; };
 		36A61D2416877FA300E1A440 /* agent.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = agent.lua; sourceTree = "<group>"; };
 		36A61D34168783FB00E1A440 /* expr.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = expr.lua; sourceTree = "<group>"; };
-		36C79E3516868BE800F09C97 /* main2.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = main2.lua; sourceTree = "<group>"; };
 		36C79F891686C81B00F09C97 /* scheduler.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = scheduler.lua; sourceTree = "<group>"; };
 		36CB5B4B167042BF000DDCB6 /* thoughts_on_tags.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = thoughts_on_tags.lua; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -21297,7 +21296,6 @@
 				36472F1E167E86850079FF86 /* query.lua */,
 				36C79F891686C81B00F09C97 /* scheduler.lua */,
 				363BA36C1674853E00E85175 /* main.lua */,
-				36C79E3516868BE800F09C97 /* main2.lua */,
 			);
 			name = vm;
 			sourceTree = "<group>";

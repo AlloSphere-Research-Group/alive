@@ -22,6 +22,7 @@ var renderers = {};
 
 //// THE VM CHILD PROCESS ////
 var auto_relaunch = false;
+var vm_name = './main';
 var vm = null;
 
 function launch(name) {
@@ -32,16 +33,15 @@ function launch(name) {
 	vm = spawn(name);
 
 	vm.stdout.on('data', function (text) {
-		//process.stdout.write(text);
-		console.log(text);
+		process.stdout.write(text);
 		//if (master !== null) {
 		//	master.send("out:" + text);
 		//}
 	});
   
 	vm.stderr.on('data', function (text) {
-		//process.stdout.write('err:' + text);
-		console.log('err:' + text);
+		process.stdout.write('err:' + text);
+		//console.log('err:' + text);
 		//if (master !== null) {
 		//	master.send("err:" + text);
 		//}
@@ -53,11 +53,23 @@ function launch(name) {
 		if (auto_relaunch) {
 			launch(name);
 		} else {
-			vm.kill();
 			vm = null;
+			// kill node?
+			//process.exit();
 		}
 	});
 }
+
+fs.watch('.', function (event, filename) {
+	console.log('event is: ' + event);
+	if (filename) {
+		console.log('filename provided: ' + filename);
+	} else {
+		console.log('filename not provided');
+	}
+	launch(vm_name);
+});
+
 
 //// THE MDNS STUFF ////
 
@@ -299,4 +311,4 @@ process.on('exit', function() {
 	}
 });
 
-launch('./main');
+launch(vm_name);

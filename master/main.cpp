@@ -469,7 +469,7 @@ int main(int argc, char * argv[]) {
 	app = new App;
 
 	// run main script:
-	app->L.dofile("main2.lua");
+	app->L.dofile("main.lua");
 	
 	app->start();
 	printf("done\n");
