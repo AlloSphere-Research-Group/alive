@@ -1,6 +1,7 @@
 local av = require "av"
 local vec = require "vec"
 local query = require "query"
+local Tag = query.Tag
 local notify = require "notify"
 local notify_register = notify.register
 local notify_unregister = notify.unregister
@@ -14,31 +15,6 @@ local table_remove = table.remove
 local random = math.random
 local srandom = function() return random() * 2 - 1 end
 
-local tags = {}
-
-local tag = {}
-tag.__index = tag
-
-function tag:remove(o)
-	for i = 1, #self do
-		if self[i] == o then 
-			table_remove(self, i)
-			return
-		end
-	end
-end
-
-local
-function Tag(name)
-	assert(name and type(name)=="string")
-	local o = tags[name]
-	if not o then
-		o = setmetatable({}, tag)
-		tags[name] = o
-	end
-	return query(o)
-end
-
 local Agent = {
 	agents = {},
 	pool = {},
@@ -49,11 +25,9 @@ function Agent:tag(...)
 	local name, more = ...
 	-- skip if already inserted?
 	if not self._tags[name] then
-		-- ensure tag exists:
-		Tag(name)
 		-- add to set:
-		local tag = tags[name]
-		tag[#tag+1] = self
+		local tag = Tag(name)
+		tag:add(self)
 		-- note to self:
 		self._tags[name] = tag
 	end

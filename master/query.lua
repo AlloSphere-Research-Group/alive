@@ -7,52 +7,99 @@ local E = require "expr"
 local isexpr = E.isexpr
 local eval = E.eval
 
+-- a map of all tags:
+local tags = {}
 
+-- a tag is a list (array) of objects
+local tag = {}
+tag.__index = tag
 
--- query examples:
---[[
-
-red = q("red")		-- a basic query object
-
--- filters:
-:pick()
-:odd()
-:first, :last, :has, etc...
-
-__newindex:
-red:pick(0.5).foo = value | expr | func
-	for i, v ...
-		v.foo = ...
-
-__index + __call:
-red:pick(0.5):method(value | expr | func)
-	
-
-red:pick(0.5):attr{ k, v pairs }
-
-agent = red:spawn()
-	Agent("red") ...
-
---]]
-
-
-local q = {}
-
-function q:size() 
-	return #self 
+local
+function Tag(name)
+	assert(name and type(name)=="string")
+	local o = tags[name]
+	if not o then
+		o = setmetatable({}, tag)
+		tags[name] = o
+	end
+	return o
 end
 
-function query(base)
-	if base and type(base) == "table" then
-		return setmetatable({
-			base = base,
-		}, q)
-	else
-		return empty_query
+function tag:add(o)
+	-- assumes double-entry won't happen...
+	self[#self+1] = o
+end
+
+function tag:remove(o)
+	for i = 1, #self do
+		if self[i] == o then 
+			table_remove(self, i)
+			-- assumes no double-entries
+			return
+		end
 	end
 end
 
-local empty_query = query{}
+-- a query contains a tag (in the field 'base')
+local q = {}
+
+local empty_query = setmetatable({
+	base = {},
+}, q)
+
+function q:size() return #rawget(self, "base") end
+
+-- beep -> beep
+-- "beep" -> tags.beep
+-- q(beep) -> q.base
+local
+function totag(o)
+	if type(o) == "string" then
+		return Tag(o)
+	elseif type(o) == "table" then
+		if getmetatable(o) == q then
+			return rawget(o, "base")
+		else
+			return o
+		end
+	else
+		error("not a valid query subject")
+	end
+end
+
+-- create a new query as the union of two or more queries:
+local 
+function union(a, ...)
+	local base = totag(a)
+	for i = 1, select("#", ...) do
+		local b = select(i, ...)
+		local bb = totag(b)
+		for _, v in ipairs(bb) do
+			base[#base+1] = v
+		end
+	end
+	return setmetatable({
+		base = base,
+	}, q)
+end
+
+local
+function query(...)
+	local base, more = ...
+	if more then
+		return union(...)
+	else
+		if base then
+			base = totag(base)
+			if #base > 0 then
+				return setmetatable({
+					base = base,
+				}, q)
+			end
+		end
+	end
+	return empty_query
+end
 
 function q:__tostring()
 	return format("query(%d)", #rawget(self, "base"))
@@ -213,4 +260,12 @@ function q:has(key, value)
 	return query(list)
 end
 
-return query
+
+
+
+
+return setmetatable({
+	Tag = Tag,
+}, {
+	__call = function(_, ...) return query(...) end,
+})

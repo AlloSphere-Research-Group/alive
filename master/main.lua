@@ -6,8 +6,8 @@ local vec = require "vec"
 local E = require "expr"
 E:globalize()
 local agent = require "agent"
-local Tag = agent.Tag
 local Agent = agent.Agent
+local Q = require "query"
 
 local sin, cos = math.sin,math.cos
 local abs, floor = math.abs, math.floor
@@ -21,17 +21,11 @@ math.randomseed(os.time())
 -- DEMO
 --------------------------------------------------------------------------------
 
-local all = Tag("*")
-local reds = Tag("red")
-local greens = Tag("green")
-
-
 go(function()
 	while true do
-		--print(all)
-		--all:pick(0.1):move(random()*10*random()*10)
-		reds:pick(0.2):turn(srandom()*3, srandom()*3, srandom()*3)
-						:move(Random()*10*Random()*10)
+		Q("red", "green"):move(Random()*10*Random()*10)
+	
+		Q("red"):pick(0.2):turn(srandom()*3, srandom()*3, srandom()*3)
 						:freq(Random() + 55 * Random(10))
 		wait("beat")
 	end
@@ -39,7 +33,6 @@ end)
 
 go(function()
 	while true do
-		
 		local a = Agent("green")
 		a:color(0.5, 1, 0.5)
 		a:freq(random() + 55 * random(5))
