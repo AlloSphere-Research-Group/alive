@@ -87,6 +87,10 @@ function union(...)
 	}, q)
 end
 
+-- expose as a method too:
+q.union = union
+q.__add = union
+
 local
 function query(...)
 	local base, more = ...
@@ -95,11 +99,13 @@ function query(...)
 	else
 		if base then
 			base = totag(base)
-			if #base > 0 then
+			-- allow zero-length base queries, since
+			-- this could refer to an object of varying size
+			--if #base > 0 then
 				return setmetatable({
 					base = base,
 				}, q)
-			end
+			--end
 		end
 	end
 	return empty_query
