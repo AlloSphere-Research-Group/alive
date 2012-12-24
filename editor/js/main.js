@@ -1,3 +1,12 @@
+Storage.prototype.setObject = function(key, value) {
+    this.setItem(key, JSON.stringify(value));
+}
+
+Storage.prototype.getObject = function(key) {
+    var value = this.getItem(key);
+    return value && JSON.parse(value);
+}
+
 window.flashMsg = function(_msg) {
 	var msg = $("<h3>");
 	$(msg).text(_msg);
@@ -23,6 +32,37 @@ window.currentFile = "";
 window.connect = function(name, span) {
 	$(span).css("color", "#0f0");
 	console.log("NAME = " + name);
+};
+
+window.save = function(code) {
+    var scripts;
+    if (typeof localStorage.scripts === "undefined") {
+        scripts = {};
+    } else {
+        scripts = localStorage.getObject("scripts");
+    }
+    var name = window.prompt("Enter name for file");
+    if(name !== null && name !== "") {
+      scripts[name] = code;
+      localStorage.setObject("scripts", scripts);
+    }
+};
+
+window.load = function(fileName) {
+    console.log("LOADING ", fileName);
+    var scripts = localStorage.getObject("scripts"),
+        code = null;
+
+    if (scripts != null) {
+        if (typeof scripts[fileName] !== "undefined") {
+            code = scripts[fileName];
+        }
+    }
+    if (code != null) {
+        window.editor.setValue(code);
+    } else {
+        console.log("The file " + fileName + " is not found");
+    }
 };
 
 /*var doc = null, editor = null;
@@ -276,8 +316,15 @@ $(document).ready( function() {
     "Ctrl-Enter": executeCode,
     "Cmd-Enter": executeCode, 
     "Cmd-Backspace": clearDoc,   
-		"Cmd-S": editor_save,
-		"Ctrl-S": editor_save,
+		//"Cmd-S": editor_save,
+		//"Ctrl-S": editor_save,
+    "Ctrl-S"  : function() { save(window.editor.getValue()) },
+    "Cmd-S"   : function() { save(window.editor.getValue()) }, 
+    "Ctrl-L"  : load,
+    "Cmd-L"   : function(cm) {
+      var name = window.prompt("enter name of file to load:")
+      load(name);
+    },
 	};
 		
 	window.editor.setOption("keyMap", "alive");
