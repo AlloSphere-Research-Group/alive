@@ -67,15 +67,19 @@ function totag(o)
 	end
 end
 
--- create a new query as the union of two or more queries:
+-- create a new query as the union of two or more queries
+-- ensures no duplicates
 local 
-function union(a, ...)
-	local base = totag(a)
+function union(...)
+	local base, memo = {}, {}
 	for i = 1, select("#", ...) do
 		local b = select(i, ...)
 		local bb = totag(b)
 		for _, v in ipairs(bb) do
-			base[#base+1] = v
+			if not memo[v] then
+				memo[v] = true
+				base[#base+1] = v
+			end
 		end
 	end
 	return setmetatable({
