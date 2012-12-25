@@ -8,6 +8,8 @@ function concats(t, sep)
 		local r = {}
 		for i, v in ipairs(t) do r[i] = tostring(v) end
 		return concat(r, sep)
+	elseif type(t) == "string" then
+		return format("%q", t)
 	else
 		return tostring(t)
 	end
@@ -26,6 +28,16 @@ end
 -- pretty-print an expression (as probably almost-valid Lua code)
 function e:__tostring()
 	return self.tostring and self:tostring() or format("%s(%s)", self.op, concats(self, ","))
+end
+
+function e.serialize(v)
+	if isexpr(v) then
+		local r = {}
+		for i, v in ipairs(t) do r[i] = e.serialize(v) end
+		format("%s(%s)", capitalize(self.op), concat(r, ","))
+	else
+		return format("%q", v)
+	end
 end
 
 -- calling an expr object evaluates it
@@ -94,6 +106,7 @@ function unop(op, impl)
 		return setmetatable({ 
 			op=op, 
 			impl=impl, 
+			format="unop",
 			tostring = unop_tostring,
 			expr(a),
 		}, e)
@@ -114,6 +127,7 @@ function binop(op, impl)
 		return setmetatable({ 
 			op=op, 
 			impl=impl, 
+			format="binop",
 			tostring = binop_tostring,
 			expr(a), expr(b) 
 		}, e)
@@ -140,10 +154,18 @@ function define(op, impl)
 		for k, v in pairs(op) do define(k, v) end
 	else
 		-- install a single operator:
-		if type(impl) == "table" then impl = impl[op] end
+		local lib
+		if type(impl) == "table" then 
+			impl = impl[op] 
+		end
 		local eimpl = function(env, ...) return impl(...) end
 		local expr_constructor = function(...)
-			return setmetatable({ op=op, impl=eimpl, ... }, e)
+			return setmetatable({ 
+				op=op, 
+				impl=eimpl,
+				lib=lib, 
+				... 
+			}, e)
 		end
 		-- this new expr-constructor is stored in expr itself
 		-- (that also means it can be used as a method)
@@ -238,6 +260,65 @@ function globalize(self)
 	return self
 end
 
+-- convert an expr to a string of Lua code
+local
+function tolua(ctx, v)
+	--print("tolua", v)
+	if isexpr(v) then
+		-- special case of constants:
+		if v.op == "number" then 
+			return tostring(v[1]) 
+		elseif v.op == "var" then
+			local name = v[1]
+			ctx.stats[#ctx.stats+1] = format("local %s = %s", name, name)
+			return name
+		end
+		-- general case creates a local:
+		local rhs
+		local args = {}
+		for i, a in ipairs(v) do 
+			args[i] = tolua(ctx, a)
+		end
+		if v.format == "unop" then
+			rhs = format("%s%s", v.op, args[1])		
+		elseif v.format == "binop" then
+			rhs = format("%s %s %s", args[1], v.op, args[2])
+		else
+			-- default format:
+			rhs = format("%s(%s)", v.op, concat(args, ","))
+		end
+		ctx.id = ctx.id + 1
+		local name = format("v%d", ctx.id)
+		ctx.stats[#ctx.stats+1] = format("local %s = %s", name, rhs)
+		return name
+	elseif type(v) == "string" then
+		return format("%q", v)
+	else
+		return tostring(v)
+	end
+end
+
+local lua_template = [[
+$init
+return function(env, dt)
+	$stats
+end
+]]
+local
+function lua(v)
+	local ctx = {
+		id = 0,
+		init = {},
+		stats = {},
+	}
+	local r = format("return %s", tolua(ctx, v))
+	ctx.stats[#ctx.stats+1] = r
+	ctx.stats = concat(ctx.stats, "\n\t")
+	ctx.init = concat(ctx.init, "\n")
+	local code = lua_template:gsub("%$(%w+)", ctx)
+	return code
+end
+
 -- walks the expr tree and converts expressions with constant arguments 
 -- into the evaluated constant result
 -- TODO: mark some operators as stateful / not-foldable, e.g. Random
@@ -268,6 +349,7 @@ return setmetatable({
 	globalize = globalize,
 	define = define,
 	constantfold = constantfold,
+	lua = lua,
 	isexpr = isexpr,
 	eval = eval,
 },{

@@ -36,6 +36,7 @@ $("button.foo").on("click", function(event, args) )
 // some event names can be used as methods instead of .on(name):
 .change .error .ready (or .load .unload) .focus etc., .hover etc.
 // chaining: query is always returned, can can be re-used.
+// unbind anonymous: use a 'namespaced' event, e.g. "click.foo"
 
 // triggers
 $("button.foo").trigger("click", args)

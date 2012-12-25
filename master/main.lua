@@ -21,9 +21,30 @@ math.randomseed(os.time())
 -- DEMO
 --------------------------------------------------------------------------------
 
+--[[
+
+stateful exprs
+
+p = SinOsc(10) + 1
+	=> { op="+", { op="sinosc", 10 }, { op="number", 1 } }
+
+=>
+
+loadstring this:
+
+local phase = 0
+return function(env, dt)
+	phase = phase + 10 / dt
+	local v1 = sin(phase * pi * 2)
+	local v2 = v1 + 1
+	return v2
+end
+
+--]]
+
 go(function()
 	while true do
-		Q("red", "green"):move(Random()*10*Random()*10)
+		Q("red", "green"):move(Random()*5*Random()*5)
 	
 		Q("red"):pick(0.2):turn(srandom()*3, srandom()*3, srandom()*3)
 						:freq(Random() + 55 * Random(10))

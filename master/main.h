@@ -64,10 +64,17 @@ static const int MAX_AGENTS = 150;
 
 static const int WORLD_DIM = 32;	// power of 2
 
+static const int DOPPLER_SAMPLES = 4096;
+
 // Audio interface:
 typedef struct Voice {
+
 		
 	// audio:
+	
+	float buffer[DOPPLER_SAMPLES];
+	uint32_t buffer_index;
+	
 	void (*synthesize)(struct Voice&, int frames, float * out);
 	vec4 encode; // the previous frame's encoding matrix
 	vec3 direction;	// from camera
@@ -113,6 +120,7 @@ typedef struct Shared {
 	vec3 active_origin;
 	
 	SpeakerConfig speakers[MAX_SPEAKERS];
+	double doppler_strength;
 	int numActiveSpeakers;
 	float audiogain;
 	

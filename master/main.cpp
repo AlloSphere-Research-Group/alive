@@ -13,11 +13,14 @@ using namespace al;
 // audio globals:
 double samplerate = 44100;
 double invsamplerate = 1./samplerate;
+double doppler_scale = (DOPPLER_SAMPLES - 512) / double(WORLD_DIM);
+
 const uint32_t WAVEBITS = 10;
 const uint32_t WAVESIZE = 1 << WAVEBITS;
 const uint32_t FRACBITS = 32 - WAVEBITS;
 const uint32_t FRACMASK = ( 1 << FRACBITS ) - 1;
 const double FRACSCALE = 1.0 / ( 1 << FRACBITS );
+
 
 // extra sample for linear interp:
 double sine_wavetable [ WAVESIZE + 1 ];
@@ -66,6 +69,37 @@ inline double attenuate(double d, double near, double scale) {
 		return x1 * x1;
 	}
 	return 1.;
+}
+
+inline double cosine_interp(double x, double y, double a) {
+	const double a2 = (1.-cos(a*3.14159265358979323846264338327950288))/2.;
+	return(x*(1.-a2)+y*a2);
+}
+
+// linear interpolation (same as mix)
+inline double linear_interp(double x, double y, double a) {
+	return x+a*(y-x); 
+}
+
+// cubic interpolation
+inline double cubic_interp(double w, double x, double y, double z, double a) {
+	const double a2 = a*a;
+	const double f0 = z - y - w + x;
+	const double f1 = w - x - f0;
+	const double f2 = y - w;
+	const double f3 = x;
+	return(f0*a*a2 + f1*a2 + f2*a + f3);
+}
+
+// 60%
+// Breeuwsma catmull-rom spline interpolation
+// slightly faster than three alternatives tried
+inline double spline_interp(double w, double x, double y, double z, double a) {
+	const double a2 = a*a;
+	const double f0 = -0.5*w + 1.5*x - 1.5*y + 0.5*z;
+	const double f1 = w - 2.5*x + 2*y - 0.5*z;
+	const double f2 = -0.5*w + 0.5*y;
+	return(f0*a*a2 + f1*a2 + f2*a + x);
 }
 
 Q<audiomsg_packet> audioq;
@@ -129,6 +163,7 @@ public:
 
 		initAudio(44100, 1024);
 		audiotime = 0;
+		doppler_strength = 1.;
 		
 		update = 0;
 		
@@ -178,6 +213,8 @@ public:
 			v.amp = 0.1;
 			v.encode.set(0, 0, 0, 0);
 			v.phase = 0;
+			memset(v.buffer, 0, sizeof(float) * DOPPLER_SAMPLES);
+			v.buffer_index = 0;
 		}
 	}
 	
@@ -289,18 +326,10 @@ public:
 			Agent& a = agents[i];
 			if (a.enable) {
 				
-				// accumulate velocity:
-				vec3 vel = a.uz * -a.velocity;
-				a.position += vel * dt;
-				
-				// wrap location:
-				for (int j=0; j<3; j++) {
-					double p = a.position[j];
-					p -= active_origin[j];
-					p = al::wrap(p, (double)WORLD_DIM);
-					p += active_origin[j];
-					a.position[j] = p;
-				}
+				// update unit vectors:
+				a.rotate.toVectorX(a.ux);
+				a.rotate.toVectorY(a.uy);
+				a.rotate.toVectorZ(a.uz);
 				
 				// update hashspace:
 				space.move(i, 
@@ -308,19 +337,6 @@ public:
 					a.position.y,
 					a.position.z
 				);
-				
-				// accumulate rotation:
-				vec3 turn = a.turn * dt;
-				quat r = quat().fromEuler(turn.y, turn.x, turn.z);
-				
-				// apply rotation:
-				a.rotate = a.rotate * r;
-				a.rotate.normalize();
-				
-				// update unit vectors:
-				a.rotate.toVectorX(a.ux);
-				a.rotate.toVectorY(a.uy);
-				a.rotate.toVectorZ(a.uz);
 
 				HashSpace::Object& o =  space.object(i);
 				HashSpace::Object * n = qnearest.nearest(space, &o);
@@ -365,13 +381,15 @@ public:
 		samplerate = io.framesPerSecond();
 		invsamplerate = 1./samplerate;
 		
+		double dt = frame * invsamplerate;
+		
 		if (audiotime == 0) {
 			printf("audio started %d samples, %f Hz, %dx%d + %d\n", frames, samplerate, io.channelsIn(), io.channelsOut(), io.channelsBus());
 		}
 		io.zeroOut();
 		io.zeroBus();
 		
-		float * bus = io.busBuffer(0);
+		//float * bus = io.busBuffer(0);
 		float * out0 = io.outBuffer(0);
 		float * out1 = io.outBuffer(1);
 		vec4 w0 = speakers[0].weights;
@@ -384,77 +402,114 @@ public:
 		// play all agents:
 		for (int i=0; i<MAX_AGENTS; i++) {
 			Agent& a = agents[i];
-			Voice& v = voices[i];
 			
-			/*
-				Uses:
-				a.position
-				a.synthesize
-				Writes:
-				a.encode
-				a.distance
-				a.direciton
-			*/
+			if (a.enable) {
 			
-			// get position in 'view space':
-			vec3 rel = quat_unrotate(view.quat(), a.position - view.pos());
-			// distance squared:
-			double d2 = rel.dot(rel);
-			// distance
-			double d = sqrt(d2);
-			// unit rel:
-			vec3 direction = rel * (1./d);			
-			// amplitude scale by distance:
-			double atten = attenuate(d2, 0.2, 1/24.);
-			// omni mix is also distance-dependent. 
-			// at near distances, the signal should be omnidirectional
-			// the minimum really depends on the radii of the listener/emitter
-			double spatial = 1. - attenuate(d2, 0.2, 1/2.);
-			// encode matrix:
-			// first 3 harmonics are the same as the unit direction:
-			vec4 encode(
-				atten * spatial * direction.x,
-				atten * spatial * direction.y,
-				atten * spatial * direction.z,
-				atten // * M_SQRT2
-			);
-			
-			// render:
-			(v.synthesize)(v, frames, bus);
-			
-			// decode:
-			double invframes = 1./frames;
-			for (int j=0; j<frames; j++) { 
-				float s = bus[j] * v.amp * audiogain;
-				
-				if (j==0) {
-					//printf("agent %d: d2 %f atten %f spatial %f w %f\n", i, d2, atten, spatial, w0.w);
+				// do movement here in audio thread:
+				if (updating) {
+					// accumulate velocity:
+					vec3 vel = a.uz * -a.velocity;
+					a.position += vel * dt;
+					
+					// wrap location:
+					for (int j=0; j<3; j++) {
+						double p = a.position[j];
+						p -= active_origin[j];
+						p = al::wrap(p, (double)WORLD_DIM);
+						p += active_origin[j];
+						a.position[j] = p;
+					}
+					
+					// accumulate rotation:
+					vec3 turn = a.turn * dt;
+					quat r = quat().fromEuler(turn.y, turn.x, turn.z);
+					
+					// apply rotation:
+					a.rotate = a.rotate * r;
+					a.rotate.normalize();
 				}
 				
-				// linear interpolated encoding matrix:
-				double alpha = j * invframes;
-				vec4 enc = ipl::linear(alpha, v.encode, encode);
-								
-				// decode:
-				out0[j] = out0[j] + s * (
-					+ w0.x * enc.x
-					+ w0.y * enc.y 
-					+ w0.z * enc.z
-					+		 enc.w	//  * w0.w
+				// now synthesize:
+				
+				// get position in 'view space':
+				vec3 rel = quat_unrotate(view.quat(), a.position - view.pos());
+				// distance squared:
+				double d2 = rel.dot(rel);
+				// distance
+				double d = sqrt(d2);
+				// unit rel:
+				vec3 direction = rel * (1./d);			
+				// amplitude scale by distance:
+				double atten = attenuate(d2, 0.2, 1/24.);
+				// omni mix is also distance-dependent. 
+				// at near distances, the signal should be omnidirectional
+				// the minimum really depends on the radii of the listener/emitter
+				double spatial = 1. - attenuate(d2, 0.2, 1/2.);
+				// encode matrix:
+				// first 3 harmonics are the same as the unit direction:
+				vec4 encode(
+					atten * spatial * direction.x,
+					atten * spatial * direction.y,
+					atten * spatial * direction.z,
+					atten // * M_SQRT2
 				);
 				
-				out1[j] = out1[j] + s * (
-					+ w1.x * enc.x
-					+ w1.y * enc.y 
-					+ w1.z * enc.z
-					+		 enc.w	//  * w1.w
-				);
+				// render into doppler buffer:
+				Voice& v = voices[i];
+				(v.synthesize)(v, frames, v.buffer + v.buffer_index);
+				
+				// decode:
+				double invframes = 1./frames;
+				for (int j=0; j<frames; j++) { 
+					
+					// linear interpolate encoding matrix:
+					double alpha = j * invframes;
+					vec4 enc = ipl::linear(alpha, v.encode, encode);
+					double dist = linear_interp(v.distance, d, alpha);
+					
+					// doppler lookup
+					// take current buffer index
+					// shift backwards by distance-dependent doppler time
+					double idx = (v.buffer_index + j) + (DOPPLER_SAMPLES - dist * doppler_scale * doppler_strength);
+					int32_t idx1 = int32_t(idx);
+					double idxf = idx - double(idx1); // will this work?
+					
+					// linear interp doesn't seem to be enough... 
+					float s0 = v.buffer[(idx1 - 1) & (DOPPLER_SAMPLES - 1)];
+					float s1 = v.buffer[idx1 & (DOPPLER_SAMPLES - 1)];
+					float s = linear_interp(s0, s1, idxf);
+					//float s = cosine_interp(s0, s1, idxf);
+					
+						
+					if (j==0) {
+						//printf("agent %d: d2 %f atten %f spatial %f w %f\n", i, d2, atten, spatial, w0.w);
+						//printf("idx %f idx0 %d idx1 %d fract %f\n",  idx, idx0, idx1, idxf);
+					}
+					
+					s *= v.amp * audiogain;
+					
+					// decode:
+					out0[j] = out0[j] + s * (
+						+ w0.x * enc.x
+						+ w0.y * enc.y 
+						+ w0.z * enc.z
+						+		 enc.w	//  * w0.w
+					);
+					
+					out1[j] = out1[j] + s * (
+						+ w1.x * enc.x
+						+ w1.y * enc.y 
+						+ w1.z * enc.z
+						+		 enc.w	//  * w1.w
+					);
+				}
+				
+				// update cached:
+				v.direction = direction;
+				v.distance = d;
+				v.encode = encode;
+				v.buffer_index = (v.buffer_index + frames) & (DOPPLER_SAMPLES - 1);
 			}
-			
-			// update cached:
-			v.direction = direction;
-			v.distance = d;
-			v.encode = encode;
 		}
 		
 		audiotime = nexttime;	
