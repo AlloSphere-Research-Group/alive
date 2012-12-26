@@ -39,6 +39,7 @@ function launch(name) {
 		}
 	});
   
+  // this never seems to get called...
 	vm.stderr.on('data', function (text) {
 		process.stdout.write('err:' + text);
     console.log("SENDING ERROR MESSAGE", text.toString);
@@ -47,21 +48,6 @@ function launch(name) {
 		}
 	});
   
-	/*vm.stdout.on('data', function (text) {
-		process.stdout.write(text);
-		for(var key in editors) {
-    	editors[key].emit("console", { "msg" : text } );
-		}
-	});
-  
-	vm.stderr.on('data', function (text) {
-		process.stdout.write('err:' + text);
-		for(var key in editors) {
-    	editors[key].emit("err", { "msg" : text } );
-		}
-	});*/
-  
-
 	vm.on('exit', function (code) {
 		console.log('child process exited with code ' + code);
 		

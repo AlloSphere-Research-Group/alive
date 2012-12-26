@@ -70,6 +70,7 @@ return function()
 	end	
 	self.go = function(e, func, ...)
 		local args
+    print('TYPE' .. type(e))
 		if type(e) == "function" then
 			args = {func, ...}
 			func = e
@@ -104,6 +105,29 @@ return function()
 	self.advance = function(dt)
 		self.update(self.t + dt)
 	end
+  self.sequence = function(func, time)
+    local _stop = false
+    local _scheduler = self
+    local o = {
+      run = function()
+        while not _stop do
+          func()
+          wait(time)
+        end
+      end,
+      stop = function()
+        _stop = true
+      end,
+    }
+    o.start = function()
+      _stop = false
+      _scheduler.go(o.run)
+    end
+    
+    self.go(o.run)
+    
+    return o
+  end
 	
 	return self
 end

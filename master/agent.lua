@@ -78,6 +78,11 @@ function Agent:move(z)
 	return self
 end
 
+function Agent:moveTo(x,y,z)
+	self._object.position:set(x, y, z)
+	return self
+end
+
 function Agent:color(r, g, b)
 	self._object.color.r = eval(r)
 	self._object.color.g = eval(g)
