@@ -7,7 +7,7 @@ local E = require "expr"
 E:globalize()
 local agent = require "agent"
 local Agent = agent.Agent
-local Q = require "query"
+Q = require "query"
 
 local sin, cos = math.sin,math.cos
 local abs, floor = math.abs, math.floor
@@ -42,7 +42,7 @@ end
 
 --]]
 
-go(function()
+--[[go(function()
 	while true do
 		Q("red", "green"):move(Random()*5*Random()*5)
 	
@@ -71,4 +71,4 @@ go(function()
 	end
 end)
 
-print("ok")
+print("ok")--]]

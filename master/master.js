@@ -34,18 +34,33 @@ function launch(name) {
 
 	vm.stdout.on('data', function (text) {
 		process.stdout.write(text);
-		//if (master !== null) {
-		//	master.send("out:" + text);
-		//}
+		for(var key in editors) {
+    	editors[key].emit("console", { "msg" : text.toString() } );
+		}
 	});
   
 	vm.stderr.on('data', function (text) {
 		process.stdout.write('err:' + text);
-		//console.log('err:' + text);
-		//if (master !== null) {
-		//	master.send("err:" + text);
-		//}
+    console.log("SENDING ERROR MESSAGE", text.toString);
+		for(var key in editors) {
+    	editors[key].emit("err", { "msg" : text.toString()  } );
+		}
 	});
+  
+	/*vm.stdout.on('data', function (text) {
+		process.stdout.write(text);
+		for(var key in editors) {
+    	editors[key].emit("console", { "msg" : text } );
+		}
+	});
+  
+	vm.stderr.on('data', function (text) {
+		process.stdout.write('err:' + text);
+		for(var key in editors) {
+    	editors[key].emit("err", { "msg" : text } );
+		}
+	});*/
+  
 
 	vm.on('exit', function (code) {
 		console.log('child process exited with code ' + code);
