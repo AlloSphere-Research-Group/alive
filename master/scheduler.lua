@@ -105,24 +105,32 @@ return function()
 	self.advance = function(dt)
 		self.update(self.t + dt)
 	end
-  self.sequence = function(func, time)
+  self.sequence = function(func, time, repeats)
     local _stop = false
     local _scheduler = self
-    local o = {
+    local count = 0
+    local limited = (type(repeats) == 'number')
+
+    local o
+    o = {
       run = function()
         while not _stop do
           func()
           wait(time)
+          if(limited and count < repeats) then
+            count = count + 1
+            if(count >= repeats) then _stop = true end
+          end
         end
       end,
       stop = function()
         _stop = true
       end,
+      start = function()
+        _stop = false
+        _scheduler.go(o.run)
+      end
     }
-    o.start = function()
-      _stop = false
-      _scheduler.go(o.run)
-    end
     
     self.go(o.run)
     
