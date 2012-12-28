@@ -15,7 +15,7 @@ local notify_trigger = notify.trigger
 
 local main = scheduler()
 -- these are global:
-go, now, wait, event = main.go, main.now, main.wait, main.event
+go, now, wait, event, sequence = main.go, main.now, main.wait, main.event, main.sequence
 
 -- start a tempo routine:
 bpm = 120

@@ -182,13 +182,16 @@ $(document).ready( function() {
 		$("#dir").text(dir);
 	});
 	
-	slaveSocket.on('out', function(msg) {
-		$("#console-all").append(msg+"<br>");
+	slaveSocket.on('console', function(msg) {
+    console.log("DATA");
+    console.log(msg.msg);
+    text = msg.msg.replace(/\n/g, "<br>");
+		$("#console-all").append($("<span style='color:#fff'>"+text+"</span><br>"));
 		$("#consoleContainer").scrollTop($("#consoleContainer")[0].scrollHeight);
 	});
 
 	slaveSocket.on('err', function(msg) {
-		$("#console-all").append($("<span style='color:#f00'>"+msg+"</span><br>"));
+		$("#console-all").append($("<span style='color:#f00'>"+msg.msg+"</span><br>"));
 		$("#consoleContainer").scrollTop($("#consoleContainer")[0].scrollHeight);
 	});
 	
