@@ -401,9 +401,9 @@
 	};
 	363BA36C1674853E00E85175 /* main.lua */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {600, 949}}";
-			sepNavSelRange = "{1157, 0}";
-			sepNavVisRange = "{98, 1201}";
+			sepNavIntBoundsRect = "{{0, 0}, {600, 1014}}";
+			sepNavSelRange = "{1448, 0}";
+			sepNavVisRange = "{434, 1019}";
 		};
 	};
 	363BA36E1674854700E85175 /* sync~.c */ = {
@@ -561,7 +561,7 @@
 		fRef = 363BA36C1674853E00E85175 /* main.lua */;
 		name = "main.lua: 47";
 		rLen = 0;
-		rLoc = 934;
+		rLoc = 936;
 		rType = 0;
 		vrLen = 1069;
 		vrLoc = 356;
@@ -571,7 +571,7 @@
 		fRef = 363BA36C1674853E00E85175 /* main.lua */;
 		name = "main.lua: 45";
 		rLen = 0;
-		rLoc = 883;
+		rLoc = 885;
 		rType = 0;
 		vrLen = 1197;
 		vrLoc = 98;
@@ -581,10 +581,20 @@
 		fRef = 363BA36C1674853E00E85175 /* main.lua */;
 		name = "main.lua: 58";
 		rLen = 0;
-		rLoc = 1157;
+		rLoc = 1159;
 		rType = 0;
 		vrLen = 1201;
 		vrLoc = 98;
+	};
+	36504257168D54B7001F5B68 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 363BA36C1674853E00E85175 /* main.lua */;
+		name = "main.lua: 77";
+		rLen = 0;
+		rLoc = 1448;
+		rType = 0;
+		vrLen = 1019;
+		vrLoc = 434;
 	};
 	3657520A161277BC009D11CC /* Project object */ = {
 		activeArchitecturePreference = i386;
@@ -683,6 +693,7 @@
 			36504254168D5474001F5B68 /* PBXTextBookmark */ = 36504254168D5474001F5B68 /* PBXTextBookmark */;
 			36504255168D5474001F5B68 /* PBXTextBookmark */ = 36504255168D5474001F5B68 /* PBXTextBookmark */;
 			36504256168D5484001F5B68 /* PBXTextBookmark */ = 36504256168D5484001F5B68 /* PBXTextBookmark */;
+			36504257168D54B7001F5B68 /* PBXTextBookmark */ = 36504257168D54B7001F5B68 /* PBXTextBookmark */;
 			366E3C4B1674862C00F3B556 = 366E3C4B1674862C00F3B556 /* PBXTextBookmark */;
 			366E3CB616751AA300F3B556 = 366E3CB616751AA300F3B556 /* PBXTextBookmark */;
 			369023D81688CAAF00B1AE20 = 369023D81688CAAF00B1AE20 /* PBXTextBookmark */;
@@ -1033,7 +1044,7 @@
 		fRef = 363BA36C1674853E00E85175 /* main.lua */;
 		name = "main.lua: 47";
 		rLen = 0;
-		rLoc = 934;
+		rLoc = 936;
 		rType = 0;
 		vrLen = 1013;
 		vrLoc = 412;
