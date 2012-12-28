@@ -55,6 +55,7 @@ end)
 go(function()
 	while true do
 		local a = Agent("green")
+		print("made green")
 		a:color(0.5, 1, 0.5)
 		a:freq(random() + 55 * random(5))
 		a:on("beat", function(self, event)
