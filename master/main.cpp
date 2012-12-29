@@ -520,6 +520,9 @@ public:
 			case 32:
 				updating = !updating;
 				break;
+			case 'O':
+				omniEnable(!omniEnable());
+				break;
 			default:
 				break;
 		}
