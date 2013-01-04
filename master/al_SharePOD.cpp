@@ -301,7 +301,7 @@ public:
 							// completed transfer:
 							handler->onReceivedSharedBlob(mBuffer, mSize);
 							
-							if (frame % 25 == 0) printf("frame %d complete\n", frame);
+							//if (frame % 25 == 0) printf("frame %d complete\n", frame);
 						} else {
 							// assume error
 							connected = false;
