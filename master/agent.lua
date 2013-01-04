@@ -168,7 +168,7 @@ setmetatable(Agent, {
 for i = 0, av.MAX_AGENTS-1 do
 	local o = {
 		id = i,
-		_object = app.agents[i],
+		_object = app.shared.agents[i],
 		_voice = app.voices[i],
 		
 		_handlers = {},

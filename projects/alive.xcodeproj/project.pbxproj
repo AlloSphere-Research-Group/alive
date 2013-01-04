@@ -6220,6 +6220,8 @@
 		36473F0E167F23260079FF86 /* uv_utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uv_utils.h; sourceTree = "<group>"; };
 		36473F0F167F23260079FF86 /* uvtest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = uvtest.cpp; sourceTree = "<group>"; };
 		36473F10167F23260079FF86 /* uvtest.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = uvtest.o; sourceTree = "<group>"; };
+		364EDD56169722DC00591C30 /* al_SharePOD.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = al_SharePOD.hpp; sourceTree = "<group>"; };
+		364EDD57169722DC00591C30 /* al_SharePOD.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = al_SharePOD.cpp; sourceTree = "<group>"; };
 		36575226161277FD009D11CC /* corner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = corner.png; sourceTree = "<group>"; };
 		36575227161277FD009D11CC /* folder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = folder.png; sourceTree = "<group>"; };
 		36575228161277FD009D11CC /* index.htm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.htm; sourceTree = "<group>"; };
@@ -21286,6 +21288,8 @@
 			isa = PBXGroup;
 			children = (
 				369FF8BE1676A2A0005F384F /* Q.hpp */,
+				364EDD56169722DC00591C30 /* al_SharePOD.hpp */,
+				364EDD57169722DC00591C30 /* al_SharePOD.cpp */,
 				366E3C461674856A00F3B556 /* main.h */,
 				366E3C471674856A00F3B556 /* main.cpp */,
 				366E3C641674875600F3B556 /* header.lua */,
