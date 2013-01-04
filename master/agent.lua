@@ -79,7 +79,7 @@ function Agent:move(z)
 end
 
 function Agent:moveTo(x,y,z)
-	self._object.position:set(x, y, z)
+	self._object.position:set(eval(x), eval(y), eval(z))
 	return self
 end
 
@@ -87,6 +87,10 @@ function Agent:color(r, g, b)
 	self._object.color.r = eval(r)
 	self._object.color.g = eval(g)
 	self._object.color.b = eval(b)
+end
+
+function Agent:scale(x, y, z)
+	self._object.scale:set(eval(x), eval(y), eval(z))
 end
 
 function Agent:turn(a, e, b)

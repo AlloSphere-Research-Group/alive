@@ -521,7 +521,7 @@ public:
 				updating = !updating;
 				break;
 			case 'O':
-				omniEnable(!omniEnable());
+        omniEnable(!omniEnable());
 				break;
 			default:
 				break;
