@@ -42,7 +42,7 @@ end
 
 --]]
 
----[[
+--[[
 go(function()
 	while true do
 		Q("red", "green"):move(Random()*5*Random()*5)
