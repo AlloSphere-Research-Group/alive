@@ -310,7 +310,7 @@ public:
 	virtual void onDraw(Graphics& gl) {
 		shader().uniform("lighting", 0.2);
 		
-		gl.polygonMode(gl.LINE);
+		//gl.polygonMode(gl.LINE);
 		
 		// draw all active agents
 		int translateAttr = shader().attribute("translate");

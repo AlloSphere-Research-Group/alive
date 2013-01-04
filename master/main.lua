@@ -56,7 +56,8 @@ end)
 go(function()
 	while true do
 		local a = Agent("green")
-		a:color(0.5, 1, 0.5)
+		local c = random() * 0.8
+		a:color(c, 1, c)
 		a:freq(random() + 55 * random(5))
 		a:on("beat", function(self, event)
 			self:move(random(10))
@@ -65,7 +66,8 @@ go(function()
 		
 		for i = 1, 4 do
 			local a = Agent("red")
-			a:color(1, 0.5, 0.5)
+			local c = random() * 0.8
+			a:color(1, c, c)
 			a:freq(random() + 55 * random(4 + 8))
 			wait(1)
 		end
