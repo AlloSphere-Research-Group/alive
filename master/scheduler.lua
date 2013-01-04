@@ -58,7 +58,7 @@ function remove(q, C)
 					p.next = n.next
 					return
 				end
-				p == n
+				p = n
 			end
 		end
 	end
@@ -174,7 +174,7 @@ return function()
 			local n = m.next
 			self.head = n
 			-- remove from map:
-			Cmap[C] = nil
+			Cmap[m.C] = nil
 			-- resume it:
 			resume(m.C)
 			-- continue to next item:
