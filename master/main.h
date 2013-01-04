@@ -66,25 +66,6 @@ static const int WORLD_DIM = 32;	// power of 2
 
 static const int DOPPLER_SAMPLES = 4096;
 
-// Audio interface:
-typedef struct Voice {
-
-		
-	// audio:
-	
-	float buffer[DOPPLER_SAMPLES];
-	uint32_t buffer_index;
-	
-	void (*synthesize)(struct Voice&, int frames, float * out);
-	vec4 encode; // the previous frame's encoding matrix
-	vec3 direction;	// from camera
-	double distance;	
-	
-	double amp, freq, phase;
-	uint32_t iphase;
-
-} Voice;
-
 // C-friendly state amenable to FFI in Lua and serialization to disk, network etc.
 
 typedef struct Agent {
@@ -106,29 +87,52 @@ typedef struct Agent {
 	// cached for simulation:
 	vec3 ux, uy, uz;
 	
-	Voice * voice;
-	
 } Agent;
-
 
 typedef struct Shared {
 	
 	Agent agents[MAX_AGENTS];
-	Voice voices[MAX_AGENTS];
-	
 	Pose view;
 	vec3 active_origin;
 	
-	SpeakerConfig speakers[MAX_SPEAKERS];
-	double doppler_strength;
-	int numActiveSpeakers;
-	float audiogain;
-	
-	void (*update)(struct Shared& app, double dt);
-	
 } Shared;
 
-Shared * app_get();
+// Audio interface (not safe for sharing):
+typedef struct Voice {
+		
+	// audio:
+	float buffer[DOPPLER_SAMPLES];
+	
+	vec4 encode; // the previous frame's encoding matrix
+	vec3 direction;	// from camera
+	double distance;	
+	
+	uint32_t buffer_index;
+	uint32_t iphase;
+	double amp, freq, phase;
+	
+	// pointer: valid for master only!!
+	void (*synthesize)(struct Voice&, int frames, float * out);
+
+} Voice;
+
+typedef struct Global {
+
+	// this is the portion which is shared between renderers:
+	Shared shared;
+	
+	// the rest is valid for master only:
+	Voice voices[MAX_AGENTS];
+	SpeakerConfig speakers[MAX_SPEAKERS];
+	double doppler_strength;
+	int32_t numActiveSpeakers;
+	float audiogain;
+	
+	void (*update)(struct Global& app, double dt);
+	
+} Global;
+
+Global * app_get();
 
 #ifdef __cplusplus
 }

@@ -15,12 +15,14 @@ local notify_trigger = notify.trigger
 
 local main = scheduler()
 -- these are global:
-go, now, wait, event, sequence = main.go, main.now, main.wait, main.event, main.sequence
+go, now, wait, event, sequence, cancel = main.go, main.now, main.wait, main.event, main.sequence, main.cancel
 
--- start a tempo routine:
+-- bpm is also global, so it can be easily modified:
 bpm = 120
+-- start a tempo routine:
 go(function()
 	while true do
+		-- TODO: merge these two event systems:
 		event("beat")
 		notify_trigger("beat")
 		wait(60/bpm)
