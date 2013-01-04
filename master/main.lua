@@ -45,7 +45,7 @@ end
 ---[[
 go(function()
 	while true do
-		Q("red", "green"):move(Random()*5*Random()*5)
+		Q("red", "green"):move(Random()*5*Random())
 	
 		Q("red"):pick(0.2):turn(srandom()*3, srandom()*3, srandom()*3)
 						:freq(Random() + 55 * Random(10))
@@ -56,7 +56,6 @@ end)
 go(function()
 	while true do
 		local a = Agent("green")
-		print("made green")
 		a:color(0.5, 1, 0.5)
 		a:freq(random() + 55 * random(5))
 		a:on("beat", function(self, event)

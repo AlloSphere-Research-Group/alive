@@ -5,6 +5,8 @@
 #include "alloutil/al_OmniApp.hpp"
 #include "alloutil/al_Lua.hpp"
 
+#include "al_SharePOD.hpp"
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -126,7 +128,7 @@ audiomsg * audioq_next(double maxtime) {
 
 #pragma mark App
 
-class App : public OmniApp, public Shared {
+class App : public OmniApp, public Global, public SharedBlob::Handler {
 public:
 
 	App() 
@@ -141,6 +143,8 @@ public:
 		}
 		
 		printf("running on %s\n", hostName().c_str());
+		printf("blob %d\n", sizeof(Shared));
+		
 		
 		updating = true;
 		
@@ -183,13 +187,26 @@ public:
 		
 		// initialize shared:
 		reset();	
+		
+		// start sharing:
+		if (hostName() == "spherez03" ||
+			hostName() == "spherez04" ||
+			hostName() == "spherez05" ||
+			hostName() == "spherez06") {
+			
+			pod.startClient(this, "photon");
+			bMaster = false;
+			
+		} else {
+			
+			pod.startServer(this);
+			bMaster = true;
+		}
 	}
 	
 	void reset() {
 		for (int i=0; i<MAX_AGENTS; i++) {
-			Agent& a = agents[i];
-			Voice& v = voices[i];
-			a.voice = &v;
+			Agent& a = shared.agents[i];
 			
 			a.id = i;
 			a.nearest = i;
@@ -209,12 +226,17 @@ public:
 			a.rotate.toVectorY(a.uy);
 			a.rotate.toVectorZ(a.uz);
 			
-			v.synthesize = default_synthesize_func;
-			v.amp = 0.1;
-			v.encode.set(0, 0, 0, 0);
-			v.phase = 0;
+			Voice& v = voices[i];
 			memset(v.buffer, 0, sizeof(float) * DOPPLER_SAMPLES);
+			v.encode.set(0, 0, 0, 0);
+			v.direction.set(0, 0, 0);
+			v.distance = WORLD_DIM;
 			v.buffer_index = 0;
+			v.iphase = 0;
+			v.amp = 0.1;
+			v.freq = 220;
+			v.phase = 0;
+			v.synthesize = default_synthesize_func;
 		}
 	}
 	
@@ -295,7 +317,7 @@ public:
 		int rotateAttr = shader().attribute("rotate");
 		int scaleAttr = shader().attribute("scale");
 		for (int i=0; i<MAX_AGENTS; i++) {
-			Agent& a = agents[i];
+			Agent& a = shared.agents[i];
 			if (a.enable && a.visible) {
 				shader().attribute(rotateAttr, a.rotate.x, a.rotate.y, a.rotate.z, a.rotate.w);
 				shader().attribute(translateAttr, a.position.x, a.position.y, a.position.z);
@@ -311,9 +333,9 @@ public:
 		shader().attribute(scaleAttr, 1, 1, 1);
 		gl.begin(gl.LINES);
 		for (int i=0; i<MAX_AGENTS; i++) {
-			Agent& a = agents[i];
+			Agent& a = shared.agents[i];
 			if (a.enable && a.visible) {
-				Agent& b = agents[a.nearest];
+				Agent& b = shared.agents[a.nearest];
 				gl.vertex(a.position);
 				gl.vertex(b.position);
 			}
@@ -323,7 +345,7 @@ public:
 	
 	void simulate(al_sec dt) {
 		for (int i=0; i<MAX_AGENTS; i++) {
-			Agent& a = agents[i];
+			Agent& a = shared.agents[i];
 			if (a.enable) {
 				
 				// update unit vectors:
@@ -366,17 +388,22 @@ public:
 			shader().end();
 		}
 		
-		// nav updated:
-		for (int j=0; j<3; j++) {
-			active_origin[j] = floor(nav().pos()[j] - WORLD_DIM/2);
+		if (bMaster) {
+			// nav updated:
+			for (int j=0; j<3; j++) {
+				shared.active_origin[j] = floor(nav().pos()[j] - WORLD_DIM/2);
+			}
+			
+			if (updating) simulate(dt);
 		}
-		
-		if (updating) simulate(dt);
 		
 		//printf("audio cpu %f\n", audioIO().cpu());
 	}
 	
 	virtual void onSound(AudioIOData& io) {
+		// only master makes sound:
+		if (!bMaster) return;
+	
 		int frames = io.framesPerBuffer();
 		samplerate = io.framesPerSecond();
 		invsamplerate = 1./samplerate;
@@ -401,7 +428,7 @@ public:
 		
 		// play all agents:
 		for (int i=0; i<MAX_AGENTS; i++) {
-			Agent& a = agents[i];
+			Agent& a = shared.agents[i];
 			
 			if (a.enable) {
 			
@@ -414,9 +441,9 @@ public:
 					// wrap location:
 					for (int j=0; j<3; j++) {
 						double p = a.position[j];
-						p -= active_origin[j];
+						p -= shared.active_origin[j];
 						p = al::wrap(p, (double)WORLD_DIM);
-						p += active_origin[j];
+						p += shared.active_origin[j];
 						a.position[j] = p;
 					}
 					
@@ -515,6 +542,17 @@ public:
 		audiotime = nexttime;	
 	}
 	
+	// this handler is called when a client receives blob from the server
+	virtual void onReceivedSharedBlob(const char * blob, size_t size) {
+		const Shared * s = (const Shared *)blob;
+		memcpy(&shared, blob, size);
+	}
+	
+	// this handler is called when a server requires data to send to a client
+	virtual char * onSendSharedBlob() {
+		return (char *)&shared;
+	}
+	
 	virtual bool onKeyDown(const Keyboard& k) {
 		switch (k.key()) {
 			case 32:
@@ -542,12 +580,13 @@ public:
 	Graphics gl;
 	Mesh cube;
 	
-	bool updating;
+	SharePOD<Shared> pod;
+	bool updating, bMaster;
 };
 
 App * app;
 
-Shared * app_get() {
+Global * app_get() {
 	return app;
 }
 
