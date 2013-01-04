@@ -233,6 +233,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -326,8 +328,6 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -345,7 +345,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>364EDD64169724A500591C30</string>
+										<string>364EDD79169730B700591C30</string>
 										<key>history</key>
 										<array>
 											<string>36DE520A163B4545004F736A</string>
@@ -387,7 +387,6 @@
 											<string>36A61DFA1687E66700E1A440</string>
 											<string>36A61E1C1687EC4E00E1A440</string>
 											<string>3690240E1688CF4500B1AE20</string>
-											<string>3690246B1688DC9C00B1AE20</string>
 											<string>369024CE168919E500B1AE20</string>
 											<string>369024D416891E5C00B1AE20</string>
 											<string>369024F61689200D00B1AE20</string>
@@ -400,16 +399,17 @@
 											<string>365B5BEC168F77C200BFA1BA</string>
 											<string>364EDCBF1694FB9600591C30</string>
 											<string>364EDD0C16969B2800591C30</string>
-											<string>364EDD2F1697203F00591C30</string>
 											<string>364EDD33169720CD00591C30</string>
 											<string>364EDD34169720CD00591C30</string>
-											<string>364EDD36169720CD00591C30</string>
 											<string>364EDD461697222400591C30</string>
 											<string>364EDD591697232600591C30</string>
 											<string>364EDD5A1697232600591C30</string>
-											<string>364EDD5C1697244700591C30</string>
 											<string>364EDD601697246500591C30</string>
-											<string>364EDD611697246500591C30</string>
+											<string>364EDD6D16972A2400591C30</string>
+											<string>364EDD7016972A7200591C30</string>
+											<string>364EDD76169730B700591C30</string>
+											<string>364EDD77169730B700591C30</string>
+											<string>364EDD78169730B700591C30</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>

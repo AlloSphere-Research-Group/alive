@@ -66,25 +66,6 @@ static const int WORLD_DIM = 32;	// power of 2
 
 static const int DOPPLER_SAMPLES = 4096;
 
-// Audio interface:
-typedef struct Voice {
-		
-	// audio:
-	float buffer[DOPPLER_SAMPLES];
-	
-	vec4 encode; // the previous frame's encoding matrix
-	vec3 direction;	// from camera
-	double distance;	
-	
-	uint32_t buffer_index;
-	uint32_t iphase;
-	double amp, freq, phase;
-	
-	// pointer: valid for master only!!
-	void (*synthesize)(struct Voice&, int frames, float * out);
-
-} Voice;
-
 // C-friendly state amenable to FFI in Lua and serialization to disk, network etc.
 
 typedef struct Agent {
@@ -115,6 +96,25 @@ typedef struct Shared {
 	vec3 active_origin;
 	
 } Shared;
+
+// Audio interface (not safe for sharing):
+typedef struct Voice {
+		
+	// audio:
+	float buffer[DOPPLER_SAMPLES];
+	
+	vec4 encode; // the previous frame's encoding matrix
+	vec3 direction;	// from camera
+	double distance;	
+	
+	uint32_t buffer_index;
+	uint32_t iphase;
+	double amp, freq, phase;
+	
+	// pointer: valid for master only!!
+	void (*synthesize)(struct Voice&, int frames, float * out);
+
+} Voice;
 
 typedef struct Global {
 
