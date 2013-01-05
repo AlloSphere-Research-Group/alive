@@ -66,10 +66,10 @@ function build {
 
 function run {
 	echo running $PRODUCT_NAME
-	./$PRODUCT_NAME
-	#node master.js
+	#./$PRODUCT_NAME
+	node master.js
 }
 
-clean && generate_ffi_header && build && run
+clean && generate_ffi_header && build #&& run
 
 
