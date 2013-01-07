@@ -136,14 +136,16 @@ public:
 		qnearest(6)
 	{
 		// one-time only:
-		if (mOmni.activeStereo()) {
-			mOmni.resolution(2048);
+		if (omni().activeStereo()) {
+			omni().resolution(2048);
 		} else {
-			mOmni.resolution(256);
+			omni().resolution(256);
 		}
+		lens().fovy(85);
+		lens().far(WORLD_DIM * 0.5);
 		
 		printf("running on %s\n", hostName().c_str());
-		printf("blob %d\n", sizeof(Shared));
+		printf("blob %d\n", (int)sizeof(Shared));
 		
 		
 		updating = true;
@@ -242,12 +244,19 @@ public:
 	
 	virtual std::string	vertexCode() {
 		return AL_STRINGIFY(
+			// omniapp also adds these uniforms:
+			// uniform float omni_eye;
+			// uniform int omni_face;	
+			// uniform float omni_near;	
+			// uniform float omni_far;
+		
 			attribute vec4 rotate;
 			attribute vec3 translate;
 			attribute vec3 scale;
 			varying vec4 color;
 			varying vec3 normal, lightDir, eyeVec;
 			varying vec4 La, Ld, Ls;
+			varying float fog;
 			
 			//	q must be a normalized quaternion
 			vec3 quat_rotate(vec4 q, vec3 v) {
@@ -270,6 +279,17 @@ public:
 			void main(){
 				vec3 P = translate + quat_rotate(rotate, gl_Vertex.xyz * scale);
 				vec4 vertex = gl_ModelViewMatrix * vec4(P, gl_Vertex.w);
+				
+				// fog calculation:
+				//float distance = length(vertex.xyz);
+				// because our world is a bounded cube:
+				float distance = max(abs(vertex.x), max(abs(vertex.y), abs(vertex.z)));
+				float fogstart = omni_far * 0.65;
+				// distance over fog range clamped to 0,1:
+				float unitdistance = clamp((distance - fogstart - omni_near) / (omni_far - fogstart - omni_near), 0., 1.);
+				// cheap curved fog effect:
+				fog = unitdistance * unitdistance;
+				
 				gl_Position = omni_render(vertex); 
 				
 				normal = gl_NormalMatrix * gl_Normal;
@@ -291,7 +311,9 @@ public:
 			varying vec4 color;
 			varying vec3 normal, lightDir, eyeVec;
 			varying vec4 La, Ld, Ls;
+			varying float fog;
 			void main() {
+				vec4 fogcolor = vec4(0., 0., 0., 1.);
 				vec4 final_color = color * La;
 				vec3 N = normalize(normal);
 				vec3 L = lightDir;
@@ -302,7 +324,8 @@ public:
 				float spec = max(dot(R, E), 0.0);
 				//spec = pow(spec, 1.);
 				final_color += Ls * spec;
-				gl_FragColor = mix(color, final_color, lighting);
+				final_color = mix(color, final_color, lighting);
+				gl_FragColor = mix(final_color, fogcolor, fog);
 			}
 		);
 	}
@@ -544,7 +567,6 @@ public:
 	
 	// this handler is called when a client receives blob from the server
 	virtual void onReceivedSharedBlob(const char * blob, size_t size) {
-		const Shared * s = (const Shared *)blob;
 		memcpy(&shared, blob, size);
 	}
 	

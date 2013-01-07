@@ -175,7 +175,8 @@ public:
 							// try to receive data:
 							char buf[REQUEST_BUFFER_SIZE];
 							apr_size_t len = REQUEST_BUFFER_SIZE - 1; // -1 for a null-terminated
-							apr_status_t rv1 = check_apr(apr_socket_recv(session->client, buf, &len));
+							//apr_status_t rv1 = 
+							check_apr(apr_socket_recv(session->client, buf, &len));
 							buf[len] = '\0';
 							//printf("received %s\n", buf);
 							
@@ -279,7 +280,7 @@ public:
 					if (0 == check_apr(apr_socket_send(mSock, header, &headerlen))) {
 					
 						// initialize frame writer:
-						apr_time_t start = apr_time_now();
+						//apr_time_t start = apr_time_now();
 						apr_size_t remain = mSize;
 						apr_size_t len = remain;
 						char * writeptr = mBuffer;	
@@ -301,7 +302,7 @@ public:
 							// completed transfer:
 							handler->onReceivedSharedBlob(mBuffer, mSize);
 							
-							if (frame % 25 == 0) printf("frame %d complete\n", frame);
+							//if (frame % 25 == 0) printf("frame %d complete\n", frame);
 						} else {
 							// assume error
 							connected = false;
