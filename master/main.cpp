@@ -615,7 +615,7 @@ int main(int argc, char * argv[]) {
 	
 	init_wavetables();
 	
-	std:;string hostName = Socket::hostName();
+	std::string hostName = Socket::hostName();
 	if (hostName == "spherez03" ||
 		hostName == "spherez04" ||
 		hostName == "spherez05" ||
