@@ -153,6 +153,8 @@ public:
 		updating = true;
 		
 		// initialize shared:
+		shared.framecount = 0;
+		shared.mode = 0;
 		reset();	
 		
 		// start sharing:
@@ -566,11 +568,14 @@ public:
 	
 	// this handler is called when a client receives blob from the server
 	virtual void onReceivedSharedBlob(const char * blob, size_t size) {
+		uint32_t framecount = ((Shared *)blob)->framecount;
+		if (framecount % 50 == 0) printf("sent %d\n", framecount);
 		memcpy(&shared, blob, size);
 	}
 	
 	// this handler is called when a server requires data to send to a client
 	virtual char * onSendSharedBlob() {
+		if (shared.framecount % 50 == 0) printf("sent %d\n", shared.framecount);
 		return (char *)&shared;
 	}
 	
