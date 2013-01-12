@@ -410,6 +410,8 @@ public:
 		}
 		
 		if (bMaster) {
+			shared.framecount++;
+			
 			// nav updated:
 			for (int j=0; j<3; j++) {
 				shared.active_origin[j] = floor(nav().pos()[j] - WORLD_DIM/2);
