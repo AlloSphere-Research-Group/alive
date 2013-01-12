@@ -418,7 +418,10 @@ public:
 			}
 			
 			if (updating) simulate(dt);
+		} else {
+			pod.clientRequest();
 		}
+
 		
 		//printf("audio cpu %f\n", audioIO().cpu());
 	}
