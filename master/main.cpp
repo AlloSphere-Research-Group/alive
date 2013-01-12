@@ -12,6 +12,8 @@
 
 using namespace al;
 
+bool bMaster = true;
+
 // audio globals:
 double samplerate = 44100;
 double invsamplerate = 1./samplerate;
@@ -132,7 +134,8 @@ class App : public OmniApp, public Global, public SharedBlob::Handler {
 public:
 
 	App() 
-	:	space(5, MAX_AGENTS),
+	:	OmniApp("alive", !bMaster),
+		space(5, MAX_AGENTS),
 		qnearest(6)
 	{
 		// one-time only:
@@ -147,62 +150,55 @@ public:
 		printf("running on %s\n", hostName().c_str());
 		printf("blob %d\n", (int)sizeof(Shared));
 		
-		
 		updating = true;
-		
-		if (hostName() == "photon") {
-			AudioDevice::printAll();
-			AudioDevice indev("system", AudioDevice::INPUT);
-			AudioDevice outdev("system", AudioDevice::OUTPUT);
-			//initAudio("system", 44100, 1024, 12, 12);
-			
-			audioIO().deviceIn(indev);
-			audioIO().deviceOut(outdev);
-			audioIO().channelsOut(12);
-			initAudio(44100, 1024);
-			
-			audioIO().print();
-			
-		} else {
-			initAudio(44100, 1024);
-		}
-
-		initAudio(44100, 1024);
-		audiotime = 0;
-		doppler_strength = 1.;
-		
-		update = 0;
-		
-		audioIO().channelsBus(2);
-		
-		numActiveSpeakers = 2;
-		for (int i=0; i<numActiveSpeakers; i++) {
-			SpeakerConfig& s = speakers[i];
-			double angle = M_PI * 0.5 * (i - 0.5);
-			s.weights.w = M_SQRT1_2;
-			s.weights.x = sin(angle);
-			s.weights.y = 0.;
-			s.weights.z = -cos(angle);
-		}
-		
-		audiogain = 0.5;
 		
 		// initialize shared:
 		reset();	
 		
 		// start sharing:
-		if (hostName() == "spherez03" ||
-			hostName() == "spherez04" ||
-			hostName() == "spherez05" ||
-			hostName() == "spherez06") {
+		if (bMaster) {
+		
+			if (hostName() == "photon") {
+				AudioDevice::printAll();
+				AudioDevice indev("system", AudioDevice::INPUT);
+				AudioDevice outdev("system", AudioDevice::OUTPUT);
+				//initAudio("system", 44100, 1024, 12, 12);
+				
+				audioIO().deviceIn(indev);
+				audioIO().deviceOut(outdev);
+				audioIO().channelsOut(12);
+				initAudio(44100, 1024);
+				
+				audioIO().print();
+				
+			} else {
+				initAudio(44100, 1024);
+			}
+
+			initAudio(44100, 1024);
+			audiotime = 0;
+			doppler_strength = 1.;
 			
-			pod.startClient(this, "photon");
-			bMaster = false;
+			update = 0;
+			
+			audioIO().channelsBus(2);
+			
+			numActiveSpeakers = 2;
+			for (int i=0; i<numActiveSpeakers; i++) {
+				SpeakerConfig& s = speakers[i];
+				double angle = M_PI * 0.5 * (i - 0.5);
+				s.weights.w = M_SQRT1_2;
+				s.weights.x = sin(angle);
+				s.weights.y = 0.;
+				s.weights.z = -cos(angle);
+			}
+			
+			audiogain = 0.5;
+		
+			pod.startServer(this);
 			
 		} else {
-			
-			pod.startServer(this);
-			bMaster = true;
+			pod.startClient(this, "photon");
 		}
 	}
 	
@@ -606,7 +602,7 @@ public:
 	Mesh cube;
 	
 	SharePOD<Shared> pod;
-	bool updating, bMaster;
+	bool updating;
 };
 
 App * app;
@@ -618,6 +614,16 @@ Global * app_get() {
 int main(int argc, char * argv[]) {
 	
 	init_wavetables();
+	
+	// start sharing:
+	if (hostName() == "spherez03" ||
+		hostName() == "spherez04" ||
+		hostName() == "spherez05" ||
+		hostName() == "spherez06") {
+		
+		bMaster = false;
+	}
+
 
 	app = new App;
 
