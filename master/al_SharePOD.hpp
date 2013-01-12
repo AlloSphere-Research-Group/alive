@@ -47,6 +47,9 @@ public:
 	// warning: the handler pointer must outlive the SharedBlob
 	bool startClient(Handler * h, const std::string& serverName, int port=SHAREPOD_DEFAULT_PORT); 
 	
+	// client only: signal for a data request:
+	void clientRequest();
+	
 protected:
 	class Impl;
 	Impl * mImpl;
