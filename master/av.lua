@@ -2,7 +2,7 @@
 local ffi = require "ffi"
 local header = require "header"
 local C = ffi.C
-local app = C.app_get()
+local app = C.global_get()
 
 local ev = require "ev"
 local loop = ev.default_loop()
