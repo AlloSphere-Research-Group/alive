@@ -95,6 +95,8 @@ typedef struct Shared {
 	Pose view;
 	vec3 active_origin;
 	
+	Color bgcolor;
+	
 	uint32_t framecount;
 	uint32_t mode;
 	
@@ -135,7 +137,7 @@ typedef struct Global {
 	
 } Global;
 
-Global * app_get();
+Global * global_get();
 
 #ifdef __cplusplus
 }

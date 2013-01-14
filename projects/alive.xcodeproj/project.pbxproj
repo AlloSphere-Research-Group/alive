@@ -21282,7 +21282,6 @@
 				365754EE161277FE009D11CC /* omgosc.js */,
 				365754EF161277FE009D11CC /* socket.io.js */,
 				36575260161277FD009D11CC /* master.js */,
-				36974A5816A3BD3C00FA5D59 /* install_node_modules.sh */,
 			);
 			name = node;
 			sourceTree = "<group>";
@@ -21317,6 +21316,7 @@
 			children = (
 				366E3C651674880700F3B556 /* notes.txt */,
 				3657525F161277FD009D11CC /* install_dependencies.sh */,
+				36974A5816A3BD3C00FA5D59 /* install_node_modules.sh */,
 				366E3C4A167485E800F3B556 /* build.sh */,
 				366E3C551674869100F3B556 /* h2ffi.lua */,
 			);

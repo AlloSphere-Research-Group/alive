@@ -155,6 +155,7 @@ public:
 		// initialize shared:
 		shared.framecount = 0;
 		shared.mode = 0;
+		shared.bgcolor.set(0.2);
 		reset();	
 		
 		// start sharing:
@@ -306,12 +307,12 @@ public:
 	virtual std::string fragmentCode() {
 		return AL_STRINGIFY(
 			uniform float lighting;
+			uniform vec4 bgcolor;
 			varying vec4 color;
 			varying vec3 normal, lightDir, eyeVec;
 			varying vec4 La, Ld, Ls;
 			varying float fog;
 			void main() {
-				vec4 fogcolor = vec4(0., 0., 0., 1.);
 				vec4 final_color = color * La;
 				vec3 N = normalize(normal);
 				vec3 L = lightDir;
@@ -323,7 +324,7 @@ public:
 				//spec = pow(spec, 1.);
 				final_color += Ls * spec;
 				final_color = mix(color, final_color, lighting);
-				gl_FragColor = mix(final_color, fogcolor, fog);
+				gl_FragColor = mix(final_color, bgcolor, fog);
 			}
 		);
 	}
@@ -398,6 +399,8 @@ public:
 	}
 	
 	virtual void onAnimate(al_sec dt) {
+		omni().clearColor() = shared.bgcolor;
+	
 		// on create:
 		if (frame == 1) {
 			// allocate GPU resources:
@@ -614,8 +617,8 @@ public:
 
 App * app;
 
-Global * app_get() {
-	return app;
+Global * global_get() {
+	return (Global *)app;
 }
 
 int main(int argc, char * argv[]) {
