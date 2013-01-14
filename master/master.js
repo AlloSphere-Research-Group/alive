@@ -308,6 +308,7 @@ var myIP = (function() {
 
 console.log('hostname: ' + os.hostname());
 console.log('Server running at ' + myIP + ' on port ' + port + '');
+process.exit();
 
 process.on('exit', function() {
 	if (vm !== null) {
