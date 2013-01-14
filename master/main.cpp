@@ -619,19 +619,25 @@ Global * app_get() {
 }
 
 int main(int argc, char * argv[]) {
-	
-	init_wavetables();
-	
+
 	std::string hostName = Socket::hostName();
-	if (hostName == "spherez03" ||
-		hostName == "spherez04" ||
-		hostName == "spherez05" ||
-		hostName == "spherez06") {
-		
+	std::string masterName;
+	if (argc > 1) {
+		masterName = argv[1];
+	} else {
+		masterName = hostName;
+	}
+
+	if (masterName == hostName) {
+		printf("I AM THE MASTER\n");
+		bMaster = true;
+	} else {
+		printf("I AM NOT THE MASTER\n");
 		bMaster = false;
 	}
 
-
+	init_wavetables();
+	
 	app = new App;
 
 	// run main script:

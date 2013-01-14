@@ -42,7 +42,7 @@ function launch(name) {
 		vm.kill();
 	}
 	
-	vm = spawn(name);
+	vm = spawn(name, [mastername]);
 
 	vm.stdout.on('data', function (text) {
 		process.stdout.write(text);
@@ -56,7 +56,7 @@ function launch(name) {
 	vm.stderr.on('data', function (text) {
 		process.stdout.write('err:' + text);
 		//process.stdout.flush();
-		console.log("SENDING ERROR MESSAGE", text.toString);
+		//console.log("SENDING ERROR MESSAGE", text.toString);
 		for(var key in editors) {
 			editors[key].emit("err", { "msg" : text.toString()  } );
 		}
@@ -103,6 +103,7 @@ if (ismaster) {
 	var ad = mdns.createAdvertisement(mdns.tcp('master'), 8082);
 	ad.start();
 
+	/*
 	var pullNumber = 0;
 	var cmds = {
 		ls : function(_socket) {
@@ -120,6 +121,7 @@ if (ismaster) {
 			_socket.currentDir = path.resolve(_socket.currentDir, args);
 		},
 	};
+	*/
 
 	//// THE EDITOR SOCKET ////
 
@@ -338,3 +340,4 @@ if (ismaster) {
 
 // start the vm:
 launch(vm_name);
+console.log("started");
