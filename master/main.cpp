@@ -162,7 +162,7 @@ public:
 		// initialize shared:
 		shared.framecount = 0;
 		shared.mode = 0;
-		shared.bgcolor.set(0.2);
+		shared.bgcolor.set(0.5);
 		shared.enable_stereo = omni().stereo();
 		reset();	
 		
