@@ -2,6 +2,7 @@
 #include "Q.hpp"
 #include "gigaverb.h"
 
+#include "allocore/graphics/al_DisplayList.hpp"
 #include "allocore/spatial/al_HashSpace.hpp"
 #include "alloutil/al_OmniApp.hpp"
 #include "alloutil/al_Lua.hpp"
@@ -87,6 +88,14 @@ audiomsg * audioq_next(double maxtime) {
 	return audioq_peek(maxtime);
 }
 
+void agent_reset(Agent& a) {
+	a.nearest = a.id;
+	a.enable = 0;
+	a.visible = 1;
+	a.trail_start = 0;
+	a.trail_size = 0;
+}	
+
 #pragma mark App
 
 class App : public OmniApp, public Global, public SharedBlob::Handler {
@@ -122,6 +131,7 @@ public:
 		shared.mode = 0;
 		shared.bgcolor.set(0.25);
 		shared.enable_stereo = omni().stereo();
+		shared.show_collisions = 0;
 		reset();	
 		
 		// start sharing:
@@ -199,8 +209,8 @@ public:
 			a.rotate.toVectorZ(a.uz);
 			
 			// trails:
-			a.trails.trail_start = 0;
-			a.trails.trail_size = 0;
+			a.trail_start = 0;
+			a.trail_size = 0;
 			
 			Voice& v = voices[i];
 			memset(v.buffer, 0, sizeof(float) * DOPPLER_SAMPLES);
@@ -323,27 +333,51 @@ public:
 				shader().attribute(translateAttr, a.position.x, a.position.y, a.position.z);
 				shader().attribute(scaleAttr, a.scale.x, a.scale.y, a.scale.z);
 				gl.color(a.color.r, a.color.g, a.color.b, a.color.a);
-				gl.draw(cube);
+				cubelist.draw();
+				
+				// now draw tails:
+				
+				//a.trail_start should be the most recent one
+				//a.trail_start - 1 would be the prev
+				int start = a.trail_start;
+				int size = a.trail_size;
+				for (int i = 1; i < size - 1; i++) {
+					int idx = start + i;
+					const Trail& trail = a.trails[idx % (TRAIL_LENGTH - 1)];
+					
+					double fade = 1. - (i * 0.12); // fade to zero
+					
+					shader().attribute(rotateAttr, trail.rotate.x, trail.rotate.y, trail.rotate.z, trail.rotate.w);
+					shader().attribute(translateAttr, trail.position.x, trail.position.y, trail.position.z);
+					shader().attribute(scaleAttr, a.scale.x * fade, a.scale.y * fade, a.scale.z * fade);
+					cubelist.draw();
+				}
 			}
 		}
 		
-		gl.color(0.2);
-		shader().attribute(rotateAttr, 0, 0, 0, 1);
-		shader().attribute(translateAttr, 0, 0, 0);
-		shader().attribute(scaleAttr, 1, 1, 1);
-		gl.begin(gl.LINES);
-		for (int i=0; i<MAX_AGENTS; i++) {
-			Agent& a = shared.agents[i];
-			if (a.enable && a.visible) {
-				Agent& b = shared.agents[a.nearest];
-				gl.vertex(a.position);
-				gl.vertex(b.position);
+		if (shared.show_collisions) {
+			shader().attribute(rotateAttr, 0, 0, 0, 1);
+			shader().attribute(translateAttr, 0, 0, 0);
+			shader().attribute(scaleAttr, 1, 1, 1);
+			gl.color(0.2);
+			gl.begin(gl.LINES);
+			for (int i=0; i<MAX_AGENTS; i++) {
+				Agent& a = shared.agents[i];
+				
+				if (a.enable && a.visible) {
+					Agent& b = shared.agents[a.nearest];
+					gl.vertex(a.position);
+					gl.vertex(b.position);
+				}
 			}
+			gl.end();
 		}
-		gl.end();
 	}
 	
 	void simulate(al_sec dt) {
+		// call back into LuaJIT:
+		if (update) update(*this, dt);
+		
 		for (int i=0; i<MAX_AGENTS; i++) {
 			Agent& a = shared.agents[i];
 			if (a.enable) {
@@ -368,12 +402,13 @@ public:
 					a.nearest = a.id;
 				}
 
-			
+				// add to trail:
+				a.trail_start = (a.trail_start - 1) & (TRAIL_LENGTH - 1);
+				if (a.trail_size < TRAIL_LENGTH) a.trail_size++;
+				a.trails[a.trail_start].position = a.position;
+				a.trails[a.trail_start].rotate = a.rotate;
 			}
 		}
-		
-		// call back into LuaJIT:
-		if (update) update(*this, dt);
 	}
 	
 	virtual void onAnimate(al_sec dt) {
@@ -385,6 +420,12 @@ public:
 			// allocate GPU resources:
 			cube.primitive(gl.QUADS);
 			addCube(cube, true, 0.5);
+			// shift it forward:
+			cube.translate(0, 0, -0.25);
+			
+			cubelist.begin();
+			gl.draw(cube);
+			cubelist.end();
 			
 			shader().begin();
 			shader().uniform("lighting", 0.8);
@@ -470,11 +511,6 @@ public:
 					// apply rotation:
 					a.rotate = a.rotate * r;
 					a.rotate.normalize();
-					
-					// append to trail:
-					a.trail_start = (a.trail_start - 1) & (TRAIL_LENGTH - 1);
-					if (a.trail_size < TRAIL_LENGTH) a.trail_size++;
-					a.trails[a.trail_start].position = a.position;
 				}
 				
 				// now synthesize:
@@ -633,6 +669,7 @@ public:
 	
 	Graphics gl;
 	Mesh cube;
+	DisplayList cubelist;
 	
 	SharePOD<Shared> pod;
 	

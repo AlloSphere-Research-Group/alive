@@ -71,8 +71,9 @@ static const int TRAIL_LENGTH = 8;
 // C-friendly state amenable to FFI in Lua and serialization to disk, network etc.
 
 typedef struct Trail {
+	quat rotate;
 	vec3 position;
-};
+} Trail;
 
 typedef struct Agent {
 	
@@ -110,7 +111,7 @@ typedef struct Shared {
 	uint32_t framecount;
 	uint32_t mode;
 	uint32_t enable_stereo;
-	uint32_t unused;
+	uint32_t show_collisions;
 	
 } Shared;
 
@@ -149,6 +150,8 @@ typedef struct Global {
 	void (*update)(struct Global& app, double dt);
 	
 } Global;
+
+void agent_reset(Agent& a);
 
 Global * global_get();
 

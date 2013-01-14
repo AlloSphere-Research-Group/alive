@@ -9,6 +9,9 @@ local E = require "expr"
 local eval = E.eval
 local app = av.app
 
+local ffi = require "ffi"
+local C = ffi.C
+
 local sin, cos = math.sin,math.cos
 local abs, floor = math.abs, math.floor
 local table_remove = table.remove
@@ -162,6 +165,7 @@ setmetatable(Agent, {
 			self.agents[id]:reset()
 			
 		end
+		C.agent_reset(agent._object)
 		agent:enable()
 		agent:tag("*", ...)
 		-- return agent:
