@@ -99,6 +99,8 @@ typedef struct Shared {
 	
 	uint32_t framecount;
 	uint32_t mode;
+	uint32_t enable_stereo;
+	uint32_t unused;
 	
 } Shared;
 

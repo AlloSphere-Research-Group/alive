@@ -163,6 +163,7 @@ public:
 		shared.framecount = 0;
 		shared.mode = 0;
 		shared.bgcolor.set(0.2);
+		shared.enable_stereo = omni().stereo();
 		reset();	
 		
 		// start sharing:
@@ -408,6 +409,7 @@ public:
 	
 	virtual void onAnimate(al_sec dt) {
 		omni().clearColor() = shared.bgcolor;
+		omni().stereo(shared.enable_stereo);
 	
 		// on create:
 		if (frame == 1) {
@@ -611,6 +613,10 @@ public:
 	
 	virtual bool onKeyDown(const Keyboard& k) {
 		switch (k.key()) {
+			case Keyboard::TAB:
+				shared.enable_stereo = !shared.enable_stereo;
+				printf("stereo %d\n", shared.enable_stereo);
+				break;
 			case 32: // space
 				updating = !updating;
 				break;
