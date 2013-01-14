@@ -48,55 +48,7 @@
 	</div>-->
 	<div id="right">
 		<div id="filename_header"><span id="filename">a.l.i.v.e.</span> - <span id="sharejs_status">connecting..</span></div>
-		<textarea id="codeEditor" name="codeEditor">
-local av = require "av"
-local vec = require "vec"
-local ev = require "ev"
-local app = av.app
-
-local sin, cos = math.sin,math.cos
-local abs, floor = math.abs, math.floor
-local random = math.random
-local srandom = function() return random() * 2 - 1 end
-
-function app:update(dt)
-	av:events()
-	
-	-- pick a random agent:
-	local a = pick("default")
-	if a then
-		a.turn.x = 0
-		a.turn.y = 10 * srandom()
-		a.turn.z = 0
-		a.color.g = 0
-	end
-	
-	local a = pick("default")
-	if a then
-		local i = random(150)
-		a.move:set(0, 0, 30. * random())
-		a.turn.x = 2.*cos(i)
-		a.turn.y = 0
-		a.turn.z = 0
-		a.color.r = random()
-		a.color.g = 0.5
-	end
-	
-	local a = pick("default")
-	if a then
-		local i = random(150)
-		a.move:set(0, 0, 0)
-		a.position.x = 10. * sin(i * 0.1) + 5.
-		a.position.y = sin(i) + i * 0.01
-		a.position.z = 10. * cos(i * 0.1) - 5.
-		a.rotate:fromAxisY(cos(i))
-		a.color.r = 0.5
-		a.color.g = 0.5
-	end
-end
-
-print("ok")
-		</textarea>
+		<textarea id="codeEditor" name="codeEditor"></textarea>
 		<div id="console">
 			<div id="consoleBar"></div>
 			<div id="tabs">

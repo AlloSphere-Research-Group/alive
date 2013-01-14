@@ -13,6 +13,7 @@
 using namespace al;
 
 bool bMaster = true;
+bool bRemoteAudio = false;
 
 // audio globals:
 double samplerate = 44100;
@@ -141,6 +142,7 @@ public:
 		// one-time only:
 		if (omni().activeStereo()) {
 			omni().resolution(2048);
+			bRemoteAudio = true;
 		} else {
 			omni().resolution(256);
 		}
@@ -446,14 +448,21 @@ public:
 		double dt = frame * invsamplerate;
 		
 		if (audiotime == 0) {
-			printf("audio started %d samples, %f Hz, %dx%d + %d\n", frames, samplerate, io.channelsIn(), io.channelsOut(), io.channelsBus());
+			printf("audio started (remote == %d) %d samples, %f Hz, %dx%d + %d\n", bRemoteAudio, frames, samplerate, io.channelsIn(), io.channelsOut(), io.channelsBus());
 		}
 		io.zeroOut();
 		io.zeroBus();
 		
-		//float * bus = io.busBuffer(0);
+		// allosphere remote mode: 
+		float * W = io.outBuffer(0);
+		float * X = io.outBuffer(1);
+		float * Y = io.outBuffer(2);
+		float * Z = io.outBuffer(3);
+		
+		// desktop stereo mode:
 		float * out0 = io.outBuffer(0);
 		float * out1 = io.outBuffer(1);
+		
 		vec4 w0 = speakers[0].weights;
 		vec4 w1 = speakers[1].weights;
 		Pose& view = nav();
@@ -464,7 +473,6 @@ public:
 		// play all agents:
 		for (int i=0; i<MAX_AGENTS; i++) {
 			Agent& a = shared.agents[i];
-			
 			if (a.enable) {
 			
 				// do movement here in audio thread:
@@ -536,7 +544,6 @@ public:
 					int32_t idx1 = int32_t(idx);
 					double idxf = idx - double(idx1); // will this work?
 					
-					// linear interp doesn't seem to be enough... 
 					float s0 = v.buffer[(idx1 - 1) & (DOPPLER_SAMPLES - 1)];
 					float s1 = v.buffer[idx1 & (DOPPLER_SAMPLES - 1)];
 					float s = linear_interp(s0, s1, idxf);
@@ -550,20 +557,30 @@ public:
 					
 					s *= v.amp * audiogain;
 					
-					// decode:
-					out0[j] = out0[j] + s * (
-						+ w0.x * enc.x
-						+ w0.y * enc.y 
-						+ w0.z * enc.z
-						+		 enc.w	//  * w0.w
-					);
-					
-					out1[j] = out1[j] + s * (
-						+ w1.x * enc.x
-						+ w1.y * enc.y 
-						+ w1.z * enc.z
-						+		 enc.w	//  * w1.w
-					);
+					// allosphere doesn't decode:
+					if (bRemoteAudio) {
+						// don't decode locally:
+						W[j] += s * enc.w;
+						X[j] += s * enc.x;
+						Y[j] += s * enc.y;
+						Z[j] += s * enc.z;
+						
+					} else {
+						// local decode:
+						out0[j] = out0[j] + s * (
+							+ w0.x * enc.x
+							+ w0.y * enc.y 
+							+ w0.z * enc.z
+							+		 enc.w	//  * w0.w
+						);
+						
+						out1[j] = out1[j] + s * (
+							+ w1.x * enc.x
+							+ w1.y * enc.y 
+							+ w1.z * enc.z
+							+		 enc.w	//  * w1.w
+						);
+					}
 				}
 				
 				// update cached:
