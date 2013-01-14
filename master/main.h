@@ -66,7 +66,13 @@ static const int WORLD_DIM = 32;	// power of 2
 
 static const int DOPPLER_SAMPLES = 4096;
 
+static const int TRAIL_LENGTH = 8;
+
 // C-friendly state amenable to FFI in Lua and serialization to disk, network etc.
+
+typedef struct Trail {
+	vec3 position;
+};
 
 typedef struct Agent {
 	
@@ -86,6 +92,10 @@ typedef struct Agent {
 	 
 	// cached for simulation:
 	vec3 ux, uy, uz;
+	
+	// trails:
+	Trail trails[TRAIL_LENGTH];
+	int32_t trail_start, trail_size;
 	
 } Agent;
 

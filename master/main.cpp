@@ -198,6 +198,10 @@ public:
 			a.rotate.toVectorY(a.uy);
 			a.rotate.toVectorZ(a.uz);
 			
+			// trails:
+			a.trails.trail_start = 0;
+			a.trails.trail_size = 0;
+			
 			Voice& v = voices[i];
 			memset(v.buffer, 0, sizeof(float) * DOPPLER_SAMPLES);
 			v.encode.set(0, 0, 0, 0);
@@ -209,6 +213,8 @@ public:
 			v.freq = 220;
 			v.phase = 0;
 			v.synthesize = default_synthesize_func;
+			
+			
 		}
 	}
 	
@@ -464,6 +470,11 @@ public:
 					// apply rotation:
 					a.rotate = a.rotate * r;
 					a.rotate.normalize();
+					
+					// append to trail:
+					a.trail_start = (a.trail_start - 1) & (TRAIL_LENGTH - 1);
+					if (a.trail_size < TRAIL_LENGTH) a.trail_size++;
+					a.trails[a.trail_start].position = a.position;
 				}
 				
 				// now synthesize:
