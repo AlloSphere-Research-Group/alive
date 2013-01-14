@@ -331,6 +331,7 @@ public:
 	
 	virtual void onDraw(Graphics& gl) {
 		shader().uniform("lighting", 0.2);
+		shader().uniform("bgcolor", shared.bgcolor.r, shared.bgcolor.g, shared.bgcolor.b, shared.bgcolor.a);
 		
 		//gl.polygonMode(gl.LINE);
 		
