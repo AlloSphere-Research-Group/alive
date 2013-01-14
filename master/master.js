@@ -46,6 +46,7 @@ function launch(name) {
 
 	vm.stdout.on('data', function (text) {
 		process.stdout.write(text);
+		process.stdout.flush();
 		for(var key in editors) {
 			editors[key].emit("console", { "msg" : text.toString() } );
 		}
@@ -54,6 +55,7 @@ function launch(name) {
 	// this never seems to get called...
 	vm.stderr.on('data', function (text) {
 		process.stdout.write('err:' + text);
+		process.stdout.flush();
 		console.log("SENDING ERROR MESSAGE", text.toString);
 		for(var key in editors) {
 			editors[key].emit("err", { "msg" : text.toString()  } );

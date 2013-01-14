@@ -851,6 +851,10 @@
 			36974A5516A3BB4B00FA5D59 /* PBXTextBookmark */ = 36974A5516A3BB4B00FA5D59 /* PBXTextBookmark */;
 			36974A5616A3BB9B00FA5D59 /* PBXTextBookmark */ = 36974A5616A3BB9B00FA5D59 /* PBXTextBookmark */;
 			36974A5716A3BC5100FA5D59 /* PBXTextBookmark */ = 36974A5716A3BC5100FA5D59 /* PBXTextBookmark */;
+			36974A5916A3BD8500FA5D59 /* PBXTextBookmark */ = 36974A5916A3BD8500FA5D59 /* PBXTextBookmark */;
+			36974A5A16A3BD8500FA5D59 /* PBXTextBookmark */ = 36974A5A16A3BD8500FA5D59 /* PBXTextBookmark */;
+			36974A5B16A3BD8500FA5D59 /* PBXTextBookmark */ = 36974A5B16A3BD8500FA5D59 /* PBXTextBookmark */;
+			36974A5C16A3BDF600FA5D59 /* PBXTextBookmark */ = 36974A5C16A3BDF600FA5D59 /* PBXTextBookmark */;
 			369FF9101676A8B4005F384F = 369FF9101676A8B4005F384F /* PBXTextBookmark */;
 			369FF9D71676AD78005F384F = 369FF9D71676AD78005F384F /* PBXTextBookmark */;
 			369FFB201676C1AC005F384F = 369FFB201676C1AC005F384F /* PBXTextBookmark */;
@@ -943,9 +947,9 @@
 	};
 	36575260161277FD009D11CC /* master.js */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {600, 4472}}";
-			sepNavSelRange = "{8750, 0}";
-			sepNavVisRange = "{7321, 1446}";
+			sepNavIntBoundsRect = "{{0, 0}, {600, 4602}}";
+			sepNavSelRange = "{1221, 0}";
+			sepNavVisRange = "{1088, 1146}";
 		};
 	};
 	365754A1161277FE009D11CC /* .travis.yml */ = {
@@ -1319,7 +1323,7 @@
 		fRef = 36575260161277FD009D11CC /* master.js */;
 		name = "master.js: 45";
 		rLen = 0;
-		rLoc = 1418;
+		rLoc = 1470;
 		rType = 0;
 		vrLen = 1209;
 		vrLoc = 478;
@@ -1329,7 +1333,7 @@
 		fRef = 36575260161277FD009D11CC /* master.js */;
 		name = "master.js: 42";
 		rLen = 0;
-		rLoc = 1300;
+		rLoc = 1326;
 		rType = 0;
 		vrLen = 1208;
 		vrLoc = 478;
@@ -1339,7 +1343,7 @@
 		fRef = 36575260161277FD009D11CC /* master.js */;
 		name = "master.js: 64";
 		rLen = 0;
-		rLoc = 1929;
+		rLoc = 1981;
 		rType = 0;
 		vrLen = 1235;
 		vrLoc = 724;
@@ -1349,7 +1353,7 @@
 		fRef = 36575260161277FD009D11CC /* master.js */;
 		name = "master.js: 309";
 		rLen = 0;
-		rLoc = 8750;
+		rLoc = 8802;
 		rType = 0;
 		vrLen = 1419;
 		vrLoc = 6723;
@@ -1359,7 +1363,7 @@
 		fRef = 36575260161277FD009D11CC /* master.js */;
 		name = "master.js: 309";
 		rLen = 0;
-		rLoc = 8750;
+		rLoc = 8802;
 		rType = 0;
 		vrLen = 1427;
 		vrLoc = 6723;
@@ -1369,7 +1373,7 @@
 		fRef = 36575260161277FD009D11CC /* master.js */;
 		name = "master.js: 309";
 		rLen = 0;
-		rLoc = 8750;
+		rLoc = 8802;
 		rType = 0;
 		vrLen = 1442;
 		vrLoc = 6723;
@@ -1379,7 +1383,7 @@
 		fRef = 36575260161277FD009D11CC /* master.js */;
 		name = "master.js: 311";
 		rLen = 0;
-		rLoc = 8750;
+		rLoc = 8802;
 		rType = 0;
 		vrLen = 1457;
 		vrLoc = 6723;
@@ -1489,10 +1493,57 @@
 		fRef = 36575260161277FD009D11CC /* master.js */;
 		name = "master.js: 337";
 		rLen = 0;
-		rLoc = 8750;
+		rLoc = 8802;
 		rType = 0;
 		vrLen = 1446;
 		vrLoc = 7321;
+	};
+	36974A5816A3BD3C00FA5D59 /* install_node_modules.sh */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {600, 765}}";
+			sepNavSelRange = "{96, 0}";
+			sepNavVisRange = "{0, 119}";
+		};
+	};
+	36974A5916A3BD8500FA5D59 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 36974A5816A3BD3C00FA5D59 /* install_node_modules.sh */;
+		name = "install_node_modules.sh: 5";
+		rLen = 0;
+		rLoc = 96;
+		rType = 0;
+		vrLen = 119;
+		vrLoc = 0;
+	};
+	36974A5A16A3BD8500FA5D59 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 36575260161277FD009D11CC /* master.js */;
+		name = "master.js: 337";
+		rLen = 0;
+		rLoc = 8802;
+		rType = 0;
+		vrLen = 1446;
+		vrLoc = 7321;
+	};
+	36974A5B16A3BD8500FA5D59 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 36575260161277FD009D11CC /* master.js */;
+		name = "master.js: 306";
+		rLen = 0;
+		rLoc = 8085;
+		rType = 0;
+		vrLen = 1271;
+		vrLoc = 657;
+	};
+	36974A5C16A3BDF600FA5D59 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 36575260161277FD009D11CC /* master.js */;
+		name = "master.js: 49";
+		rLen = 0;
+		rLoc = 1221;
+		rType = 0;
+		vrLen = 1146;
+		vrLoc = 1088;
 	};
 	369FF8BE1676A2A0005F384F /* Q.hpp */ = {
 		uiCtxt = {
@@ -1612,7 +1663,7 @@
 		fRef = 36575260161277FD009D11CC /* master.js */;
 		name = "master.js: 281";
 		rLen = 0;
-		rLoc = 8750;
+		rLoc = 8802;
 		rType = 0;
 		vrLen = 1356;
 		vrLoc = 6658;
