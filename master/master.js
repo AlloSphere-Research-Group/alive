@@ -39,10 +39,10 @@ function launch(name) {
 		}
 	});
   
-  // this never seems to get called...
+	// this never seems to get called...
 	vm.stderr.on('data', function (text) {
 		process.stdout.write('err:' + text);
-    console.log("SENDING ERROR MESSAGE", text.toString);
+		console.log("SENDING ERROR MESSAGE", text.toString);
 		for(var key in editors) {
     	editors[key].emit("err", { "msg" : text.toString()  } );
 		}
@@ -55,12 +55,13 @@ function launch(name) {
 			launch(name);
 		} else {
 			vm = null;
-			// kill node?
-			//process.exit();
+			// kill node
+			process.exit();
 		}
 	});
 }
 
+/*
 fs.watch('.', function (event, filename) {
 	console.log('event is: ' + event);
 	if (filename) {
@@ -70,7 +71,7 @@ fs.watch('.', function (event, filename) {
 	}
 	launch(vm_name);
 });
-
+*/
 
 //// THE MDNS STUFF ////
 
@@ -305,6 +306,7 @@ var myIP = (function() {
 
 //// STARTUP ////
 
+console.log('hostname: ' + os.hostname());
 console.log('Server running at ' + myIP + ' on port ' + port + '');
 
 process.on('exit', function() {
