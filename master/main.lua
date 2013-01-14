@@ -1,5 +1,3 @@
-print("starting main2.lua")
-
 local av = require "av"
 local app = av.app
 local vec = require "vec"
@@ -10,8 +8,6 @@ local Agent = agent.Agent
 Q = require "query"
 
 local sin, cos = math.sin,math.cos
-local abs, floor = math.abs, math.floor
-local table_remove = table.remove
 local random = math.random
 local srandom = function() return random() * 2 - 1 end
 

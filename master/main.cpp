@@ -590,8 +590,11 @@ public:
 			case 32:
 				updating = !updating;
 				break;
+			case 'H':
+				sendHandshake();
+				break;
 			case 'O':
-        omniEnable(!omniEnable());
+				omniEnable(!omniEnable());
 				break;
 			default:
 				break;
