@@ -147,6 +147,8 @@ public:
 		lens().fovy(85);
 		lens().far(WORLD_DIM * 0.5);
 		
+		mNavSpeed = 0.1;
+		
 		printf("running on %s\n", hostName().c_str());
 		printf("blob %d\n", (int)sizeof(Shared));
 		
