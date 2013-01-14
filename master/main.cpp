@@ -149,6 +149,9 @@ public:
 		
 		mNavSpeed = 0.1;
 		
+		nav().halt();
+		nav().home();
+		
 		printf("running on %s\n", hostName().c_str());
 		printf("blob %d\n", (int)sizeof(Shared));
 		
@@ -589,8 +592,12 @@ public:
 	
 	virtual bool onKeyDown(const Keyboard& k) {
 		switch (k.key()) {
-			case 32:
+			case 32: // space
 				updating = !updating;
+				break;
+			case 8: // backspace
+				nav().halt();
+				nav().home();
 				break;
 			case 'H':
 				sendHandshake();
@@ -599,6 +606,7 @@ public:
 				omniEnable(!omniEnable());
 				break;
 			default:
+				printf("key down %d\n", k.key());
 				break;
 		}
 		return 1;

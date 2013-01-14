@@ -104,6 +104,11 @@ function Agent:freq(f)
 	return self
 end
 
+function Agent:amp(f)
+	self._voice.amp = eval(f)
+	return self
+end
+
 function Agent:notify(k, ...)
 	local handler = self._handlers[k]
 	if handler then

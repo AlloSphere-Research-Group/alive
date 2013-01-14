@@ -1,25 +1,181 @@
 #include "gigaverb.h"
 
 /*
-#define LOOPMAX (40000)
 
+struct Delay {
+	double * memory;
+	long size, wrap, maxdelay;
+	long reader, writer;
+	
+	t_genlib_data * dataRef;
+	
+	Delay() : memory(0) {
+		size = wrap = maxdelay = 0;
+		reader = writer = 0;
+		dataRef = 0;
+	}
+	~Delay() {
+		if (dataRef != 0) {
+			// store write position for persistence:
+			genlib_data_setcursor(dataRef, writer);
+			// decrement reference count:
+			genlib_data_release(dataRef);
+		}
+	}
+	
+	inline void reset(const char * name, long d) {
+		// if needed, acquire the Data's global reference: 
+		if (dataRef == 0) {
+		
+			void * ref = genlib_obtain_reference_from_string(name);
+			dataRef = genlib_obtain_data_from_reference(ref);
+			if (dataRef == 0) {	
+				genlib_report_error("failed to acquire data");
+				return; 
+			}
+			
+			// scale maxdelay to next highest power of 2:
+			maxdelay = d;
+			size = maximum(maxdelay,2);
+			size = next_power_of_two(size);
+			
+			// first reset should resize the memory:
+			genlib_data_resize(dataRef, size, 1);
+			
+			t_genlib_data_info info;
+			if (genlib_data_getinfo(dataRef, &info) == GENLIB_ERR_NONE) {
+				if (info.dim != size) {
+					// at this point, could resolve by reducing to 
+					// maxdelay = size = next_power_of_two(info.dim+1)/2;
+					// but really, if this happens, it means more than one
+					// object is referring to the same t_gen_dsp_data.
+					// which is probably bad news.
+					genlib_report_error("delay memory size error");
+					memory = 0;
+					return;
+				}
+				memory = info.data;
+				writer = genlib_data_getcursor(dataRef);
+			} else {
+				genlib_report_error("failed to acquire data info");
+			}
+		
+		} else {
+		
+			// subsequent reset should zero the memory & heads:
+			set_zero64(memory, size);
+			writer = 0;
+		}
+		
+		reader = writer;
+		wrap = size-1;
+		
+		//genlib_report_message("delay %d %d %d", maxdelay, size, wrap);
+	}
+	
+	// called at bufferloop end, updates read pointer time
+	inline void step() {	
+		reader++; 
+		if (reader >= size) reader = 0;
+	}
+	
+	inline void write(double x) {
+		writer = reader;	// update write ptr
+		memory[writer] = x;
+	}	
+	
+	inline double read_step(double d) {
+		//const double r = double(size + writer) - (d-0.5);	
+		// extra half for nice rounding:
+		// min 1 sample delay for read before write (r != w)
+		const double r = double(size + reader) - clamp(d-0.5, (reader != writer), maxdelay);	
+		long r1 = long(r);
+		return memory[r1 & wrap];
+	}
+	
+	inline double read_linear(double d) {
+		//const double r = double(size + writer) - d;
+		// min 1 sample delay for read before write (r != w)
+		double c = clamp(d, (reader != writer), maxdelay);
+		const double r = double(size + reader) - c;	
+		long r1 = long(r);
+		long r2 = r1+1;
+		double a = r - (double)r1;
+		double x = memory[r1 & wrap];
+		double y = memory[r2 & wrap];
+		return linear_interp(a, x, y);
+	}
+	
+	inline double read_cosine(double d) {
+		//const double r = double(size + writer) - d;
+		// min 1 sample delay for read before write (r != w)
+		const double r = double(size + reader) - clamp(d, (reader != writer), maxdelay);	
+		long r1 = long(r);
+		long r2 = r1+1;
+		double a = r - (double)r1;
+		double x = memory[r1 & wrap];
+		double y = memory[r2 & wrap];
+		return cosine_interp(a, x, y);
+	}
+	
+	// cubic requires extra sample of compensation:
+	inline double read_cubic(double d) {
+		//const double r = double(size + writer) - (d+1.);
+		// min 1 sample delay for read before write (r != w)
+		// plus extra 1 sample compensation for 4-point interpolation
+		const double r = double(size + reader) - clamp(d, 1.+(reader != writer), maxdelay);	
+		long r1 = long(r);
+		long r2 = r1+1;
+		long r3 = r1+2;
+		long r4 = r1+3;
+		double a = r - (double)r1;
+		double w = memory[r1 & wrap];
+		double x = memory[r2 & wrap];
+		double y = memory[r3 & wrap];
+		double z = memory[r4 & wrap];
+		return cubic_interp(a, w, x, y, z);
+	}
+	
+	// spline requires extra sample of compensation:
+	inline double read_spline(double d) {
+		//const double r = double(size + writer) - (d+1.);
+		// min 1 sample delay for read before write (r != w)
+		// plus extra 1 sample compensation for 4-point interpolation
+		const double r = double(size + reader) - clamp(d, 1.+(reader != writer), maxdelay);	
+		long r1 = long(r);
+		long r2 = r1+1;
+		long r3 = r1+2;
+		long r4 = r1+3;
+		double a = r - (double)r1;
+		double w = memory[r1 & wrap];
+		double x = memory[r2 & wrap];
+		double y = memory[r3 & wrap];
+		double z = memory[r4 & wrap];
+		return spline_interp(a, w, x, y, z);
+	}
+};
+
+
+#pragma mark Gigaverb
 double samplerate = 44100;
 int vectorsize = 128;
-struct State {
+struct Gigaverb {
 	
 	double damping;
 	double dry;
-	double history_47;
 	double tail;
-	double history_204;
 	double bandwidth;
 	double revtime;
 	double early;
 	double roomsize;
+	double spread;
+	
+	double history_47;
+	double history_204;
 	double history_59;
 	double history_207;
 	double history_71;
-	double spread;
+	
 	Delay delay_227;
 	Delay delay_225;
 	Delay delay_219;
@@ -33,22 +189,22 @@ struct State {
 	Delay delay_229;
 	Delay delay_220;
 	
-	State() { reset(); } 
+	Gigaverb() { reset(); } 
 	inline void reset(){
 		damping = 0.7;
 		dry = 1;
-		history_47 = 0;
 		tail = 0.25;
-		delay_227.reset(6000);
-		history_204 = 0;
 		bandwidth = 0.5;
 		revtime = 11;
 		early = 0.25;
 		roomsize = 75;
+		spread = 23;
+		
+		history_47 = 0;
+		history_204 = 0;
 		history_59 = 0;
 		history_207 = 0;
 		history_71 = 0;
-		spread = 23;
 		
 		delay_225.reset(48000);
 		delay_219.reset(48000);
@@ -56,6 +212,8 @@ struct State {
 		delay_221.reset(48000);
 		delay_220.reset(48000);	
 		
+		// diffusers:
+		delay_227.reset(6000);
 		delay_230.reset(7000);
 		delay_226.reset(15000);
 		delay_224.reset(12000);
@@ -63,8 +221,8 @@ struct State {
 		delay_228.reset(16000);
 		delay_229.reset(5000);	
 	}
+	
 	inline void perform(double * * __ins, double * * __outs, int __n){
-		int __loopcount = 0;
 		const double * __in1 = __ins[0];
 		const double * __in2 = __ins[1];
 		double * __out1 = __outs[0];
