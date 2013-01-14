@@ -133,7 +133,8 @@ typedef struct Global {
 	SpeakerConfig speakers[MAX_SPEAKERS];
 	double doppler_strength;
 	int32_t numActiveSpeakers;
-	float audiogain;
+	
+	float audiogain, reverbgain;
 	
 	void (*update)(struct Global& app, double dt);
 	

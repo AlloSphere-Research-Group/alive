@@ -1,5 +1,6 @@
 #include "main.h"
 #include "Q.hpp"
+#include "gigaverb.h"
 
 #include "allocore/spatial/al_HashSpace.hpp"
 #include "alloutil/al_OmniApp.hpp"
@@ -62,49 +63,6 @@ inline vec3 quat_unrotate(const quat& q, const vec3& v) {
         pw*q.y + py*q.w + pz*q.x - px*q.z,  // y
         pw*q.z + pz*q.w + px*q.y - py*q.x   // z
     );
-}
-
-// scale is like inverse far, so 1/32 creates a bigger world than 1/4
-// amplitude drops to 50% at distance == (1/scale + near)
-inline double attenuate(double d, double near, double scale) {
-	double x = (d - near) * scale;
-	if (x > 0.) {
-		double xc = x + 4;
-		double x1 = xc / (x*x + x + xc);
-		return x1 * x1;
-	}
-	return 1.;
-}
-
-inline double cosine_interp(double x, double y, double a) {
-	const double a2 = (1.-cos(a*3.14159265358979323846264338327950288))/2.;
-	return(x*(1.-a2)+y*a2);
-}
-
-// linear interpolation (same as mix)
-inline double linear_interp(double x, double y, double a) {
-	return x+a*(y-x); 
-}
-
-// cubic interpolation
-inline double cubic_interp(double w, double x, double y, double z, double a) {
-	const double a2 = a*a;
-	const double f0 = z - y - w + x;
-	const double f1 = w - x - f0;
-	const double f2 = y - w;
-	const double f3 = x;
-	return(f0*a*a2 + f1*a2 + f2*a + f3);
-}
-
-// 60%
-// Breeuwsma catmull-rom spline interpolation
-// slightly faster than three alternatives tried
-inline double spline_interp(double w, double x, double y, double z, double a) {
-	const double a2 = a*a;
-	const double f0 = -0.5*w + 1.5*x - 1.5*y + 0.5*z;
-	const double f1 = w - 2.5*x + 2*y - 0.5*z;
-	const double f2 = -0.5*w + 0.5*y;
-	return(f0*a*a2 + f1*a2 + f2*a + x);
 }
 
 Q<audiomsg_packet> audioq;
@@ -190,10 +148,17 @@ public:
 			audiotime = 0;
 			doppler_strength = 1.;
 			
+			audiogain = 0.5;
+			reverbgain = 0.03;
+			
+			verb.reset();
+			
 			update = 0;
 			
+			// we want some extra space for e.g. reverb channels:
 			audioIO().channelsBus(2);
 			
+			// stereo mode:
 			numActiveSpeakers = 2;
 			for (int i=0; i<numActiveSpeakers; i++) {
 				SpeakerConfig& s = speakers[i];
@@ -203,8 +168,6 @@ public:
 				s.weights.y = 0.;
 				s.weights.z = -cos(angle);
 			}
-			
-			audiogain = 0.5;
 		
 			pod.startServer(this);
 			
@@ -455,7 +418,9 @@ public:
 		io.zeroOut();
 		io.zeroBus();
 		
-		// allosphere remote mode: 
+		float * R = io.busBuffer(0); // the reverb bus
+		
+		// the raw decode outs
 		float * W = io.outBuffer(0);
 		float * X = io.outBuffer(1);
 		float * Y = io.outBuffer(2);
@@ -537,7 +502,7 @@ public:
 					// linear interpolate encoding matrix:
 					double alpha = j * invframes;
 					vec4 enc = ipl::linear(alpha, v.encode, encode);
-					double dist = linear_interp(v.distance, d, alpha);
+					double dist = linear_interp(alpha, v.distance, d);
 					
 					// doppler lookup
 					// take current buffer index
@@ -548,8 +513,7 @@ public:
 					
 					float s0 = v.buffer[(idx1 - 1) & (DOPPLER_SAMPLES - 1)];
 					float s1 = v.buffer[idx1 & (DOPPLER_SAMPLES - 1)];
-					float s = linear_interp(s0, s1, idxf);
-					//float s = cosine_interp(s0, s1, idxf);
+					float s = linear_interp(idxf, s0, s1);
 					
 						
 					if (j==0) {
@@ -559,6 +523,8 @@ public:
 					
 					s *= v.amp * audiogain;
 					
+					R[j] += s * reverbgain;
+						
 					// allosphere doesn't decode:
 					if (bRemoteAudio) {
 					
@@ -593,6 +559,13 @@ public:
 				v.encode = encode;
 				v.buffer_index = (v.buffer_index + frames) & (DOPPLER_SAMPLES - 1);
 			}
+		}
+			
+		// do the reverb:
+		if (bRemoteAudio) {
+			verb.perform(R, X, Y, frames);
+		} else {
+			verb.perform(R, out0, out1, frames);
 		}
 		
 		audiotime = nexttime;	
@@ -651,6 +624,9 @@ public:
 	Mesh cube;
 	
 	SharePOD<Shared> pod;
+	
+	Gigaverb verb;
+	
 	bool updating;
 };
 

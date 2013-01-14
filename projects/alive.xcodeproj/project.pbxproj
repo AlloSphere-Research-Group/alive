@@ -6821,7 +6821,7 @@
 		36974A4316A3B6D100FA5D59 /* tutorial.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tutorial.txt; sourceTree = "<group>"; };
 		36974A5816A3BD3C00FA5D59 /* install_node_modules.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = install_node_modules.sh; sourceTree = "<group>"; };
 		36974AC716A3DD2E00FA5D59 /* gigaverb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gigaverb.h; sourceTree = "<group>"; };
-		36974AC816A3DD2E00FA5D59 /* gigaverb.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gigaverb.cpp; sourceTree = "<group>"; };
+		36974C4016A402CF00FA5D59 /* audio_utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = audio_utils.h; sourceTree = "<group>"; };
 		369FF8BE1676A2A0005F384F /* Q.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Q.hpp; sourceTree = "<group>"; };
 		36A61D1016877CCD00E1A440 /* notify.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = notify.lua; sourceTree = "<group>"; };
 		36A61D2416877FA300E1A440 /* agent.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = agent.lua; sourceTree = "<group>"; };
@@ -21293,8 +21293,8 @@
 			children = (
 				36974A4316A3B6D100FA5D59 /* tutorial.txt */,
 				369FF8BE1676A2A0005F384F /* Q.hpp */,
+				36974C4016A402CF00FA5D59 /* audio_utils.h */,
 				36974AC716A3DD2E00FA5D59 /* gigaverb.h */,
-				36974AC816A3DD2E00FA5D59 /* gigaverb.cpp */,
 				364EDD56169722DC00591C30 /* al_SharePOD.hpp */,
 				364EDD57169722DC00591C30 /* al_SharePOD.cpp */,
 				366E3C461674856A00F3B556 /* main.h */,

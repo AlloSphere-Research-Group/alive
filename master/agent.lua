@@ -120,7 +120,7 @@ function Agent:notify(k, ...)
 end
 
 function Agent:die()
-	self.enable = 0
+	self:enable(0)
 	self:reset()
 	Agent.pool[#Agent.pool+1] = self.id
 end
