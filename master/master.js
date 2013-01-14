@@ -43,18 +43,21 @@ function launch(name) {
 	}
 	
 	vm = spawn(name, [mastername]);
+	
+	vm.stdout.pipe(process.stdout, { end: false });
 
 	vm.stdout.on('data', function (text) {
-		process.stdout.write(text);
+		//fs.writeSync(1, text);
 		//process.stdout.flush();
 		for(var key in editors) {
 			editors[key].emit("console", { "msg" : text.toString() } );
 		}
 	});
   
-	// this never seems to get called...
+	vm.stderr.pipe(process.stderr, { end: false });
+	
 	vm.stderr.on('data', function (text) {
-		process.stdout.write('err:' + text);
+		//fs.writeSync(2, 'err:' + text);
 		//process.stdout.flush();
 		//console.log("SENDING ERROR MESSAGE", text.toString);
 		for(var key in editors) {
@@ -70,9 +73,7 @@ function launch(name) {
 		} else {
 			vm = null;
 			// if vm dies, kill node with it:
-			if (ismaster) {
-				process.exit();
-			}
+			process.exit();
 		}
 	});
 }
@@ -336,7 +337,12 @@ if (ismaster) {
 	console.log('Server running at ' + myIP + ' on port ' + port + '');
 
 	
-} // if ismaster
+} else {
+	
+	// ismaster == false
+	
+	
+}
 
 // start the vm:
 launch(vm_name);
