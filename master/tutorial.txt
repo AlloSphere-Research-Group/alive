@@ -1,3 +1,10 @@
 
 
 Q("*") -- grab all
+
+
+
+Editor:
+Cmd-S save
+Cmd-L load
+

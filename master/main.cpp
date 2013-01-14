@@ -559,14 +559,16 @@ public:
 					
 					// allosphere doesn't decode:
 					if (bRemoteAudio) {
+					
 						// don't decode locally:
-						W[j] += s * enc.w;
+						W[j] += s; // * enc.w;
 						X[j] += s * enc.x;
 						Y[j] += s * enc.y;
 						Z[j] += s * enc.z;
 						
 					} else {
-						// local decode:
+					
+						// local decode (stereo):
 						out0[j] = out0[j] + s * (
 							+ w0.x * enc.x
 							+ w0.y * enc.y 

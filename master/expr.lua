@@ -239,7 +239,7 @@ e.add = e.__add
 e.sub = e.__sub
 e.mul = e.__mul
 e.div = e.__div
-e.nod = e.__mod
+e.mod = e.__mod
 e.pow = e.__pow
 e.unm = e.__unm
 
