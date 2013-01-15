@@ -524,11 +524,11 @@ public:
 				// unit rel:
 				vec3 direction = rel * (1./d);			
 				// amplitude scale by distance:
-				double atten = attenuate(d2, 0.2, 1/24.);
+				double atten = attenuate(d2, 0.2, 0.04);
 				// omni mix is also distance-dependent. 
 				// at near distances, the signal should be omnidirectional
 				// the minimum really depends on the radii of the listener/emitter
-				double spatial = 1. - attenuate(d2, 0.2, 1/2.);
+				double spatial = 1. - attenuate(d2, 0.1, 0.9);
 				// encode matrix:
 				// first 3 harmonics are the same as the unit direction:
 				vec4 encode(

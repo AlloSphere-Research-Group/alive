@@ -17,6 +17,11 @@ math.randomseed(os.time())
 -- DEMO
 --------------------------------------------------------------------------------
 
+-- make one agent:
+
+a = Agent("x")
+a:moveTo(0, 0, -1)
+
 --[[
 
 stateful exprs
