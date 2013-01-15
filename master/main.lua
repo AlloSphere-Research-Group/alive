@@ -19,8 +19,8 @@ math.randomseed(os.time())
 
 -- make one agent:
 
-a = Agent("x")
-a:moveTo(0, 0, -1)
+--a = Agent("x")
+--a:moveTo(0, 0, -1)
 
 --[[
 
