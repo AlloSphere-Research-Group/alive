@@ -1,48 +1,23 @@
-local av = require "av"
-local app = av.app
-local vec = require "vec"
-local E = require "expr"
+-- STARTUP INITIALIZATION
+-- not using locals here
+-- so that the environment is already primed for live coding without verbiosity
+
+-- math extensions:
+function math.srandom() return random() * 2 - 1 end
+-- copy all math lib into global scope:
+for k, v in pairs(math) do _G[k] = v end
+
+-- pull in modules:
+av = require "av"
+app = av.app
+vec = require "vec"
+E = require "expr"
 E:globalize()
 local agent = require "agent"
-local Agent = agent.Agent
+Agent = agent.Agent
+A = Agent
 Q = require "query"
 
-local sin, cos = math.sin,math.cos
-local random = math.random
-local srandom = function() return random() * 2 - 1 end
-
+-- random means random
 math.randomseed(os.time())
 
---------------------------------------------------------------------------------
--- DEMO
---------------------------------------------------------------------------------
-
--- make one agent:
-
---a = Agent("x")
---a:moveTo(0, 0, -1)
-
---[[
-
-stateful exprs
-
-p = SinOsc(10) + 1
-	=> { op="+", { op="sinosc", 10 }, { op="number", 1 } }
-
-=>
-
-loadstring this:
-
-local phase = 0
-return function(env, dt)
-	phase = phase + 10 / dt
-	local v1 = sin(phase * pi * 2)
-	local v2 = v1 + 1
-	return v2
-end
-
---]]
-
---[[
-
---]]

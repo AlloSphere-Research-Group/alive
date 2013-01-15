@@ -91,6 +91,8 @@ function expr(v)
 		return e.number(v)
 	elseif type(v) == "string" then
 		return e.var(v)
+	elseif type(v) == "nil" then
+		return e.number(0)
 	elseif isexpr(v) then
 		return v
 	else
@@ -243,12 +245,14 @@ define_from_mathlib_binop("min")
 define_from_mathlib_binop("modf")
 define_from_mathlib_binop("pow")
 define_from_mathlib_unop("rad")
-define_from_mathlib_unop("random")
 define_from_mathlib_unop("sin")
 define_from_mathlib_unop("sinh")
 define_from_mathlib_unop("sqrt")
 define_from_mathlib_unop("tan")
 define_from_mathlib_unop("tanh")
+
+define("random", math.random)
+
 
 -- boolean operations:
 

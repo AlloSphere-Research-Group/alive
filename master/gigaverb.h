@@ -6,7 +6,6 @@
 struct Gigaverb {
 	
 	double damping;
-	double dry;
 	double tail;
 	double bandwidth;
 	double revtime;
@@ -37,7 +36,6 @@ struct Gigaverb {
 	
 	inline void reset(){
 		damping = 0.7;
-		dry = 1;
 		tail = 0.25;
 		bandwidth = 0.5;
 		revtime = 11;
@@ -70,7 +68,6 @@ struct Gigaverb {
 	inline void perform(float * __in1, float * __out1, float * __out2, int __n){
 		while ((__n--)){
 			const double in1 = *__in1++;
-			const double mul_265 = (in1 * dry);
 			const double sub_270 = (1 - bandwidth);
 			// pre filter:
 			const double mul_284 = (in1 * 0.707);
@@ -208,9 +205,7 @@ struct Gigaverb {
 			const double add_963 = (mul_957 + read_726);
 			const double sub_969 = (add_963 - mul_499);
 			const double mul_974 = (sub_969 * 0.625);
-			const double add_980 = (mul_974 + read_469);
-			const double add_986 = (mul_265 + add_980);
-			const double out1 = add_986;
+			const double out1 = (mul_974 + read_469);
 			
 			const double sub_999 = (add_929 - mul_833);
 			const double mul_1004 = (sub_999 * 0.75);
@@ -220,9 +215,7 @@ struct Gigaverb {
 			const double add_1027 = (mul_1021 + read_761);
 			const double sub_1033 = (add_1027 - mul_572);
 			const double mul_1038 = (sub_1033 * 0.625);
-			const double add_1044 = (mul_1038 + read_494);
-			const double add_1050 = (mul_265 + add_1044);
-			const double out2 = add_1050;
+			const double out2 = (mul_1038 + read_494);
 			
 			// delay updates:
 			delay_219.write(add_652);
@@ -271,10 +264,6 @@ struct Gigaverb {
 	}
 	inline void set_damping(double __value){
 		damping = ((__value <= 0) ? 0 : (__value >= 1) ? 1 : __value);
-		
-	}
-	inline void set_dry(double __value){
-		dry = ((__value <= 0) ? 0 : (__value >= 1) ? 1 : __value);
 		
 	}
 	inline void set_history_47(double __value){

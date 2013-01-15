@@ -106,6 +106,8 @@ public:
 		space(5, MAX_AGENTS),
 		qnearest(6)
 	{
+		title("alive");
+		
 		// one-time only:
 		if (omni().activeStereo()) {
 			omni().resolution(2048);
@@ -341,15 +343,17 @@ public:
 				//a.trail_start - 1 would be the prev
 				int start = a.trail_start;
 				int size = a.trail_size;
+				double fade = 1;
 				for (int i = 1; i < size - 1; i++) {
 					int idx = start + i;
 					const Trail& trail = a.trails[idx % (TRAIL_LENGTH - 1)];
 					
-					double fade = 1. - (i * 0.12); // fade to zero
+					// use 0.9 if TRAIL_LENGTH is 16.
+					fade *= 0.8; // fades to 0.16 after 8 times
 					
 					shader().attribute(rotateAttr, trail.rotate.x, trail.rotate.y, trail.rotate.z, trail.rotate.w);
 					shader().attribute(translateAttr, trail.position.x, trail.position.y, trail.position.z);
-					shader().attribute(scaleAttr, a.scale.x * fade, a.scale.y * fade, a.scale.z * fade);
+					shader().attribute(scaleAttr, a.scale.x * fade, a.scale.y * fade, a.scale.z);
 					cubelist.draw();
 				}
 			}
