@@ -253,7 +253,7 @@ $(document).ready( function() {
 	// this should depend on the type of file being displayed
 	// window.editor.setOption("mode", "javascript");
 	// window.editor.setOption("mode", "clike");
-  window.editor.setOption("mode", "lua");
+	window.editor.setOption("mode", "lua");
 	
 	var hlLine = window.editor.setLineClass(0, "activeline");
 	window.editor.setOption("onCursorActivity", function() {
@@ -273,61 +273,61 @@ $(document).ready( function() {
 		flashMsg("SAVED");
 	};
   
-  var flash = function(cm, pos) {
-      if (pos !== null) {
-          v = cm.getLine(pos.line);
+	var flash = function(cm, pos) {
+		if (pos !== null) {
+			v = cm.getLine(pos.line);
 
-          cm.setLineClass(pos.line, null, "highlightLine")
+			cm.setLineClass(pos.line, null, "highlightLine")
 
-          var cb = (function() {
-              cm.setLineClass(pos.line, null, null);
-          });
+			var cb = (function() {
+			  cm.setLineClass(pos.line, null, null);
+			});
 
-          window.setTimeout(cb, 250);
+			window.setTimeout(cb, 250);
 
-      } else {
-          var sel = cm.markText(cm.getCursor(true), cm.getCursor(false), "highlightLine");
+		} else {
+			var sel = cm.markText(cm.getCursor(true), cm.getCursor(false), "highlightLine");
 
-          var cb = (function() {
-              sel.clear();
-          });
+			var cb = (function() {
+			  sel.clear();
+			});
 
-          window.setTimeout(cb, 250);
-      }
-  };
+			window.setTimeout(cb, 250);
+		}
+	};
 	
-  var executeCode = function(cm) {
-    var v = cm.getSelection();
-    var pos = null;
-    if (v === "") {
-        pos = cm.getCursor();
-        v = cm.getLine(pos.line);
-    }
-    flash(cm, pos);
-    slaveSocket.emit('execute', {code:v});
-  };
-  
-  var clearDoc = function(cm) {
-    console.log("CLEARING DOC");
-    var l = cm.getValue().length;
-    cm.setValue("");
-    doc.del(0, l);
-  };
+	var executeCode = function(cm) {
+		var v = cm.getSelection();
+		var pos = null;
+		if (v === "") {
+			pos = cm.getCursor();
+			v = cm.getLine(pos.line);
+		}
+		flash(cm, pos);
+		slaveSocket.emit('execute', {code:v});
+	};
+
+	var clearDoc = function(cm) {
+		console.log("CLEARING DOC");
+		var l = cm.getValue().length;
+		cm.setValue("");
+		doc.del(0, l);
+	};
   
 	CodeMirror.keyMap.alive = {
 		fallthrough : "default",
-    "Ctrl-Enter": executeCode,
-    "Cmd-Enter": executeCode, 
-    "Cmd-Backspace": clearDoc,   
+		"Ctrl-Enter": executeCode,
+		"Cmd-Enter": executeCode, 
+		"Cmd-Backspace": clearDoc,   
 		//"Cmd-S": editor_save,
 		//"Ctrl-S": editor_save,
-    "Ctrl-S"  : function() { save(window.editor.getValue()) },
-    "Cmd-S"   : function() { save(window.editor.getValue()) }, 
-    "Ctrl-L"  : load,
-    "Cmd-L"   : function(cm) {
-      var name = window.prompt("enter name of file to load:")
-      load(name);
-    },
+		"Ctrl-S"  : function() { save(window.editor.getValue()) },
+		"Cmd-S"   : function() { save(window.editor.getValue()) }, 
+		"Ctrl-L"  : load,
+		"Cmd-L"   : function(cm) {
+			var name = window.prompt("enter name of file to load:")
+			load(name);
+		},
 	};
 		
 	window.editor.setOption("keyMap", "alive");
@@ -388,6 +388,12 @@ $(document).ready( function() {
 			$("body").css("-webkit-user-select", "text");
 			//Gibber.codeWidth = $(".CodeMirror").width();
 		});
+	});
+	
+	$("#demo").mousedown( function(e) {
+		// paste in a demo script.
+		var v = "for i = 1, 100 do a = Agent() a:halt() end";
+		slaveSocket.emit('execute', {code:v});
 	});
 	
 

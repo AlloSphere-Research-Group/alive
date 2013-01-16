@@ -1,10 +1,25 @@
 
+AGENTS
+
+Agent()
+A() 
+
+Voice-stealing occurs at maximum agent polyphony
+
+
+QUERIES
 
 Q("*") -- grab all
 
 
 
-Editor:
-Cmd-S save
-Cmd-L load
+EDITOR
+
+Ctrl-Enter / Cmd-Enter execute selection
+Cmd-Backspace clear document
+Ctrl-S / Cmd-S save
+Ctrl-L / Cmd-L load
+
+
+
 
