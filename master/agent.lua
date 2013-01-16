@@ -12,6 +12,7 @@ local app = av.app
 local ffi = require "ffi"
 local C = ffi.C
 
+local format = string.format
 local sin, cos = math.sin,math.cos
 local abs, floor = math.abs, math.floor
 local table_remove = table.remove
@@ -151,6 +152,9 @@ function Agent:on(event, handler)
 end
 
 setmetatable(Agent, {
+	__tostring = function(self)
+		return format("Agent(%d)", self.id)
+	end,
 	__call = function(self, ...)
 		-- grab an agent (stealing if necessary)
 		local id = table_remove(self.pool)

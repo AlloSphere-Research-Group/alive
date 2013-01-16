@@ -396,5 +396,11 @@ $(document).ready( function() {
 		slaveSocket.emit('execute', {code:v});
 	});
 	
+	$("#panic").mousedown( function(e) {
+		// paste in a demo script.
+		var v = "panic()";
+		slaveSocket.emit('execute', {code:v});
+	});
+	
 
 });

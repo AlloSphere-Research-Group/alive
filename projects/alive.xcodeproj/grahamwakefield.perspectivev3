@@ -197,48 +197,7 @@
 	<key>Notifications</key>
 	<array/>
 	<key>OpenEditors</key>
-	<array>
-		<dict>
-			<key>Content</key>
-			<dict>
-				<key>PBXProjectModuleGUID</key>
-				<string>36498FE516A66AFD007599C1</string>
-				<key>PBXProjectModuleLabel</key>
-				<string>tutorial.txt</string>
-				<key>PBXSplitModuleInNavigatorKey</key>
-				<dict>
-					<key>Split0</key>
-					<dict>
-						<key>PBXProjectModuleGUID</key>
-						<string>36498FE616A66AFD007599C1</string>
-						<key>PBXProjectModuleLabel</key>
-						<string>tutorial.txt</string>
-						<key>_historyCapacity</key>
-						<integer>0</integer>
-						<key>bookmark</key>
-						<string>36498FEB16A66DBF007599C1</string>
-						<key>history</key>
-						<array>
-							<string>36498FDF16A66A2F007599C1</string>
-						</array>
-					</dict>
-					<key>SplitCount</key>
-					<string>1</string>
-				</dict>
-				<key>StatusBarVisibility</key>
-				<true/>
-			</dict>
-			<key>Geometry</key>
-			<dict>
-				<key>Frame</key>
-				<string>{{0, 20}, {749, 734}}</string>
-				<key>PBXModuleWindowStatusBarHidden2</key>
-				<false/>
-				<key>RubberWindowFrame</key>
-				<string>15 98 749 775 0 0 1440 878 </string>
-			</dict>
-		</dict>
-	</array>
+	<array/>
 	<key>PerspectiveWidths</key>
 	<array>
 		<integer>-1</integer>
@@ -341,7 +300,7 @@
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 611}, {198, 769}}</string>
+							<string>{{0, 308}, {198, 769}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -388,7 +347,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>36498FEA16A66DBF007599C1</string>
+										<string>3649901916A67F16007599C1</string>
 										<key>history</key>
 										<array>
 											<string>36DE520A163B4545004F736A</string>
@@ -435,16 +394,11 @@
 											<string>36974BC916A3E23D00FA5D59</string>
 											<string>36974BEB16A3E87300FA5D59</string>
 											<string>36974BF316A3E8CB00FA5D59</string>
-											<string>36974C0E16A3EBE000FA5D59</string>
 											<string>36974C1D16A3F63700FA5D59</string>
 											<string>36974C2716A3F6BE00FA5D59</string>
 											<string>36974C3916A4028700FA5D59</string>
 											<string>36974C5D16A4071700FA5D59</string>
-											<string>36974C9B16A40FD700FA5D59</string>
-											<string>36974C9E16A410B500FA5D59</string>
 											<string>36974CC216A4219100FA5D59</string>
-											<string>36974DA516A57A8B00FA5D59</string>
-											<string>36974DA816A57E5100FA5D59</string>
 											<string>36974DB216A57FB700FA5D59</string>
 											<string>36974DB316A57FB700FA5D59</string>
 											<string>36974DB516A5809400FA5D59</string>
@@ -456,10 +410,15 @@
 											<string>36974DC116A5824800FA5D59</string>
 											<string>36498FD316A665EF007599C1</string>
 											<string>36498FE016A66AFD007599C1</string>
-											<string>36498FE116A66AFD007599C1</string>
 											<string>36498FE216A66AFD007599C1</string>
-											<string>36498FE316A66AFD007599C1</string>
-											<string>369024CE168919E500B1AE20</string>
+											<string>36498FED16A67A3A007599C1</string>
+											<string>36498FEE16A67A3A007599C1</string>
+											<string>36498FF016A67A3A007599C1</string>
+											<string>36498FFF16A67B91007599C1</string>
+											<string>3649900B16A67CB1007599C1</string>
+											<string>3649900C16A67CB1007599C1</string>
+											<string>3649901616A67EFA007599C1</string>
+											<string>3649901716A67EFA007599C1</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -776,7 +735,6 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>36498FE516A66AFD007599C1</string>
 		<string>/Users/grahamwakefield/code/alive/projects/alive.xcodeproj</string>
 	</array>
 	<key>WindowString</key>

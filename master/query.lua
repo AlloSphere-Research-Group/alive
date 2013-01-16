@@ -151,12 +151,20 @@ function p:__call(o, ...)
 	local parent = rawget(self, "query")
 	local base = rawget(parent, "base")
 	local key = rawget(self, "key")
-	for i, v in ipairs(base) do
+	
+	-- duplicate base to avoid errors inserting/removing while iterating 
+	-- for e.g. :die(), :tag(), :untag() etc.
+	-- not very efficient, but make it work first...
+	local basecopy = { unpack(base) }
+	
+	for i, v in ipairs(basecopy) do
 		-- TODO: should args be coerced? or is that the property setter's job?
 		if o == parent then
+			--print("methodcall", parent, v, key, ...)
 			-- method call
 			v[key](v, ...)
 		else
+			--print("call", parent, v, key, ...)
 			v[key](o, ...)
 		end
 	end	

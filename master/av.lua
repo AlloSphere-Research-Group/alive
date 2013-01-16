@@ -13,9 +13,12 @@ local notify = require "notify"
 local notify_trigger = notify.trigger
 
 
-local main = scheduler()
+local main = scheduler.create()
 -- these are global:
 go, now, wait, event, sequence, cancel = main.go, main.now, main.wait, main.event, main.sequence, main.cancel
+
+
+
 
 -- bpm is also global, so it can be easily modified:
 bpm = 120
@@ -31,6 +34,7 @@ end)
 
 local av = {
 	app = app,
+	panic = scheduler.panic,
 }
 
 av.timer = ev.Timer(function(loop, handler, event)
