@@ -392,7 +392,7 @@ $(document).ready( function() {
 	
 	$("#demo").mousedown( function(e) {
 		// paste in a demo script.
-		var v = "for i = 1, 100 do a = Agent() a:halt() end";
+		var v = "demo()";
 		slaveSocket.emit('execute', {code:v});
 	});
 	

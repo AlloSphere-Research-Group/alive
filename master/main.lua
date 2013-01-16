@@ -30,36 +30,33 @@ function panic()
 	Q("*"):die()
 end
 
-
 function demo()
-	go(function()
-		while true do
-			Q("red", "green"):move(Random()*5*Random())
+	-- create some agents
+	for i = 1, 25 do
+		local a = Agent("green")
+		local c = random() * 0.8
+		a:color(c, 1, c)
+		a:freq(random() + 55 * random(5))
+		a:on("beat", function(self, event)
+			self:move(srandom(10))
+		end)
 		
-			Q("red"):pick(0.2):turn(srandom()*3, srandom()*3, srandom()*3)
-							:freq(Random() + 55 * Random(10))
-			wait("beat")
+		for i = 1, 4 do
+			local a = Agent("red")
+			local c = random() * 0.8
+			a:color(1, c, c)
+			a:freq(random() + 55 * random(4 + 8))
+			a:move(random(10))
 		end
-	end)
-
+	end
+	
+	-- make them change:
 	go(function()
 		while true do
-			local a = Agent("green")
-			local c = random() * 0.8
-			a:color(c, 1, c)
-			a:freq(random() + 55 * random(5))
-			a:on("beat", function(self, event)
-				self:move(random(10))
-			end)
-			wait(1)
-			
-			for i = 1, 4 do
-				local a = Agent("red")
-				local c = random() * 0.8
-				a:color(1, c, c)
-				a:freq(random() + 55 * random(4 + 8))
-				wait(1)
-			end
+			Q("red", "green"):pick(0.2)
+				--:turn(srandom()*3, srandom()*3, srandom()*3)
+				--:freq(Random() + 55 * Random(10))
+			wait("beat")
 		end
 	end)
 end

@@ -293,14 +293,14 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>42</integer>
+									<integer>45</integer>
 									<integer>26</integer>
 									<integer>19</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 308}, {198, 769}}</string>
+							<string>{{0, 488}, {198, 769}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -335,7 +335,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>36575212161277BE009D11CC</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>query.lua</string>
+								<string>main.lua</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -343,11 +343,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>36575213161277BE009D11CC</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>query.lua</string>
+										<string>main.lua</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>3649901916A67F16007599C1</string>
+										<string>3649902D16A68238007599C1</string>
 										<key>history</key>
 										<array>
 											<string>36DE520A163B4545004F736A</string>
@@ -400,7 +400,6 @@
 											<string>36974C5D16A4071700FA5D59</string>
 											<string>36974CC216A4219100FA5D59</string>
 											<string>36974DB216A57FB700FA5D59</string>
-											<string>36974DB316A57FB700FA5D59</string>
 											<string>36974DB516A5809400FA5D59</string>
 											<string>36974DB616A5809400FA5D59</string>
 											<string>36974DB716A5809400FA5D59</string>
@@ -408,17 +407,18 @@
 											<string>36974DB916A5809400FA5D59</string>
 											<string>36974DBA16A5809400FA5D59</string>
 											<string>36974DC116A5824800FA5D59</string>
-											<string>36498FD316A665EF007599C1</string>
 											<string>36498FE016A66AFD007599C1</string>
 											<string>36498FE216A66AFD007599C1</string>
 											<string>36498FED16A67A3A007599C1</string>
-											<string>36498FEE16A67A3A007599C1</string>
 											<string>36498FF016A67A3A007599C1</string>
 											<string>36498FFF16A67B91007599C1</string>
-											<string>3649900B16A67CB1007599C1</string>
 											<string>3649900C16A67CB1007599C1</string>
 											<string>3649901616A67EFA007599C1</string>
-											<string>3649901716A67EFA007599C1</string>
+											<string>3649901A16A67FBD007599C1</string>
+											<string>3649901B16A67FBD007599C1</string>
+											<string>3649902616A6817F007599C1</string>
+											<string>3649902B16A68238007599C1</string>
+											<string>3649902C16A68238007599C1</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
