@@ -35,6 +35,12 @@ function panic()
 end
 
 function demo()
+	local function collide(self, event, with, distance)
+		-- change direction:
+		--self:twist(pi, 0, 0)
+		-- and push:
+		self:nudge(self:get("velocity") * 2)
+	end
 	-- create some agents
 	for i = 1, 25 do
 		local a = Agent("green")
@@ -44,6 +50,7 @@ function demo()
 		a:on("beat", function(self, event)
 			self:move(srandom(10))
 		end)
+		a:on("collide", collide)
 		
 		for i = 1, 4 do
 			local a = Agent("red")
@@ -51,6 +58,7 @@ function demo()
 			a:color(1, c, c)
 			a:freq(random() + 55 * random(4 + 8))
 			a:move(random(10))
+			a:on("collide", collide)
 		end
 	end
 	

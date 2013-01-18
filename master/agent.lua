@@ -26,6 +26,15 @@ local Agent = {
 }
 Agent.__index = Agent
 
+--[[#Agent - Objects
+An autonomous entity roaming a virtual world.
+
+## Example Usage ##
+`a = Agent('green')  
+a:color(1,0,0)  
+a:moveTo(0,0,-4)`
+--]]
+
 function Agent:__tostring()
 	return format("Agent(%d)", self.id)
 end
@@ -40,14 +49,38 @@ function Agent:setproperty(k, ...)
 	return self
 end
 
---[[#Agent - Objects
-An autonomous entity roaming a virtual world.
+local object_propertynames = {
+	enable = true,
+	nearest = true,
+	nearest_distance = true,
+	velocity = true,
+	position = true,
+	color = true,
+	scale = true,
+	turn = true,
+	ux = true,
+	uy = true,
+	uz = true,
+}
 
-## Example Usage ##
-`a = Agent('green')  
-a:color(1,0,0)  
-a:moveTo(0,0,-4)`
+local voice_propertynames = {
+	freq = true,
+	amp = true,
+}
+
+--[[###Agent.get : method
+**param** *name*: String. Get the value of a named property in the agent
+**description**: Valid names include: enable, position, scale, color, velocity, turn, ux, uy, uz, nearest, nearest_distance, amp, freq
 --]]
+function Agent:get(name)
+	if object_propertynames[name] then
+		return self._object[name]
+	elseif voice_propertynames[name] then
+		return self._voice[name]
+	else
+		return self[name]
+	end
+end
 
 --[[###Agent.amp : method
 **param** *amplitude*: Number. The ampltiude of the agent's sonificaiton ranging from 0..1
@@ -55,6 +88,16 @@ a:moveTo(0,0,-4)`
 
 function Agent:hastag(name)
 	return self._tags[name]
+end
+
+--[[###Agent.nearest : method
+**description**: Returns nearest agent and distance. If no agent is near, returns nil
+--]]
+function Agent:nearest()
+	local n = self._object.nearest
+	if self._object.id ~= n then
+		return Agent.agents[n], self._object.nearest_distance
+	end
 end
 
 --[[###Agent.tag : method
@@ -134,6 +177,15 @@ function Agent:move(z)
 	return self
 end
 
+--[[###Agent.nudge : method
+**description** : Add an instantaneous force to the agent velocity.  
+**param** *acceleration*: Number. The amount of instantaneous velocity to add.
+--]]
+function Agent:nudge(z)
+	self._object.acceleration = eval(z)
+	return self
+end
+
 --[[###Agent.moveTo : method
 **description** : Move an agent to a given location  
 **param** *x*: Number. x coordinate ranging from -24..24  
@@ -160,11 +212,36 @@ function Agent:color(r, g, b)
 	self._object.color.b = eval(b)
 end
 
+--[[###Agent.scale : method
+**description** : Change the size of an agent
+**param** *x*: Number.   
+**param** *y*: Number. 
+**param** *z*: Number. 
+--]]
 function Agent:scale(x, y, z)
 	if type(x) == "table" and not isexpr(x) then x, y, z = unpack(x) end
 	self._object.scale:set(eval(x), eval(y), eval(z))
 end
 
+--[[###Agent.twist : method
+**description** : Add an instantaneous rotation (angluar acceleration) 
+**param** *azimuth*: Number. Rotation around agent's Y axis
+**param** *elevation*: Number. Rotation around agent's X axis 
+**param** *bank*: Number. Rotation around agent's Z axis
+--]]
+function Agent:twist(a, e, b)
+	if type(a) == "table" and not isexpr(a) then a, e, b = unpack(a) end
+	--print("turn", self, a, e, b)
+	self._object.twist:set(eval(e), eval(a), eval(b))
+	return self
+end
+
+--[[###Agent.turn : method
+**description** : Set angluar velocity
+**param** *azimuth*: Number. Rotation around agent's Y axis
+**param** *elevation*: Number. Rotation around agent's X axis 
+**param** *bank*: Number. Rotation around agent's Z axis
+--]]
 function Agent:turn(a, e, b)
 	if type(a) == "table" and not isexpr(a) then a, e, b = unpack(a) end
 	--print("turn", self, a, e, b)
@@ -280,9 +357,7 @@ for i = 0, av.MAX_AGENTS-1 do
 end
 
 function Agent:update(dt)
-	--print("update", self, dt)
-	
-	-- this is where all the per-agent processes would be invoked.
+	-- this is where all the per-agent processes would be simulated
 	
 end
 
@@ -294,6 +369,15 @@ go(function()
 			if a and a._object.enable ~= 0 then
 				-- run the per-agent update:
 				a:update(dt)
+				
+				-- check for collisions:
+				local obj = a._object
+				local n = obj.nearest
+				local d = obj.nearest_distance
+				if i ~= n and d < 1 then
+					local with = Agent.agents[n]
+					a:notify("collide", with, d)
+				end
 			end
 		end
 	end

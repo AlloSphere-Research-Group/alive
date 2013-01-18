@@ -372,8 +372,10 @@ public:
 				HashSpace::Object * n = qnearest.nearest(space, &o);
 				if (n) {
 					a.nearest = n->id;	
+					a.nearest_distance = qnearest.distance(0);
 				} else {
 					a.nearest = a.id;
+					a.nearest_distance = 0;
 				}
 
 				// add to trail:
@@ -467,16 +469,20 @@ public:
 				if (updating) {
 					
 					// accumulate velocity:
-					vec3 vel = a.uz * -a.velocity;
+					vec3 vel = a.acceleration + a.uz * -a.velocity;
 					a.position += vel * dt;
 					
 					// accumulate rotation:
-					vec3 turn = a.turn * dt;
+					vec3 turn = a.twist + a.turn * dt;
 					quat r = quat().fromEuler(turn.y, turn.x, turn.z);
 					
 					// apply rotation:
 					a.rotate = a.rotate * r;
 					a.rotate.normalize();
+					
+					// kill acceleration:
+					a.twist.set(0);
+					a.acceleration = 0;
 				}
 				
 				// wrap location:
@@ -659,6 +665,7 @@ Global * global_get() {
 
 void agent_reset(Agent& a) {
 	a.nearest = a.id;
+	a.nearest_distance = 0;
 	a.enable = 0;
 	a.visible = 1;
 			
@@ -671,7 +678,9 @@ void agent_reset(Agent& a) {
 	a.position.z = WORLD_DIM * rnd::global().uniform();
 	
 	a.velocity = 0;
+	a.acceleration = 0;
 	a.turn.set(0);
+	a.twist.set(0);
 	a.color.set(0.5);
 	a.scale.set(0.25, 0.125, 0.5);
 	
@@ -688,7 +697,7 @@ void agent_reset(Agent& a) {
 	v.distance = WORLD_DIM;
 	v.buffer_index = 0;
 	v.iphase = 0;
-	v.amp = 0.5;
+	v.amp = 0.1;
 	v.freq = rnd::global().uniform() * rnd::global().uniform() * 4000;
 	v.phase = 0;
 	v.synthesize = default_synthesize_func;

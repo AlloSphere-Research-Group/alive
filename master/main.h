@@ -85,11 +85,11 @@ typedef struct Agent {
 	
 	// controls:
 	int32_t enable, visible;
-	
-	double velocity; 
-	vec3 turn;
+	double velocity, acceleration; 
+	vec3 turn, twist;
 	
 	int32_t id, nearest;
+	double nearest_distance;
 	 
 	// cached for simulation:
 	vec3 ux, uy, uz;
