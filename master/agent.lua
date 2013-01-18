@@ -25,6 +25,20 @@ local Agent = {
 }
 Agent.__index = Agent
 
+function Agent:__tostring()
+	return format("Agent(%d)", self.id)
+end
+
+function Agent:setproperty(k, ...)
+	--print("setproperty", self, k, ...)
+	-- TODO: verify k is a property, coerce, etc. etc.
+	local f = self[k]
+	if f and type(f) == "function" then
+		f(self, ...)
+	end
+	return self
+end
+
 --[[#Agent - Objects
 An autonomous entity roaming a virtual world.
 
@@ -122,6 +136,7 @@ end
 **param** *z*: Number. z coordinate ranging from -24..24  
 --]]
 function Agent:moveTo(x,y,z)
+	if type(x) == "table" then x, y, z = unpack(x) end
 	self._object.position:set(eval(x), eval(y), eval(z))
 	return self
 end
@@ -133,16 +148,19 @@ end
 **param** *blue*: Number. The blue channel value ranging from 0..1
 --]]
 function Agent:color(r, g, b)
+	if type(r) == "table" then r, g, b = unpack(r) end
 	self._object.color.r = eval(r)
 	self._object.color.g = eval(g)
 	self._object.color.b = eval(b)
 end
 
 function Agent:scale(x, y, z)
+	if type(x) == "table" then x, y, z = unpack(x) end
 	self._object.scale:set(eval(x), eval(y), eval(z))
 end
 
 function Agent:turn(a, e, b)
+	if type(a) == "table" then a, e, b = unpack(a) end
 	--print("turn", self, a, e, b)
 	self._object.turn:set(eval(e), eval(a), eval(b))
 	return self
@@ -188,6 +206,7 @@ end
 **description** : unregister notifications and remove all tags from agent
 --]]
 function Agent:reset()
+	C.agent_reset(self._object)
 	-- unregister notifications:
 	for k in pairs(self._handlers) do
 		notify_unregister(k, self)
@@ -228,11 +247,9 @@ setmetatable(Agent, {
 			-- steal active agent if necessary:
 			id = random(av.MAX_AGENTS-1) 
 			agent = self.agents[id]
-			-- reset this agent:
-			self.agents[id]:reset()
-			
 		end
-		C.agent_reset(agent._object)
+		-- reset this agent:
+		self.agents[id]:reset()
 		agent:enable()
 		agent:tag("*", ...)
 		-- return agent:

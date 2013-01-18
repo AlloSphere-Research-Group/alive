@@ -388,6 +388,34 @@ $(document).ready( function() {
 			window.setTimeout(cb, 250);
 		}
 	};
+  
+	var flashblock = function(cm, pos1, pos2) {
+	
+		var sel = editor.markText(pos1, pos2, "highlightLine");
+		window.setTimeout(function() { sel.clear(); }, 250);
+		
+		
+		if (pos !== null) {
+			v = cm.getLine(pos.line);
+
+			cm.setLineClass(pos.line, null, "highlightLine")
+
+			var cb = (function() {
+			  cm.setLineClass(pos.line, null, null);
+			});
+
+			window.setTimeout(cb, 250);
+
+		} else {
+			var sel = cm.markText(cm.getCursor(true), cm.getCursor(false), "highlightLine");
+
+			var cb = (function() {
+			  sel.clear();
+			});
+
+			window.setTimeout(cb, 250);
+		}
+	};
 	
 	var executeCode = function(cm) {
 		var v = cm.getSelection();
@@ -398,6 +426,31 @@ $(document).ready( function() {
 		}
 		flash(cm, pos);
 		slaveSocket.emit('execute', {code:v});
+	};
+	
+	var executeCodeBlock = function(cm) {
+		var v = cm.getSelection();
+		var pos = null;
+		if (v === "") {
+			// try to select the containing block
+			pos = cm.getCursor();
+			var startline = pos.line;
+			var endline = pos.line;
+			while (startline > 0 && cm.getLine(startline) !== "") {
+				startline--;
+			}
+			while (endline < cm.lineCount() && cm.getLine(endline) !== "") {
+				endline++;
+			}
+			var pos1 = { line: startline, ch: 0 }
+			var pos2 = { line: endline, ch: 0 }
+			v = cm.getRange(pos1, pos2);
+			slaveSocket.emit('execute', {code:v});
+			flashblock(cm, pos1, pos2);
+		} else {
+			slaveSocket.emit('execute', {code:v});
+			flash(cm, pos);
+		}
 	};
 
 	var clearDoc = function(cm) {
@@ -411,6 +464,8 @@ $(document).ready( function() {
 		fallthrough : "default",
 		"Ctrl-Enter": executeCode,
 		"Cmd-Enter": executeCode, 
+		"Ctrl-Alt-Enter": executeCodeBlock,
+		"Cmd-Alt-Enter": executeCodeBlock,
 		"Cmd-Backspace": clearDoc,   
 		//"Cmd-S": editor_save,
 		//"Ctrl-S": editor_save,
