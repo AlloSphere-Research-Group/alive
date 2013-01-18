@@ -192,7 +192,7 @@ $(document).ready( function() {
 
 	slaveSocket.on('err', function(msg) {
 		$("#console-all").append($("<span style='color:#f00'>"+msg.msg+"</span><br>"));
-		$("#consoleContainer").scrollTop($("#consoleContainer")[0].scrollHeight);
+		$("#consoleContainer").scrollTop($("#consoleContainer")[0].scrollHeight);
 	});
 	
 	slaveSocket.on('read', function (response) {
