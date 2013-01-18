@@ -71,7 +71,7 @@ function av.app:update(dt)
 	-- or main.update(now)?
 	main.advance(dt)
 	
-	print("update", dt)
+	--print("update", dt)
 	
 	event("update", dt)
 	-- make sure prints print

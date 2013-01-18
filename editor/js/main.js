@@ -78,6 +78,7 @@ window.Alive = {
         //}
     }
   },
+  connected : false,
 };
 
 Storage.prototype.setObject = function(key, value) {
@@ -212,6 +213,15 @@ $(document).ready( function() {
 
 	slaveSocket.on('handshake', function (response) {
 		console.log("HANDSHAKE : ", response.data);
+    
+    if(Alive.connected) {
+      var text = window.editor.getValue();
+      window.editor.setValue('');
+      
+      setTimeout( function() { window.editor.setValue(text); }, 250);
+    }
+    
+    Alive.connected = true;
 	});
 				
 	slaveSocket.on('ls', function (response) {
@@ -222,7 +232,7 @@ $(document).ready( function() {
 			var a = $("<a>");
 
 			if(response.data[i].isDirectory === true) {
-              	var img = $("<img>");
+        var img = $("<img>");
 				img.attr('src','../images/folder.png');
                       	
 				(function() {

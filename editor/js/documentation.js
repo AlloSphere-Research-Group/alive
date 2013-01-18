@@ -15,7 +15,6 @@ for (var i = 0; i < filenames.length; i++) {
 	var reg = /(?:\-\-\[\[)((.|\n|\s)+?)(?:\-\-\]\])/g;
 	var matches = null;
   
-  console.log("TRYING");
 	while (matches = reg.exec(text)) {
     //console.log("MATCH", text);
 		if(matches[1] !== null && typeof matches[1] !== "undefined" && matches[1] != "") {
