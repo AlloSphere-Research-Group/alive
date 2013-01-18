@@ -25,6 +25,20 @@ local Agent = {
 }
 Agent.__index = Agent
 
+function Agent:__tostring()
+	return format("Agent(%d)", self.id)
+end
+
+function Agent:setproperty(k, ...)
+	--print("setproperty", self, k, ...)
+	-- TODO: verify k is a property, coerce, etc. etc.
+	local f = self[k]
+	if f and type(f) == "function" then
+		f(self, ...)
+	end
+	return self
+end
+
 --[[#Agent - Objects
 An autonomous entity roaming a virtual world.
 
@@ -188,6 +202,7 @@ end
 **description** : unregister notifications and remove all tags from agent
 --]]
 function Agent:reset()
+	C.agent_reset(self._object)
 	-- unregister notifications:
 	for k in pairs(self._handlers) do
 		notify_unregister(k, self)
@@ -228,11 +243,9 @@ setmetatable(Agent, {
 			-- steal active agent if necessary:
 			id = random(av.MAX_AGENTS-1) 
 			agent = self.agents[id]
-			-- reset this agent:
-			self.agents[id]:reset()
-			
 		end
-		C.agent_reset(agent._object)
+		-- reset this agent:
+		self.agents[id]:reset()
 		agent:enable()
 		agent:tag("*", ...)
 		-- return agent:

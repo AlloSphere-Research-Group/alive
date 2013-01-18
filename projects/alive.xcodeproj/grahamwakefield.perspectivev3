@@ -317,7 +317,7 @@
 							<real>198</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>-8 50 881 828 0 0 1440 878 </string>
+						<string>3 50 881 828 0 0 1440 878 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -347,7 +347,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>365E3E8816A93F4700CF8D13</string>
+										<string>365E3F1516A9994600CF8D13</string>
 										<key>history</key>
 										<array>
 											<string>36DE520A163B4545004F736A</string>
@@ -399,7 +399,6 @@
 											<string>36974DB716A5809400FA5D59</string>
 											<string>36974DB816A5809400FA5D59</string>
 											<string>36974DB916A5809400FA5D59</string>
-											<string>36974DBA16A5809400FA5D59</string>
 											<string>36974DC116A5824800FA5D59</string>
 											<string>36498FE016A66AFD007599C1</string>
 											<string>36498FE216A66AFD007599C1</string>
@@ -407,8 +406,6 @@
 											<string>3649902616A6817F007599C1</string>
 											<string>36D9904916A7CBF500DE1FF7</string>
 											<string>36D9905916A7CEB600DE1FF7</string>
-											<string>36D9908616A7D42900DE1FF7</string>
-											<string>36D990EA16A7F79200DE1FF7</string>
 											<string>365E3DDD16A8683400CF8D13</string>
 											<string>365E3E3B16A8FCB200CF8D13</string>
 											<string>365E3E4A16A8FDE900CF8D13</string>
@@ -416,11 +413,14 @@
 											<string>365E3E6716A93B9E00CF8D13</string>
 											<string>365E3E7116A93D0B00CF8D13</string>
 											<string>365E3E7716A93EC800CF8D13</string>
-											<string>365E3E7A16A93EC800CF8D13</string>
 											<string>365E3E7D16A93EF100CF8D13</string>
-											<string>365E3E7F16A93EF100CF8D13</string>
-											<string>365E3E8616A93F4700CF8D13</string>
-											<string>365E3E8716A93F4700CF8D13</string>
+											<string>365E3E9516A983BF00CF8D13</string>
+											<string>365E3EC816A988AA00CF8D13</string>
+											<string>365E3EE516A98D4800CF8D13</string>
+											<string>365E3EF216A98F3900CF8D13</string>
+											<string>365E3EF916A9909100CF8D13</string>
+											<string>365E3F1116A9993700CF8D13</string>
+											<string>365E3F1216A9993700CF8D13</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -434,18 +434,18 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {661, 782}}</string>
+								<string>{{0, 0}, {661, 781}}</string>
 								<key>RubberWindowFrame</key>
-								<string>-8 50 881 828 0 0 1440 878 </string>
+								<string>3 50 881 828 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>782pt</string>
+							<string>781pt</string>
 						</dict>
 						<dict>
 							<key>Proportion</key>
-							<string>0pt</string>
+							<string>1pt</string>
 							<key>Tabs</key>
 							<array>
 								<dict>
@@ -459,9 +459,9 @@
 									<key>GeometryConfiguration</key>
 									<dict>
 										<key>Frame</key>
-										<string>{{10, 27}, {661, -27}}</string>
+										<string>{{10, 27}, {661, -26}}</string>
 										<key>RubberWindowFrame</key>
-										<string>-8 50 881 828 0 0 1440 878 </string>
+										<string>3 50 881 828 0 0 1440 878 </string>
 									</dict>
 									<key>Module</key>
 									<string>XCDetailModule</string>
@@ -740,7 +740,7 @@
 		<string>/Users/grahamwakefield/code/alive/projects/alive.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>-8 50 881 828 0 0 1440 878 </string>
+	<string>3 50 881 828 0 0 1440 878 </string>
 	<key>WindowToolsV3</key>
 	<array>
 		<dict>

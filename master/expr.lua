@@ -314,6 +314,7 @@ e.unm = e.__unm
 
 -- stateful operators:
 
+--[[
 define_zerop("noise", function(env)
 	-- returns a behavior:
 	local random = math.random
@@ -333,6 +334,7 @@ define_unop("sinosc", function(env, freq)
 		return sin(phase * twopi)
 	end
 end)
+--]]
 
 -- install all the e.* operators as global functions
 -- the names are Capitalized to show that they are constructors

@@ -88,17 +88,13 @@ audiomsg * audioq_next(double maxtime) {
 	return audioq_peek(maxtime);
 }
 
-void agent_reset(Agent& a) {
-	a.nearest = a.id;
-	a.enable = 0;
-	a.visible = 1;
-	a.trail_start = 0;
-	a.trail_size = 0;
-}	
-
 #pragma mark App
 
-class App : public OmniApp, public Global, public SharedBlob::Handler {
+class App;
+
+App * app = 0;
+
+class App : public Global, public OmniApp, public SharedBlob::Handler {
 public:
 
 	App() 
@@ -106,6 +102,8 @@ public:
 		space(5, MAX_AGENTS),
 		qnearest(6)
 	{
+		app = this;
+		
 		title("alive");
 		
 		// one-time only:
@@ -134,6 +132,7 @@ public:
 		shared.bgcolor.set(0.25);
 		shared.enable_stereo = omni().stereo();
 		shared.show_collisions = 0;
+		
 		reset();	
 		
 		// start sharing:
@@ -191,41 +190,12 @@ public:
 	void reset() {
 		for (int i=0; i<MAX_AGENTS; i++) {
 			Agent& a = shared.agents[i];
-			
 			a.id = i;
-			a.nearest = i;
-			
-			a.enable = 0;
-			a.visible = 1;
-			
-			a.position.x = WORLD_DIM * rnd::global().uniform();
-			a.position.y = WORLD_DIM * rnd::global().uniform();
-			a.position.z = WORLD_DIM * rnd::global().uniform();
-			
-			a.scale.set(0.5, 0.25, 1);
-			a.color.set(0.5);
-			
-			// init unit vectors:
-			a.rotate.toVectorX(a.ux);
-			a.rotate.toVectorY(a.uy);
-			a.rotate.toVectorZ(a.uz);
-			
-			// trails:
-			a.trail_start = 0;
-			a.trail_size = 0;
 			
 			Voice& v = voices[i];
-			memset(v.buffer, 0, sizeof(float) * DOPPLER_SAMPLES);
-			v.encode.set(0, 0, 0, 0);
-			v.direction.set(0, 0, 0);
-			v.distance = WORLD_DIM;
-			v.buffer_index = 0;
-			v.iphase = 0;
-			v.amp = 0.1;
-			v.freq = 220;
-			v.phase = 0;
-			v.synthesize = default_synthesize_func;
+			v.id = i;
 			
+			agent_reset(a);
 			
 		}
 	}
@@ -461,7 +431,7 @@ public:
 		samplerate = io.framesPerSecond();
 		invsamplerate = 1./samplerate;
 		
-		double dt = frame * invsamplerate;
+		double dt = frames * invsamplerate;
 		
 		if (audiotime == 0) {
 			printf("audio started (remote == %d) %d samples, %f Hz, %dx%d + %d\n", bRemoteAudio, frames, samplerate, io.channelsIn(), io.channelsOut(), io.channelsBus());
@@ -495,18 +465,10 @@ public:
 			
 				// do movement here in audio thread:
 				if (updating) {
+					
 					// accumulate velocity:
 					vec3 vel = a.uz * -a.velocity;
 					a.position += vel * dt;
-					
-					// wrap location:
-					for (int j=0; j<3; j++) {
-						double p = a.position[j];
-						p -= shared.active_origin[j];
-						p = al::wrap(p, (double)WORLD_DIM);
-						p += shared.active_origin[j];
-						a.position[j] = p;
-					}
 					
 					// accumulate rotation:
 					vec3 turn = a.turn * dt;
@@ -515,6 +477,15 @@ public:
 					// apply rotation:
 					a.rotate = a.rotate * r;
 					a.rotate.normalize();
+				}
+				
+				// wrap location:
+				for (int j=0; j<3; j++) {
+					double p = a.position[j];
+					p -= shared.active_origin[j];
+					p = al::wrap(p, (double)WORLD_DIM);
+					p += shared.active_origin[j];
+					a.position[j] = p;
 				}
 				
 				// now synthesize:
@@ -682,14 +653,49 @@ public:
 	bool updating;
 };
 
-App * app;
-
 Global * global_get() {
 	return (Global *)app;
 }
 
-int main(int argc, char * argv[]) {
+void agent_reset(Agent& a) {
+	a.nearest = a.id;
+	a.enable = 0;
+	a.visible = 1;
+			
+	// trails:
+	a.trail_start = 0;
+	a.trail_size = 0;
+	
+	a.position.x = WORLD_DIM * rnd::global().uniform();
+	a.position.y = WORLD_DIM * rnd::global().uniform();
+	a.position.z = WORLD_DIM * rnd::global().uniform();
+	
+	a.velocity = 0;
+	a.turn.set(0);
+	a.color.set(0.5);
+	a.scale.set(0.25, 0.125, 0.5);
+	
+	// init unit vectors:
+	a.rotate.toVectorX(a.ux);
+	a.rotate.toVectorY(a.uy);
+	a.rotate.toVectorZ(a.uz);
+	
+	Voice& v = global_get()->voices[a.id];
+	
+	memset(v.buffer, 0, sizeof(float) * DOPPLER_SAMPLES);
+	v.encode.set(0, 0, 0, 0);
+	v.direction.set(0, 0, 0);
+	v.distance = WORLD_DIM;
+	v.buffer_index = 0;
+	v.iphase = 0;
+	v.amp = 0.;
+	v.freq = rnd::global().uniform() * rnd::global().uniform() * 4000;
+	v.phase = 0;
+	v.synthesize = default_synthesize_func;
+}	
 
+int main(int argc, char * argv[]) {
+	
 	std::string hostName = Socket::hostName();
 	std::string masterName;
 	if (argc > 1) {
@@ -709,11 +715,10 @@ int main(int argc, char * argv[]) {
 	init_wavetables();
 	
 	app = new App;
-
+	
 	// run main script:
 	app->L.dofile("main.lua");
 	
 	app->start();
-	printf("done\n");
 	return 0;
 }

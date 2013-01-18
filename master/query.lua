@@ -19,15 +19,30 @@ function Tag(name)
 	assert(name and type(name)=="string")
 	local o = tags[name]
 	if not o then
-		o = setmetatable({}, tag)
+		o = setmetatable({
+			name = name,
+			properties = {},
+		}, tag)
 		tags[name] = o
 	end
 	return o
 end
 
+function tag:__tostring()
+	return format("Tag(%s,%d)", self.name, #self)
+end
+
 function tag:add(o)
 	-- assumes double-entry won't happen...
-	self[#self+1] = o
+	rawset(self, #self+1, o)
+	-- now apply all properties in tag to the agent:
+	for k, v in pairs(rawget(self, "properties")) do
+		if type(v) == "table" and not isexpr(v) then
+			o:setproperty(k, unpack(v))
+		else
+			o:setproperty(k, v)
+		end
+	end
 end
 
 function tag:remove(o)
@@ -38,6 +53,22 @@ function tag:remove(o)
 			return
 		end
 	end
+end
+
+function tag:__newindex(k, v)
+	rawget(self, "properties")[k] = eval(v)
+end
+
+function tag:__index(k)
+	return rawget(tag, k)
+		or function(self, ...)
+			if select("#", ...) > 1 then
+				rawget(self, "properties")[k] = { ... }
+			else
+				rawget(self, "properties")[k] = ...
+			end
+			return self
+		end
 end
 
 -- a query contains a tag (in the field 'base')
@@ -158,14 +189,15 @@ function p:__call(o, ...)
 	local basecopy = { unpack(base) }
 	
 	for i, v in ipairs(basecopy) do
+		local f = v[key]
 		-- TODO: should args be coerced? or is that the property setter's job?
 		if o == parent then
-			--print("methodcall", parent, v, key, ...)
+			--print("invoked as method call", parent, v, key, ...)
 			-- method call
-			v[key](v, ...)
+			f(v, ...)
 		else
-			--print("call", parent, v, key, ...)
-			v[key](o, ...)
+			--print("invoked as non-method call", parent, v, key, ...)
+			f(o, ...)
 		end
 	end	
 	-- return parent query to allow chaining:
@@ -174,17 +206,12 @@ end
 
 -- get a property / method:
 function q:__index(k)
-	local meta = rawget(q, k)
-	if meta then 
-		return meta 
-	else
-		local base = rawget(self, "base")
-		return setmetatable({
+	return rawget(q, k)
+		or setmetatable({
 			query = self,
-			base = base,
+			base = rawget(self, "base"),
 			key = k,
 		}, p)
-	end
 end
 
 -- sub-selections

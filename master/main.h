@@ -129,6 +129,8 @@ typedef struct Voice {
 	uint32_t iphase;
 	double amp, freq, phase;
 	
+	int32_t id;
+	
 	// pointer: valid for master only!!
 	void (*synthesize)(struct Voice&, int frames, float * out);
 

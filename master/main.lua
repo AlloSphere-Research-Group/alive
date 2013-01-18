@@ -15,8 +15,12 @@ E = require "expr"
 E:globalize()
 local agent = require "agent"
 Agent = agent.Agent
+local query = require "query"
+Tag = query.Tag
+
 A = Agent
-Q = require "query"
+T = Tag
+Q = query
 
 -- random means random
 math.randomseed(os.time())
@@ -38,6 +42,7 @@ function demo()
 		a:color(c, 1, c)
 		a:freq(random() + 55 * random(5))
 		a:on("beat", function(self, event)
+			print("green beat demo")
 			self:move(srandom(10))
 		end)
 		
@@ -53,7 +58,8 @@ function demo()
 	-- make them change:
 	go(function()
 		while true do
-			Q("red", "green"):pick(0.2)
+			print("beat demo")
+			Q("*"):pick(0.2)
 				:turn(srandom()*3, srandom()*3, srandom()*3)
 				:freq(Random() + 55 * Random(10))
 			wait("beat")
