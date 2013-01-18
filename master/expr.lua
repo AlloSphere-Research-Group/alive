@@ -263,7 +263,9 @@ define_from_mathlib_unop("sqrt")
 define_from_mathlib_unop("tan")
 define_from_mathlib_unop("tanh")
 
-define("random", math.random)
+local random = math.random
+define("random", random)
+define("srandom", function() return random() * 2 - 1 end)
 
 
 -- boolean operations:
