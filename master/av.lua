@@ -70,6 +70,9 @@ function av.app:update(dt)
 	-- trigger scheduler: 
 	-- or main.update(now)?
 	main.advance(dt)
+	
+	print("update", dt)
+	
 	event("update", dt)
 	-- make sure prints print
 	io.flush()

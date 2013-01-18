@@ -54,8 +54,8 @@ function demo()
 	go(function()
 		while true do
 			Q("red", "green"):pick(0.2)
-				--:turn(srandom()*3, srandom()*3, srandom()*3)
-				--:freq(Random() + 55 * Random(10))
+				:turn(srandom()*3, srandom()*3, srandom()*3)
+				:freq(Random() + 55 * Random(10))
 			wait("beat")
 		end
 	end)

@@ -143,6 +143,7 @@ function Agent:scale(x, y, z)
 end
 
 function Agent:turn(a, e, b)
+	--print("turn", self, a, e, b)
 	self._object.turn:set(eval(e), eval(a), eval(b))
 	return self
 end
