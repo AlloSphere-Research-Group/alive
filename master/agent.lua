@@ -52,6 +52,10 @@ a:moveTo(0,0,-4)`
 **param** *amplitude*: Number. The ampltiude of the agent's sonificaiton ranging from 0..1
 --]]
 
+function Agent:hastag(name)
+	return self._tags[name]
+end
+
 --[[###Agent.tag : method
 **param** *tags*: List. A comma-separated list of tags to assign to the agent
 --]]
