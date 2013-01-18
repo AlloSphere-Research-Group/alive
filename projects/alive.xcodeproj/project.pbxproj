@@ -6806,6 +6806,7 @@
 		365754EE161277FE009D11CC /* omgosc.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = omgosc.js; sourceTree = "<group>"; };
 		365754EF161277FE009D11CC /* socket.io.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = socket.io.js; sourceTree = "<group>"; };
 		36575504161277FE009D11CC /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README.md; path = ../README.md; sourceTree = SOURCE_ROOT; };
+		365E3E7616A93D4200CF8D13 /* documentation.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = documentation.js; sourceTree = "<group>"; };
 		366E3C461674856A00F3B556 /* main.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = main.h; sourceTree = "<group>"; };
 		366E3C471674856A00F3B556 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		366E3C48167485AB00F3B556 /* al_OmniApp.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = al_OmniApp.hpp; sourceTree = "<group>"; };
@@ -19678,6 +19679,7 @@
 		36575229161277FD009D11CC /* js */ = {
 			isa = PBXGroup;
 			children = (
+				365E3E7616A93D4200CF8D13 /* documentation.js */,
 				361C5C5216276A5500E08BE8 /* share.js */,
 				361C5C5316276A5500E08BE8 /* cm.js */,
 				361C5C5416276A5500E08BE8 /* bcsocket.js */,

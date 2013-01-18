@@ -27,6 +27,12 @@ function generate_ffi_header {
 	luajit h2ffi.lua main.h header.lua 
 }
 
+function generate_docs {
+	cd ../editor/js
+	node documentation.js
+	cd ../../master
+}
+
 function build {
 	
 	echo Building $PRODUCT_NAME
@@ -70,6 +76,6 @@ function run {
 	node master.js
 }
 
-clean && generate_ffi_header && build #&& run
+clean && generate_ffi_header && generate_docs && build #&& run
 
 
