@@ -6,6 +6,7 @@ var converter = new Showdown.converter();
 var objs = {}
 var filenames = [
   "agent.lua",
+  "scheduler.lua",
 ];
 
 for (var i = 0; i < filenames.length; i++) {

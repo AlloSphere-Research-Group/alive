@@ -25,7 +25,7 @@ local Agent = {
 }
 Agent.__index = Agent
 
---[[#Agent - Object
+--[[#Agent - Objects
 An autonomous entity roaming a virtual world.
 
 ## Example Usage ##

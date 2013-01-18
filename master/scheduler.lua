@@ -103,20 +103,46 @@ function task:cancel()
 	-- is it temporal or event based?
 end
 
-return {	
+--[[#Scheduler - Objects
+The scheduler handles coroutines. Note that most methods of the schedule are global, hence you can call go() and sequence() 
+without needing to do so as a method call. If you do need to refer to the scheduler explicitly it is globally stored in the 'scheduler' variable.  
+  
+See http://lua-av.mat.ucsb.edu/blog/?p=137 for details.  
+
+## Example Usage ##
+`a = Agent('green')  
+b = sequence( function() a:color(Random(), Random(), Random() end, .5))`
+--]]
+
+
+return {
+--[[###Scheduler.panic : method
+**description** stop all coroutines from running. This method is globalized (is that a word?)
+--]]
 	panic = panic,
 	
 	create = function()
 		local self = { t=0 }
 		
+--[[###Scheduler.cancel : method
+**description** stop a passed coroutine from running  
+**param** *coroutine* Coroutine. The coroutine to cancel
+--]]
 		self.cancel = function(C)
 			remove(Cmap[C], C)
 		end
-		
+
+--[[###Scheduler.now : method
+**description** return the time the scheduler has been active
+--]]		
 		self.now = function()
 			return self.t
 		end
-		
+
+--[[###Scheduler.wait : method
+**description** pause execution of a coroutine created using go() or sequence()  
+**param** *timeToWait* Seconds OR String. The amount of time to pause the coroutine for. If a string is passed, wait for an event the provided name
+--]]		
 		self.wait = function(e)
 			local C = corunning()
 			if type(e) == "number" then
@@ -132,6 +158,10 @@ return {
 			return coyield()
 		end
 		
+--[[###Scheduler.event : method
+**description** trigger an event(s). This will cause all coroutines waiting for the named event to continue running.
+**param** *eventNames* List. The events to trigger
+--]]    
 		self.event = function(e, ...)
 			local q = eventq_find(e)
 			--for each coro in the list, schedule it (and remove it from the list)
@@ -148,7 +178,23 @@ return {
 				resume(C, ...)
 			end
 		end	
-		
+    
+--[[###Scheduler.go : method
+**description** Creates a coroutine to be executed that can be paused using wait()  
+  
+**Example Usage**  
+`a = Agent()  
+go(function()  
+  while true do  
+    a:color(random(), random(), random())  
+    wait(1)  
+  end  
+end)`  
+  
+**param** *delay* OPTIONAL. Seconds. An optional amount of time to wait before beginning the coroutine  
+**param** *function* Function. A function be executed by the coroutine  
+**param** *arg list* OPTIONAL. Any extra arguments will be passed to the function call by the coroutine  
+--]]			
 		self.go = function(e, func, ...)
 			local args
 			if type(e) == "function" then
@@ -199,6 +245,17 @@ return {
 			self.update(self.t + dt)
 		end
 		
+--[[#Sequence - Objects
+**description** Creates a coroutine that can be start and stopped and calls its function repeatedly or a specified number of times.  
+  
+**Example Usage**  
+`a = Agent();  
+b = sequence( function() a:color(Random(), Random(), Random()) end, .25, 10)`  
+  
+**param** *function* Function. The function to be repeatedly executed  
+**param** *time* Seconds. The amount of time to wait before each execution of the funtion  
+**param** *repeats* OPTIONAL. Number. If provided, the sequencer will only run the specified number of times and then stop itself.  
+--]]       
 		self.sequence = function(func, time, repeats)
 			local _stop = false
 			local _scheduler = self
@@ -219,6 +276,12 @@ return {
 						end
 					end
 				end,
+--[[###Sequence.start : method
+**description** Start a sequence that has been previously stopped
+--]]
+--[[###Sequence.stop : method
+**description** Stop a running sequence
+--]]
 				stop = function()
 					_stop = true
 				end,
