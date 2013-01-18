@@ -136,6 +136,7 @@ end
 **param** *z*: Number. z coordinate ranging from -24..24  
 --]]
 function Agent:moveTo(x,y,z)
+	if type(x) == "table" then x, y, z = unpack(x) end
 	self._object.position:set(eval(x), eval(y), eval(z))
 	return self
 end
@@ -147,16 +148,19 @@ end
 **param** *blue*: Number. The blue channel value ranging from 0..1
 --]]
 function Agent:color(r, g, b)
+	if type(r) == "table" then r, g, b = unpack(r) end
 	self._object.color.r = eval(r)
 	self._object.color.g = eval(g)
 	self._object.color.b = eval(b)
 end
 
 function Agent:scale(x, y, z)
+	if type(x) == "table" then x, y, z = unpack(x) end
 	self._object.scale:set(eval(x), eval(y), eval(z))
 end
 
 function Agent:turn(a, e, b)
+	if type(a) == "table" then a, e, b = unpack(a) end
 	--print("turn", self, a, e, b)
 	self._object.turn:set(eval(e), eval(a), eval(b))
 	return self

@@ -293,14 +293,14 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>45</integer>
-									<integer>27</integer>
-									<integer>20</integer>
+									<integer>15</integer>
+									<integer>4</integer>
+									<integer>1</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 250}, {198, 769}}</string>
+							<string>{{0, 0}, {198, 769}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -335,7 +335,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>36575212161277BE009D11CC</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>query.lua</string>
+								<string>main.js</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -343,11 +343,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>36575213161277BE009D11CC</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>query.lua</string>
+										<string>main.js</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>365E3F1916A999E200CF8D13</string>
+										<string>365E3F3D16A9A35100CF8D13</string>
 										<key>history</key>
 										<array>
 											<string>36DE520A163B4545004F736A</string>
@@ -403,7 +403,6 @@
 											<string>36498FE016A66AFD007599C1</string>
 											<string>36498FE216A66AFD007599C1</string>
 											<string>3649900C16A67CB1007599C1</string>
-											<string>3649902616A6817F007599C1</string>
 											<string>36D9904916A7CBF500DE1FF7</string>
 											<string>36D9905916A7CEB600DE1FF7</string>
 											<string>365E3DDD16A8683400CF8D13</string>
@@ -419,8 +418,9 @@
 											<string>365E3EE516A98D4800CF8D13</string>
 											<string>365E3EF216A98F3900CF8D13</string>
 											<string>365E3EF916A9909100CF8D13</string>
-											<string>365E3F1616A999C800CF8D13</string>
-											<string>365E3F1716A999C800CF8D13</string>
+											<string>365E3F2D16A9A0A600CF8D13</string>
+											<string>365E3F3216A9A1F000CF8D13</string>
+											<string>365E3F3316A9A1F000CF8D13</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>

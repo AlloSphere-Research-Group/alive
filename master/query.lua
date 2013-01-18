@@ -12,11 +12,12 @@ local tags = {}
 
 -- a tag is a list (array) of objects
 local tag = {}
-tag.__index = tag
 
-local
-function Tag(name)
-	-- TODO: or generate a tag name randomly?
+local metatag = {}
+function metatag:__index(k)
+	return tags[k]
+end
+function metatag:__call(name, t)-- TODO: or generate a tag name randomly?
 	assert(name and type(name)=="string")
 	local o = tags[name]
 	if not o then
@@ -26,8 +27,10 @@ function Tag(name)
 		}, tag)
 		tags[name] = o
 	end
+	if t then self:set(t) end
 	return o
 end
+setmetatable(tag, metatag)
 
 function tag:__tostring()
 	return format("Tag(%s,%d)", self.name, #self)
@@ -57,12 +60,15 @@ function tag:remove(o)
 end
 
 function tag:__newindex(k, v)
-	rawget(self, "properties")[k] = eval(v)
+	rawget(self, "properties")[k] = v
 end
 
-function tag:__call(t)
+function tag:set(t)
+	-- zero the existing properties:
+	rawset(self, "properties", {})
 	for k, v in pairs(t) do self[k] = v end
 end
+tag.__call = tag.set
 
 function tag:__index(k)
 	return rawget(tag, k)
@@ -157,7 +163,8 @@ function q:__newindex(k, value)
 	local base = rawget(self, "base")
 	for i, v in ipairs(base) do
 		-- coerce
-		v[k] = eval(value)
+		print(i, v, k, value)
+		v[k](v, value)	-- setter
 	end
 end
 
@@ -310,12 +317,17 @@ function q:has(key, value)
 	return query(list)
 end
 
-
+function q:set(t)
+	for k, v in pairs(t) do
+		print("set", k, v)
+		self[k] = v
+	end
+end	
 
 
 
 return setmetatable({
-	Tag = Tag,
+	Tag = tag,
 }, {
 	__call = function(_, ...) return query(...) end,
 })
