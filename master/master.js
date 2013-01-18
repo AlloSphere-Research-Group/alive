@@ -37,12 +37,12 @@ var auto_relaunch = false;
 var vm_name = './main';
 var vm = null;
 
-function launch(name) {
+function launch() {
 	if (vm !== null) {
 		vm.kill();
 	}
 	
-	vm = spawn(name, [mastername]);
+	vm = spawn(vm_name, [mastername]);
 	
 	vm.stdout.pipe(process.stdout, { end: false });
 
@@ -66,10 +66,10 @@ function launch(name) {
 	});
   
 	vm.on('exit', function (code) {
-		console.log('child process exited with code ' + code);
+		console.log(vm_name + ' child process exited with code ' + code);
 		
 		if (auto_relaunch) {
-			launch(name);
+			launch();
 		} else {
 			vm = null;
 			// if vm dies, kill node with it:
@@ -85,17 +85,15 @@ process.on('exit', function() {
 	}
 });
 
-/*
-fs.watch('.', function (event, filename) {
+fs.watch('main', function (event, filename) {
 	console.log('event is: ' + event);
 	if (filename) {
 		console.log('filename provided: ' + filename);
 	} else {
 		console.log('filename not provided');
 	}
-	launch(vm_name);
+	launch();
 });
-*/
 
 //// THE MDNS STUFF ////
 
@@ -345,5 +343,5 @@ if (ismaster) {
 }
 
 // start the vm:
-launch(vm_name);
+launch();
 console.log("started");

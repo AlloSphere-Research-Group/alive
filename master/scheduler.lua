@@ -261,7 +261,7 @@ b = sequence( function() a:color(Random(), Random(), Random()) end, .25, 10)`
 			local _scheduler = self
 			local count = 0
 			local limited = (type(repeats) == 'number')
-
+			
 			local o
 			o = {
 				run = function()
@@ -288,17 +288,16 @@ b = sequence( function() a:color(Random(), Random(), Random()) end, .25, 10)`
 				start = function()
 					_stop = false
 					_scheduler.go(o.run)
-        end,
+				end,
 --[[###Sequence.time : method
 **description** Change the amount of time between function executions by the sequencer  
-  
 **param** *time* Number. The number of seconds to wait in between function calls
 --]]
-        time = function(s,t)
-          _time = t
-        end,
+				time = function(s,t)
+				  _time = t
+				end,
 			}
-
+			
 			self.go(o.run)
 
 			return o

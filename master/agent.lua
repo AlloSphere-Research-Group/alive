@@ -1,5 +1,6 @@
 local av = require "av"
 local vec = require "vec"
+local vec3, quat = vec.vec3, vec.quat
 local query = require "query"
 local Tag = query.Tag
 local notify = require "notify"
@@ -232,7 +233,7 @@ end
 function Agent:twist(a, e, b)
 	if type(a) == "table" and not isexpr(a) then a, e, b = unpack(a) end
 	--print("turn", self, a, e, b)
-	self._object.twist:set(eval(e), eval(a), eval(b))
+	self._object.twist:add(eval(e), eval(a), eval(b))
 	return self
 end
 
@@ -256,12 +257,17 @@ function Agent:face(x, y, z)
 	local uz = self._object.uz
 	
 	local dir = (vec3(x, y, z) - self._object.position):normalize()
-	print(relative)
-	
-	local rotaxis = uz:cross(dir)
+	local rotaxis = uz:cross(dir):normalize()
 	local rotangle = math.acos(uz:dot(dir))
 	
-	self._object.turn:fromAxisAngle(rotangle, rotaxis)
+	print(rotaxis, rotangle)
+	
+	local q = quat():fromAxisAngle(rotangle, rotaxis)
+	local a, e, b = q:euler()
+	
+	print(a, e, b)
+	
+	self._object.twist:add(e, a, b)
 	
 	-- local rot = quat.lookrotation(dir)
 	
