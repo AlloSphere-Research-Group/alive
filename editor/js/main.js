@@ -1,3 +1,85 @@
+window.Alive = {
+  displayTOC: function() {
+      $("#docs").empty();
+      for (var key in Alive.toc) {
+          var cat = Alive.toc[key];
+          if (cat.length > 0) {
+              var ul = $("<ul style='list-style:none; padding: 0px 5px;'>");
+              var h2 = $("<h2>" + key + "</h2>");
+              //var ul = $("<ul>");
+              for (var i = 0; i < cat.length; i++) {
+                  var li = $("<li>");
+                  var a = $("<a style='cursor:pointer'>");
+                  (function() {
+                      var text = cat[i];
+                      a.text(text);
+                      a.click(function() {
+                          Alive.displayDocs(text);
+                      });
+                  })();
+                  $(li).append(a);
+                  $(ul).append(li);
+              }
+              $("#docs").append(h2);
+              $("#docs").append(ul);
+          }
+      }
+  },
+  displayDocs: function(obj) {
+      console.log("DISPLAYING", obj)
+      if (typeof Alive.docs[obj] === "undefined") return;
+      $("#docs").html(Alive.docs[obj].text);
+      $("#docs").append("<h2>Methods</h2>");
+      var count = 0;
+      for (var key in Alive.docs[obj].methods) {
+          var html = $("<div style='padding-top:5px'>" + Alive.docs[obj].methods[key] + "</div>");
+          var bgColor = count++ % 2 === 0 ? "#444" : "#222";
+          $(html).css({
+              "background-color": bgColor,
+              "border-color": "#ccc",
+              "border-width": "0px 0px 1px 0px",
+              "border-style": "solid",
+          });
+          $("#docs").append(html);
+      }
+      $("#docs").append("<h2>Properties</h2>");
+      for (var key in Alive.docs[obj].properties) {
+          var html = $("<div style='padding-top:5px'>" + Alive.docs[obj].properties[key] + "</div>");
+          var bgColor = count++ % 2 === 0 ? "#222" : "#000";
+          $(html).css({
+              "background-color": bgColor,
+              "border-color": "#ccc",
+              "border-width": "0px 0px 1px 0px",
+              "border-style": "solid",
+          });
+          $("#docs").append(html);
+      }
+  },
+  toggleSidebar : function() {
+    console.log("DOCS");
+    $('#sidebar').toggle();
+    if ($("#sidebar").css("display") == "none") {
+      $('.CodeMirror').css("width", "100%");
+      //$('.CodeMirror-scroll').css("width", "100%");
+      $('#console').css("width", "100%");
+    } else {
+      //if (typeof Gibber.codeWidth !== "undefined") { //if docs/editor split has not been resized
+        $(".CodeMirror").width(500);
+        $("#sidebar").width($("body").width() - $(".CodeMirror").outerWidth() - 8);
+        $("#sidebar").height($(".CodeMirror").outerHeight());
+        // 
+        // $("#resizeButton")
+        //     .css({
+        //     position: "absolute",
+        //     display: "block",
+        //     top: $(".header").height(),
+        //     left: Gibber.codeWidth,
+        // });
+        //}
+    }
+  },
+};
+
 Storage.prototype.setObject = function(key, value) {
     this.setItem(key, JSON.stringify(value));
 }
@@ -366,14 +448,14 @@ $(document).ready( function() {
 		});
 	});
 	
-	$("#fileBar").mousedown( function(e) {
+	$("#docsBar").mousedown( function(e) {
 		$("body").css("-webkit-user-select", "none");
 		
 		$(window).mousemove(function(e) {
-			if(e.pageX > 0) {
-				$("#right").width($("body").width() - e.pageX);
-				$("#left").width( $("body").width() - $("#right").width());
-				$("#right").offset({left:e.pageX});
+			if(e.pageX < $("body").width()) {
+				$("#sidebar").width($("body").width() - e.pageX);
+				$(".CodeMirrow").width( $("body").width() - $("#sidebar").width());
+				//$("#right").offset({left:e.pageX});
 				
 				window.editor.refresh();
 				//$("#consoleContainer").height($("#console").outerHeight() - $("#tabs:first-child").height());
@@ -401,6 +483,65 @@ $(document).ready( function() {
 		var v = "panic()";
 		slaveSocket.emit('execute', {code:v});
 	});
-	
+  
+	$("#docsButton").mousedown( function(e) {
+    Alive.toggleSidebar();
+  });
+  
+  $("#searchButton").click( function(e) {
+      Alive.displayDocs($("#docsSearchInput").val());
+  });
+  $("#tocButton").click( function(e) {
+      Alive.displayTOC();
+  });
+  $("#closeSidebarButton").click( function(e) {
+      Alive.toggleSidebar();
+  });
+  
+  $.getJSON("/js/documentation_output.js", function(data, ts, xgr) {
+      Alive.docs = data;
 
+      var tags = [];
+      Alive.toc = {};
+      for (var key in Alive.docs) {
+          var obj = Alive.docs[key];
+          tags.push({
+              text: key,
+              obj: key,
+              type: "object",
+              class: obj.key,
+          });
+          if (typeof Alive.toc[obj.type] === "undefined") {
+              Alive.toc[obj.type] = [];
+          }
+          Alive.toc[obj.type].push(key);
+
+          if (typeof obj.methods !== "undefined") {
+              for (var method in obj.methods) {
+                  tags.push({
+                      text: method + "( " + key + " )",
+                      obj: key,
+                      type: "method",
+                      name: method,
+                  });
+              }
+          }
+          if (typeof obj.properties !== "undefined") {
+              for (var prop in obj.properties) {
+                  tags.push({
+                      text: prop + "( " + key + " )",
+                      obj: key,
+                      type: "property",
+                      name: prop,
+                  });
+              }
+          }
+      }
+
+      Alive.tags = tags;
+      Alive.displayTOC();
+      //Alive.Environment.displayDocs("Seq");
+  });
 });
+
+

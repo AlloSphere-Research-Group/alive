@@ -1,6 +1,6 @@
 <html>
 <head>
-  	<title>Alive editor</title>
+  <title>Alive editor</title>
 	<link rel="stylesheet" type="text/css" href="js/codemirror/codemirror.css"/>
 	<link rel="stylesheet" type="text/css" href="js/codemirror/vibrant-ink.css"/>
 	<link rel="stylesheet" type="text/css" href="js/codemirror/util/simple-hint.css"/>
@@ -22,7 +22,7 @@
 	<script type="text/javascript" src="js/codemirror/util/simple-hint.js"></script>
 	<script type="text/javascript" src="js/codemirror/util/javascript-hint.js"></script>
 	<script type="text/javascript" src="js/jquery-ui-1.8.23.custom.min.js"></script>
-    <script src="config.js"></script>
+  <script src="config.js"></script>
 	
 	<script src="js/bcsocket-uncompressed.js"></script>
 	<script src="js/share.uncompressed.js"></script>
@@ -50,13 +50,16 @@
 		<div id="filename_header"><span id="filename">Alive</span>
 			| <span id="demo">Demo</span>
 			| <span id="panic">Panic</span>
-			| <span id="sharejs_status">connecting..</span>
+			| <span id="docsButton">Docs</span>
+			| <span id="sharejs_status">connecting...</span>
 		</div>
 		<textarea id="codeEditor" name="codeEditor"></textarea>
 		<div id="sidebar">
-			<div id="docs">
-			Documentation
-			</div>
+			<div id="docsBar"></div>
+			<input style="right:0" id="docsSearchInput" value=""></input><button id="searchButton">Search</button>
+			<button id="tocButton">TOC</button>
+			<button id="closeSidebarButton">X</button>
+			<div id="docs"></div>
 		</div>
 		<div id="console">
 			<div id="consoleBar"></div>

@@ -25,6 +25,22 @@ local Agent = {
 }
 Agent.__index = Agent
 
+--[[#Agent - Object
+An autonomous entity roaming a virtual world.
+
+## Example Usage ##
+`a = Agent('green')  
+a:color(1,0,0)  
+a:moveTo(0,0,-4)`
+--]]
+
+--[[###Agent.amp : method
+**param** *amplitude*: Number. The ampltiude of the agent's sonificaiton ranging from 0..1
+--]]
+
+--[[###Agent.tag : method
+**param** *tags*: List. A comma-separated list of tags to assign to the agent
+--]]
 function Agent:tag(...)
 	local name, more = ...
 	-- skip if already inserted?
@@ -41,6 +57,9 @@ function Agent:tag(...)
 	end
 end
 
+--[[###Agent.untag : method
+**param** *tags*: List. A comma-separated list of tags to remove from the agent
+--]]
 function Agent:untag(...)
 	local name, more = ...
 	local tag = self._tags[name]
@@ -57,6 +76,9 @@ function Agent:untag(...)
 	end
 end
 
+--[[###Agent.enable : method
+**param** *shouldEnable*: Boolean. This method stops (or starts) an agent from computing its values
+--]]
 function Agent:enable(b)
 	if b == false or b == 0 then
 		self._object.enable = 0
@@ -66,27 +88,50 @@ function Agent:enable(b)
 	return self
 end
 
+--[[###Agent.halt : method
+**param** *shouldEnable*: Boolean. This method stops (or starts) an agent moving. Sound and other properties are still computed.
+--]]
 function Agent:halt()
 	self._object.velocity = 0
 	self._object.turn:set(0, 0, 0)
 	return self
 end
 
+--[[###Agent.home : method
+**description** : Move an agent to the 0,0,0 location
+--]]
+
 function Agent:home()
 	self._object.position:set(0, 0, 0)
 	return self
 end
 
+--[[###Agent.move : method
+**description** : Set the velocity for the agent to move at. The vector the agent is determined by the turn method.  
+**param** *velocity*: Number. The movement velocity for the agent.
+--]]
 function Agent:move(z)
 	self._object.velocity = eval(z)
 	return self
 end
 
+--[[###Agent.moveTo : method
+**description** : Move an agent to a given location  
+**param** *x*: Number. x coordinate ranging from -24..24  
+**param** *y*: Number. y coordinate ranging from -24..24  
+**param** *z*: Number. z coordinate ranging from -24..24  
+--]]
 function Agent:moveTo(x,y,z)
 	self._object.position:set(eval(x), eval(y), eval(z))
 	return self
 end
 
+--[[###Agent.color : method
+**description** : Change the color of an agent  
+**param** *red*: Number. The red channel value ranging from 0..1  
+**param** *green*: Number. The green channel value ranging from 0..1  
+**param** *blue*: Number. The blue channel value ranging from 0..1
+--]]
 function Agent:color(r, g, b)
 	self._object.color.r = eval(r)
 	self._object.color.g = eval(g)
@@ -103,11 +148,17 @@ function Agent:turn(a, e, b)
 end
 
 -- audio properties:
+--[[###Agent.amp : method
+**param** *amplitude*: Number. The ampltiude of the agent's sonificaiton ranging from 0..22050
+--]]
 function Agent:freq(f)
 	self._voice.freq = eval(f)
 	return self
 end
 
+--[[###Agent.amp : method
+**param** *amplitude*: Number. The ampltiude of the agent's sonificaiton ranging from 0..1
+--]]
 function Agent:amp(f)
 	self._voice.amp = eval(f)
 	return self
@@ -123,12 +174,18 @@ function Agent:notify(k, ...)
 	end
 end
 
+--[[###Agent.die : method
+**description** : kill the agent
+--]]
 function Agent:die()
 	self:enable(0)
 	self:reset()
 	Agent.pool[#Agent.pool+1] = self.id
 end
 
+--[[###Agent.reset : method
+**description** : unregister notifications and remove all tags from agent
+--]]
 function Agent:reset()
 	-- unregister notifications:
 	for k in pairs(self._handlers) do
@@ -144,6 +201,11 @@ function Agent:reset()
 	end
 end
 
+--[[###Agent.on : method
+**description** : assign an event handler for a particular event  
+**param** *eventName*: String. The name of the event to handle  
+**param** *handler*: Function. The function to call when the event occurs
+--]]
 function Agent:on(event, handler)
 	-- 1. store the handler for this event
 	self._handlers[event] = handler
