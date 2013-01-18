@@ -293,7 +293,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>40</integer>
+									<integer>45</integer>
 									<integer>27</integer>
 									<integer>20</integer>
 									<integer>0</integer>
@@ -335,7 +335,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>36575212161277BE009D11CC</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>agent.lua</string>
+								<string>query.lua</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -343,11 +343,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>36575213161277BE009D11CC</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>agent.lua</string>
+										<string>query.lua</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>365E3F1516A9994600CF8D13</string>
+										<string>365E3F1916A999E200CF8D13</string>
 										<key>history</key>
 										<array>
 											<string>36DE520A163B4545004F736A</string>
@@ -419,8 +419,8 @@
 											<string>365E3EE516A98D4800CF8D13</string>
 											<string>365E3EF216A98F3900CF8D13</string>
 											<string>365E3EF916A9909100CF8D13</string>
-											<string>365E3F1116A9993700CF8D13</string>
-											<string>365E3F1216A9993700CF8D13</string>
+											<string>365E3F1616A999C800CF8D13</string>
+											<string>365E3F1716A999C800CF8D13</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>

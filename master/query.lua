@@ -16,6 +16,7 @@ tag.__index = tag
 
 local
 function Tag(name)
+	-- TODO: or generate a tag name randomly?
 	assert(name and type(name)=="string")
 	local o = tags[name]
 	if not o then
@@ -57,6 +58,10 @@ end
 
 function tag:__newindex(k, v)
 	rawget(self, "properties")[k] = eval(v)
+end
+
+function tag:__call(t)
+	for k, v in pairs(t) do self[k] = v end
 end
 
 function tag:__index(k)
