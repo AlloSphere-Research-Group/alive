@@ -253,10 +253,19 @@ end
 function Agent:face(x, y, z)
 	if type(x) == "table" and not isexpr(x) then x, y, z = unpack(x) end
 	
+	local uz = self._object.uz
+	
 	local dir = (vec3(x, y, z) - self._object.position):normalize()
 	print(relative)
 	
+	local rotaxis = uz:cross(dir)
+	local rotangle = math.acos(uz:dot(dir))
+	
+	self._object.turn:fromAxisAngle(rotangle, rotaxis)
+	
 	-- local rot = quat.lookrotation(dir)
+	
+	-- convert to euler & set
 end
 
 -- audio properties:
