@@ -2,7 +2,7 @@
 local ffi = require "ffi"
 local header = require "header"
 local C = ffi.C
-local app = C.app_get()
+local app = C.global_get()
 
 local ev = require "ev"
 local loop = ev.default_loop()
@@ -13,9 +13,12 @@ local notify = require "notify"
 local notify_trigger = notify.trigger
 
 
-local main = scheduler()
+local main = scheduler.create()
 -- these are global:
 go, now, wait, event, sequence, cancel = main.go, main.now, main.wait, main.event, main.sequence, main.cancel
+
+
+
 
 -- bpm is also global, so it can be easily modified:
 bpm = 120
@@ -31,6 +34,7 @@ end)
 
 local av = {
 	app = app,
+	panic = scheduler.panic,
 }
 
 av.timer = ev.Timer(function(loop, handler, event)

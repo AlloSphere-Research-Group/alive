@@ -1,78 +1,62 @@
-print("starting main2.lua")
+-- STARTUP INITIALIZATION
+-- not using locals here
+-- so that the environment is already primed for live coding without verbiosity
 
-local av = require "av"
-local app = av.app
-local vec = require "vec"
-local E = require "expr"
+-- math extensions:
+function math.srandom() return random() * 2 - 1 end
+-- copy all math lib into global scope:
+for k, v in pairs(math) do _G[k] = v end
+
+-- pull in modules:
+av = require "av"
+app = av.app
+vec = require "vec"
+E = require "expr"
 E:globalize()
 local agent = require "agent"
-local Agent = agent.Agent
+Agent = agent.Agent
+A = Agent
 Q = require "query"
 
-local sin, cos = math.sin,math.cos
-local abs, floor = math.abs, math.floor
-local table_remove = table.remove
-local random = math.random
-local srandom = function() return random() * 2 - 1 end
-
+-- random means random
 math.randomseed(os.time())
 
---------------------------------------------------------------------------------
--- DEMO
---------------------------------------------------------------------------------
-
---[[
-
-stateful exprs
-
-p = SinOsc(10) + 1
-	=> { op="+", { op="sinosc", 10 }, { op="number", 1 } }
-
-=>
-
-loadstring this:
-
-local phase = 0
-return function(env, dt)
-	phase = phase + 10 / dt
-	local v1 = sin(phase * pi * 2)
-	local v2 = v1 + 1
-	return v2
+-- panic handler:
+function panic()
+	-- kill all coroutines:
+	av.panic()
+	
+	-- kill all agents:
+	Q("*"):die()
 end
 
---]]
-
---[[
-go(function()
-	while true do
-		Q("red", "green"):move(Random()*5*Random())
-	
-		Q("red"):pick(0.2):turn(srandom()*3, srandom()*3, srandom()*3)
-						:freq(Random() + 55 * Random(10))
-		wait("beat")
-	end
-end)
-
-go(function()
-	while true do
+function demo()
+	-- create some agents
+	for i = 1, 25 do
 		local a = Agent("green")
 		local c = random() * 0.8
 		a:color(c, 1, c)
 		a:freq(random() + 55 * random(5))
 		a:on("beat", function(self, event)
-			self:move(random(10))
+			self:move(srandom(10))
 		end)
-		wait(1)
 		
 		for i = 1, 4 do
 			local a = Agent("red")
 			local c = random() * 0.8
 			a:color(1, c, c)
 			a:freq(random() + 55 * random(4 + 8))
-			wait(1)
+			a:move(random(10))
 		end
 	end
-end)
-
-print("ok")
---]]
+	
+	-- make them change:
+	go(function()
+		while true do
+			Q("red", "green"):pick(0.2)
+				--:turn(srandom()*3, srandom()*3, srandom()*3)
+				--:freq(Random() + 55 * Random(10))
+			wait("beat")
+		end
+	end)
+end

@@ -66,7 +66,14 @@ static const int WORLD_DIM = 32;	// power of 2
 
 static const int DOPPLER_SAMPLES = 4096;
 
+static const int TRAIL_LENGTH = 8;
+
 // C-friendly state amenable to FFI in Lua and serialization to disk, network etc.
+
+typedef struct Trail {
+	quat rotate;
+	vec3 position;
+} Trail;
 
 typedef struct Agent {
 	
@@ -87,6 +94,10 @@ typedef struct Agent {
 	// cached for simulation:
 	vec3 ux, uy, uz;
 	
+	// trails:
+	Trail trails[TRAIL_LENGTH];
+	int32_t trail_start, trail_size;
+	
 } Agent;
 
 typedef struct Shared {
@@ -94,6 +105,13 @@ typedef struct Shared {
 	Agent agents[MAX_AGENTS];
 	Pose view;
 	vec3 active_origin;
+	
+	Color bgcolor;
+	
+	uint32_t framecount;
+	uint32_t mode;
+	uint32_t enable_stereo;
+	uint32_t show_collisions;
 	
 } Shared;
 
@@ -126,13 +144,16 @@ typedef struct Global {
 	SpeakerConfig speakers[MAX_SPEAKERS];
 	double doppler_strength;
 	int32_t numActiveSpeakers;
-	float audiogain;
+	
+	float audiogain, reverbgain;
 	
 	void (*update)(struct Global& app, double dt);
 	
 } Global;
 
-Global * app_get();
+void agent_reset(Agent& a);
+
+Global * global_get();
 
 #ifdef __cplusplus
 }

@@ -19,7 +19,6 @@ elif [[ $PLATFORM == 'Linux' ]]; then
 	
 	mkdir -p externs
 	
-	
 	# nodejs package is too old in ubuntu 12.04:
 	sudo apt-get install nodejs
 	sudo apt-get install libavahi-compat-libdnssd-dev

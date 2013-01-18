@@ -6818,6 +6818,11 @@
 		369024D316891E4C00B1AE20 /* test.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = test.lua; sourceTree = "<group>"; };
 		36964A3C167B17E50018B2C9 /* vec.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = vec.lua; sourceTree = "<group>"; };
 		36964ADA167BEE160018B2C9 /* ev.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = ev.lua; sourceTree = "<group>"; };
+		36974A4316A3B6D100FA5D59 /* tutorial.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tutorial.txt; sourceTree = "<group>"; };
+		36974A5816A3BD3C00FA5D59 /* install_node_modules.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = install_node_modules.sh; sourceTree = "<group>"; };
+		36974AC716A3DD2E00FA5D59 /* gigaverb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gigaverb.h; sourceTree = "<group>"; };
+		36974C4016A402CF00FA5D59 /* audio_utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = audio_utils.h; sourceTree = "<group>"; };
+		36974CB416A41FBF00FA5D59 /* expr_test.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = expr_test.lua; sourceTree = "<group>"; };
 		369FF8BE1676A2A0005F384F /* Q.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Q.hpp; sourceTree = "<group>"; };
 		36A61D1016877CCD00E1A440 /* notify.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = notify.lua; sourceTree = "<group>"; };
 		36A61D2416877FA300E1A440 /* agent.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lua; path = agent.lua; sourceTree = "<group>"; };
@@ -21287,14 +21292,17 @@
 		36A61DB81687E02000E1A440 /* vm */ = {
 			isa = PBXGroup;
 			children = (
+				36974A4316A3B6D100FA5D59 /* tutorial.txt */,
 				369FF8BE1676A2A0005F384F /* Q.hpp */,
+				36974C4016A402CF00FA5D59 /* audio_utils.h */,
+				36974AC716A3DD2E00FA5D59 /* gigaverb.h */,
 				364EDD56169722DC00591C30 /* al_SharePOD.hpp */,
 				364EDD57169722DC00591C30 /* al_SharePOD.cpp */,
 				366E3C461674856A00F3B556 /* main.h */,
 				366E3C471674856A00F3B556 /* main.cpp */,
 				366E3C641674875600F3B556 /* header.lua */,
-				366E3C8716748C6200F3B556 /* av.lua */,
 				36964ADA167BEE160018B2C9 /* ev.lua */,
+				366E3C8716748C6200F3B556 /* av.lua */,
 				36964A3C167B17E50018B2C9 /* vec.lua */,
 				36A61D2416877FA300E1A440 /* agent.lua */,
 				36A61D34168783FB00E1A440 /* expr.lua */,
@@ -21304,6 +21312,7 @@
 				36C79F891686C81B00F09C97 /* scheduler.lua */,
 				363BA36C1674853E00E85175 /* main.lua */,
 				369024D316891E4C00B1AE20 /* test.lua */,
+				36974CB416A41FBF00FA5D59 /* expr_test.lua */,
 			);
 			name = vm;
 			sourceTree = "<group>";
@@ -21313,6 +21322,7 @@
 			children = (
 				366E3C651674880700F3B556 /* notes.txt */,
 				3657525F161277FD009D11CC /* install_dependencies.sh */,
+				36974A5816A3BD3C00FA5D59 /* install_node_modules.sh */,
 				366E3C4A167485E800F3B556 /* build.sh */,
 				366E3C551674869100F3B556 /* h2ffi.lua */,
 			);

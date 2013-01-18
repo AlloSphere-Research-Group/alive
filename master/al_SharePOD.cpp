@@ -8,6 +8,7 @@
 	#include "apr-1/apr_network_io.h"
 	#include "apr-1/apr_time.h"
 	#include "apr-1/apr_thread_proc.h"
+	#include "apr-1/apr_thread_cond.h"
 	#include "apr-1/apr_poll.h"
 
 #else
@@ -17,6 +18,7 @@
 	#include "apr-1.0/apr_network_io.h"
 	#include "apr-1.0/apr_time.h"
 	#include "apr-1.0/apr_thread_proc.h"
+	#include "apr-1.0/apr_thread_cond.h"
 	#include "apr-1.0/apr_poll.h"
 #endif
 
@@ -110,8 +112,6 @@ public:
 				
 				// scan active sockets:
 				for (int i=0; i<numActiveSockets; i++) {
-					//printf("activity on socket %d\n", i);
-					
 					// if this is the server socket:
 					if (ret_pfd[i].desc.s == mSock) {
 						// there is activity on our listener socket
@@ -119,7 +119,7 @@ public:
 						
 						apr_socket_t * client;	// accepted socket
 						if (0 == check_apr(apr_socket_accept(&client, mSock, mPool))) {
-							//printf("listener accepted\n");
+							printf("listener %d accepted\n", i);
 							
 							
 							// configure non-blocking:
@@ -238,6 +238,10 @@ public:
 		mPort = port;
 		mServerName = serverName;
 		
+		// create condition variable:
+		if (check_apr(apr_thread_cond_create(&mCond, mPool))) return false;
+		if (check_apr(apr_thread_mutex_create(&mCondMutex, APR_THREAD_MUTEX_UNNESTED, mPool))) return false;
+		
 		// launch thread:
 		if (check_apr(apr_threadattr_create(&thd_attr, mPool))) return false;
 		if (check_apr(apr_thread_create(&thd, thd_attr, clientThreadFunc, this, mPool))) return false;
@@ -247,6 +251,10 @@ public:
 	static void * clientThreadFunc(apr_thread_t * thd, void * data) {
 		((Impl *)data)->clientThread();
 		return 0;
+	}
+	
+	void clientRequest() {
+		apr_thread_cond_signal(mCond);
 	}
 	
 	void clientThread() {
@@ -273,6 +281,11 @@ public:
 				check_apr(apr_socket_timeout_set(mSock, -1));
 				
 				for (int frame = 0; connected; frame++) {
+				
+					// wait for request condition:
+					apr_thread_mutex_lock(mCondMutex);
+					apr_thread_cond_wait(mCond, mCondMutex);
+					apr_thread_mutex_unlock(mCondMutex);
 					
 					// send a request:
 					const char * header = "GIMME";	// could add hostname here etc.
@@ -301,8 +314,6 @@ public:
 						if (remain == 0) {
 							// completed transfer:
 							handler->onReceivedSharedBlob(mBuffer, mSize);
-							
-							if (frame % 25 == 0) printf("frame %d complete\n", frame);
 						} else {
 							// assume error
 							connected = false;
@@ -321,14 +332,21 @@ public:
 		}
 		
 		apr_socket_close(mSock);
+		
+		apr_thread_mutex_destroy(mCondMutex);
+		apr_thread_cond_destroy(mCond);
 	}
 	
 	int mPort;
 	std::string mServerName;
 	
-	// the listener thread:
+	// the thread:
 	apr_threadattr_t * thd_attr;
 	apr_thread_t * thd;
+	
+	// condition variable (used by client to signal request):
+	apr_thread_cond_t * mCond;
+	apr_thread_mutex_t * mCondMutex;
 	
 	apr_sockaddr_t * mSockAddr;
 	apr_socket_t * mSock;
@@ -355,4 +373,8 @@ bool SharedBlob :: startServer(Handler * h, int port) {
 bool SharedBlob :: startClient(Handler * h, const std::string& serverName, int port) {
 	mImpl->handler = h;
 	return mImpl->startClient(serverName, port);
+}
+
+void SharedBlob :: clientRequest() {
+	mImpl->clientRequest();
 }

@@ -1,6 +1,8 @@
 #include "main.h"
 #include "Q.hpp"
+#include "gigaverb.h"
 
+#include "allocore/graphics/al_DisplayList.hpp"
 #include "allocore/spatial/al_HashSpace.hpp"
 #include "alloutil/al_OmniApp.hpp"
 #include "alloutil/al_Lua.hpp"
@@ -11,6 +13,9 @@
 #include <stdlib.h>
 
 using namespace al;
+
+bool bMaster = true;
+bool bRemoteAudio = false;
 
 // audio globals:
 double samplerate = 44100;
@@ -61,49 +66,6 @@ inline vec3 quat_unrotate(const quat& q, const vec3& v) {
     );
 }
 
-// scale is like inverse far, so 1/32 creates a bigger world than 1/4
-// amplitude drops to 50% at distance == (1/scale + near)
-inline double attenuate(double d, double near, double scale) {
-	double x = (d - near) * scale;
-	if (x > 0.) {
-		double xc = x + 4;
-		double x1 = xc / (x*x + x + xc);
-		return x1 * x1;
-	}
-	return 1.;
-}
-
-inline double cosine_interp(double x, double y, double a) {
-	const double a2 = (1.-cos(a*3.14159265358979323846264338327950288))/2.;
-	return(x*(1.-a2)+y*a2);
-}
-
-// linear interpolation (same as mix)
-inline double linear_interp(double x, double y, double a) {
-	return x+a*(y-x); 
-}
-
-// cubic interpolation
-inline double cubic_interp(double w, double x, double y, double z, double a) {
-	const double a2 = a*a;
-	const double f0 = z - y - w + x;
-	const double f1 = w - x - f0;
-	const double f2 = y - w;
-	const double f3 = x;
-	return(f0*a*a2 + f1*a2 + f2*a + f3);
-}
-
-// 60%
-// Breeuwsma catmull-rom spline interpolation
-// slightly faster than three alternatives tried
-inline double spline_interp(double w, double x, double y, double z, double a) {
-	const double a2 = a*a;
-	const double f0 = -0.5*w + 1.5*x - 1.5*y + 0.5*z;
-	const double f1 = w - 2.5*x + 2*y - 0.5*z;
-	const double f2 = -0.5*w + 0.5*y;
-	return(f0*a*a2 + f1*a2 + f2*a + x);
-}
-
 Q<audiomsg_packet> audioq;
 double audiotime = 0;	// seconds
 double maintime = 0;	// seconds
@@ -126,83 +88,103 @@ audiomsg * audioq_next(double maxtime) {
 	return audioq_peek(maxtime);
 }
 
+void agent_reset(Agent& a) {
+	a.nearest = a.id;
+	a.enable = 0;
+	a.visible = 1;
+	a.trail_start = 0;
+	a.trail_size = 0;
+}	
+
 #pragma mark App
 
 class App : public OmniApp, public Global, public SharedBlob::Handler {
 public:
 
 	App() 
-	:	space(5, MAX_AGENTS),
+	:	OmniApp("alive", !bMaster),
+		space(5, MAX_AGENTS),
 		qnearest(6)
 	{
+		title("alive");
+		
 		// one-time only:
 		if (omni().activeStereo()) {
 			omni().resolution(2048);
+			bRemoteAudio = true;
 		} else {
 			omni().resolution(256);
 		}
 		lens().fovy(85);
 		lens().far(WORLD_DIM * 0.5);
 		
+		mNavSpeed = 0.1;
+		
+		nav().halt();
+		nav().home();
+		
 		printf("running on %s\n", hostName().c_str());
 		printf("blob %d\n", (int)sizeof(Shared));
 		
-		
 		updating = true;
 		
-		if (hostName() == "photon") {
-			AudioDevice::printAll();
-			AudioDevice indev("system", AudioDevice::INPUT);
-			AudioDevice outdev("system", AudioDevice::OUTPUT);
-			//initAudio("system", 44100, 1024, 12, 12);
-			
-			audioIO().deviceIn(indev);
-			audioIO().deviceOut(outdev);
-			audioIO().channelsOut(12);
-			initAudio(44100, 1024);
-			
-			audioIO().print();
-			
-		} else {
-			initAudio(44100, 1024);
-		}
-
-		initAudio(44100, 1024);
-		audiotime = 0;
-		doppler_strength = 1.;
-		
-		update = 0;
-		
-		audioIO().channelsBus(2);
-		
-		numActiveSpeakers = 2;
-		for (int i=0; i<numActiveSpeakers; i++) {
-			SpeakerConfig& s = speakers[i];
-			double angle = M_PI * 0.5 * (i - 0.5);
-			s.weights.w = M_SQRT1_2;
-			s.weights.x = sin(angle);
-			s.weights.y = 0.;
-			s.weights.z = -cos(angle);
-		}
-		
-		audiogain = 0.5;
-		
 		// initialize shared:
+		shared.framecount = 0;
+		shared.mode = 0;
+		shared.bgcolor.set(0.25);
+		shared.enable_stereo = omni().stereo();
+		shared.show_collisions = 0;
 		reset();	
 		
 		// start sharing:
-		if (hostName() == "spherez03" ||
-			hostName() == "spherez04" ||
-			hostName() == "spherez05" ||
-			hostName() == "spherez06") {
+		if (bMaster) {
+		
+			if (hostName() == "photon") {
+				AudioDevice::printAll();
+				AudioDevice indev("system", AudioDevice::INPUT);
+				AudioDevice outdev("system", AudioDevice::OUTPUT);
+				//initAudio("system", 44100, 1024, 12, 12);
+				
+				audioIO().deviceIn(indev);
+				audioIO().deviceOut(outdev);
+				audioIO().channelsOut(12);
+				initAudio(44100, 1024);
+				
+				audioIO().print();
+				
+			} else {
+				initAudio(44100, 1024);
+			}
+
+			initAudio(44100, 1024);
+			audiotime = 0;
+			doppler_strength = 1.;
 			
-			pod.startClient(this, "photon");
-			bMaster = false;
+			audiogain = 0.5;
+			reverbgain = 0.03;
+			
+			verb.reset();
+			
+			update = 0;
+			
+			// we want some extra space for e.g. reverb channels:
+			audioIO().channelsBus(2);
+			
+			// stereo mode:
+			numActiveSpeakers = 2;
+			for (int i=0; i<numActiveSpeakers; i++) {
+				SpeakerConfig& s = speakers[i];
+				double angle = M_PI * 0.5 * (i - 0.5);
+				s.weights.w = M_SQRT1_2;
+				s.weights.x = sin(angle);
+				s.weights.y = 0.;
+				s.weights.z = -cos(angle);
+			}
+		
+			pod.startServer(this);
 			
 		} else {
-			
-			pod.startServer(this);
-			bMaster = true;
+			pod.startClient(this, "photon");
 		}
 	}
 	
@@ -228,6 +210,10 @@ public:
 			a.rotate.toVectorY(a.uy);
 			a.rotate.toVectorZ(a.uz);
 			
+			// trails:
+			a.trail_start = 0;
+			a.trail_size = 0;
+			
 			Voice& v = voices[i];
 			memset(v.buffer, 0, sizeof(float) * DOPPLER_SAMPLES);
 			v.encode.set(0, 0, 0, 0);
@@ -239,6 +225,8 @@ public:
 			v.freq = 220;
 			v.phase = 0;
 			v.synthesize = default_synthesize_func;
+			
+			
 		}
 	}
 	
@@ -308,12 +296,12 @@ public:
 	virtual std::string fragmentCode() {
 		return AL_STRINGIFY(
 			uniform float lighting;
+			uniform vec4 bgcolor;
 			varying vec4 color;
 			varying vec3 normal, lightDir, eyeVec;
 			varying vec4 La, Ld, Ls;
 			varying float fog;
 			void main() {
-				vec4 fogcolor = vec4(0., 0., 0., 1.);
 				vec4 final_color = color * La;
 				vec3 N = normalize(normal);
 				vec3 L = lightDir;
@@ -325,13 +313,14 @@ public:
 				//spec = pow(spec, 1.);
 				final_color += Ls * spec;
 				final_color = mix(color, final_color, lighting);
-				gl_FragColor = mix(final_color, fogcolor, fog);
+				gl_FragColor = mix(final_color, bgcolor, fog);
 			}
 		);
 	}
 	
 	virtual void onDraw(Graphics& gl) {
 		shader().uniform("lighting", 0.2);
+		shader().uniform("bgcolor", shared.bgcolor.r, shared.bgcolor.g, shared.bgcolor.b, shared.bgcolor.a);
 		
 		//gl.polygonMode(gl.LINE);
 		
@@ -346,27 +335,53 @@ public:
 				shader().attribute(translateAttr, a.position.x, a.position.y, a.position.z);
 				shader().attribute(scaleAttr, a.scale.x, a.scale.y, a.scale.z);
 				gl.color(a.color.r, a.color.g, a.color.b, a.color.a);
-				gl.draw(cube);
+				cubelist.draw();
+				
+				// now draw tails:
+				
+				//a.trail_start should be the most recent one
+				//a.trail_start - 1 would be the prev
+				int start = a.trail_start;
+				int size = a.trail_size;
+				double fade = 1;
+				for (int i = 1; i < size - 1; i++) {
+					int idx = start + i;
+					const Trail& trail = a.trails[idx % (TRAIL_LENGTH - 1)];
+					
+					// use 0.9 if TRAIL_LENGTH is 16.
+					fade *= 0.8; // fades to 0.16 after 8 times
+					
+					shader().attribute(rotateAttr, trail.rotate.x, trail.rotate.y, trail.rotate.z, trail.rotate.w);
+					shader().attribute(translateAttr, trail.position.x, trail.position.y, trail.position.z);
+					shader().attribute(scaleAttr, a.scale.x * fade, a.scale.y * fade, a.scale.z);
+					cubelist.draw();
+				}
 			}
 		}
 		
-		gl.color(0.2);
-		shader().attribute(rotateAttr, 0, 0, 0, 1);
-		shader().attribute(translateAttr, 0, 0, 0);
-		shader().attribute(scaleAttr, 1, 1, 1);
-		gl.begin(gl.LINES);
-		for (int i=0; i<MAX_AGENTS; i++) {
-			Agent& a = shared.agents[i];
-			if (a.enable && a.visible) {
-				Agent& b = shared.agents[a.nearest];
-				gl.vertex(a.position);
-				gl.vertex(b.position);
+		if (shared.show_collisions) {
+			shader().attribute(rotateAttr, 0, 0, 0, 1);
+			shader().attribute(translateAttr, 0, 0, 0);
+			shader().attribute(scaleAttr, 1, 1, 1);
+			gl.color(0.2);
+			gl.begin(gl.LINES);
+			for (int i=0; i<MAX_AGENTS; i++) {
+				Agent& a = shared.agents[i];
+				
+				if (a.enable && a.visible) {
+					Agent& b = shared.agents[a.nearest];
+					gl.vertex(a.position);
+					gl.vertex(b.position);
+				}
 			}
+			gl.end();
 		}
-		gl.end();
 	}
 	
 	void simulate(al_sec dt) {
+		// call back into LuaJIT:
+		if (update) update(*this, dt);
+		
 		for (int i=0; i<MAX_AGENTS; i++) {
 			Agent& a = shared.agents[i];
 			if (a.enable) {
@@ -391,20 +406,30 @@ public:
 					a.nearest = a.id;
 				}
 
-			
+				// add to trail:
+				a.trail_start = (a.trail_start - 1) & (TRAIL_LENGTH - 1);
+				if (a.trail_size < TRAIL_LENGTH) a.trail_size++;
+				a.trails[a.trail_start].position = a.position;
+				a.trails[a.trail_start].rotate = a.rotate;
 			}
 		}
-		
-		// call back into LuaJIT:
-		if (update) update(*this, dt);
 	}
 	
 	virtual void onAnimate(al_sec dt) {
+		omni().clearColor() = shared.bgcolor;
+		omni().stereo(shared.enable_stereo);
+	
 		// on create:
 		if (frame == 1) {
 			// allocate GPU resources:
 			cube.primitive(gl.QUADS);
 			addCube(cube, true, 0.5);
+			// shift it forward:
+			cube.translate(0, 0, -0.25);
+			
+			cubelist.begin();
+			gl.draw(cube);
+			cubelist.end();
 			
 			shader().begin();
 			shader().uniform("lighting", 0.8);
@@ -412,13 +437,18 @@ public:
 		}
 		
 		if (bMaster) {
+			shared.framecount++;
+			
 			// nav updated:
 			for (int j=0; j<3; j++) {
 				shared.active_origin[j] = floor(nav().pos()[j] - WORLD_DIM/2);
 			}
 			
 			if (updating) simulate(dt);
+		} else {
+			pod.clientRequest();
 		}
+
 		
 		//printf("audio cpu %f\n", audioIO().cpu());
 	}
@@ -434,14 +464,23 @@ public:
 		double dt = frame * invsamplerate;
 		
 		if (audiotime == 0) {
-			printf("audio started %d samples, %f Hz, %dx%d + %d\n", frames, samplerate, io.channelsIn(), io.channelsOut(), io.channelsBus());
+			printf("audio started (remote == %d) %d samples, %f Hz, %dx%d + %d\n", bRemoteAudio, frames, samplerate, io.channelsIn(), io.channelsOut(), io.channelsBus());
 		}
 		io.zeroOut();
 		io.zeroBus();
 		
-		//float * bus = io.busBuffer(0);
+		float * R = io.busBuffer(0); // the reverb bus
+		
+		// the raw decode outs
+		float * W = io.outBuffer(0);
+		float * X = io.outBuffer(1);
+		float * Y = io.outBuffer(2);
+		float * Z = io.outBuffer(3);
+		
+		// desktop stereo mode:
 		float * out0 = io.outBuffer(0);
 		float * out1 = io.outBuffer(1);
+		
 		vec4 w0 = speakers[0].weights;
 		vec4 w1 = speakers[1].weights;
 		Pose& view = nav();
@@ -452,7 +491,6 @@ public:
 		// play all agents:
 		for (int i=0; i<MAX_AGENTS; i++) {
 			Agent& a = shared.agents[i];
-			
 			if (a.enable) {
 			
 				// do movement here in audio thread:
@@ -490,11 +528,11 @@ public:
 				// unit rel:
 				vec3 direction = rel * (1./d);			
 				// amplitude scale by distance:
-				double atten = attenuate(d2, 0.2, 1/24.);
+				double atten = attenuate(d2, 0.2, 0.04);
 				// omni mix is also distance-dependent. 
 				// at near distances, the signal should be omnidirectional
 				// the minimum really depends on the radii of the listener/emitter
-				double spatial = 1. - attenuate(d2, 0.2, 1/2.);
+				double spatial = 1. - attenuate(d2, 0.1, 0.9);
 				// encode matrix:
 				// first 3 harmonics are the same as the unit direction:
 				vec4 encode(
@@ -515,7 +553,7 @@ public:
 					// linear interpolate encoding matrix:
 					double alpha = j * invframes;
 					vec4 enc = ipl::linear(alpha, v.encode, encode);
-					double dist = linear_interp(v.distance, d, alpha);
+					double dist = linear_interp(alpha, v.distance, d);
 					
 					// doppler lookup
 					// take current buffer index
@@ -524,11 +562,9 @@ public:
 					int32_t idx1 = int32_t(idx);
 					double idxf = idx - double(idx1); // will this work?
 					
-					// linear interp doesn't seem to be enough... 
 					float s0 = v.buffer[(idx1 - 1) & (DOPPLER_SAMPLES - 1)];
 					float s1 = v.buffer[idx1 & (DOPPLER_SAMPLES - 1)];
-					float s = linear_interp(s0, s1, idxf);
-					//float s = cosine_interp(s0, s1, idxf);
+					float s = linear_interp(idxf, s0, s1);
 					
 						
 					if (j==0) {
@@ -538,20 +574,34 @@ public:
 					
 					s *= v.amp * audiogain;
 					
-					// decode:
-					out0[j] = out0[j] + s * (
-						+ w0.x * enc.x
-						+ w0.y * enc.y 
-						+ w0.z * enc.z
-						+		 enc.w	//  * w0.w
-					);
+					R[j] += s * reverbgain;
+						
+					// allosphere doesn't decode:
+					if (bRemoteAudio) {
 					
-					out1[j] = out1[j] + s * (
-						+ w1.x * enc.x
-						+ w1.y * enc.y 
-						+ w1.z * enc.z
-						+		 enc.w	//  * w1.w
-					);
+						// don't decode locally:
+						W[j] += s; // * enc.w;
+						X[j] += s * enc.x;
+						Y[j] += s * enc.y;
+						Z[j] += s * enc.z;
+						
+					} else {
+					
+						// local decode (stereo):
+						out0[j] = out0[j] + s * (
+							+ w0.x * enc.x
+							+ w0.y * enc.y 
+							+ w0.z * enc.z
+							+		 enc.w	//  * w0.w
+						);
+						
+						out1[j] = out1[j] + s * (
+							+ w1.x * enc.x
+							+ w1.y * enc.y 
+							+ w1.z * enc.z
+							+		 enc.w	//  * w1.w
+						);
+					}
 				}
 				
 				// update cached:
@@ -561,29 +611,51 @@ public:
 				v.buffer_index = (v.buffer_index + frames) & (DOPPLER_SAMPLES - 1);
 			}
 		}
+			
+		// do the reverb:
+		if (bRemoteAudio) {
+			verb.perform(R, X, Y, frames);
+		} else {
+			verb.perform(R, out0, out1, frames);
+		}
 		
 		audiotime = nexttime;	
 	}
 	
 	// this handler is called when a client receives blob from the server
 	virtual void onReceivedSharedBlob(const char * blob, size_t size) {
+		uint32_t framecount = ((Shared *)blob)->framecount;
+		if (framecount % 50 == 0) printf("sent %d\n", framecount);
 		memcpy(&shared, blob, size);
 	}
 	
 	// this handler is called when a server requires data to send to a client
 	virtual char * onSendSharedBlob() {
+		if (shared.framecount % 50 == 0) printf("sent %d\n", shared.framecount);
 		return (char *)&shared;
 	}
 	
 	virtual bool onKeyDown(const Keyboard& k) {
 		switch (k.key()) {
-			case 32:
+			case Keyboard::TAB:
+				shared.enable_stereo = !shared.enable_stereo;
+				printf("stereo %d\n", shared.enable_stereo);
+				break;
+			case 32: // space
 				updating = !updating;
 				break;
+			case 8: // backspace
+				nav().halt();
+				nav().home();
+				break;
+			case 'H':
+				sendHandshake();
+				break;
 			case 'O':
-        omniEnable(!omniEnable());
+				omniEnable(!omniEnable());
 				break;
 			default:
+				printf("key down %d\n", k.key());
 				break;
 		}
 		return 1;
@@ -601,21 +673,41 @@ public:
 	
 	Graphics gl;
 	Mesh cube;
+	DisplayList cubelist;
 	
 	SharePOD<Shared> pod;
-	bool updating, bMaster;
+	
+	Gigaverb verb;
+	
+	bool updating;
 };
 
 App * app;
 
-Global * app_get() {
-	return app;
+Global * global_get() {
+	return (Global *)app;
 }
 
 int main(int argc, char * argv[]) {
-	
-	init_wavetables();
 
+	std::string hostName = Socket::hostName();
+	std::string masterName;
+	if (argc > 1) {
+		masterName = argv[1];
+	} else {
+		masterName = hostName;
+	}
+
+	if (masterName == hostName) {
+		printf("I AM THE MASTER\n");
+		bMaster = true;
+	} else {
+		printf("I AM NOT THE MASTER\n");
+		bMaster = false;
+	}
+
+	init_wavetables();
+	
 	app = new App;
 
 	// run main script:

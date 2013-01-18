@@ -9,6 +9,10 @@ local E = require "expr"
 local eval = E.eval
 local app = av.app
 
+local ffi = require "ffi"
+local C = ffi.C
+
+local format = string.format
 local sin, cos = math.sin,math.cos
 local abs, floor = math.abs, math.floor
 local table_remove = table.remove
@@ -104,6 +108,11 @@ function Agent:freq(f)
 	return self
 end
 
+function Agent:amp(f)
+	self._voice.amp = eval(f)
+	return self
+end
+
 function Agent:notify(k, ...)
 	local handler = self._handlers[k]
 	if handler then
@@ -115,7 +124,7 @@ function Agent:notify(k, ...)
 end
 
 function Agent:die()
-	self.enable = 0
+	self:enable(0)
 	self:reset()
 	Agent.pool[#Agent.pool+1] = self.id
 end
@@ -143,6 +152,9 @@ function Agent:on(event, handler)
 end
 
 setmetatable(Agent, {
+	__tostring = function(self)
+		return format("Agent(%d)", self.id)
+	end,
 	__call = function(self, ...)
 		-- grab an agent (stealing if necessary)
 		local id = table_remove(self.pool)
@@ -157,6 +169,7 @@ setmetatable(Agent, {
 			self.agents[id]:reset()
 			
 		end
+		C.agent_reset(agent._object)
 		agent:enable()
 		agent:tag("*", ...)
 		-- return agent:
