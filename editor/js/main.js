@@ -278,14 +278,14 @@ $(document).ready( function() {
     console.log("DATA");
     console.log(msg.msg);
     text = msg.msg.replace(/\n/g, "<br>");
-		$("#console-all").append($("<span style='color:#fff'>"+text+"</span><br>"));
+		$("#_console").append($("<span style='color:#fff'>"+text+"</span><br>"));
 		//$("#consoleContainer").scrollTop($("#consoleContainer")[0].scrollHeight);
-    $("#console-all").scrollTop($("#consoleContainer")[0].scrollHeight);
+    $("#_console").scrollTop($("#_console")[0].scrollHeight);
 	});
 
 	slaveSocket.on('err', function(msg) {
-		$("#console-all").append($("<span style='color:#f00'>"+msg.msg+"</span><br>"));
-		$("#consoleContainer").scrollTop($("#consoleContainer")[0].scrollHeight);
+		$("#_console").append($("<span style='color:#f00'>"+msg.msg+"</span><br>"));
+		$("#_console").scrollTop($("#_console")[0].scrollHeight);
 	});
 	
 	slaveSocket.on('read', function (response) {
