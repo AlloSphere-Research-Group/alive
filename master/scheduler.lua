@@ -256,7 +256,7 @@ b = sequence( function() a:color(Random(), Random(), Random()) end, .25, 10)`
 **param** *time* Seconds. The amount of time to wait before each execution of the funtion  
 **param** *repeats* OPTIONAL. Number. If provided, the sequencer will only run the specified number of times and then stop itself.  
 --]]       
-		self.sequence = function(func, time, repeats)
+		self.sequence = function(func, _time, repeats)
 			local _stop = false
 			local _scheduler = self
 			local count = 0
@@ -267,7 +267,7 @@ b = sequence( function() a:color(Random(), Random(), Random()) end, .25, 10)`
 				run = function()
 					while not _stop do
 						func()
-						wait(time)
+						wait(_time)
 						if limited and count < repeats then
 							count = count + 1
 							if count >= repeats then 
@@ -288,7 +288,15 @@ b = sequence( function() a:color(Random(), Random(), Random()) end, .25, 10)`
 				start = function()
 					_stop = false
 					_scheduler.go(o.run)
-				end
+        end,
+--[[###Sequence.time : method
+**description** Change the amount of time between function executions by the sequencer  
+  
+**param** *time* Number. The number of seconds to wait in between function calls
+--]]
+        time = function(s,t)
+          _time = t
+        end,
 			}
 
 			self.go(o.run)
