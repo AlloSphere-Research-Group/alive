@@ -25,6 +25,23 @@ local Agent = {
 }
 Agent.__index = Agent
 
+--[[#Agent - Geometry
+An autonomous entity roaming a virtual world.
+
+## Example Usage ##
+`a = Agent('green')  
+a:color(1,0,0)  
+a:moveTo(0,0,-4)`
+--]]
+--[[###Agent.color : method
+**param** *red*: Number. the red channel value ranging from 0..1  
+**param** *green*: Number. the green channel value ranging from 0..1  
+**param** *blue*: Number. the blue channel value ranging from 0..1  
+--]]
+--[[###Agent.amp : method
+**param** *amplitude*: Number. The ampltiude of the agent's sonificaiton ranging from 0..1
+--]]
+
 function Agent:tag(...)
 	local name, more = ...
 	-- skip if already inserted?

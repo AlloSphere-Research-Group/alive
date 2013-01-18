@@ -103,3 +103,44 @@ a {
 }
 
 .highlightLine{ background-color:#f00 !important }
+
+#sidebar {
+	/*position: absolute;*/
+	position: absolute;
+  top:27px;
+  right:0px;
+	overflow: auto;
+	display: none;
+	height:100%;
+	font-size: .85em;
+	background-color:#000;
+	border-style: solid;
+	border-width: 0px 0px 0px 1px;
+	border-color:#ccc;
+	float:right;
+	color: #333;
+	width:19%;
+	margin:0;
+	font-family: "Helvetica-Neue", "Helvetica", "sans-serif";
+}
+
+#docsBar {
+  display:block; 
+  top:0;
+  float:left;
+  height:100%;
+  width:5px;
+  background-color:#999;
+}
+
+button {
+	-webkit-border-radius: 0px;
+	background-color: #333;
+	border: 1px solid #777;
+	color: #ccc;
+}
+
+#docs {
+  color:#ccc;
+  padding-left:15px;
+}
