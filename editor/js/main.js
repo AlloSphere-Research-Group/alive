@@ -279,7 +279,8 @@ $(document).ready( function() {
     console.log(msg.msg);
     text = msg.msg.replace(/\n/g, "<br>");
 		$("#console-all").append($("<span style='color:#fff'>"+text+"</span><br>"));
-		$("#consoleContainer").scrollTop($("#consoleContainer")[0].scrollHeight);
+		//$("#consoleContainer").scrollTop($("#consoleContainer")[0].scrollHeight);
+    $("#console-all").scrollTop($("#consoleContainer")[0].scrollHeight);
 	});
 
 	slaveSocket.on('err', function(msg) {

@@ -141,7 +141,7 @@ return {
 
 --[[###Scheduler.wait : method
 **description** pause execution of a coroutine created using go() or sequence()  
-**param** *timeToWait* Seconds OR String. The amount of time to pause the coroutine for. If a string is passed, wait for an event the provided name
+**param** *timeToWait* Seconds OR String. The amount of time to pause the coroutine for. If a string is passed, wait for an event of the provided name
 --]]		
 		self.wait = function(e)
 			local C = corunning()

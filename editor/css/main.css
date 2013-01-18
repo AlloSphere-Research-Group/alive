@@ -64,6 +64,7 @@ a {
 	color:#ccc;
 	width:100%;
 	height:10em;
+  z-index:100;
 }
 #consoleBar, #fileBar {
 	background-color:#666;
@@ -72,7 +73,7 @@ a {
 }
 #consoleBar {
 	top:0;
-	height:4px;
+	height:6px;
 	width:100%;
 }
 #fileBar {
