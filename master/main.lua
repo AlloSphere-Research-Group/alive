@@ -42,7 +42,6 @@ function demo()
 		a:color(c, 1, c)
 		a:freq(random() + 55 * random(5))
 		a:on("beat", function(self, event)
-			print("green beat demo")
 			self:move(srandom(10))
 		end)
 		
@@ -58,7 +57,6 @@ function demo()
 	-- make them change:
 	go(function()
 		while true do
-			print("beat demo")
 			Q("*"):pick(0.2)
 				:turn(srandom()*3, srandom()*3, srandom()*3)
 				:freq(Random() + 55 * Random(10))
