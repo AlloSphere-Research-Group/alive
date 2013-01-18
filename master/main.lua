@@ -37,9 +37,9 @@ end
 function demo()
 	local function collide(self, event, with, distance)
 		-- change direction:
-		--self:twist(pi, 0, 0)
+		self:twist(pi, 0, 0)
 		-- and push:
-		self:nudge(self:get("velocity") * 2)
+		--self:nudge(self:get("velocity") * 2)
 	end
 	-- create some agents
 	for i = 1, 25 do

@@ -249,6 +249,16 @@ function Agent:turn(a, e, b)
 	return self
 end
 
+
+function Agent:face(x, y, z)
+	if type(x) == "table" and not isexpr(x) then x, y, z = unpack(x) end
+	
+	local dir = (vec3(x, y, z) - self._object.position):normalize()
+	print(relative)
+	
+	-- local rot = quat.lookrotation(dir)
+end
+
 -- audio properties:
 --[[###Agent.amp : method
 **param** *amplitude*: Number. The ampltiude of the agent's sonificaiton ranging from 0..22050
@@ -314,6 +324,14 @@ function Agent:on(event, handler)
 	self._handlers[event] = handler
 	-- 2. register for notification of this event
 	notify_register(event, self)
+end
+
+--[[###Agent.collide : method
+**description** : assign an event handler for collision events 
+**param** *handler*: Function. The function to call when the event occurs. 
+--]]
+function Agent:collide(func)
+	self:on("collide", func)
 end
 
 setmetatable(Agent, {
