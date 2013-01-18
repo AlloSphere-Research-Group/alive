@@ -7,6 +7,7 @@ local notify_register = notify.register
 local notify_unregister = notify.unregister
 local E = require "expr"
 local eval = E.eval
+local isexpr = E.isexpr
 local app = av.app
 
 local ffi = require "ffi"
@@ -51,6 +52,10 @@ a:moveTo(0,0,-4)`
 --[[###Agent.amp : method
 **param** *amplitude*: Number. The ampltiude of the agent's sonificaiton ranging from 0..1
 --]]
+
+function Agent:hastag(name)
+	return self._tags[name]
+end
 
 --[[###Agent.tag : method
 **param** *tags*: List. A comma-separated list of tags to assign to the agent
@@ -136,7 +141,7 @@ end
 **param** *z*: Number. z coordinate ranging from -24..24  
 --]]
 function Agent:moveTo(x,y,z)
-	if type(x) == "table" then x, y, z = unpack(x) end
+	if type(x) == "table" and not isexpr(x) then x, y, z = unpack(x) end
 	self._object.position:set(eval(x), eval(y), eval(z))
 	return self
 end
@@ -148,19 +153,20 @@ end
 **param** *blue*: Number. The blue channel value ranging from 0..1
 --]]
 function Agent:color(r, g, b)
-	if type(r) == "table" then r, g, b = unpack(r) end
+	print(r, g, b)
+	if type(r) == "table" and not isexpr(r) then r, g, b = unpack(r) end
 	self._object.color.r = eval(r)
 	self._object.color.g = eval(g)
 	self._object.color.b = eval(b)
 end
 
 function Agent:scale(x, y, z)
-	if type(x) == "table" then x, y, z = unpack(x) end
+	if type(x) == "table" and not isexpr(x) then x, y, z = unpack(x) end
 	self._object.scale:set(eval(x), eval(y), eval(z))
 end
 
 function Agent:turn(a, e, b)
-	if type(a) == "table" then a, e, b = unpack(a) end
+	if type(a) == "table" and not isexpr(a) then a, e, b = unpack(a) end
 	--print("turn", self, a, e, b)
 	self._object.turn:set(eval(e), eval(a), eval(b))
 	return self

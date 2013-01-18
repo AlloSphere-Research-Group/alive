@@ -93,10 +93,23 @@ function q:size() return #rawget(self, "base") end
 
 -- beep -> beep
 -- "beep" -> tags.beep
+-- "~beep" -> all "*" minus "beep"
 -- q(beep) -> q.base
 local
 function totag(o)
 	if type(o) == "string" then
+		if o:sub(1, 1) == "~" then
+			local name = o:sub(2)
+			-- exclusion:
+			local all = Tag("*")
+			local base = {}
+			for i, v in ipairs(all) do
+				if not v:hastag(name) then
+					base[#base+1] = v
+				end
+			end
+			return base
+		end
 		return Tag(o)
 	elseif type(o) == "table" then
 		if getmetatable(o) == q then
