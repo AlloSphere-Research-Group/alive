@@ -175,6 +175,18 @@ function define(op, impl)
 end
 
 local 
+function define_zerop(op, impl)
+	-- this new expr-constructor is stored in expr itself
+	-- (that also means it can be used as a method)
+	e[op] = function()
+		return setmetatable({ 
+			op=op, 
+			impl=impl,
+		}, e)
+	end
+end
+
+local 
 function define_unop(op, impl)
 	-- this new expr-constructor is stored in expr itself
 	-- (that also means it can be used as a method)
@@ -299,6 +311,28 @@ e.div = e.__div
 e.mod = e.__mod
 e.pow = e.__pow
 e.unm = e.__unm
+
+-- stateful operators:
+
+define_zerop("noise", function(env)
+	-- returns a behavior:
+	local random = math.random
+	return function(env, dt)
+		return random() * 2 - 1
+	end
+end)
+
+define_unop("sinosc", function(env, freq)
+	-- returns a behavior:
+	local twopi = math.pi * 2
+	local sin = math.sin
+	local phase = 0
+	return function(env, dt)
+		print("freq", freq)
+		phase = phase + freq * dt
+		return sin(phase * twopi)
+	end
+end)
 
 -- install all the e.* operators as global functions
 -- the names are Capitalized to show that they are constructors

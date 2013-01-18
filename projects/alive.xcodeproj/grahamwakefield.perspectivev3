@@ -269,8 +269,6 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateExpansionKey</key>
 							<array>
 								<string>36575208161277BC009D11CC</string>
-								<string>36575224161277FD009D11CC</string>
-								<string>36575229161277FD009D11CC</string>
 								<string>3657525E161277FD009D11CC</string>
 								<string>36A61DB91687E03400E1A440</string>
 								<string>36A61DB81687E02000E1A440</string>
@@ -293,14 +291,14 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>45</integer>
-									<integer>26</integer>
-									<integer>19</integer>
+									<integer>25</integer>
+									<integer>9</integer>
+									<integer>2</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 488}, {198, 769}}</string>
+							<string>{{0, 0}, {198, 769}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -317,7 +315,7 @@
 							<real>198</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>497 50 881 828 0 0 1440 878 </string>
+						<string>-8 50 881 828 0 0 1440 878 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -335,7 +333,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>36575212161277BE009D11CC</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>main.lua</string>
+								<string>expr_test2.lua</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -343,11 +341,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>36575213161277BE009D11CC</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>main.lua</string>
+										<string>expr_test2.lua</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>3649902D16A68238007599C1</string>
+										<string>365E3E6216A9053E00CF8D13</string>
 										<key>history</key>
 										<array>
 											<string>36DE520A163B4545004F736A</string>
@@ -382,7 +380,6 @@
 											<string>36A61DBB1687E0A000E1A440</string>
 											<string>3690240E1688CF4500B1AE20</string>
 											<string>369024D416891E5C00B1AE20</string>
-											<string>369024F61689200D00B1AE20</string>
 											<string>365B5BD2168F771B00BFA1BA</string>
 											<string>365B5BD3168F771B00BFA1BA</string>
 											<string>364EDDAE1697DE1000591C30</string>
@@ -391,16 +388,12 @@
 											<string>36974A9516A3D3CD00FA5D59</string>
 											<string>36974AA416A3D4E000FA5D59</string>
 											<string>36974ACB16A3DDC600FA5D59</string>
-											<string>36974BC916A3E23D00FA5D59</string>
 											<string>36974BEB16A3E87300FA5D59</string>
 											<string>36974BF316A3E8CB00FA5D59</string>
 											<string>36974C1D16A3F63700FA5D59</string>
 											<string>36974C2716A3F6BE00FA5D59</string>
 											<string>36974C3916A4028700FA5D59</string>
-											<string>36974C5D16A4071700FA5D59</string>
 											<string>36974CC216A4219100FA5D59</string>
-											<string>36974DB216A57FB700FA5D59</string>
-											<string>36974DB516A5809400FA5D59</string>
 											<string>36974DB616A5809400FA5D59</string>
 											<string>36974DB716A5809400FA5D59</string>
 											<string>36974DB816A5809400FA5D59</string>
@@ -409,16 +402,22 @@
 											<string>36974DC116A5824800FA5D59</string>
 											<string>36498FE016A66AFD007599C1</string>
 											<string>36498FE216A66AFD007599C1</string>
-											<string>36498FED16A67A3A007599C1</string>
-											<string>36498FF016A67A3A007599C1</string>
 											<string>36498FFF16A67B91007599C1</string>
 											<string>3649900C16A67CB1007599C1</string>
-											<string>3649901616A67EFA007599C1</string>
 											<string>3649901A16A67FBD007599C1</string>
-											<string>3649901B16A67FBD007599C1</string>
 											<string>3649902616A6817F007599C1</string>
-											<string>3649902B16A68238007599C1</string>
-											<string>3649902C16A68238007599C1</string>
+											<string>36D9902016A7C7C500DE1FF7</string>
+											<string>36D9903316A7C8AF00DE1FF7</string>
+											<string>36D9904516A7CBA100DE1FF7</string>
+											<string>36D9904916A7CBF500DE1FF7</string>
+											<string>36D9905916A7CEB600DE1FF7</string>
+											<string>36D9908616A7D42900DE1FF7</string>
+											<string>36D990EA16A7F79200DE1FF7</string>
+											<string>365E3DDD16A8683400CF8D13</string>
+											<string>365E3E3B16A8FCB200CF8D13</string>
+											<string>365E3E4A16A8FDE900CF8D13</string>
+											<string>365E3E5F16A903C900CF8D13</string>
+											<string>365E3E6016A903C900CF8D13</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -434,7 +433,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {661, 782}}</string>
 								<key>RubberWindowFrame</key>
-								<string>497 50 881 828 0 0 1440 878 </string>
+								<string>-8 50 881 828 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -459,7 +458,7 @@
 										<key>Frame</key>
 										<string>{{10, 27}, {661, -27}}</string>
 										<key>RubberWindowFrame</key>
-										<string>497 50 881 828 0 0 1440 878 </string>
+										<string>-8 50 881 828 0 0 1440 878 </string>
 									</dict>
 									<key>Module</key>
 									<string>XCDetailModule</string>
@@ -541,11 +540,11 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>36498FCC16A66558007599C1</string>
+				<string>365E3DD616A863E900CF8D13</string>
 				<string>1CA23ED40692098700951B8B</string>
-				<string>36498FCD16A66558007599C1</string>
+				<string>365E3DD716A863E900CF8D13</string>
 				<string>36575212161277BE009D11CC</string>
-				<string>36498FCE16A66558007599C1</string>
+				<string>365E3DD816A863E900CF8D13</string>
 				<string>1CA23EDF0692099D00951B8B</string>
 				<string>1CA23EE00692099D00951B8B</string>
 				<string>1CA23EE10692099D00951B8B</string>
@@ -738,7 +737,7 @@
 		<string>/Users/grahamwakefield/code/alive/projects/alive.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>497 50 881 828 0 0 1440 878 </string>
+	<string>-8 50 881 828 0 0 1440 878 </string>
 	<key>WindowToolsV3</key>
 	<array>
 		<dict>
