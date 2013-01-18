@@ -416,7 +416,7 @@ $(document).ready( function() {
 		}
 	};
 	
-	var executeCode_old = function(cm) {
+	var executeCode = function(cm) {
 		var v = cm.getSelection();
 		var pos = null;
 		if (v === "") {
@@ -427,7 +427,7 @@ $(document).ready( function() {
 		slaveSocket.emit('execute', {code:v});
 	};
 	
-	var executeCode = function(cm) {
+	var executeCodeBlock = function(cm) {
 		var v = cm.getSelection();
 		var pos = null;
 		if (v === "") {
@@ -463,6 +463,8 @@ $(document).ready( function() {
 		fallthrough : "default",
 		"Ctrl-Enter": executeCode,
 		"Cmd-Enter": executeCode, 
+		"Ctrl-Alt-Enter": executeCodeBlock,
+		"Cmd-Alt-Enter": executeCodeBlock,
 		"Cmd-Backspace": clearDoc,   
 		//"Cmd-S": editor_save,
 		//"Ctrl-S": editor_save,
