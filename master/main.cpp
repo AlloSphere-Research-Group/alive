@@ -688,7 +688,7 @@ void agent_reset(Agent& a) {
 	v.distance = WORLD_DIM;
 	v.buffer_index = 0;
 	v.iphase = 0;
-	v.amp = 0.;
+	v.amp = 0.5;
 	v.freq = rnd::global().uniform() * rnd::global().uniform() * 4000;
 	v.phase = 0;
 	v.synthesize = default_synthesize_func;
