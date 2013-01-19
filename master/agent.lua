@@ -40,17 +40,7 @@ function Agent:__tostring()
 	return format("Agent(%d)", self.id)
 end
 
-function Agent:setproperty(k, ...)
-	--print("setproperty", self, k, ...)
-	-- TODO: verify k is a property, coerce, etc. etc.
-	local f = self[k]
-	if f and type(f) == "function" then
-		f(self, ...)
-	end
-	return self
-end
-
-local object_propertynames = {
+local object_getpropertynames = {
 	enable = true,
 	nearest = true,
 	nearest_distance = true,
@@ -64,19 +54,34 @@ local object_propertynames = {
 	uz = true,
 }
 
-local voice_propertynames = {
+local voice_getpropertynames = {
 	freq = true,
 	amp = true,
 }
+
+function Agent:setproperty(k, ...)
+	--print("setproperty", self, k, ...)
+	-- TODO: verify k is a property, coerce, etc. etc.
+	local f = Agent[k]
+	if f and type(f) == "function" then
+		f(self, ...)
+	else
+		-- store locally:
+		self[k] = ...
+	end
+	return self
+end
+
+Agent.__newindex = Agent.setproperty
 
 --[[###Agent.get : method
 **param** *name*: String. Get the value of a named property in the agent
 **description**: Valid names include: enable, position, scale, color, velocity, turn, ux, uy, uz, nearest, nearest_distance, amp, freq
 --]]
 function Agent:get(name)
-	if object_propertynames[name] then
+	if object_getpropertynames[name] then
 		return self._object[name]
-	elseif voice_propertynames[name] then
+	elseif voice_getpropertynames[name] then
 		return self._voice[name]
 	else
 		return self[name]
