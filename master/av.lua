@@ -54,6 +54,8 @@ av.stdin = ev.IO(function(loop, handler, event)
 	if ok and f then
 		local ok, err = pcall(f)
 		if not ok then print(err) end
+	elseif ok then
+		print("parse error (funky symbols?)")
 	else
 		print("parse error", f)
 	end	
