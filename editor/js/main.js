@@ -549,6 +549,10 @@ $(document).ready( function() {
 		var v = "panic()";
 		slaveSocket.emit('execute', {code:v});
 	});
+	
+	$("#relaunch").mousedown (function(e) {
+		slaveSocket.emit('relaunch');
+	});
   
 	$("#docsButton").mousedown( function(e) {
     Alive.toggleSidebar();

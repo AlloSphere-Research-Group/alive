@@ -50,13 +50,13 @@ av.stdin = ev.IO(function(loop, handler, event)
 	str = str:gsub("<n>", "\n")
 	print('io', os.time(), str)
 	local ok, f = pcall(loadstring, str)
-	if ok then
+	print(ok, f, str)
+	if ok and f then
 		local ok, err = pcall(f)
 		if not ok then print(err) end
 	else
-		print(f)
-	end
-	if str == "q" then os.exit() end	
+		print("parse error", f)
+	end	
 end, 0, ev.READ)
 av.stdin:start(loop)
 
