@@ -134,6 +134,10 @@ if (ismaster) {
 		
 		editors[socket.addr].emit("handshake", { "data" : "Handshake received from " + editors[socket.addr].addr } );
 	  
+		editors[socket.addr].on('relaunch', function(obj) {
+			launch();
+		});
+	  
 		editors[socket.addr].on('execute', function(obj) {
 			var code = obj.code.replace(/(\r\n|\n|\r)/gm, "<n>") + "\r\n";
 			console.log("CODE", code);

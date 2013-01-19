@@ -40,17 +40,7 @@ function Agent:__tostring()
 	return format("Agent(%d)", self.id)
 end
 
-function Agent:setproperty(k, ...)
-	--print("setproperty", self, k, ...)
-	-- TODO: verify k is a property, coerce, etc. etc.
-	local f = self[k]
-	if f and type(f) == "function" then
-		f(self, ...)
-	end
-	return self
-end
-
-local object_propertynames = {
+local object_getpropertynames = {
 	enable = true,
 	nearest = true,
 	nearest_distance = true,
@@ -64,19 +54,34 @@ local object_propertynames = {
 	uz = true,
 }
 
-local voice_propertynames = {
+local voice_getpropertynames = {
 	freq = true,
 	amp = true,
 }
+
+function Agent:setproperty(k, ...)
+	print("setproperty", self, k, ...)
+	-- TODO: verify k is a property, coerce, etc. etc.
+	local f = Agent[k]
+	if f and type(f) == "function" then
+		f(self, ...)
+	else
+		-- store locally:
+		rawset(self, k, ...)
+	end
+	return self
+end
+
+Agent.__newindex = Agent.setproperty
 
 --[[###Agent.get : method
 **param** *name*: String. Get the value of a named property in the agent
 **description**: Valid names include: enable, position, scale, color, velocity, turn, ux, uy, uz, nearest, nearest_distance, amp, freq
 --]]
 function Agent:get(name)
-	if object_propertynames[name] then
+	if object_getpropertynames[name] then
 		return self._object[name]
-	elseif voice_propertynames[name] then
+	elseif voice_getpropertynames[name] then
 		return self._voice[name]
 	else
 		return self[name]
@@ -194,9 +199,16 @@ end
 **param** *z*: Number. z coordinate ranging from -24..24  
 --]]
 function Agent:moveTo(x,y,z)
-	if type(x) == "table" and not isexpr(x) then x, y, z = unpack(x) end
-	self._object.position:set(eval(x), eval(y), eval(z))
-	return self
+	if type(x) == "number" then
+		self._object.position:set(x, y, z)
+	elseif isexpr(x) then
+		self._object.position:set(eval(x), eval(y), eval(z))
+	elseif type(x) == "table" then
+		self._object.position:set(x[1], x[2], x[3])
+	else
+		-- assume vec:
+		self._object.position:set(x.x, x.y, x.z)
+	end
 end
 
 --[[###Agent.color : method
@@ -205,12 +217,25 @@ end
 **param** *green*: Number. The green channel value ranging from 0..1  
 **param** *blue*: Number. The blue channel value ranging from 0..1
 --]]
-function Agent:color(r, g, b)
-	print(r, g, b)
-	if type(r) == "table" and not isexpr(r) then r, g, b = unpack(r) end
-	self._object.color.r = eval(r)
-	self._object.color.g = eval(g)
-	self._object.color.b = eval(b)
+function Agent:color(x, y, z)
+	if type(x) == "number" then
+		self._object.color.r = x
+		self._object.color.g = y
+		self._object.color.b = z
+	elseif isexpr(x) then
+		self._object.color.r = eval(x)
+		self._object.color.g = eval(y)
+		self._object.color.b = eval(z)
+	elseif type(x) == "table" then
+		self._object.color.r = x[1]
+		self._object.color.g = x[2]
+		self._object.color.b = x[3]
+	else
+		-- assume vec:
+		self._object.color.r = x.x
+		self._object.color.g = x.y
+		self._object.color.b = x.z
+	end
 end
 
 --[[###Agent.scale : method
@@ -220,8 +245,16 @@ end
 **param** *z*: Number. 
 --]]
 function Agent:scale(x, y, z)
-	if type(x) == "table" and not isexpr(x) then x, y, z = unpack(x) end
-	self._object.scale:set(eval(x), eval(y), eval(z))
+	if type(x) == "number" then
+		self._object.scale:set(x, y, z)
+	elseif isexpr(x) then
+		self._object.scale:set(eval(x), eval(y), eval(z))
+	elseif type(x) == "table" then
+		self._object.scale:set(x[1], x[2], x[3])
+	else
+		-- assume vec:
+		self._object.scale:set(x.x, x.y, x.z)
+	end
 end
 
 --[[###Agent.twist : method
@@ -230,11 +263,17 @@ end
 **param** *elevation*: Number. Rotation around agent's X axis 
 **param** *bank*: Number. Rotation around agent's Z axis
 --]]
-function Agent:twist(a, e, b)
-	if type(a) == "table" and not isexpr(a) then a, e, b = unpack(a) end
-	--print("turn", self, a, e, b)
-	self._object.twist:add(eval(e), eval(a), eval(b))
-	return self
+function Agent:twist(x, y, z)
+	if type(x) == "number" then
+		self._object.twist:set(x, y, z)
+	elseif isexpr(x) then
+		self._object.twist:set(eval(x), eval(y), eval(z))
+	elseif type(x) == "table" then
+		self._object.twist:set(x[1], x[2], x[3])
+	else
+		-- assume vec:
+		self._object.twist:set(x.x, x.y, x.z)
+	end
 end
 
 --[[###Agent.turn : method
@@ -243,11 +282,17 @@ end
 **param** *elevation*: Number. Rotation around agent's X axis 
 **param** *bank*: Number. Rotation around agent's Z axis
 --]]
-function Agent:turn(a, e, b)
-	if type(a) == "table" and not isexpr(a) then a, e, b = unpack(a) end
-	--print("turn", self, a, e, b)
-	self._object.turn:set(eval(e), eval(a), eval(b))
-	return self
+function Agent:turn(x, y, z)
+	if type(x) == "number" then
+		self._object.turn:set(x, y, z)
+	elseif isexpr(x) then
+		self._object.turn:set(eval(x), eval(y), eval(z))
+	elseif type(x) == "table" then
+		self._object.turn:set(x[1], x[2], x[3])
+	else
+		-- assume vec:
+		self._object.turn:set(x.x, x.y, x.z)
+	end
 end
 
 
