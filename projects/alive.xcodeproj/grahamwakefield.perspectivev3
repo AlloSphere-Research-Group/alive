@@ -197,88 +197,7 @@
 	<key>Notifications</key>
 	<array/>
 	<key>OpenEditors</key>
-	<array>
-		<dict>
-			<key>Content</key>
-			<dict>
-				<key>PBXProjectModuleGUID</key>
-				<string>365E3FA016AA048500CF8D13</string>
-				<key>PBXProjectModuleLabel</key>
-				<string>main.h</string>
-				<key>PBXSplitModuleInNavigatorKey</key>
-				<dict>
-					<key>Split0</key>
-					<dict>
-						<key>PBXProjectModuleGUID</key>
-						<string>365E3FA116AA048500CF8D13</string>
-						<key>PBXProjectModuleLabel</key>
-						<string>main.h</string>
-						<key>_historyCapacity</key>
-						<integer>0</integer>
-						<key>bookmark</key>
-						<string>365E410916AA255D00CF8D13</string>
-						<key>history</key>
-						<array>
-							<string>365E3F9C16AA03BB00CF8D13</string>
-						</array>
-					</dict>
-					<key>SplitCount</key>
-					<string>1</string>
-				</dict>
-				<key>StatusBarVisibility</key>
-				<true/>
-			</dict>
-			<key>Geometry</key>
-			<dict>
-				<key>Frame</key>
-				<string>{{0, 20}, {749, 734}}</string>
-				<key>PBXModuleWindowStatusBarHidden2</key>
-				<false/>
-				<key>RubberWindowFrame</key>
-				<string>85 1097 749 775 0 900 1920 1080 </string>
-			</dict>
-		</dict>
-		<dict>
-			<key>Content</key>
-			<dict>
-				<key>PBXProjectModuleGUID</key>
-				<string>365E3F7416A9FE3600CF8D13</string>
-				<key>PBXProjectModuleLabel</key>
-				<string>al_HashSpace.hpp</string>
-				<key>PBXSplitModuleInNavigatorKey</key>
-				<dict>
-					<key>Split0</key>
-					<dict>
-						<key>PBXProjectModuleGUID</key>
-						<string>365E3F7516A9FE3600CF8D13</string>
-						<key>PBXProjectModuleLabel</key>
-						<string>al_HashSpace.hpp</string>
-						<key>_historyCapacity</key>
-						<integer>0</integer>
-						<key>bookmark</key>
-						<string>365E410A16AA255D00CF8D13</string>
-						<key>history</key>
-						<array>
-							<string>365E3F6E16A9FE0400CF8D13</string>
-						</array>
-					</dict>
-					<key>SplitCount</key>
-					<string>1</string>
-				</dict>
-				<key>StatusBarVisibility</key>
-				<true/>
-			</dict>
-			<key>Geometry</key>
-			<dict>
-				<key>Frame</key>
-				<string>{{0, 20}, {749, 734}}</string>
-				<key>PBXModuleWindowStatusBarHidden2</key>
-				<false/>
-				<key>RubberWindowFrame</key>
-				<string>126 1144 749 775 0 900 1920 1080 </string>
-			</dict>
-		</dict>
-	</array>
+	<array/>
 	<key>PerspectiveWidths</key>
 	<array>
 		<integer>-1</integer>
@@ -374,7 +293,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>38</integer>
+									<integer>40</integer>
 									<integer>27</integer>
 									<integer>20</integer>
 									<integer>0</integer>
@@ -416,7 +335,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>36575212161277BE009D11CC</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>av.lua</string>
+								<string>agent.lua</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -424,11 +343,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>36575213161277BE009D11CC</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>av.lua</string>
+										<string>agent.lua</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>365E410816AA255D00CF8D13</string>
+										<string>365E411616AA26A100CF8D13</string>
 										<key>history</key>
 										<array>
 											<string>36DE520A163B4545004F736A</string>
@@ -503,10 +422,10 @@
 											<string>365E40C016AA1D5D00CF8D13</string>
 											<string>365E40CE16AA1EE600CF8D13</string>
 											<string>365E40D616AA1F5000CF8D13</string>
-											<string>365E40E116AA235D00CF8D13</string>
 											<string>365E40E216AA235D00CF8D13</string>
 											<string>365E40E316AA235D00CF8D13</string>
-											<string>365E3FAE16AA06A300CF8D13</string>
+											<string>365E411316AA267700CF8D13</string>
+											<string>365E411416AA267700CF8D13</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -823,8 +742,6 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>365E3F7416A9FE3600CF8D13</string>
-		<string>365E3FA016AA048500CF8D13</string>
 		<string>/Users/grahamwakefield/code/alive/projects/alive.xcodeproj</string>
 	</array>
 	<key>WindowString</key>

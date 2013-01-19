@@ -60,14 +60,14 @@ local voice_getpropertynames = {
 }
 
 function Agent:setproperty(k, ...)
-	--print("setproperty", self, k, ...)
+	print("setproperty", self, k, ...)
 	-- TODO: verify k is a property, coerce, etc. etc.
 	local f = Agent[k]
 	if f and type(f) == "function" then
 		f(self, ...)
 	else
 		-- store locally:
-		self[k] = ...
+		rawset(self, k, ...)
 	end
 	return self
 end
