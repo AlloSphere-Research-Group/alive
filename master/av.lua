@@ -59,7 +59,7 @@ av.stdin = ev.IO(function(loop, handler, event)
 	local fd = handler.fd
 	local str = io.read("*l")
 	str = str:gsub("<n>", "\n")
-	str = Strip_Control_and_Extended_Codes(str)
+	--str = Strip_Control_and_Extended_Codes(str)
 	print('io', os.time(), str)
 	local ok, f = pcall(loadstring, str)
 	print(ok, f, str)
