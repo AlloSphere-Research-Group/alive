@@ -44,10 +44,22 @@ av.timer = ev.Timer(function(loop, handler, event)
 end, 1, 1)
 av.timer:start(loop)
 
+local
+function Strip_Control_and_Extended_Codes( str )
+    local s = ""
+    for i = 1, str:len() do
+	if str:byte(i) >= 32 and str:byte(i) <= 126 then
+  	    s = s .. str:sub(i,i)
+	end
+    end
+    return s
+end
+
 av.stdin = ev.IO(function(loop, handler, event)
 	local fd = handler.fd
 	local str = io.read("*l")
 	str = str:gsub("<n>", "\n")
+	str = Strip_Control_and_Extended_Codes(str)
 	print('io', os.time(), str)
 	local ok, f = pcall(loadstring, str)
 	print(ok, f, str)
