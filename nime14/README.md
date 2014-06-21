@@ -43,7 +43,7 @@ Distributed visual rendering (required to drive large numbers of projectors) dep
 
 ## Language
 
-Our interface extends the Lua programming language with terse yet flexible abstractions for live-coding agent-based worlds.
+Our interface extends the [LuaJIT](http://www.luajit.org) programming language with terse yet flexible abstractions for live-coding agent-based worlds.
 
 ### Properties and Tags
 
@@ -63,4 +63,45 @@ a:untag("bar")
 a:tag("baz")
 ```
 
+### Queries
 
+In addition to operating on individual agents and the various tags in play, performers can operate over arbitrary selections of active agents. Queries serve a role similar to relational database queries or lenses and patterns in functional programming.
+
+The Q() function constructs a query, with optional arguments indicating a set of tags to start filtering; if no tags are given, all agents are included. Chained methods refine the filter predicate, such as first() and last() to select the earliest and most recent members of the collection, has() to select members with specific property names or values, and pick() to select random sub-collections. The result of a query can be cached and re-used. Query results are used to call methods or set properties on all members:
+
+```lua
+-- set "amp" of the most recent foo-tagged agent:
+Q("foo"):last().amp = 0.3
+-- terminate all agents with a "chorus" property:
+Q():has("chorus"):die()
+-- set the frequency of about 50% of all agents:
+Q():pick(0.5).freq = 200
+-- set "freq" of four random "spin" agents:
+Q("spin"):pick(4).freq = 500
+-- stop one randomly chosen agent from moving:
+Q():pick():halt()
+```
+
+### Expression Objects
+
+Our instrument supports a declarative form of function defi- nition through objects similar to unit generators10 and LISP M-expressions.
+
+A declared expression object represents a computation to be performed. This expression object can be assigned to properties of agents, tags, and queries, as well as performing as a unit generator graph for sound synthesis. Our expression constructors can accept numbers or expressions as arguments. They also accept strings, which are used to index properties of agents, and utilize operator overloading to support a more readable syntax:
+
+```lua
+-- construct an expression:
+e = (Max(Random(10), Random(10)) + 2) * 100
+-- assign to "mod" for all agents tagged "foo"
+-- (each receives distinct evaluations of Random)
+Q("foo").mod = e
+```
+
+Many common math operations and signal processing behaviors are provided as standard. Some expression constructors, such as oscillators and filters, evaluate to stateful behaviors (functions of time) rather than atomic values. A distinct instance of the behavior is created for each agent property assignment, and invoked continuously until replaced or destroyed. Behaviors thus bridge unit generator and agent concepts with an easily composable model for live programming that is terser than function definition.
+
+### Procedural Time and Events
+
+In addition to immediate invocations, our instrument provides a means to schedule the execution of procedural code via coroutines. Coroutines are akin to functions that may be paused in the middle and later resumed at that point, allowing other coroutines to run in between. We extend the yield/resume semantics with sample-accurate scheduling and event handling. With wait() a coroutine can yield for a specified time in seconds, or until a specified event occurs, identifed by a string and triggered from anywhere via event(). (Agents can also use the on() method to define callback handlers for asynchronous named events.) Coroutines can embed loops and conditions to structure time and behavior, and return by calling themselves or other functions to implement temporal recursion.
+
+## Acknowledgements
+
+Graciously supported by The AlloSphere Research Group, the R. W. Deutsch Foundation, and NSF grant IIS-0855279.
