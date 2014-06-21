@@ -139,7 +139,8 @@ if (ismaster) {
 		});
 	  
 		editors[socket.addr].on('execute', function(obj) {
-			var code = obj.code.replace(/(\r\n|\n|\r)/gm, "<n>") + "\r\n";
+			var code = obj.code.replace(/(\r\n|\n|\r)/gm, "<n>") + "\n";
+			code = code.toString("utf8");
 			console.log("CODE", code);
 			console.log("sent", vm.stdin.write(code));
 		});

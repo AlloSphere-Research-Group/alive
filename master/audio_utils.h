@@ -277,7 +277,7 @@ inline double attenuate(double d, double near, double scale) {
 	double x = (d - near) * scale;
 	if (x > 0.) {
 		double xc = x + 4;
-		double x1 = xc / (x*x + x + xc);
+		double x1 = xc / (x*x + xc);
 		return x1 * x1;
 	}
 	return 1.;

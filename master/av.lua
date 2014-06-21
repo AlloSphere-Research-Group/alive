@@ -45,22 +45,20 @@ end, 1, 1)
 av.timer:start(loop)
 
 local
-function Strip_Control_and_Extended_Codes( str )
-    local s = ""
-    for i = 1, str:len() do
-	if str:byte(i) >= 32 and str:byte(i) <= 126 then
-  	    s = s .. str:sub(i,i)
+function stringclean(str)
+	for i = 1, #str do
+		print("char", i)
+		print(str:sub(i, 1), str:byte(i))
 	end
-    end
-    return s
+	return str
+	--return str:gsub(string.byte(160), " "):gsub("<n>", "\n")
 end
 
 av.stdin = ev.IO(function(loop, handler, event)
 	local fd = handler.fd
-	local str = io.read("*l")
-	str = str:gsub("<n>", "\n")
-	--str = Strip_Control_and_Extended_Codes(str)
-	print('io', os.time(), str)
+	local str = stringclean(io.read("*l"))
+	print('io', os.time())
+	print(str)
 	local ok, f = pcall(loadstring, str)
 	print(ok, f, str)
 	if ok and f then

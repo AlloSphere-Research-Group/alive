@@ -17,7 +17,8 @@ local metatag = {}
 function metatag:__index(k)
 	return tags[k]
 end
-function metatag:__call(name, t)-- TODO: or generate a tag name randomly?
+function metatag:__call(name, t)
+	-- TODO: or generate a tag name randomly?
 	assert(name and type(name)=="string")
 	local o = tags[name]
 	if not o then
@@ -161,6 +162,11 @@ function query(...)
 					base = base,
 				}, q)
 			--end
+		else
+			-- assume all agents:
+			return setmetatable({
+				base = totag("*"),
+			}, q)
 		end
 	end
 	return empty_query
