@@ -272,6 +272,7 @@ b = sequence( function() a:color(Random(), Random(), Random()) end, .25, 10)`
 							count = count + 1
 							if count >= repeats then 
 								_stop = true
+                count = 0
 							end
 						end
 					end
