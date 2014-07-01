@@ -5,7 +5,7 @@ ALIVE
 
 *Alive* is an instrument allowing multiple users to develop sonic and visual behaviors of agents in a virtual world, through a browser-based collaborative code interface, accessible while being immersed through spatialized audio and stereoscopic display. 
 
-The interface adds terse syntax for query-based pre- cise or stochastic selections and declarative agent manipulations, lazily-evaluated expressions for synthesis and behavior, event handling, and flexible scheduling. We use data-oriented concepts of entities (*agents*), associations (*tags*), selections (*queries*) and behaviors (*expressions*) in code fragments that may be manually triggered or scheduled for future execution using coroutines.
+The interface adds terse syntax for query-based precise or stochastic selections and declarative agent manipulations, lazily-evaluated expressions for synthesis and behavior, event handling, and flexible scheduling. We use data-oriented concepts of entities (*agents*), associations (*tags*), selections (*queries*) and behaviors (*expressions*) in code fragments that may be manually triggered or scheduled for future execution using coroutines.
 
 The project is informed by our work as researchers in [the AlloSphere](http://www.allosphere.ucsb.edu/), a three-story, immersive, spherical virtual reality environment at the University of California, Santa Barbara. Although one specific venue inspired Alive’s development, we belive it may be easily applied to other facilities. 
 
@@ -33,11 +33,11 @@ The principal elements or entities of the world are *agents*. This term is vario
 
 Our agents are transient, spatially-situated identities to which users associate properties and behaviors. Easily constructed and destroyed, their properties can be manipulated directly by assignment or indirectly through the use of *tags* and *queries* (described below). Properties of a particular agent might include sonic and visual appearance as well as behaviors of movement, morphology, and reactivity. Using an associative scheme side-steps constrictive issues of categorization in favor of dynamic action of wide applicability.
 
-The world has a 3D Euclidean geometry, but is finite and toroidal. Autonomous agents can easily navigate away off into the distance, but a toroidal space ensures that move- ment is never limited nor activity too far away. It is implemented such that no edges to the world are ever perceived, despite free navigation.
+The world has a 3D Euclidean geometry, but is finite and toroidal. Autonomous agents can easily navigate away off into the distance, but a toroidal space ensures that movement is never limited nor activity too far away. It is implemented such that no edges to the world are ever perceived, despite free navigation.
 
 ### Audiovisual Rendering
 
-The simulation engine implements a pragmatic approach to spatial audio. The sounds of each agent are processed to apply distance cues, and their directional information is encoded using higher-order ambisonics. Ambisonic encoding/decoding supports scalability in distributed rendering: unlimited numbers of agent sounds are encoded into just a handful of domain signals, which can be more easily distributed to multiple decoders with scalability up to hundreds of loudspeakers. A per- agent delay, indexed proportionally to distance, simulates Doppler shift. Sounds are also attenuated and filtered according to distance-dependent curves.
+The simulation engine implements a pragmatic approach to spatial audio. The sounds of each agent are processed to apply distance cues, and their directional information is encoded using higher-order ambisonics. Ambisonic encoding/decoding supports scalability in distributed rendering: unlimited numbers of agent sounds are encoded into just a handful of domain signals, which can be more easily distributed to multiple decoders with scalability up to hundreds of loudspeakers. A per-agent delay, indexed proportionally to distance, simulates Doppler shift. Sounds are also attenuated and filtered according to distance-dependent curves.
 
 Distributed visual rendering (required to drive large numbers of projectors) depends on updating all visual rendering machines with the minimal state to render the scene. Each machine renders a stereoscopic view of the world properly rotated and pre-distorted for its attached projectors, resulting in a coherent immersive world seamlessly spanning the venue.
 
@@ -84,7 +84,7 @@ Q():pick():halt()
 
 ### Expression Objects
 
-Our instrument supports a declarative form of function defi- nition through objects similar to unit generators10 and LISP M-expressions.
+Our instrument supports a declarative form of function definition through objects similar to unit generators10 and LISP M-expressions.
 
 A declared expression object represents a computation to be performed. This expression object can be assigned to properties of agents, tags, and queries, as well as performing as a unit generator graph for sound synthesis. Our expression constructors can accept numbers or expressions as arguments. They also accept strings, which are used to index properties of agents, and utilize operator overloading to support a more readable syntax:
 
@@ -101,6 +101,28 @@ Many common math operations and signal processing behaviors are provided as stan
 ### Procedural Time and Events
 
 In addition to immediate invocations, our instrument provides a means to schedule the execution of procedural code via coroutines. Coroutines are akin to functions that may be paused in the middle and later resumed at that point, allowing other coroutines to run in between. We extend the yield/resume semantics with sample-accurate scheduling and event handling. With wait() a coroutine can yield for a specified time in seconds, or until a specified event occurs, identifed by a string and triggered from anywhere via event(). (Agents can also use the on() method to define callback handlers for asynchronous named events.) Coroutines can embed loops and conditions to structure time and behavior, and return by calling themselves or other functions to implement temporal recursion.
+
+## Dependencies
+
+The server is implemented as a [Node.js](http://nodejs.org/) script. You will need to install node.js first. It has been tested against version 0.10.17. 
+
+The simulator depends on the [LuaJIT](http://luajit.org/) interpreter. It has been tested against version 2.0.0-beta10.
+
+The simulator requires a dynamic library that should be built from the ```world``` subfolder.
+
+## Running
+
+Start the server as follows (this will also launch the simulator as a child process).
+
+```sh
+node alive.js
+```
+
+
+
+## License
+
+Alive is MIT licensed.
 
 ## Acknowledgements
 
