@@ -11,7 +11,7 @@ The project is informed by our work as researchers in [the AlloSphere](http://ww
 
 ## Design & Implementation
 
-![System overview](https://raw.github.com/AlloSphere-Research-Group/alive/master/nime14/doc/system_overview.png)
+![System overview](https://raw.github.com/AlloSphere-Research-Group/alive/doc/system_overview.png)
 
 **Summary:** Client browsers on performers’ laptop or tablet devices (left) display code editors requested from a central server (center). Edits to the code are sent to the server and shared back to all clients. The server hosts a virtual world simulator as a sub-process, to which code edits are forwarded for execution. The simulator distributes virtual world updates to all audio and visual rendering machines (right).
 
@@ -19,7 +19,7 @@ Performers use web browser clients to retrieve the live-coding interface from a 
 
 ### The Live-Coding Interface
 
-![Editor](https://raw.github.com/AlloSphere-Research-Group/alive/master/nime14/doc/editor_screenshot.png)
+![Editor](https://raw.github.com/AlloSphere-Research-Group/alive/doc/editor_screenshot.png)
 
 The Alive code interface runs in any modern web browser, communicating with the server application by websockets. Performers can add code fragments to the editor pane, and send the currently-selected code for execution by pressing the Command+Enter keys or double-clicking. If no text is selected, the whole paragraph containing the cursor is sent. This makes it very easy to rapidly trigger prepared code fragments. A typical performance is a mixture of authoring, invoking, modifying, and copying fragments.
 
