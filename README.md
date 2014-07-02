@@ -104,21 +104,35 @@ In addition to immediate invocations, our instrument provides a means to schedul
 
 ## Dependencies
 
-The server is implemented as a [Node.js](http://nodejs.org/) script. You will need to install node.js first. It has been tested against version 0.10.17. 
+The server is implemented as a [Node.js](http://nodejs.org/) script. You will need to install node.js first. It has been tested against version 0.10.17. The server also depends on several node modules, which can be installed from npm as follows:
 
-The simulator depends on the [LuaJIT](http://luajit.org/) interpreter. It has been tested against version 2.0.0-beta10.
+```sh
+cd master
+npm install connect mdns mime socket.io socket.io-client share@0.6.3
+```
 
-The simulator requires a dynamic library that should be built from the ```world``` subfolder.
+The simulator is a C++ application that depends on the [LuaJIT](http://luajit.org/) interpreter. It has been tested against version 2.0.0-beta10. It also depends on libportaudio, libev, libfreeimage which we recommend installing via [brew](http://brew.sh/). The simulator can then be built from the ```src``` subfolder as follows:
+
+```sh
+cd src
+luajit build.lua
+```
 
 ## Running
 
 Start the server as follows (this will also launch the simulator as a child process).
 
 ```sh
+cd master
 node alive.js
 ```
 
+To run the simulator as a slave node on a secondary machine, it will need the IP address of the master node as an argument, e.g.:
 
+```sh
+cd master
+./main 192.168.0.1
+```
 
 ## License
 
