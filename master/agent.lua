@@ -302,6 +302,11 @@ function Agent:turn(x, y, z)
 	return self
 end
 
+function Agent:euler(az, el, ba)
+	self._object.rotate:fromEuler(az, el, ba) 
+	return self
+end
+
 --[[
 function Agent:face(x, y, z)
 	if type(x) == "table" and not isexpr(x) then x, y, z = unpack(x) end

@@ -684,7 +684,10 @@ void agent_reset(Agent& a) {
 	a.acceleration = 0;
 	a.turn.set(0);
 	a.twist.set(0);
-	a.color.set(0.5);
+	a.color.r = rnd::global().uniform();
+	a.color.g = rnd::global().uniform();
+	a.color.b = rnd::global().uniform();
+	
 	a.scale.set(0.25, 0.125, 0.5);
 	
 	// init unit vectors:

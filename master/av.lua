@@ -85,8 +85,7 @@ function av.app:update(dt)
 	-- trigger scheduler: 
 	-- or main.update(now)?
 	main.advance(dt)
-	
-	--print("update", dt)
+	--print(main.now())
 	
 	event("update", dt)
 	-- make sure prints print
