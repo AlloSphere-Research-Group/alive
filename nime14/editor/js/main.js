@@ -189,7 +189,7 @@ $(document).ready( function() {
 		}
 		doc = null;
 
-		return sharejs.open(docName, function(error, newDoc) {
+		return sharejs.open(docName, "text", function(error, newDoc) {
 
 			if (error) {
 				console.error(error);

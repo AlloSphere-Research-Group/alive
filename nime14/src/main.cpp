@@ -111,7 +111,7 @@ public:
 			omni().resolution(2048);
 			bRemoteAudio = true;
 		} else {
-			omni().resolution(256);
+			omni().resolution(512);
 		}
 		lens().fovy(85);
 		lens().far(WORLD_DIM * 0.5);
