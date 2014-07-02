@@ -469,8 +469,8 @@ public:
 				if (updating) {
 					
 					// accumulate velocity:
-					vec3 vel = a.acceleration + a.uz * -a.velocity;
-					a.position += vel * dt;
+					vec3 vel = a.uz * -(a.acceleration + a.velocity * dt);
+					a.position += vel;
 					
 					// accumulate rotation:
 					vec3 turn = a.twist + a.turn * dt;

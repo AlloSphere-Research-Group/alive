@@ -27,6 +27,14 @@ To encourage collaborative interplay, each performer shares the same global name
 
 The interface also includes a console pane reporting commands executed (in white) and error messages (in red) from the server. Another pane presents reference documentation along with short copyable code fragments to assist rapid experimentation.
 
+#### Editor quick-start:
+
+- *Double-click*: Execute the current paragraph (expands up and down to the nearest empty lines)
+- *Ctrl-Enter / Cmd-Enter*: Execute the currently selected text or the current paragraph 
+- *Ctrl-Alt-Enter / Cmd-Alt-Enter*: Execute the currently selected text or the current line
+- *Ctrl-. / Cmd-.*: Panic: kills all active agents
+- *Ctrl-F / Cmd-F*: Toggle editor full-screen mode
+
 ### The Virtual World
 
 The principal elements or entities of the world are *agents*. This term is variously defined in scientific simulation, computer science, robotics, artificial life and game design, but general to most multi-agent systems is the concept of mobile autonomous processes operating in parallel.

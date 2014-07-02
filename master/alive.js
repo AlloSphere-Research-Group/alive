@@ -140,8 +140,13 @@ if (ismaster) {
 		});
 	  
 		editors[socket.addr].on('execute', function(obj) {
+			console.log("OBJ", obj);
+			// need to replace newlines with a special code (<n>) so that 
+			// multiple lines can be piped over stdin atomically
+			// and terminate with \n to flush it
 			var code = obj.code.replace(/(\r\n|\n|\r)/gm, "<n>") + "\n";
-			code = code.toString("utf8");
+			code = code.toString("ascii");
+			//var code = obj.code.replace(/(\r\n|\n|\r)/gm, "\n");
 			console.log("CODE", code);
 			console.log("sent", vm.stdin.write(code));
 		});

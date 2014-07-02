@@ -8,30 +8,28 @@ local isexpr = E.isexpr
 local eval = E.eval
 
 -- a map of all tags:
-local tags = {}
+local Tag = {}
 
 -- a tag is a list (array) of objects
 local tag = {}
 
-local metatag = {}
-function metatag:__index(k)
-	return tags[k]
-end
-function metatag:__call(name, t)
-	-- TODO: or generate a tag name randomly?
-	assert(name and type(name)=="string")
-	local o = tags[name]
-	if not o then
-		o = setmetatable({
+setmetatable(Tag, {
+	-- a new tag name:
+	__index = function(self, name)
+		local o = setmetatable({
 			name = name,
 			properties = {},
 		}, tag)
-		tags[name] = o
-	end
-	if t then self:set(t) end
-	return o
-end
-setmetatable(tag, metatag)
+		Tag[name] = o
+		return o
+	end,
+	__call = function(self, name, t)
+		assert(name and type(name)=="string")
+		local o = Tag[name]
+		if t then o:set(t) end
+		return o
+	end,
+})
 
 function tag:__tostring()
 	return format("Tag(%s,%d)", self.name, #self)
@@ -62,6 +60,12 @@ end
 
 function tag:__newindex(k, v)
 	rawget(self, "properties")[k] = v
+	-- update any members:
+	for i, a in ipairs(self) do
+		-- coerce
+		print(i, a, k, v)
+		a[k](a, v)	-- setter
+	end
 end
 
 function tag:set(t)
@@ -93,7 +97,7 @@ local empty_query = setmetatable({
 function q:size() return #rawget(self, "base") end
 
 -- beep -> beep
--- "beep" -> tags.beep
+-- "beep" -> Tag.beep
 -- "~beep" -> all "*" minus "beep"
 -- q(beep) -> q.base
 local
@@ -346,7 +350,7 @@ end
 
 
 return setmetatable({
-	Tag = tag,
+	Tag = Tag,
 }, {
 	__call = function(_, ...) return query(...) end,
 })

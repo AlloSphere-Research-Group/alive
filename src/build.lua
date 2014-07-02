@@ -1,4 +1,4 @@
-#!/usr/local/bin/luajit
+#!luajit
 
 local ffi = require "ffi"
 local C = ffi.C

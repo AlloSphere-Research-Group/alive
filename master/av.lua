@@ -47,25 +47,28 @@ av.timer:start(loop)
 local
 function stringclean(str)
 	for i = 1, #str do
-		print("char", i)
-		print(str:sub(i, 1), str:byte(i))
+		--print("char", i)
+		--print(str:sub(i, 1), str:byte(i))
 	end
-	return str
-	--return str:gsub(string.byte(160), " "):gsub("<n>", "\n")
+	--return str
+	return str:gsub(string.byte(160), " "):gsub("<n>", "\n")
 end
 
 av.stdin = ev.IO(function(loop, handler, event)
 	local fd = handler.fd
 	local str = stringclean(io.read("*l"))
-	print('io', os.time())
-	print(str)
+	
+	-- replace <n> with \n
+	
+	--print('io', os.time())
+	--print("stdin received", str)
 	local ok, f = pcall(loadstring, str)
-	print(ok, f, str)
 	if ok and f then
 		local ok, err = pcall(f)
 		if not ok then print(err) end
 	elseif ok then
-		print("parse error (funky symbols?)")
+		print("parse error (funky symbols?):")
+		print(str)
 	else
 		print("parse error", f)
 	end	

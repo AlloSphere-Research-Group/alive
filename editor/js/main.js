@@ -277,8 +277,7 @@ $(document).ready( function() {
 	});
 	
 	slaveSocket.on('console', function(msg) {
-    console.log("DATA");
-    console.log(msg.msg);
+    console.log(">", msg.msg);
     text = msg.msg.replace(/\n/g, "<br>");
 		$("#_console").append($("<span style='color:#fff'>"+text+"</span><br>"));
 		//$("#consoleContainer").scrollTop($("#consoleContainer")[0].scrollHeight);
@@ -397,13 +396,13 @@ $(document).ready( function() {
 		window.setTimeout(function() { sel.clear(); }, 250);
 		
 		
-		if (pos !== null) {
-			v = cm.getLine(pos.line);
+		if (pos1 !== null) {
+			v = cm.getLine(pos1.line);
 
-			cm.setLineClass(pos.line, null, "highlightLine")
+			cm.setLineClass(pos1.line, null, "highlightLine")
 
 			var cb = (function() {
-			  cm.setLineClass(pos.line, null, null);
+			  cm.setLineClass(pos1.line, null, null);
 			});
 
 			window.setTimeout(cb, 250);
@@ -419,6 +418,11 @@ $(document).ready( function() {
 		}
 	};
 	
+	var execute = function(v) {
+		//console.log(JSON.stringify(v));
+		slaveSocket.emit('execute', {code:v});
+	}
+	
 	var executeCode = function(cm) {
 		var v = cm.getSelection();
 		var pos = null;
@@ -427,33 +431,46 @@ $(document).ready( function() {
 			v = cm.getLine(pos.line);
 		}
 		flash(cm, pos);
-		slaveSocket.emit('execute', {code:v});
+		execute(v);
+	};
+	
+	var executeCodeParagraph = function(cm, select) {
+		// try to select the containing block
+		pos = cm.getCursor();
+		var startline = pos.line;
+		var endline = pos.line;
+		while (startline > 0 && cm.getLine(startline) !== "") {
+			startline--;
+		}
+		while (endline < cm.lineCount() && cm.getLine(endline) !== "") {
+			endline++;
+		}
+		var pos1 = { line: startline, ch: 0 }
+		var pos2 = { line: endline, ch: 0 }
+		v = cm.getRange(pos1, pos2);
+		execute(v);
+		flashblock(cm, pos1, pos2);
+		
+		if (select) {
+			cm.setSelection(pos1, pos2);
+		}
 	};
 	
 	var executeCodeBlock = function(cm) {
 		var v = cm.getSelection();
 		var pos = null;
 		if (v === "") {
-			// try to select the containing block
-			pos = cm.getCursor();
-			var startline = pos.line;
-			var endline = pos.line;
-			while (startline > 0 && cm.getLine(startline) !== "") {
-				startline--;
-			}
-			while (endline < cm.lineCount() && cm.getLine(endline) !== "") {
-				endline++;
-			}
-			var pos1 = { line: startline, ch: 0 }
-			var pos2 = { line: endline, ch: 0 }
-			v = cm.getRange(pos1, pos2);
-			slaveSocket.emit('execute', {code:v});
-			flashblock(cm, pos1, pos2);
+			executeCodeParagraph(cm);
 		} else {
-			slaveSocket.emit('execute', {code:v});
+			execute(v);
 			flash(cm, pos);
 		}
 	};
+	
+	var panic = function(e) {
+		// paste in a demo script.
+		execute("panic()");
+	}
 
 	var clearDoc = function(cm) {
 		console.log("CLEARING DOC");
@@ -462,13 +479,35 @@ $(document).ready( function() {
 		doc.del(0, l);
 	};
   
+  	function requestFullscreen(element) {
+		if (element.requestFullscreen) {
+			element.requestFullscreen();
+		} else if (element.mozRequestFullScreen) {
+			element.mozRequestFullScreen();
+		} else if (element.webkitRequestFullScreen) {
+			element.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
+		}
+	}
+  
+  	var fullscreen = function() {
+		if (document.fullscreenEnabled) {
+			requestFullscreen(document.getElementById("wrapper"));
+		} else {
+			alert("fullscreen not supported by your browser");
+		}
+	}
+  
 	CodeMirror.keyMap.alive = {
 		fallthrough : "default",
-		"Ctrl-Enter": executeCode,
-		"Cmd-Enter": executeCode, 
-		"Ctrl-Alt-Enter": executeCodeBlock,
-		"Cmd-Alt-Enter": executeCodeBlock,
-		"Cmd-Backspace": clearDoc,   
+		"Ctrl-Enter": executeCodeBlock,
+		"Cmd-Enter": executeCodeBlock, 
+		"Ctrl-Alt-Enter": executeCode,
+		"Cmd-Alt-Enter": executeCode,
+		//"Cmd-Backspace": panic,   
+		"Cmd-.": panic,   
+		"Ctrl-.": panic,   
+		"Cmd-F": fullscreen,  
+		"Ctrl-F": fullscreen,  
 		//"Cmd-S": editor_save,
 		//"Ctrl-S": editor_save,
 		"Ctrl-S"  : function() { save(window.editor.getValue()) },
@@ -479,10 +518,16 @@ $(document).ready( function() {
 			load(name);
 		},
 	};
+	
+	//window.editor.on("dblclick", function() { executeCodeBlock(window.editor); });
+	
+	window.editor.getWrapperElement().addEventListener("dblclick", function() { 
+		executeCodeParagraph(window.editor, true); 
+	});
 		
 	window.editor.setOption("keyMap", "alive");
 	
-	slaveSocket.emit('cmd', 'ls');
+	//slaveSocket.emit('cmd', 'ls');
 			
 	$(window).resize(function() {
 		$(".CodeMirror-scroll").height( $(window).height() - $("#filename").outerHeight() - $("#console").outerHeight() );
@@ -542,15 +587,10 @@ $(document).ready( function() {
 	
 	$("#demo").mousedown( function(e) {
 		// paste in a demo script.
-		var v = "demo()";
-		slaveSocket.emit('execute', {code:v});
+		execute("demo()");
 	});
 	
-	$("#panic").mousedown( function(e) {
-		// paste in a demo script.
-		var v = "panic()";
-		slaveSocket.emit('execute', {code:v});
-	});
+	$("#panic").mousedown(panic);
 	
 	$("#relaunch").mousedown (function(e) {
 		slaveSocket.emit('relaunch');

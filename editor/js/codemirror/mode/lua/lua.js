@@ -44,7 +44,9 @@ CodeMirror.defineMode("lua", function(config, parserConfig) {
     "string.byte","string.char","string.dump","string.find","string.format","string.gmatch","string.gsub",
     "string.len","string.lower","string.match","string.rep","string.reverse","string.sub","string.upper",
 
-    "table.concat","table.insert","table.maxn","table.remove","table.sort"
+    "table.concat","table.insert","table.maxn","table.remove","table.sort",
+    
+    "Agent", "Q", "Tag", "go", "event", "wait"
   ]);
   var keywords = wordRE(["and","break","elseif","false","nil","not","or","return",
 			 "true","function", "end", "if", "then", "else", "do", 

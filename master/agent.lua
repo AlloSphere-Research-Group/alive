@@ -209,7 +209,10 @@ function Agent:moveTo(x,y,z)
 		-- assume vec:
 		self._object.position:set(x.x, x.y, x.z)
 	end
+	return self
 end
+
+Agent.position = Agent.moveTo
 
 --[[###Agent.color : method
 **description** : Change the color of an agent  
@@ -236,6 +239,7 @@ function Agent:color(x, y, z)
 		self._object.color.g = x.y
 		self._object.color.b = x.z
 	end
+	return self
 end
 
 --[[###Agent.scale : method
@@ -255,6 +259,7 @@ function Agent:scale(x, y, z)
 		-- assume vec:
 		self._object.scale:set(x.x, x.y, x.z)
 	end
+	return self
 end
 
 --[[###Agent.twist : method
@@ -274,6 +279,7 @@ function Agent:twist(x, y, z)
 		-- assume vec:
 		self._object.twist:set(x.x, x.y, x.z)
 	end
+	return self
 end
 
 --[[###Agent.turn : method
@@ -293,9 +299,10 @@ function Agent:turn(x, y, z)
 		-- assume vec:
 		self._object.turn:set(x.x, x.y, x.z)
 	end
+	return self
 end
 
-
+--[[
 function Agent:face(x, y, z)
 	if type(x) == "table" and not isexpr(x) then x, y, z = unpack(x) end
 	
@@ -317,7 +324,10 @@ function Agent:face(x, y, z)
 	-- local rot = quat.lookrotation(dir)
 	
 	-- convert to euler & set
+	
+	return self
 end
+--]]
 
 -- audio properties:
 --[[###Agent.amp : method
