@@ -9,7 +9,7 @@ PLATFORM=`uname`
 ARCH=`uname -m`
 echo Building for $PLATFORM $ARCH from $ROOT
 
-ALLOSYSTEMPATH="../../AlloSystem"
+ALLOSYSTEMPATH="../AlloSystem"
 
 function clean {
 	echo Cleaning
@@ -45,7 +45,7 @@ function build {
 		LINKERPATHS="-L$ALLOSYSTEMPATH/build/lib -L/usr/lib -L/opt/local/lib -L/usr/local/lib -L/usr/local/opt/freetype/lib"
 		LIBRARIES="-lluajit-5.1 -lev -lassimp -lportaudio -lfreeimage -lapr-1 -lfreetype -laprutil-1 -force_load $ALLOSYSTEMPATH/build/lib/liballocore.a -force_load $ALLOSYSTEMPATH/build/lib/liballoutil.a"
 
-		FRAMEWORKS="-framework Carbon -framework Cocoa -framework CoreAudio -framework GLUT -framework OpenGL -framework AudioUnit -framework AudioToolbox -framework CoreMidi"
+		FRAMEWORKS="-framework Carbon -framework Cocoa -framework CoreAudio -framework GLUT -framework OpenGL -framework AudioUnit -framework AudioToolbox -framework CoreMidi -framework IOKit"
 		LINKERFLAGS="-w -rdynamic -pagezero_size 10000 -image_base 100000000 -keep_private_externs"
 
 		g++ -c -x c++ -arch $ARCH -O3 -Wall -fno-stack-protector -DEV_MULTIPLICITY=1 $INCLUDEPATHS $SOURCES
