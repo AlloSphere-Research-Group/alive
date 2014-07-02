@@ -1,0 +1,3 @@
+[submodule "AlloSystem"]
+	path = AlloSystem
+	url = git@github.com:AlloSphere-Research-Group/AlloSystem.git

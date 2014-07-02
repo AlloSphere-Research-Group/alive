@@ -534,7 +534,7 @@
 		361C5ECF16276F8B00E08BE8 /* nodelint.cfg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = nodelint.cfg; sourceTree = "<group>"; };
 		361C5ED016276F8B00E08BE8 /* package.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = package.json; sourceTree = "<group>"; };
 		361C5ED116276F8B00E08BE8 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		361C5ED316276F8B00E08BE8 /* .swp */ = {isa = PBXFileReference; lastKnownFileType = file; path = .swp; sourceTree = "<group>"; };
+		361C5ED316276F8B00E08BE8 /* .swp */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swp; sourceTree = "<group>"; };
 		361C5ED416276F8B00E08BE8 /* test-async.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "test-async.js"; sourceTree = "<group>"; };
 		361C5ED516276F8B00E08BE8 /* test.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = test.html; sourceTree = "<group>"; };
 		361C5ED716276F8B00E08BE8 /* .npmignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .npmignore; sourceTree = "<group>"; };
@@ -2037,7 +2037,7 @@
 		361C65C516276F8D00E08BE8 /* multi_bench.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = multi_bench.js; sourceTree = "<group>"; };
 		361C65C816276F8D00E08BE8 /* .lock-wscript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ".lock-wscript"; sourceTree = "<group>"; };
 		361C65C916276F8D00E08BE8 /* bench.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = bench.js; sourceTree = "<group>"; };
-		361C65CB16276F8D00E08BE8 /* .wafpickle-7 */ = {isa = PBXFileReference; lastKnownFileType = file; path = ".wafpickle-7"; sourceTree = "<group>"; };
+		361C65CB16276F8D00E08BE8 /* .wafpickle-7 */ = {isa = PBXFileReference; lastKnownFileType = text; path = ".wafpickle-7"; sourceTree = "<group>"; };
 		361C65CD16276F8D00E08BE8 /* build.config.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = build.config.py; sourceTree = "<group>"; };
 		361C65CE16276F8D00E08BE8 /* Release.cache.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = Release.cache.py; sourceTree = "<group>"; };
 		361C65CF16276F8D00E08BE8 /* config.log */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = config.log; sourceTree = "<group>"; };
